@@ -1,0 +1,25 @@
+# The 2023 teaching team {-}
+
+```{r, include = FALSE}
+source("common.R")
+```
+
+## Course instructors {-}
+
+**Mete Yuksel** (mete.yuksel@mail.utoronto.ca)
+
+Mete is a 2nd year PhD student in the Dept. Ecology and Evolutionary Biology at UTSG, and is co-advised by Matt Osmond & Nicole Mideo. He uses mathematical models to address questions in evolutionary genetics and ecology. He is currently developing theory to understand patterns, causes, and consequences of pathogen recombination. Mete was an undergraduate math & statistics student at the University of Idaho. There, he worked on the ecology of gene drive interventions against vectored diseases, understanding how continuous spatial structure can affect species coexistence, and forecasting the dynamics of Chinook salmon in the Willamette River system. He loves modeling, statistics, and programming in R (among other languages!) - and is thrilled to be teaching this course! Outside of science, he enjoys listening to podcasts, cooking, and cycling between Toronto neighborhoods in search of coffee.
+
+**Vicki Zhang** (vm.zhang@mail.utoronto.ca)
+
+Vicki is a PhD Candidate in Peter Kotanen’s lab at UTM. She studies invasive species at the edge of the Arctic, and how climate change and anthropogenic stressors might affect the persistence and spread of invasive species in Canada’s tundra and boreal forests. Vicki does fieldwork in Churchill, Manitoba (the polar bear capital of the world) in the summer, but does a lot of data analyses and modelling on R throughout the fall and winter semesters. She took EEB313 in 2018, and it was her favourite undergraduate course because everything about R just clicked, and she learned so much about coding, statistics, and modelling (her previous encounters with R and stats went very poorly). Now, she spends a lot of time making sure that her data is clean and her code is fast - it’s so satisfying when every line finally runs! For Vicki, the best way to work in R is with a big cup of coffee, soft classical music in the background, and her cat Remi napping next to her. 
+
+## Teaching assistants {-}
+
+**Zoe Humphries** (zoe.humphries@mail.utoronto.ca)
+
+Zoë is a PhD student in the Wright and Barrett labs at UTSG. She studies the genome of a weedy plant to better understand how transposable elements affect sex chromosome evolution. She taught herself how to use R during her honours thesis and fell in love because it was much kinder than Lisp or C++ and, most importantly, because aesthetics. Zoë makes plots from aggressively large genomic data sets and spends a lot of time literally bash-ing her data into a file small enough for her computer to load into RStudio. For Zoë, the best way to work in R is while patting her puppies.
+
+**Jessie Wang** (jae.wang@mail.utoronto.ca)
+
+Jessie is a PhD student in the Frederickson lab at UTSG. She studies plant-microbe interactions using high-throughput experimentation in duckweeds. She fell in love with R during her time as an undergraduate and took EEB313 in 2020, simultaneously sharpening her coding skills while conducting research alone in the lab. Jessie loves to spend too much money on fancy coffee as she types away, making sure her code is well-annotated and her figures look beautiful. Outside of work, she enjoys caring for her many houseplants and aquariums, finding new delicious eats, and admiring other people's pets.

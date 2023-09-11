@@ -1,0 +1,14 @@
+{
+  "index.qmd": {
+    "index.html": "970c1365"
+  },
+  "about-us.qmd": {
+    "about-us.html": "f941233d"
+  },
+  "downloadingR.qmd": {
+    "downloadingR.html": "9714e516"
+  },
+  "lec00-rstudio.qmd": {
+    "lec00-rstudio.html": "09382a71"
+  }
+}

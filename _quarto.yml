@@ -1,0 +1,28 @@
+project:
+  type: book
+
+book:
+  title: "EEB313: Quantitative Methods in R for Biology"
+  author: "Vicki M. Zheng & Mete K. Yuksel"
+  date: today
+  chapters:
+    - index.qmd
+    - about-us.qmd
+    - downloadingR.qmd
+    - part: "Lectures"
+      chapters:
+      - lec00-rstudio.qmd
+    - part: "Assignments"
+  repo-url: https://github.com/EEB313/eeb313.github.io
+  sidebar:
+    search: true
+    border: true
+
+format:
+  html:
+    theme:
+      light: [cosmo, format/_light.scss]
+    code-copy: true
+    code-fold: false
+    code-overflow: wrap
+

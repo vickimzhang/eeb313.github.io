@@ -1,0 +1,234 @@
+# Getting started with RStudio and R Notebook {#lec00r-studio}
+
+```{r, include = FALSE}
+source("common.R")
+```
+
+## Lesson preamble {-}
+
+> ### Lesson objectives
+> -   Introduce students to the RStudio interface
+> -   Introduce the Markdown syntax and how to use it within the R
+>     Notebook
+>
+> ### Learning outline
+> -   Explore RStudio interface (20 mins)
+> -   RMarkdown (20 mins)
+> -   Generating reports (10 mins)
+> -   Knit to PDF and submit on Quercus (10 mins)
+
+------------------------------------------------------------------------
+
+## Working with computers {-}
+
+Before we get into more practical matters, we want to provide a brief
+background to the idea of working with computers. Essentially, computer
+work is about humans communicating with a computer by modulating flows
+of current in the hardware in order to get the computer to carry out
+advanced calculations that we are unable to efficiently compute
+ourselves. Early examples of human computer communication were quite
+primitive and included physically disconnecting a wire and connecting it
+again in a different spot. Luckily, we are not doing this anymore;
+instead we have programs with graphical user interfaces with menus and
+buttons that enable more efficient human to computer communication.
+
+### Graphical user interfaces vs. text based user interfaces
+
+An example of such a program that many of you are familiar with
+is spreadsheet software such as Microsoft Excel. Here, all the
+functionality of the program is accessible via hierarchical menus, and
+clicking buttons sends instructions to the computer, which then responds
+and sends the results back to your screen. For instance, I can click a
+button to send the instruction of coloring this cell yellow, and the
+computer interprets my instructions and then displays the results on the
+screen.
+
+Spreadsheet software is great for viewing and entering small data sets
+and creating simple visualizations fast. However, it can be tricky to
+design figures, create automatic reproducible analysis
+workflows, perform advanced calculations, and reliably clean data sets.
+Even when using a spreadsheet program to record data, it is often
+beneficial to have some some basic programming skills to facilitate the
+analyses of those data.
+
+Typing commands directly instead of searching for them in menus is a
+more efficient approach to communicate with the computer and a powerful
+way of doing data analysis. This is initially intimidating for almost
+all people, but if you compare it to learning a new language, the
+process becomes more intuitive: when learning a language, you would
+initially string together sentences by looking up individual words in
+the dictionary. As you improve, you will only reference the dictionary
+occasionally since you already know most of the words. Eventually, you
+will throw the dictionary out altogether because it is faster and more
+precise to speak directly. In contrast, graphical programs force you to
+look up every word in the dictionary every time, even if you already
+know what to say.
+
+### RStudio and the R Notebook
+
+RStudio includes the R console, but also many other convenient
+functionalities, which makes it easier to get started and to work with
+R. When you launch RStudio, you will see four panels. Starting at the
+top left and going clockwise, these panels are:
+
+-   The **text editor panel**. This is where we can write scripts, i.e.
+    putting several commands of code together and saving them as a text
+    document so that they are accessible for later and so that we can
+    execute them all at once by running the script instead of typing
+    them in one by one.
+-   The **environment panel**, which shows us all the files and objects we
+    currently loaded into R.
+-   The **files-plots-help panel**. This panel shows the files in the
+    current directory (the folder we are working out of), any plots we
+    make later, and also documentation for various packages and
+    functions.
+    Here, the documentation is formatted in a way that is easier to read
+    and also provides links to the related sections.
+-   The **console** is another space we can input code, only now the code is
+    executed immediately and doesn't get saved at the end.
+
+To change the appearance of your RStudio, navigate to `Tools > Global Options > Appearance`.
+You can change the the font and size, and the editor theme. The default is "Textmate", but
+if you like dark mode, I recommend "Tomorrow Night Bright". You can also change how your
+panels are organized. I like to have my Console and history below my Source, and that way 
+I can see my working environment next to my code. That way, I know if an error I am getting is because I am missing an object or I renamed something oddly. Let's change that now. I recommend
+playing around with the appearance if you prefer a different layout or colour scheme. Do what
+makes you the most productive!
+
+
+Another very useful thing with RStudio is that you have access to some
+excellent cheat sheets in PDF format straight from the menu:
+`Help -> Cheatsheets`!    
+
+In the RStudio interface, we will be writing code in a format called the
+R Notebook. As the name entails, this interface works like a notebook
+for code, as it allows us to save notes about what the code is doing,
+the code itself, and any output we get, such as plots and tables, all
+together in the same document.
+
+When we are in the Notebook, the text we write is normal plain text,
+just as if we would be writing it in a text document. If we want to
+execute some R code, we need to insert a *code chunk*. 
+
+You insert a code
+chunk by either clicking the "Insert" button or pressing
+<kbd>Ctrl</kbd>/<kbd>Command</kbd> + <kbd>Alt</kbd> + <kbd>i</kbd>
+simultaneously. You could also type out the surrounding backticks, but
+this would take longer. To run a code chunk, you press the green arrow,
+or <kbd>Ctrl</kbd>/<kbd>Command</kbd> + <kbd>Shift</kbd> +
+<kbd>Enter</kbd>.
+
+```{r}
+
+1+1
+
+```
+
+As you can see, the output appears right under the code block.
+
+This is a great way to perform explore your data, since you can do your
+analysis and write comments and conclusions right under it all in the
+same document. A powerful feature of this workflow is that there is no
+extra time needed for code documentation and note-taking, since you're
+doing your analyses and taking notes at the same time. This makes it
+great for both taking notes at lectures and to have as a reference when
+you return to your code in the future.
+
+## R Markdown
+
+The text format we are using in the R Notebook is called R Markdown.
+This format allows us to combine R code with the Markdown text format,
+which enables the use of certain characters to specify headings, bullet
+points, quotations and even citations. A simple example of how to write
+in Markdown is to use a single asterisk or underscore to *emphasize*
+text (`*emphasis*`) and two asterisks or underscores to **strongly
+emphasize** text (`**strong emphasis**`). When we convert our R Markdown
+text to other file formats, these will show up as italics and bold
+typeface, respectively. If you have used WhatsApp, you might already be familiar
+with this style of writing. In case you haven't seen it before, you have
+just learned something about WhatsApp in your quantitative methods
+class...
+
+To learn more about R Markdown, you can read the cheat sheets in RStudio
+and [RStudio Markdown reference
+online](https://rmarkdown.rstudio.com/authoring_basics.html).
+
+### Saving data and generating reports
+
+To save our notes, code, and graphs, all we have to do is to save the R
+Notebook file, and the we can open it in RStudio next time again.
+However, if we want someone else to look at this, we can't always just
+send them the R Notebook file, because they might not have RStudio
+installed. Another great feature of R Notebooks is that it is really
+easy to export them to HTML, MS word, or PDF documents with figures and
+professional typesetting. There are actually many academic papers that
+are written entirely in this format and it is great for assignments and
+reports. (You might even use it to communicate with your collaborators!)
+Since R Notebook files convert to HTML, it is
+also easy to publish [simple and good-looking websites](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/) in it, in which code chunks
+are embedded nicely within the text.
+
+Let's try to create a document in R.
+
+First, let's set up the [YAML](https://yaml.org/) block. This is found at the top of your
+document, and it is where you specify the title of your document, what
+kind of output you want, and a few other things such as author list and
+date.
+
+```{r eval=FALSE}
+
+---
+title: "Your title here"
+author: "Your name here"
+date: "Insert date"
+---
+
+```
+
+Then, let's type some notes and code together!
+
+```{r eval=FALSE}
+
+# Attempt 1
+
+## Here goes!
+
+```
+
+```{r}
+
+1+2+3+4
+
+x <- seq(0,100,1)
+
+plot(x, type = "l")
+
+```
+
+Let's see what this looks like. To create the output document, we
+poetically say that we will knit our R Markdown into the HTML document.
+Luckily, it is much simpler than actually knitting something. Simply
+press the `Knit` button here and the new document will be created.
+
+As you can see in the knitted document, the title showed up as we would
+expect, the lines with pound sign(s) in front of them were converted
+into headers and we can see both the code and its output! So the plots
+are generated directly in the report without us having to cut and paste
+images! If we change something in the code, we don't have to find the
+new images and paste it in again, the correct one will appear right in
+your code.
+
+When you quit, R will ask you if you want to save the workspace (that is, all of the variables you have defined in this session); in general, you should say “no” to avoid clutter and unintentional confusion of results from different sessions. Note: When you say “yes” to saving your workspace, it is saved in a hidden file named .RData. By default, when you open a new R session in the same directory, this workspace is loaded and a message informing you so is printed: `[Previously saved workspace restored]`.
+
+## Exercise {-}
+
+### Knitting and Submitting on Quercus
+
+Practice knitting and uploading your file to Quercus!
+
+Click the dropdown "Knit" button at the top of the screen, and click "PDF".
+
+Note: for assignments, submit PDF versions. If you are having trouble rendering your knitted file, you can submit HTML formats, or your .Rmd file as a last resort. Note that, if you are unable to knit your assignment, chances are there is an error. Make sure to double-check your code!
+
+Head on over to Quercus and submit your knitted PDF to "Assignment 0".
+
