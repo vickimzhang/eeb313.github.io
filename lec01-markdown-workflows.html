@@ -323,6 +323,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## eval=TRUE, echo=FALSE prints output, but does not print code chunk</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(mpg, wt, <span class="at">data =</span> mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: `qplot()` was deprecated in ggplot2 3.4.0.</code></pre>
 </div>
@@ -334,10 +337,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="changing-height-and-width-of-imagesfigures" class="level4" data-number="2.2.1.2">
 <h4 data-number="2.2.1.2" class="anchored" data-anchor-id="changing-height-and-width-of-imagesfigures"><span class="header-section-number">2.2.1.2</span> Changing height and width of images/figures</h4>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(mpg, wt, <span class="at">data =</span> mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="lec01-markdown-workflows_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="192"></p>
 </div>
 </div>
+<p>Here, fig.width=2, fig.height=2.</p>
 </section>
 </section>
 <section id="lists" class="level3" data-number="2.2.2">
@@ -366,6 +371,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="tables" class="level3" data-number="2.2.3">
 <h3 data-number="2.2.3" class="anchored" data-anchor-id="tables"><span class="header-section-number">2.2.3</span> Tables</h3>
 <p><code>kable</code> displays r code chunks with tables nicely</p>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(mtcars))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table">
 <colgroup>
@@ -487,6 +494,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 <p>In comparison:</p>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mtcars) <span class="do">## does not nicely format the table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre><code>               mpg cyl disp  hp drat    wt  qsec vs am gear carb</code></pre>
 <p>Mazda RX4 21.0 6 160 110 3.90 2.620 16.46 0 1 4 4 Mazda RX4 Wag 21.0 6 160 110 3.90 2.875 17.02 0 1 4 4 Datsun 710 22.8 4 108 93 3.85 2.320 18.61 1 1 4 1 Hornet 4 Drive 21.4 6 258 110 3.08 3.215 19.44 1 0 3 1 Hornet Sportabout 18.7 8 360 175 3.15 3.440 17.02 0 0 3 2 Valiant 18.1 6 225 105 2.76 3.460 20.22 1 0 3 1</p>
 </section>
@@ -496,8 +505,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>![Description/Caption](/path/to/image.png)</code></p>
 <p>For example: <img src="figures/rubberduck.jpeg" class="img-fluid" alt="Fun picture!"></p>
 <p>As an aside, let’s talk about rubber duck debugging. It is a simple but effective technique used by scientists to debug code. By explaining the code line-by-line to an inanimate object, such as a rubber duck, programmers can break down the code into smaller, more manageable pieces, and potentially identify the root cause of the problem. Or, explain it to a friend in the course! They can also help you find typos and other errors</p>
-<p>And use the following format to add weblinks:</p>
-<p><code>![Description/Caption](weblink)</code> <img src="eeb313.github.io" class="img-fluid" alt="The EEB website lives here"></p>
+<p>And use the following format to add weblinks: <code>[Description/Caption](weblink)</code>.</p>
+<p><a href="eeb313.github.io">The EEB website lives here!</a></p>
 </section>
 <section id="in-line-citations-and-bibliography" class="level3" data-number="2.2.5">
 <h3 data-number="2.2.5" class="anchored" data-anchor-id="in-line-citations-and-bibliography"><span class="header-section-number">2.2.5</span> In-line citations and bibliography</h3>
@@ -529,18 +538,18 @@ bibliography: bibliography.bib
 <h3 data-number="2.3.2" class="anchored" data-anchor-id="relative-file-pathways"><span class="header-section-number">2.3.2</span> Relative File Pathways</h3>
 <p>The goal of the <code>here</code> package is to enable easy file referencing in project-oriented workflows. In contrast to using <code>setwd()</code>, which is fragile and dependent on the way you organize your files, here uses the top-level directory of a project to easily build paths to files.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>here() starts at /Users/meteyuksel/eeb313website</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "/Users/meteyuksel/eeb313website"</code></pre>
 </div>
 </div>
 <p>You can build a path relative to the top-level directory in order to read or write a file:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"1_lectures"</span>, <span class="st">"csv"</span>, <span class="st">"portal_data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"1_lectures"</span>, <span class="st">"csv"</span>, <span class="st">"portal_data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "/Users/meteyuksel/eeb313website/1_lectures/csv/portal_data.csv"</code></pre>
 </div>
@@ -570,7 +579,7 @@ bibliography: bibliography.bib
 <h3 data-number="2.3.4" class="anchored" data-anchor-id="documenting-session-info"><span class="header-section-number">2.3.4</span> Documenting session info</h3>
 <p>As an overview of our environment, we can also use the <code>sessionInfo()</code> command. This is a good practice to have at the end of your code to document which packages you used and what version they were.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.2.3 (2023-03-15)
 Platform: x86_64-apple-darwin17.0 (64-bit)
@@ -621,20 +630,15 @@ loaded via a namespace (and not attached):
 </ul>
 <ol type="1">
 <li>Why does reproducibility matter in science?</li>
-</ol>
-<ul>
-<li>must trust findings to build up on science</li>
-</ul>
-<ol start="2" type="1">
 <li>What do you think about when you hear the term “open science”?</li>
-</ol>
-<ul>
-<li>open science: everything about a project (data, stats, code, funding, etc.) is open and available to viewing</li>
-</ul>
-<ol start="3" type="1">
 <li>How does open science affect collaboration and the progress of science?</li>
 </ol>
-<p>What are the barriers to reproducibility? * people won’t care * people might want to steal results * researchers do not want to share (embarrassed, code is rushed, etc.)</p>
+<p>What are the barriers to reproducibility?</p>
+<ul>
+<li>people won’t care</li>
+<li>people might want to steal results</li>
+<li>researchers do not want to share (embarrassed, code is rushed, etc.)</li>
+</ul>
 <section id="reproducibility-in-data-science" class="level3" data-number="2.4.1">
 <h3 data-number="2.4.1" class="anchored" data-anchor-id="reproducibility-in-data-science"><span class="header-section-number">2.4.1</span> Reproducibility in Data Science</h3>
 <p>Material from this section adapted from <a href="https://r4ds.hadley.nz/whole-game">R for Data Science</a>.</p>
@@ -735,8 +739,10 @@ loaded via a namespace (and not attached):
 </ul>
 <section id="example-code-of-conduct" class="level4" data-number="2.5.4.1">
 <h4 data-number="2.5.4.1" class="anchored" data-anchor-id="example-code-of-conduct"><span class="header-section-number">2.5.4.1</span> Example Code of Conduct</h4>
-<p><a href="https://www.contributor-covenant.org/version/1/4/code-of-conduct/">Contributor Convenent</a></p>
-<p><a href="https://github.com/UofTCoders/studyGroup/blob/gh-pages/codeOfConduct.md">UofT Coders Code of Conduct</a></p>
+<ul>
+<li><a href="https://www.contributor-covenant.org/version/1/4/code-of-conduct/">Contributor Convenent</a></li>
+<li><a href="https://github.com/UofTCoders/studyGroup/blob/gh-pages/codeOfConduct.md">UofT Coders Code of Conduct</a></li>
+</ul>
 </section>
 </section>
 </section>
