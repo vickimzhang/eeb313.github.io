@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>EEB313: Quantitative Methods in R for Biology - 2&nbsp; Lesson preamble</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./projects.html" rel="next">
+<link href="./lec00-rstudio.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lec00-rstudio.html">Lectures</a></li><li class="breadcrumb-item"><a href="./lec01-markdown-workflows.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lesson preamble</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">EEB313: Quantitative Methods in R for Biology</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/EEB313/eeb313.github.io" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about-us.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The 2023 teaching team</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./downloadingR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Downloading R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Lectures</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lec00-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with RStudio and R Notebook</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lec01-markdown-workflows.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lesson preamble</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Assignments</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Project</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./projects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Project description</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#markdown" id="toc-markdown" class="nav-link active" data-scroll-target="#markdown"><span class="header-section-number">2.1</span> Markdown</a>
+  <ul class="collapse">
+  <li><a href="#in-line-code" id="toc-in-line-code" class="nav-link" data-scroll-target="#in-line-code"><span class="header-section-number">2.1.1</span> In-line code</a></li>
+  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="header-section-number">2.1.2</span> Lists</a></li>
+  <li><a href="#tables" id="toc-tables" class="nav-link" data-scroll-target="#tables"><span class="header-section-number">2.1.3</span> Tables</a></li>
+  <li><a href="#images-and-links" id="toc-images-and-links" class="nav-link" data-scroll-target="#images-and-links"><span class="header-section-number">2.1.4</span> Images and Links</a></li>
+  <li><a href="#in-line-citations-and-bibliography" id="toc-in-line-citations-and-bibliography" class="nav-link" data-scroll-target="#in-line-citations-and-bibliography"><span class="header-section-number">2.1.5</span> In-line citations and bibliography</a></li>
+  <li><a href="#footnotes" id="toc-footnotes" class="nav-link" data-scroll-target="#footnotes"><span class="header-section-number">2.1.6</span> Footnotes</a></li>
+  </ul></li>
+  <li><a href="#project-oriented-workflow" id="toc-project-oriented-workflow" class="nav-link" data-scroll-target="#project-oriented-workflow"><span class="header-section-number">2.2</span> Project-Oriented Workflow</a>
+  <ul class="collapse">
+  <li><a href="#projects" id="toc-projects" class="nav-link" data-scroll-target="#projects"><span class="header-section-number">2.2.1</span> Projects</a></li>
+  <li><a href="#relative-file-pathways" id="toc-relative-file-pathways" class="nav-link" data-scroll-target="#relative-file-pathways"><span class="header-section-number">2.2.2</span> Relative File Pathways</a></li>
+  <li><a href="#demo-project" id="toc-demo-project" class="nav-link" data-scroll-target="#demo-project"><span class="header-section-number">2.2.3</span> Demo Project</a></li>
+  <li><a href="#documenting-session-info" id="toc-documenting-session-info" class="nav-link" data-scroll-target="#documenting-session-info"><span class="header-section-number">2.2.4</span> Documenting session info</a></li>
+  </ul></li>
+  <li><a href="#reproducible-science" id="toc-reproducible-science" class="nav-link" data-scroll-target="#reproducible-science"><span class="header-section-number">2.3</span> Reproducible Science</a>
+  <ul class="collapse">
+  <li><a href="#reproducibility-in-data-science" id="toc-reproducibility-in-data-science" class="nav-link" data-scroll-target="#reproducibility-in-data-science"><span class="header-section-number">2.3.1</span> Reproducibility in Data Science</a></li>
+  </ul></li>
+  <li><a href="#the-scientific-method" id="toc-the-scientific-method" class="nav-link" data-scroll-target="#the-scientific-method"><span class="header-section-number">2.4</span> The Scientific Method</a>
+  <ul class="collapse">
+  <li><a href="#steps-in-scientific-process" id="toc-steps-in-scientific-process" class="nav-link" data-scroll-target="#steps-in-scientific-process"><span class="header-section-number">2.4.1</span> Steps in scientific process</a></li>
+  <li><a href="#basics-of-succeeding-as-a-team" id="toc-basics-of-succeeding-as-a-team" class="nav-link" data-scroll-target="#basics-of-succeeding-as-a-team"><span class="header-section-number">2.4.2</span> Basics of succeeding as a team</a></li>
+  <li><a href="#roles-and-responsibilities" id="toc-roles-and-responsibilities" class="nav-link" data-scroll-target="#roles-and-responsibilities"><span class="header-section-number">2.4.3</span> Roles and responsibilities</a></li>
+  <li><a href="#code-of-conduct" id="toc-code-of-conduct" class="nav-link" data-scroll-target="#code-of-conduct"><span class="header-section-number">2.4.4</span> Code of Conduct</a></li>
+  </ul></li>
+  <li><a href="#projects-1" id="toc-projects-1" class="nav-link" data-scroll-target="#projects-1"><span class="header-section-number">2.5</span> Projects!</a>
+  <ul class="collapse">
+  <li><a href="#exercise-after-groups-are-formed" id="toc-exercise-after-groups-are-formed" class="nav-link" data-scroll-target="#exercise-after-groups-are-formed"><span class="header-section-number">2.5.1</span> Exercise after groups are formed</a></li>
+  <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github"><span class="header-section-number">2.5.2</span> GitHub</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lesson preamble</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<blockquote class="blockquote">
+<h3 id="lesson-objectives" data-number="2.0.1" class="anchored"><span class="header-section-number">2.0.1</span> Lesson objectives</h3>
+<ul>
+<li>Learn about the Markdown syntax and how to use it within the R Notebook.</li>
+<li>Set up the R Notebook</li>
+<li>Set up an R Project</li>
+<li>Understand how to follow the conventional data science workflow</li>
+</ul>
+</blockquote>
+<blockquote class="blockquote">
+<h3 id="learning-outline" data-number="2.0.2" class="anchored"><span class="header-section-number">2.0.2</span> Learning outline</h3>
+<ul>
+<li>Explore RStudio interface (10 mins)</li>
+<li>Reproducible science with Markdown (40 mins)</li>
+<li>Project-Oriented Workflow (20 mins)</li>
+<li>Reproducible Science (10 mins)</li>
+<li>The Scientific Method (10 mins)</li>
+<li>Find your groups! (10 mins)</li>
+</ul>
+</blockquote>
+<hr>
+<section id="markdown" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="markdown"><span class="header-section-number">2.1</span> Markdown</h2>
+<p>Last class, we introduced Markdown, the text format that RStudio uses. In fact, if you are following along this far, you should have already been typing your notes and code in a .Rmd file, or a RMarkdown file.</p>
+<p>Let’s introduce more Markdown features! We encourage groups to try completing their group projects in RMarkdown, but more about that later.</p>
+<section id="in-line-code" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="in-line-code"><span class="header-section-number">2.1.1</span> In-line code</h3>
+<p>We talked about using RMarkdown for notes and inline code last class. This is extremely useful for when you need to update objects or rerun analyses. You can also comment out code within the code chunk.</p>
+<p>As a reminder, the keyboard shortcut to insert a code chunk is:</p>
+<ul>
+<li>command + option + i (Mac)</li>
+<li>ctrl + alt + i (Windows)</li>
+</ul>
+<!-- -->
+<pre><code>x &lt;- 5
+y &lt;- 13
+
+# 5 plus 13
+x + y
+
+## [1] 18</code></pre>
+<section id="r-code-chunk-tricks" class="level4" data-number="2.1.1.1">
+<h4 data-number="2.1.1.1" class="anchored" data-anchor-id="r-code-chunk-tricks"><span class="header-section-number">2.1.1.1</span> R code chunk tricks</h4>
+<ul>
+<li><code>eval=TRUE</code> evaluates the code chunk (runs it); <code>eval=FALSE</code> does not (will just print the chunk)</li>
+<li><code>echo=TRUE</code> prints the code chunk; <code>echo=FALSE</code> hides it but will still evaluate it
+<ul>
+<li>this is useful if you need to save something as an object but you don’t necessarily need it to print</li>
+</ul></li>
+<li><code>warning=FALSE</code> will hide warnings; <code>message=FALSE</code> will hide messages from output
+<ul>
+<li>only the case when <code>eval=TRUE</code></li>
+</ul></li>
+</ul>
+<!-- -->
+<pre><code>## Warning: `qplot()` was deprecated in ggplot2 3.4.0.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<p><img src="lec01-markdown-workflows-copy_files/figure-markdown_strict/unnamed-chunk-2-1.png" class="img-fluid"></p>
+</section>
+<section id="changing-height-and-width-of-imagesfigures" class="level4" data-number="2.1.1.2">
+<h4 data-number="2.1.1.2" class="anchored" data-anchor-id="changing-height-and-width-of-imagesfigures"><span class="header-section-number">2.1.1.2</span> Changing height and width of images/figures</h4>
+<p><img src="lec01-markdown-workflows-copy_files/figure-markdown_strict/unnamed-chunk-3-1.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="lists" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="lists"><span class="header-section-number">2.1.2</span> Lists</h3>
+<p>I’ve already used these! You can use either <code>*</code> or <code>-</code> to indicate unordered lists. To indent, hit tab. Make sure there’s a space before your items in the list.</p>
+<p>Unordered Lists (bullet points)</p>
+<ul>
+<li>first item</li>
+<li>second item
+<ul>
+<li>sub-level item (two tabs)</li>
+</ul></li>
+<li>third item</li>
+</ul>
+<p>For ordered lists, use numbers. Again, hit tab to add sublists.</p>
+<p>Ordered Lists (numbers)</p>
+<ol type="1">
+<li>Ordered item</li>
+<li>Ordered item
+<ol type="1">
+<li>Ordered sub-item</li>
+</ol></li>
+<li>Item (will automatically re-number)</li>
+</ol>
+</section>
+<section id="tables" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="tables"><span class="header-section-number">2.1.3</span> Tables</h3>
+<p><code>kable</code> displays r code chunks with tables nicely</p>
+
+<table class="table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 7%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 7%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">
+</th>
+<th style="text-align: right;">
+mpg
+</th>
+<th style="text-align: right;">
+cyl
+</th>
+<th style="text-align: right;">
+disp
+</th>
+<th style="text-align: right;">
+hp
+</th>
+<th style="text-align: right;">
+drat
+</th>
+<th style="text-align: right;">
+wt
+</th>
+<th style="text-align: right;">
+qsec
+</th>
+<th style="text-align: right;">
+vs
+</th>
+<th style="text-align: right;">
+am
+</th>
+<th style="text-align: right;">
+gear
+</th>
+<th style="text-align: right;">
+carb
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">
+Mazda RX4
+</td>
+<td style="text-align: right;">
+21.0
+</td>
+<td style="text-align: right;">
+6
+</td>
+<td style="text-align: right;">
+160
+</td>
+<td style="text-align: right;">
+110
+</td>
+<td style="text-align: right;">
+3.90
+</td>
+<td style="text-align: right;">
+2.620
+</td>
+<td style="text-align: right;">
+16.46
+</td>
+<td style="text-align: right;">
+0
+</td>
+<td style="text-align: right;">
+1
+</td>
+<td style="text-align: right;">
+4
+</td>
+<td style="text-align: right;">
+4
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+Mazda RX4 Wag
+</td>
+<td style="text-align: right;">
+21.0
+</td>
+<td style="text-align: right;">
+6
+</td>
+<td style="text-align: right;">
+160
+</td>
+<td style="text-align: right;">
+110
+</td>
+<td style="text-align: right;">
+3.90
+</td>
+<td style="text-align: right;">
+2.875
+</td>
+<td style="text-align: right;">
+17.02
+</td>
+<td style="text-align: right;">
+0
+</td>
+<td style="text-align: right;">
+1
+</td>
+<td style="text-align: right;">
+4
+</td>
+<td style="text-align: right;">
+4
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+Datsun 710
+</td>
+<td style="text-align: right;">
+22.8
+</td>
+<td style="text-align: right;">
+4
+</td>
+<td style="text-align: right;">
+108
+</td>
+<td style="text-align: right;">
+93
+</td>
+<td style="text-align: right;">
+3.85
+</td>
+<td style="text-align: right;">
+2.320
+</td>
+<td style="text-align: right;">
+18.61
+</td>
+<td style="text-align: right;">
+1
+</td>
+<td style="text-align: right;">
+1
+</td>
+<td style="text-align: right;">
+4
+</td>
+<td style="text-align: right;">
+1
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+Hornet 4 Drive
+</td>
+<td style="text-align: right;">
+21.4
+</td>
+<td style="text-align: right;">
+6
+</td>
+<td style="text-align: right;">
+258
+</td>
+<td style="text-align: right;">
+110
+</td>
+<td style="text-align: right;">
+3.08
+</td>
+<td style="text-align: right;">
+3.215
+</td>
+<td style="text-align: right;">
+19.44
+</td>
+<td style="text-align: right;">
+1
+</td>
+<td style="text-align: right;">
+0
+</td>
+<td style="text-align: right;">
+3
+</td>
+<td style="text-align: right;">
+1
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+Hornet Sportabout
+</td>
+<td style="text-align: right;">
+18.7
+</td>
+<td style="text-align: right;">
+8
+</td>
+<td style="text-align: right;">
+360
+</td>
+<td style="text-align: right;">
+175
+</td>
+<td style="text-align: right;">
+3.15
+</td>
+<td style="text-align: right;">
+3.440
+</td>
+<td style="text-align: right;">
+17.02
+</td>
+<td style="text-align: right;">
+0
+</td>
+<td style="text-align: right;">
+0
+</td>
+<td style="text-align: right;">
+3
+</td>
+<td style="text-align: right;">
+2
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+Valiant
+</td>
+<td style="text-align: right;">
+18.1
+</td>
+<td style="text-align: right;">
+6
+</td>
+<td style="text-align: right;">
+225
+</td>
+<td style="text-align: right;">
+105
+</td>
+<td style="text-align: right;">
+2.76
+</td>
+<td style="text-align: right;">
+3.460
+</td>
+<td style="text-align: right;">
+20.22
+</td>
+<td style="text-align: right;">
+1
+</td>
+<td style="text-align: right;">
+0
+</td>
+<td style="text-align: right;">
+3
+</td>
+<td style="text-align: right;">
+1
+</td>
+</tr>
+</tbody>
+
+</table>
+<p>In comparison:</p>
+<pre><code>               mpg cyl disp  hp drat    wt  qsec vs am gear carb</code></pre>
+<p>Mazda RX4 21.0 6 160 110 3.90 2.620 16.46 0 1 4 4 Mazda RX4 Wag 21.0 6 160 110 3.90 2.875 17.02 0 1 4 4 Datsun 710 22.8 4 108 93 3.85 2.320 18.61 1 1 4 1 Hornet 4 Drive 21.4 6 258 110 3.08 3.215 19.44 1 0 3 1 Hornet Sportabout 18.7 8 360 175 3.15 3.440 17.02 0 0 3 2 Valiant 18.1 6 225 105 2.76 3.460 20.22 1 0 3 1</p>
+</section>
+<section id="images-and-links" class="level3" data-number="2.1.4">
+<h3 data-number="2.1.4" class="anchored" data-anchor-id="images-and-links"><span class="header-section-number">2.1.4</span> Images and Links</h3>
+<p>Use the following format to add images:</p>
+<p><code>![Description/Caption](/path/to/image.png)</code></p>
+<p>For example: <img src="figures/rubberduck.jpeg" class="img-fluid" alt="Fun picture!"></p>
+<p>As an aside, let’s talk about rubber duck debugging. It is a simple but effective technique used by scientists to debug code. By explaining the code line-by-line to an inanimate object, such as a rubber duck, programmers can break down the code into smaller, more manageable pieces, and potentially identify the root cause of the problem. Or, explain it to a friend in the course! They can also help you find typos and other errors</p>
+<p>And use the following format to add weblinks:</p>
+<p><code>![Description/Caption](weblink)</code> <img src="eeb313.github.io" class="img-fluid" alt="The EEB website lives here"></p>
+</section>
+<section id="in-line-citations-and-bibliography" class="level3" data-number="2.1.5">
+<h3 data-number="2.1.5" class="anchored" data-anchor-id="in-line-citations-and-bibliography"><span class="header-section-number">2.1.5</span> In-line citations and bibliography</h3>
+<pre><code>---
+title: My Report
+output: html_document
+bibliography: bibliography.bib
+---</code></pre>
+<p>Some fact[<span class="citation" data-cites="Smith2018">@Smith2018</span>]</p>
+<p>Some fact supported by multiple papers [<span class="citation" data-cites="Smith2018">@Smith2018</span>; <span class="citation" data-cites="Tran1997">@Tran1997</span>]</p>
+</section>
+<section id="footnotes" class="level3" data-number="2.1.6">
+<h3 data-number="2.1.6" class="anchored" data-anchor-id="footnotes"><span class="header-section-number">2.1.6</span> Footnotes</h3>
+<p>This is what a footnote looks like.[1] Here is another.[2]</p>
+</section>
+</section>
+<section id="project-oriented-workflow" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="project-oriented-workflow"><span class="header-section-number">2.2</span> Project-Oriented Workflow</h2>
+<section id="projects" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="projects"><span class="header-section-number">2.2.1</span> Projects</h3>
+<p>Material adapted from <a href="https://support.posit.co/hc/en-us/articles/200526207-Using-Projects">Posit</a> and <a href="https://www.r-bloggers.com/2019/01/%F0%9F%93%81-project-oriented-workflow/">R-bloggers</a>.</p>
+<p>RStudio projects make it straightforward to divide your work into multiple contexts, each with their own working directory, workspace, history, and source documents.</p>
+<p>To create a new project in the RStudio IDE, use the Create Project command (top right). You can link your new project to an existing directory, or create a new directory entirely. Since we already have some RMarkdown written, let’s add our project to an existing directory.</p>
+<p>When a new project is created RStudio, it creates a project file (with an .Rproj extension) within the project directory. This file contains various project options (discussed below) and can also be used as a shortcut for opening the project directly from the filesystem. It also creates a hidden directory (named .Rproj.user) where project-specific temporary files (e.g., auto-saved source documents, window-state, etc.) are stored. This directory is also automatically added to .Rbuildignore, .gitignore, etc. if required.</p>
+<p>Now, whenever you open your project, it loads your project into RStudio and displays its name in the Projects toolbar (which is located on the far right side of the main toolbar). It even takes you back to where you were working last, so it opens all the scripts and files that were last open! You can also save your history, the objects in your environment, and an image of what your project looked like at the last time you closed it, but this can take up a lot of space if you do this each time.</p>
+<p>You can work with more than one RStudio project at a time by simply opening each project in its own window of RStudio.</p>
+</section>
+<section id="relative-file-pathways" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="relative-file-pathways"><span class="header-section-number">2.2.2</span> Relative File Pathways</h3>
+<p>The goal of the <code>here</code> package is to enable easy file referencing in project-oriented workflows. In contrast to using <code>setwd()</code>, which is fragile and dependent on the way you organize your files, here uses the top-level directory of a project to easily build paths to files.</p>
+<pre><code>library(here)
+
+## here() starts at /Users/meteyuksel/Desktop
+
+here()
+
+## [1] "/Users/meteyuksel/Desktop"</code></pre>
+<p>You can build a path relative to the top-level directory in order to read or write a file:</p>
+<pre><code>here("1_lectures", "csv", "portal_data.csv")
+
+## [1] "/Users/meteyuksel/Desktop/1_lectures/csv/portal_data.csv"</code></pre>
+<p>These relative paths work regardless of where the associated source file lives inside your project, like analysis projects with data and reports in different subdirectories.</p>
+</section>
+<section id="demo-project" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="demo-project"><span class="header-section-number">2.2.3</span> Demo Project</h3>
+<p>There is no a single “right” folder structure for analysis projects. However, this is a tried-and-true simple method that works (backed up by many data scientists!).</p>
+<p>Create a folder on your computer that holds all the files relevant to that particular piece of work. This parent folder will contain the project’s .Rproj and all other subfolders, so it should have the same name as your project. Pick a good one. Spending an extra 5 minutes will save you from regrets in the future. The name should be short, concise, written in lower-case, and not containing any special symbols. One can apply similar strategies as for naming packages.</p>
+<p>Use subdirectories to organize data, code, figures, notes, etc.</p>
+<ul>
+<li>The folder <code>data</code> typically contains two subfolders, namely, <code>raw</code> and <code>processed.</code> The content of raw directory is data files of any kind, such as .csv, SAS, Excel, text and database files, etc. The content of this folder is read-only, so that no scripts should change the original files or create new ones inside it. For this purpose, the processed directory is used: all processed, cleaned, and tidied datasets are saved here. It is a good practice to save files in R specific format, rather than in .csv, since the saving in .csv is a less efficient way of storing data (both in terms of space and time of reading/writing).</li>
+<li>The folder <code>figures</code> is the place where you may store plots, diagrams, and other figures. There is not much to say about it. Common extensions of such files are .eps, .png, .pdf, etc. Again, file names in this folder should be meaningful (the name <code>img1.png</code> does not represent anything).</li>
+<li>All reports live in a directory with the corresponding name <code>reports.</code> These reports can be of any formats, such as LaTeX, Markdown, R Markdown, Jupyter Notebooks, etc. Currently, more and more people prefer rich documents with text and executable code to LaTeX and such.</li>
+<li>Perhaps the most important folder is <code>analyses</code> or <code>scripts</code>. Here, you keep all your R scripts and codes. That is the exact place to use prefix numbers, if files should be run in a particular order. If you have files in other scripted languages (e.g., Python), it is better to keep them in this folder as well. There is also an important subfolder called <code>deprecated.</code> Whenever you want to remove one or the other script, it is a good idea to move it to deprecated at first iteration. I recommend never deleting your code until you are sure that you have finished everything you wanted to do, even if the code doesn’t work (going back to it after a break usually helps!).</li>
+</ul>
+<figure class="figure">
+<img src="figures/demo_project.jpg" alt="Vicki’s demo of her file directory." class="figure-img">
+<figcaption aria-hidden="true" class="figure-caption">
+Vicki’s demo of her file directory.
+</figcaption>
+</figure>
+<p>This convention guarantees that the project is self-contained, and it can be moved around on your computer or onto other computers and will still “just work”. This is a really important convention that creates reliable, reproducible science across different computers or users and over time.</p>
+</section>
+<section id="documenting-session-info" class="level3" data-number="2.2.4">
+<h3 data-number="2.2.4" class="anchored" data-anchor-id="documenting-session-info"><span class="header-section-number">2.2.4</span> Documenting session info</h3>
+<p>As an overview of our environment, we can also use the <code>sessionInfo()</code> command. This is a good practice to have at the end of your code to document which packages you used and what version they were.</p>
+<pre><code>sessionInfo()
+
+## R version 4.2.3 (2023-03-15)
+## Platform: x86_64-apple-darwin17.0 (64-bit)
+## Running under: macOS Big Sur ... 10.16
+## 
+## Matrix products: default
+## BLAS:   /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRblas.0.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] here_1.0.1    knitr_1.43    ggplot2_3.4.3
+## 
+## loaded via a namespace (and not attached):
+##  [1] pillar_1.9.0      compiler_4.2.3    highr_0.10        tools_4.2.3      
+##  [5] digest_0.6.33     evaluate_0.21     lifecycle_1.0.3   tibble_3.2.1     
+##  [9] gtable_0.3.3      pkgconfig_2.0.3   rlang_1.1.1       cli_3.6.1        
+## [13] rstudioapi_0.15.0 yaml_2.3.7        xfun_0.39         fastmap_1.1.1    
+## [17] withr_2.5.0       dplyr_1.1.2       generics_0.1.3    vctrs_0.6.3      
+## [21] rprojroot_2.0.3   grid_4.2.3        tidyselect_1.2.0  glue_1.6.2       
+## [25] R6_2.5.1          fansi_1.0.4       rmarkdown_2.23    farver_2.1.1     
+## [29] magrittr_2.0.3    scales_1.2.1      htmltools_0.5.5   colorspace_2.1-0 
+## [33] labeling_0.4.2    utf8_1.2.3        munsell_0.5.0     crayon_1.5.2</code></pre>
+<p>Notice that we have some base packages active even though we did not explicitly call for them.</p>
+</section>
+</section>
+<section id="reproducible-science" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="reproducible-science"><span class="header-section-number">2.3</span> Reproducible Science</h2>
+<ul>
+<li>Computational reproducibility
+<ul>
+<li>code, software, etc.</li>
+</ul></li>
+<li>Scientific reproducibility
+<ul>
+<li>data (able to run the same statistical analysis on the same data)</li>
+<li>method, details about how the data was collected</li>
+<li>N.B., field work - hard to reproduce method</li>
+</ul></li>
+<li>Statistical reproducibility</li>
+</ul>
+<ol type="1">
+<li>Why does reproducibility matter in science?</li>
+</ol>
+<ul>
+<li>must trust findings to build up on science</li>
+</ul>
+<ol type="1">
+<li>What do you think about when you hear the term “open science”?</li>
+</ol>
+<ul>
+<li>open science: everything about a project (data, stats, code, funding, etc.) is open and available to viewing</li>
+</ul>
+<ol type="1">
+<li>How does open science affect collaboration and the progress of science?</li>
+</ol>
+<p>What are the barriers to reproducibility? * people won’t care * people might want to steal results * researchers do not want to share (embarrassed, code is rushed, etc.)</p>
+<section id="reproducibility-in-data-science" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="reproducibility-in-data-science"><span class="header-section-number">2.3.1</span> Reproducibility in Data Science</h3>
+<p>Material from this section adapted from <a href="https://r4ds.hadley.nz/whole-game">R for Data Science</a>.</p>
+<p>The main tools of data science are: importing, tidying, transforming, and visualizing data. We will go through all of these steps of data science so that you can tackle real datasets.</p>
+<figure class="figure">
+<img src="figures/datascience-workflow.png" alt="Data Science Workflow" class="figure-img">
+<figcaption aria-hidden="true" class="figure-caption">
+Data Science Workflow
+</figcaption>
+</figure>
+<ol type="1">
+<li>Before you can transform and visualize your data, you need to first get your data into R.</li>
+<li>Then, you’ll learn about tidy data, a consistent way of storing your data that makes transformation, visualization, and modelling easier. You’ll learn the underlying principles, and how to get your data into a tidy form.</li>
+<li>You’ll learn the key verbs that allow you to select important variables, filter out key observations, create new variables, and compute summaries.</li>
+<li>Finally, we will visualize by making elegant and informative plots that help you understand data.</li>
+</ol>
+<p>Note that if you are interested in doing a modelling project, these steps are different. Talk to Vicki and Mete if you want to tackle mathematical models!</p>
+</section>
+</section>
+<section id="the-scientific-method" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="the-scientific-method"><span class="header-section-number">2.4</span> The Scientific Method</h2>
+<section id="steps-in-scientific-process" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="steps-in-scientific-process"><span class="header-section-number">2.4.1</span> Steps in scientific process</h3>
+<ol type="1">
+<li>Identify research question(s).</li>
+<li>Look into what the previous literature shows.</li>
+<li>Create one or more hypotheses or objectives.</li>
+<li>Write up an outline or expected approach to answering those questions/objectives (analysis and presentation plan):</li>
+</ol>
+<ul>
+<li>How will the data be obtained and what is the data (i.e.&nbsp;the source)?</li>
+<li>What statistical/mathematical techniques have previous researchers used? Will you use them? Are they appropriate (optional, may need expert)? ( How will the results/data be presented or visualized (possible tables/figures)?</li>
+</ul>
+<ol type="1">
+<li>Run the planned analyses (or additional ones that come may up).</li>
+<li>Visualize or present all results from the analyses.</li>
+<li>Interpret the results and how they fit with the previous literature.</li>
+<li>Draw conclusions based on the hypotheses/objectives.</li>
+<li>Disseminate your results (in blogs, pre-print archives, journals, conferences)</li>
+</ol>
+<figure class="figure">
+<img src="figures/fig_scientific_method.png" alt="Simplified diagram of the scientific method" class="figure-img">
+<figcaption aria-hidden="true" class="figure-caption">
+Simplified diagram of the scientific method
+</figcaption>
+</figure>
+</section>
+<section id="basics-of-succeeding-as-a-team" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="basics-of-succeeding-as-a-team"><span class="header-section-number">2.4.2</span> Basics of succeeding as a team</h3>
+<p>Final assignment is in a group and to succeed, you need to understand team dynamics:</p>
+<ul>
+<li>Communication is vital to work together and to achieve the goal</li>
+<li>Teams go through various stages</li>
+<li>Need consensus for group norms, goals, duties/responsibilities, and conduct/behaviour</li>
+<li>Important that everyone has a stake in the project</li>
+<li>Rotate roles (specifically for the leader/facilitator)</li>
+</ul>
+</section>
+<section id="roles-and-responsibilities" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="roles-and-responsibilities"><span class="header-section-number">2.4.3</span> Roles and responsibilities</h3>
+<ul>
+<li>Leader/Facilitator’s duty:
+<ul>
+<li>Goal is to keep things running smoothly, focused on the task, and on track for time</li>
+<li>Keep everyone on topic and on task; stay aware of the time</li>
+<li>(Try to) mediate or resolve any conflicts (there will always be some type of conflict; how it’s dealt with is what matters)</li>
+<li>(Try to) encourage everyone to participate and allow everyone a chance at talking</li>
+</ul></li>
+<li>Recorder’s duty:
+<ul>
+<li>Goal is to write/type down main or important points raised or discussed when team is meeting</li>
+<li>Keep notes and files organized and orderly</li>
+</ul></li>
+<li>Organizer’s duty:
+<ul>
+<li>Arrange for next meeting time and location</li>
+</ul></li>
+<li>Send reminders to members a day or two before meeting
+<ul>
+<li>Make and email a simple agenda of tasks to do or to discuss</li>
+</ul></li>
+</ul>
+</section>
+<section id="code-of-conduct" class="level3" data-number="2.4.4">
+<h3 data-number="2.4.4" class="anchored" data-anchor-id="code-of-conduct"><span class="header-section-number">2.4.4</span> Code of Conduct</h3>
+<ul>
+<li>Vital to establishing boundaries and expectations of being a team member
+<ul>
+<li>How do you want each member to treat each other?</li>
+<li>How do you deal with conflict?</li>
+<li>What is acceptable and unacceptable behaviour?</li>
+</ul></li>
+<li>These are outlined in the code of conduct</li>
+<li>Mostly its common sense (be kind and respectful)
+<ul>
+<li>But its important that you as a team write out what everyone wants and agrees to</li>
+</ul></li>
+</ul>
+<section id="example-code-of-conduct" class="level4" data-number="2.4.4.1">
+<h4 data-number="2.4.4.1" class="anchored" data-anchor-id="example-code-of-conduct"><span class="header-section-number">2.4.4.1</span> Example Code of Conduct</h4>
+<p><a href="https://www.contributor-covenant.org/version/1/4/code-of-conduct/">Contributor Convenent</a></p>
+<p><a href="https://github.com/UofTCoders/studyGroup/blob/gh-pages/codeOfConduct.md">UofT Coders Code of Conduct</a></p>
+</section>
+</section>
+</section>
+<section id="projects-1" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="projects-1"><span class="header-section-number">2.5</span> Projects!</h2>
+<section id="exercise-after-groups-are-formed" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="exercise-after-groups-are-formed"><span class="header-section-number">2.5.1</span> Exercise after groups are formed</h3>
+<p>As a group, complete these tasks:</p>
+<ol type="1">
+<li>Get into your groups</li>
+<li>Introduce one another:</li>
+</ol>
+<ul>
+<li>Name, year of study</li>
+<li>Other stuff (e.g., interests, plans for next years, etc.)</li>
+</ul>
+<ol type="1">
+<li>Create a “team name”</li>
+<li>Assign roles to each other:</li>
+</ol>
+<ul>
+<li>These will be rotated: Leader/Facilitator, Recorder, Organizer</li>
+<li>Discuss how and when the roles will be rotated.</li>
+</ul>
+<ol type="1">
+<li>Discuss and brainstorm code of conduct (record it).</li>
+<li>Take a minute to think about your own skills</li>
+</ol>
+<ul>
+<li>Share these with your group (record them).</li>
+</ul>
+<ol type="1">
+<li>Discuss how responsibilities of each member will be decided on (record it).</li>
+</ol>
+</section>
+<section id="github" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="github"><span class="header-section-number">2.5.2</span> GitHub</h3>
+<p>Make a GitHub account.</p>
+<p>If we run out of time to do this in lecture 1, do click-and-drag here.</p>
+<p>[1] This is the first footnote.</p>
+<p>[2] This is the second footnote.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./lec00-rstudio.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with RStudio and R Notebook</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./projects.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Project description</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
