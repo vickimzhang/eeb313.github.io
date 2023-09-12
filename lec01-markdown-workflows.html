@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EEB313: Quantitative Methods in R for Biology - 2&nbsp; Lesson preamble</title>
+<title>EEB313: Quantitative Methods in R for Biology - 2&nbsp; Markdown, Project Workflows</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -73,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lec00-rstudio.html">Lectures</a></li><li class="breadcrumb-item"><a href="./lec01-markdown-workflows.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lesson preamble</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lec00-rstudio.html">Lectures</a></li><li class="breadcrumb-item"><a href="./lec01-markdown-workflows.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Markdown, Project Workflows</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -137,7 +171,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lec01-markdown-workflows.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lesson preamble</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Markdown, Project Workflows</span></span></a>
   </div>
 </li>
       </ul>
@@ -173,37 +207,38 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#markdown" id="toc-markdown" class="nav-link active" data-scroll-target="#markdown"><span class="header-section-number">2.1</span> Markdown</a>
+  <li><a href="#lesson-preamble" id="toc-lesson-preamble" class="nav-link active" data-scroll-target="#lesson-preamble"><span class="header-section-number">2.1</span> Lesson preamble</a></li>
+  <li><a href="#markdown" id="toc-markdown" class="nav-link" data-scroll-target="#markdown"><span class="header-section-number">2.2</span> Markdown</a>
   <ul class="collapse">
-  <li><a href="#in-line-code" id="toc-in-line-code" class="nav-link" data-scroll-target="#in-line-code"><span class="header-section-number">2.1.1</span> In-line code</a></li>
-  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="header-section-number">2.1.2</span> Lists</a></li>
-  <li><a href="#tables" id="toc-tables" class="nav-link" data-scroll-target="#tables"><span class="header-section-number">2.1.3</span> Tables</a></li>
-  <li><a href="#images-and-links" id="toc-images-and-links" class="nav-link" data-scroll-target="#images-and-links"><span class="header-section-number">2.1.4</span> Images and Links</a></li>
-  <li><a href="#in-line-citations-and-bibliography" id="toc-in-line-citations-and-bibliography" class="nav-link" data-scroll-target="#in-line-citations-and-bibliography"><span class="header-section-number">2.1.5</span> In-line citations and bibliography</a></li>
-  <li><a href="#footnotes" id="toc-footnotes" class="nav-link" data-scroll-target="#footnotes"><span class="header-section-number">2.1.6</span> Footnotes</a></li>
+  <li><a href="#in-line-code" id="toc-in-line-code" class="nav-link" data-scroll-target="#in-line-code"><span class="header-section-number">2.2.1</span> In-line code</a></li>
+  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="header-section-number">2.2.2</span> Lists</a></li>
+  <li><a href="#tables" id="toc-tables" class="nav-link" data-scroll-target="#tables"><span class="header-section-number">2.2.3</span> Tables</a></li>
+  <li><a href="#images-and-links" id="toc-images-and-links" class="nav-link" data-scroll-target="#images-and-links"><span class="header-section-number">2.2.4</span> Images and Links</a></li>
+  <li><a href="#in-line-citations-and-bibliography" id="toc-in-line-citations-and-bibliography" class="nav-link" data-scroll-target="#in-line-citations-and-bibliography"><span class="header-section-number">2.2.5</span> In-line citations and bibliography</a></li>
+  <li><a href="#footnotes" id="toc-footnotes" class="nav-link" data-scroll-target="#footnotes"><span class="header-section-number">2.2.6</span> Footnotes</a></li>
   </ul></li>
-  <li><a href="#project-oriented-workflow" id="toc-project-oriented-workflow" class="nav-link" data-scroll-target="#project-oriented-workflow"><span class="header-section-number">2.2</span> Project-Oriented Workflow</a>
+  <li><a href="#project-oriented-workflow" id="toc-project-oriented-workflow" class="nav-link" data-scroll-target="#project-oriented-workflow"><span class="header-section-number">2.3</span> Project-Oriented Workflow</a>
   <ul class="collapse">
-  <li><a href="#projects" id="toc-projects" class="nav-link" data-scroll-target="#projects"><span class="header-section-number">2.2.1</span> Projects</a></li>
-  <li><a href="#relative-file-pathways" id="toc-relative-file-pathways" class="nav-link" data-scroll-target="#relative-file-pathways"><span class="header-section-number">2.2.2</span> Relative File Pathways</a></li>
-  <li><a href="#demo-project" id="toc-demo-project" class="nav-link" data-scroll-target="#demo-project"><span class="header-section-number">2.2.3</span> Demo Project</a></li>
-  <li><a href="#documenting-session-info" id="toc-documenting-session-info" class="nav-link" data-scroll-target="#documenting-session-info"><span class="header-section-number">2.2.4</span> Documenting session info</a></li>
+  <li><a href="#projects" id="toc-projects" class="nav-link" data-scroll-target="#projects"><span class="header-section-number">2.3.1</span> Projects</a></li>
+  <li><a href="#relative-file-pathways" id="toc-relative-file-pathways" class="nav-link" data-scroll-target="#relative-file-pathways"><span class="header-section-number">2.3.2</span> Relative File Pathways</a></li>
+  <li><a href="#demo-project" id="toc-demo-project" class="nav-link" data-scroll-target="#demo-project"><span class="header-section-number">2.3.3</span> Demo Project</a></li>
+  <li><a href="#documenting-session-info" id="toc-documenting-session-info" class="nav-link" data-scroll-target="#documenting-session-info"><span class="header-section-number">2.3.4</span> Documenting session info</a></li>
   </ul></li>
-  <li><a href="#reproducible-science" id="toc-reproducible-science" class="nav-link" data-scroll-target="#reproducible-science"><span class="header-section-number">2.3</span> Reproducible Science</a>
+  <li><a href="#reproducible-science" id="toc-reproducible-science" class="nav-link" data-scroll-target="#reproducible-science"><span class="header-section-number">2.4</span> Reproducible Science</a>
   <ul class="collapse">
-  <li><a href="#reproducibility-in-data-science" id="toc-reproducibility-in-data-science" class="nav-link" data-scroll-target="#reproducibility-in-data-science"><span class="header-section-number">2.3.1</span> Reproducibility in Data Science</a></li>
+  <li><a href="#reproducibility-in-data-science" id="toc-reproducibility-in-data-science" class="nav-link" data-scroll-target="#reproducibility-in-data-science"><span class="header-section-number">2.4.1</span> Reproducibility in Data Science</a></li>
   </ul></li>
-  <li><a href="#the-scientific-method" id="toc-the-scientific-method" class="nav-link" data-scroll-target="#the-scientific-method"><span class="header-section-number">2.4</span> The Scientific Method</a>
+  <li><a href="#the-scientific-method" id="toc-the-scientific-method" class="nav-link" data-scroll-target="#the-scientific-method"><span class="header-section-number">2.5</span> The Scientific Method</a>
   <ul class="collapse">
-  <li><a href="#steps-in-scientific-process" id="toc-steps-in-scientific-process" class="nav-link" data-scroll-target="#steps-in-scientific-process"><span class="header-section-number">2.4.1</span> Steps in scientific process</a></li>
-  <li><a href="#basics-of-succeeding-as-a-team" id="toc-basics-of-succeeding-as-a-team" class="nav-link" data-scroll-target="#basics-of-succeeding-as-a-team"><span class="header-section-number">2.4.2</span> Basics of succeeding as a team</a></li>
-  <li><a href="#roles-and-responsibilities" id="toc-roles-and-responsibilities" class="nav-link" data-scroll-target="#roles-and-responsibilities"><span class="header-section-number">2.4.3</span> Roles and responsibilities</a></li>
-  <li><a href="#code-of-conduct" id="toc-code-of-conduct" class="nav-link" data-scroll-target="#code-of-conduct"><span class="header-section-number">2.4.4</span> Code of Conduct</a></li>
+  <li><a href="#steps-in-scientific-process" id="toc-steps-in-scientific-process" class="nav-link" data-scroll-target="#steps-in-scientific-process"><span class="header-section-number">2.5.1</span> Steps in scientific process</a></li>
+  <li><a href="#basics-of-succeeding-as-a-team" id="toc-basics-of-succeeding-as-a-team" class="nav-link" data-scroll-target="#basics-of-succeeding-as-a-team"><span class="header-section-number">2.5.2</span> Basics of succeeding as a team</a></li>
+  <li><a href="#roles-and-responsibilities" id="toc-roles-and-responsibilities" class="nav-link" data-scroll-target="#roles-and-responsibilities"><span class="header-section-number">2.5.3</span> Roles and responsibilities</a></li>
+  <li><a href="#code-of-conduct" id="toc-code-of-conduct" class="nav-link" data-scroll-target="#code-of-conduct"><span class="header-section-number">2.5.4</span> Code of Conduct</a></li>
   </ul></li>
-  <li><a href="#projects-1" id="toc-projects-1" class="nav-link" data-scroll-target="#projects-1"><span class="header-section-number">2.5</span> Projects!</a>
+  <li><a href="#projects-1" id="toc-projects-1" class="nav-link" data-scroll-target="#projects-1"><span class="header-section-number">2.6</span> Projects!</a>
   <ul class="collapse">
-  <li><a href="#exercise-after-groups-are-formed" id="toc-exercise-after-groups-are-formed" class="nav-link" data-scroll-target="#exercise-after-groups-are-formed"><span class="header-section-number">2.5.1</span> Exercise after groups are formed</a></li>
-  <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github"><span class="header-section-number">2.5.2</span> GitHub</a></li>
+  <li><a href="#exercise-after-groups-are-formed" id="toc-exercise-after-groups-are-formed" class="nav-link" data-scroll-target="#exercise-after-groups-are-formed"><span class="header-section-number">2.6.1</span> Exercise after groups are formed</a></li>
+  <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github"><span class="header-section-number">2.6.2</span> GitHub</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -213,7 +248,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lesson preamble</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Markdown, Project Workflows</span></h1>
 </div>
 
 
@@ -228,8 +263,10 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="lesson-preamble" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="lesson-preamble"><span class="header-section-number">2.1</span> Lesson preamble</h2>
 <blockquote class="blockquote">
-<h3 id="lesson-objectives" data-number="2.0.1" class="anchored"><span class="header-section-number">2.0.1</span> Lesson objectives</h3>
+<h3 id="lesson-objectives" data-number="2.1.1" class="anchored"><span class="header-section-number">2.1.1</span> Lesson objectives</h3>
 <ul>
 <li>Learn about the Markdown syntax and how to use it within the R Notebook.</li>
 <li>Set up the R Notebook</li>
@@ -238,7 +275,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </blockquote>
 <blockquote class="blockquote">
-<h3 id="learning-outline" data-number="2.0.2" class="anchored"><span class="header-section-number">2.0.2</span> Learning outline</h3>
+<h3 id="learning-outline" data-number="2.1.2" class="anchored"><span class="header-section-number">2.1.2</span> Learning outline</h3>
 <ul>
 <li>Explore RStudio interface (10 mins)</li>
 <li>Reproducible science with Markdown (40 mins)</li>
@@ -249,28 +286,31 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </blockquote>
 <hr>
-<section id="markdown" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="markdown"><span class="header-section-number">2.1</span> Markdown</h2>
+</section>
+<section id="markdown" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="markdown"><span class="header-section-number">2.2</span> Markdown</h2>
 <p>Last class, we introduced Markdown, the text format that RStudio uses. In fact, if you are following along this far, you should have already been typing your notes and code in a .Rmd file, or a RMarkdown file.</p>
 <p>Let’s introduce more Markdown features! We encourage groups to try completing their group projects in RMarkdown, but more about that later.</p>
-<section id="in-line-code" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="in-line-code"><span class="header-section-number">2.1.1</span> In-line code</h3>
+<section id="in-line-code" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="in-line-code"><span class="header-section-number">2.2.1</span> In-line code</h3>
 <p>We talked about using RMarkdown for notes and inline code last class. This is extremely useful for when you need to update objects or rerun analyses. You can also comment out code within the code chunk.</p>
 <p>As a reminder, the keyboard shortcut to insert a code chunk is:</p>
 <ul>
 <li>command + option + i (Mac)</li>
 <li>ctrl + alt + i (Windows)</li>
 </ul>
-<!-- -->
-<pre><code>x &lt;- 5
-y &lt;- 13
-
-# 5 plus 13
-x + y
-
-## [1] 18</code></pre>
-<section id="r-code-chunk-tricks" class="level4" data-number="2.1.1.1">
-<h4 data-number="2.1.1.1" class="anchored" data-anchor-id="r-code-chunk-tricks"><span class="header-section-number">2.1.1.1</span> R code chunk tricks</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">13</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 plus 13</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 18</code></pre>
+</div>
+</div>
+<section id="r-code-chunk-tricks" class="level4" data-number="2.2.1.1">
+<h4 data-number="2.2.1.1" class="anchored" data-anchor-id="r-code-chunk-tricks"><span class="header-section-number">2.2.1.1</span> R code chunk tricks</h4>
 <ul>
 <li><code>eval=TRUE</code> evaluates the code chunk (runs it); <code>eval=FALSE</code> does not (will just print the chunk)</li>
 <li><code>echo=TRUE</code> prints the code chunk; <code>echo=FALSE</code> hides it but will still evaluate it
@@ -282,20 +322,26 @@ x + y
 <li>only the case when <code>eval=TRUE</code></li>
 </ul></li>
 </ul>
-<!-- -->
-<pre><code>## Warning: `qplot()` was deprecated in ggplot2 3.4.0.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
-<p><img src="lec01-markdown-workflows-copy_files/figure-markdown_strict/unnamed-chunk-2-1.png" class="img-fluid"></p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: `qplot()` was deprecated in ggplot2 3.4.0.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="lec01-markdown-workflows_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 </section>
-<section id="changing-height-and-width-of-imagesfigures" class="level4" data-number="2.1.1.2">
-<h4 data-number="2.1.1.2" class="anchored" data-anchor-id="changing-height-and-width-of-imagesfigures"><span class="header-section-number">2.1.1.2</span> Changing height and width of images/figures</h4>
-<p><img src="lec01-markdown-workflows-copy_files/figure-markdown_strict/unnamed-chunk-3-1.png" class="img-fluid"></p>
+<section id="changing-height-and-width-of-imagesfigures" class="level4" data-number="2.2.1.2">
+<h4 data-number="2.2.1.2" class="anchored" data-anchor-id="changing-height-and-width-of-imagesfigures"><span class="header-section-number">2.2.1.2</span> Changing height and width of images/figures</h4>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="lec01-markdown-workflows_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="192"></p>
+</div>
+</div>
 </section>
 </section>
-<section id="lists" class="level3" data-number="2.1.2">
-<h3 data-number="2.1.2" class="anchored" data-anchor-id="lists"><span class="header-section-number">2.1.2</span> Lists</h3>
+<section id="lists" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="lists"><span class="header-section-number">2.2.2</span> Lists</h3>
 <p>I’ve already used these! You can use either <code>*</code> or <code>-</code> to indicate unordered lists. To indent, hit tab. Make sure there’s a space before your items in the list.</p>
 <p>Unordered Lists (bullet points)</p>
 <ul>
@@ -317,10 +363,10 @@ x + y
 <li>Item (will automatically re-number)</li>
 </ol>
 </section>
-<section id="tables" class="level3" data-number="2.1.3">
-<h3 data-number="2.1.3" class="anchored" data-anchor-id="tables"><span class="header-section-number">2.1.3</span> Tables</h3>
+<section id="tables" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="tables"><span class="header-section-number">2.2.3</span> Tables</h3>
 <p><code>kable</code> displays r code chunks with tables nicely</p>
-
+<div class="cell-output-display">
 <table class="table">
 <colgroup>
 <col style="width: 26%">
@@ -338,281 +384,114 @@ x + y
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">
-</th>
-<th style="text-align: right;">
-mpg
-</th>
-<th style="text-align: right;">
-cyl
-</th>
-<th style="text-align: right;">
-disp
-</th>
-<th style="text-align: right;">
-hp
-</th>
-<th style="text-align: right;">
-drat
-</th>
-<th style="text-align: right;">
-wt
-</th>
-<th style="text-align: right;">
-qsec
-</th>
-<th style="text-align: right;">
-vs
-</th>
-<th style="text-align: right;">
-am
-</th>
-<th style="text-align: right;">
-gear
-</th>
-<th style="text-align: right;">
-carb
-</th>
+<th style="text-align: left;"></th>
+<th style="text-align: right;">mpg</th>
+<th style="text-align: right;">cyl</th>
+<th style="text-align: right;">disp</th>
+<th style="text-align: right;">hp</th>
+<th style="text-align: right;">drat</th>
+<th style="text-align: right;">wt</th>
+<th style="text-align: right;">qsec</th>
+<th style="text-align: right;">vs</th>
+<th style="text-align: right;">am</th>
+<th style="text-align: right;">gear</th>
+<th style="text-align: right;">carb</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">
-Mazda RX4
-</td>
-<td style="text-align: right;">
-21.0
-</td>
-<td style="text-align: right;">
-6
-</td>
-<td style="text-align: right;">
-160
-</td>
-<td style="text-align: right;">
-110
-</td>
-<td style="text-align: right;">
-3.90
-</td>
-<td style="text-align: right;">
-2.620
-</td>
-<td style="text-align: right;">
-16.46
-</td>
-<td style="text-align: right;">
-0
-</td>
-<td style="text-align: right;">
-1
-</td>
-<td style="text-align: right;">
-4
-</td>
-<td style="text-align: right;">
-4
-</td>
+<td style="text-align: left;">Mazda RX4</td>
+<td style="text-align: right;">21.0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">3.90</td>
+<td style="text-align: right;">2.620</td>
+<td style="text-align: right;">16.46</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">
-Mazda RX4 Wag
-</td>
-<td style="text-align: right;">
-21.0
-</td>
-<td style="text-align: right;">
-6
-</td>
-<td style="text-align: right;">
-160
-</td>
-<td style="text-align: right;">
-110
-</td>
-<td style="text-align: right;">
-3.90
-</td>
-<td style="text-align: right;">
-2.875
-</td>
-<td style="text-align: right;">
-17.02
-</td>
-<td style="text-align: right;">
-0
-</td>
-<td style="text-align: right;">
-1
-</td>
-<td style="text-align: right;">
-4
-</td>
-<td style="text-align: right;">
-4
-</td>
+<td style="text-align: left;">Mazda RX4 Wag</td>
+<td style="text-align: right;">21.0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">3.90</td>
+<td style="text-align: right;">2.875</td>
+<td style="text-align: right;">17.02</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">
-Datsun 710
-</td>
-<td style="text-align: right;">
-22.8
-</td>
-<td style="text-align: right;">
-4
-</td>
-<td style="text-align: right;">
-108
-</td>
-<td style="text-align: right;">
-93
-</td>
-<td style="text-align: right;">
-3.85
-</td>
-<td style="text-align: right;">
-2.320
-</td>
-<td style="text-align: right;">
-18.61
-</td>
-<td style="text-align: right;">
-1
-</td>
-<td style="text-align: right;">
-1
-</td>
-<td style="text-align: right;">
-4
-</td>
-<td style="text-align: right;">
-1
-</td>
+<td style="text-align: left;">Datsun 710</td>
+<td style="text-align: right;">22.8</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">108</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">3.85</td>
+<td style="text-align: right;">2.320</td>
+<td style="text-align: right;">18.61</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">
-Hornet 4 Drive
-</td>
-<td style="text-align: right;">
-21.4
-</td>
-<td style="text-align: right;">
-6
-</td>
-<td style="text-align: right;">
-258
-</td>
-<td style="text-align: right;">
-110
-</td>
-<td style="text-align: right;">
-3.08
-</td>
-<td style="text-align: right;">
-3.215
-</td>
-<td style="text-align: right;">
-19.44
-</td>
-<td style="text-align: right;">
-1
-</td>
-<td style="text-align: right;">
-0
-</td>
-<td style="text-align: right;">
-3
-</td>
-<td style="text-align: right;">
-1
-</td>
+<td style="text-align: left;">Hornet 4 Drive</td>
+<td style="text-align: right;">21.4</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">258</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">3.08</td>
+<td style="text-align: right;">3.215</td>
+<td style="text-align: right;">19.44</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">
-Hornet Sportabout
-</td>
-<td style="text-align: right;">
-18.7
-</td>
-<td style="text-align: right;">
-8
-</td>
-<td style="text-align: right;">
-360
-</td>
-<td style="text-align: right;">
-175
-</td>
-<td style="text-align: right;">
-3.15
-</td>
-<td style="text-align: right;">
-3.440
-</td>
-<td style="text-align: right;">
-17.02
-</td>
-<td style="text-align: right;">
-0
-</td>
-<td style="text-align: right;">
-0
-</td>
-<td style="text-align: right;">
-3
-</td>
-<td style="text-align: right;">
-2
-</td>
+<td style="text-align: left;">Hornet Sportabout</td>
+<td style="text-align: right;">18.7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">360</td>
+<td style="text-align: right;">175</td>
+<td style="text-align: right;">3.15</td>
+<td style="text-align: right;">3.440</td>
+<td style="text-align: right;">17.02</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">
-Valiant
-</td>
-<td style="text-align: right;">
-18.1
-</td>
-<td style="text-align: right;">
-6
-</td>
-<td style="text-align: right;">
-225
-</td>
-<td style="text-align: right;">
-105
-</td>
-<td style="text-align: right;">
-2.76
-</td>
-<td style="text-align: right;">
-3.460
-</td>
-<td style="text-align: right;">
-20.22
-</td>
-<td style="text-align: right;">
-1
-</td>
-<td style="text-align: right;">
-0
-</td>
-<td style="text-align: right;">
-3
-</td>
-<td style="text-align: right;">
-1
-</td>
+<td style="text-align: left;">Valiant</td>
+<td style="text-align: right;">18.1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">225</td>
+<td style="text-align: right;">105</td>
+<td style="text-align: right;">2.76</td>
+<td style="text-align: right;">3.460</td>
+<td style="text-align: right;">20.22</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
 </tr>
 </tbody>
-
 </table>
+</div>
 <p>In comparison:</p>
 <pre><code>               mpg cyl disp  hp drat    wt  qsec vs am gear carb</code></pre>
 <p>Mazda RX4 21.0 6 160 110 3.90 2.620 16.46 0 1 4 4 Mazda RX4 Wag 21.0 6 160 110 3.90 2.875 17.02 0 1 4 4 Datsun 710 22.8 4 108 93 3.85 2.320 18.61 1 1 4 1 Hornet 4 Drive 21.4 6 258 110 3.08 3.215 19.44 1 0 3 1 Hornet Sportabout 18.7 8 360 175 3.15 3.440 17.02 0 0 3 2 Valiant 18.1 6 225 105 2.76 3.460 20.22 1 0 3 1</p>
 </section>
-<section id="images-and-links" class="level3" data-number="2.1.4">
-<h3 data-number="2.1.4" class="anchored" data-anchor-id="images-and-links"><span class="header-section-number">2.1.4</span> Images and Links</h3>
+<section id="images-and-links" class="level3" data-number="2.2.4">
+<h3 data-number="2.2.4" class="anchored" data-anchor-id="images-and-links"><span class="header-section-number">2.2.4</span> Images and Links</h3>
 <p>Use the following format to add images:</p>
 <p><code>![Description/Caption](/path/to/image.png)</code></p>
 <p>For example: <img src="figures/rubberduck.jpeg" class="img-fluid" alt="Fun picture!"></p>
@@ -620,25 +499,25 @@ Valiant
 <p>And use the following format to add weblinks:</p>
 <p><code>![Description/Caption](weblink)</code> <img src="eeb313.github.io" class="img-fluid" alt="The EEB website lives here"></p>
 </section>
-<section id="in-line-citations-and-bibliography" class="level3" data-number="2.1.5">
-<h3 data-number="2.1.5" class="anchored" data-anchor-id="in-line-citations-and-bibliography"><span class="header-section-number">2.1.5</span> In-line citations and bibliography</h3>
+<section id="in-line-citations-and-bibliography" class="level3" data-number="2.2.5">
+<h3 data-number="2.2.5" class="anchored" data-anchor-id="in-line-citations-and-bibliography"><span class="header-section-number">2.2.5</span> In-line citations and bibliography</h3>
 <pre><code>---
 title: My Report
 output: html_document
 bibliography: bibliography.bib
 ---</code></pre>
-<p>Some fact[<span class="citation" data-cites="Smith2018">@Smith2018</span>]</p>
-<p>Some fact supported by multiple papers [<span class="citation" data-cites="Smith2018">@Smith2018</span>; <span class="citation" data-cites="Tran1997">@Tran1997</span>]</p>
+<p>Some fact<span class="citation" data-cites="Smith2018">[@Smith2018]</span></p>
+<p>Some fact supported by multiple papers <span class="citation" data-cites="Smith2018 Tran1997">[@Smith2018; @Tran1997]</span></p>
 </section>
-<section id="footnotes" class="level3" data-number="2.1.6">
-<h3 data-number="2.1.6" class="anchored" data-anchor-id="footnotes"><span class="header-section-number">2.1.6</span> Footnotes</h3>
-<p>This is what a footnote looks like.[1] Here is another.[2]</p>
+<section id="footnotes" class="level3" data-number="2.2.6">
+<h3 data-number="2.2.6" class="anchored" data-anchor-id="footnotes"><span class="header-section-number">2.2.6</span> Footnotes</h3>
+<p>This is what a footnote looks like.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Here is another.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 </section>
 </section>
-<section id="project-oriented-workflow" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="project-oriented-workflow"><span class="header-section-number">2.2</span> Project-Oriented Workflow</h2>
-<section id="projects" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="projects"><span class="header-section-number">2.2.1</span> Projects</h3>
+<section id="project-oriented-workflow" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="project-oriented-workflow"><span class="header-section-number">2.3</span> Project-Oriented Workflow</h2>
+<section id="projects" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="projects"><span class="header-section-number">2.3.1</span> Projects</h3>
 <p>Material adapted from <a href="https://support.posit.co/hc/en-us/articles/200526207-Using-Projects">Posit</a> and <a href="https://www.r-bloggers.com/2019/01/%F0%9F%93%81-project-oriented-workflow/">R-bloggers</a>.</p>
 <p>RStudio projects make it straightforward to divide your work into multiple contexts, each with their own working directory, workspace, history, and source documents.</p>
 <p>To create a new project in the RStudio IDE, use the Create Project command (top right). You can link your new project to an existing directory, or create a new directory entirely. Since we already have some RMarkdown written, let’s add our project to an existing directory.</p>
@@ -646,24 +525,30 @@ bibliography: bibliography.bib
 <p>Now, whenever you open your project, it loads your project into RStudio and displays its name in the Projects toolbar (which is located on the far right side of the main toolbar). It even takes you back to where you were working last, so it opens all the scripts and files that were last open! You can also save your history, the objects in your environment, and an image of what your project looked like at the last time you closed it, but this can take up a lot of space if you do this each time.</p>
 <p>You can work with more than one RStudio project at a time by simply opening each project in its own window of RStudio.</p>
 </section>
-<section id="relative-file-pathways" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="relative-file-pathways"><span class="header-section-number">2.2.2</span> Relative File Pathways</h3>
+<section id="relative-file-pathways" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="relative-file-pathways"><span class="header-section-number">2.3.2</span> Relative File Pathways</h3>
 <p>The goal of the <code>here</code> package is to enable easy file referencing in project-oriented workflows. In contrast to using <code>setwd()</code>, which is fragile and dependent on the way you organize your files, here uses the top-level directory of a project to easily build paths to files.</p>
-<pre><code>library(here)
-
-## here() starts at /Users/meteyuksel/Desktop
-
-here()
-
-## [1] "/Users/meteyuksel/Desktop"</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>here() starts at /Users/meteyuksel/eeb313website</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "/Users/meteyuksel/eeb313website"</code></pre>
+</div>
+</div>
 <p>You can build a path relative to the top-level directory in order to read or write a file:</p>
-<pre><code>here("1_lectures", "csv", "portal_data.csv")
-
-## [1] "/Users/meteyuksel/Desktop/1_lectures/csv/portal_data.csv"</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"1_lectures"</span>, <span class="st">"csv"</span>, <span class="st">"portal_data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "/Users/meteyuksel/eeb313website/1_lectures/csv/portal_data.csv"</code></pre>
+</div>
+</div>
 <p>These relative paths work regardless of where the associated source file lives inside your project, like analysis projects with data and reports in different subdirectories.</p>
 </section>
-<section id="demo-project" class="level3" data-number="2.2.3">
-<h3 data-number="2.2.3" class="anchored" data-anchor-id="demo-project"><span class="header-section-number">2.2.3</span> Demo Project</h3>
+<section id="demo-project" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="demo-project"><span class="header-section-number">2.3.3</span> Demo Project</h3>
 <p>There is no a single “right” folder structure for analysis projects. However, this is a tried-and-true simple method that works (backed up by many data scientists!).</p>
 <p>Create a folder on your computer that holds all the files relevant to that particular piece of work. This parent folder will contain the project’s .Rproj and all other subfolders, so it should have the same name as your project. Pick a good one. Spending an extra 5 minutes will save you from regrets in the future. The name should be short, concise, written in lower-case, and not containing any special symbols. One can apply similar strategies as for naming packages.</p>
 <p>Use subdirectories to organize data, code, figures, notes, etc.</p>
@@ -673,51 +558,54 @@ here()
 <li>All reports live in a directory with the corresponding name <code>reports.</code> These reports can be of any formats, such as LaTeX, Markdown, R Markdown, Jupyter Notebooks, etc. Currently, more and more people prefer rich documents with text and executable code to LaTeX and such.</li>
 <li>Perhaps the most important folder is <code>analyses</code> or <code>scripts</code>. Here, you keep all your R scripts and codes. That is the exact place to use prefix numbers, if files should be run in a particular order. If you have files in other scripted languages (e.g., Python), it is better to keep them in this folder as well. There is also an important subfolder called <code>deprecated.</code> Whenever you want to remove one or the other script, it is a good idea to move it to deprecated at first iteration. I recommend never deleting your code until you are sure that you have finished everything you wanted to do, even if the code doesn’t work (going back to it after a break usually helps!).</li>
 </ul>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<img src="figures/demo_project.jpg" alt="Vicki’s demo of her file directory." class="figure-img">
-<figcaption aria-hidden="true" class="figure-caption">
-Vicki’s demo of her file directory.
-</figcaption>
+<p><img src="figures/demo_project.jpg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Vicki’s demo of her file directory.</figcaption>
 </figure>
+</div>
 <p>This convention guarantees that the project is self-contained, and it can be moved around on your computer or onto other computers and will still “just work”. This is a really important convention that creates reliable, reproducible science across different computers or users and over time.</p>
 </section>
-<section id="documenting-session-info" class="level3" data-number="2.2.4">
-<h3 data-number="2.2.4" class="anchored" data-anchor-id="documenting-session-info"><span class="header-section-number">2.2.4</span> Documenting session info</h3>
+<section id="documenting-session-info" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="documenting-session-info"><span class="header-section-number">2.3.4</span> Documenting session info</h3>
 <p>As an overview of our environment, we can also use the <code>sessionInfo()</code> command. This is a good practice to have at the end of your code to document which packages you used and what version they were.</p>
-<pre><code>sessionInfo()
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.2.3 (2023-03-15)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Big Sur ... 10.16
 
-## R version 4.2.3 (2023-03-15)
-## Platform: x86_64-apple-darwin17.0 (64-bit)
-## Running under: macOS Big Sur ... 10.16
-## 
-## Matrix products: default
-## BLAS:   /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRblas.0.dylib
-## LAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib
-## 
-## locale:
-## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-## [1] here_1.0.1    knitr_1.43    ggplot2_3.4.3
-## 
-## loaded via a namespace (and not attached):
-##  [1] pillar_1.9.0      compiler_4.2.3    highr_0.10        tools_4.2.3      
-##  [5] digest_0.6.33     evaluate_0.21     lifecycle_1.0.3   tibble_3.2.1     
-##  [9] gtable_0.3.3      pkgconfig_2.0.3   rlang_1.1.1       cli_3.6.1        
-## [13] rstudioapi_0.15.0 yaml_2.3.7        xfun_0.39         fastmap_1.1.1    
-## [17] withr_2.5.0       dplyr_1.1.2       generics_0.1.3    vctrs_0.6.3      
-## [21] rprojroot_2.0.3   grid_4.2.3        tidyselect_1.2.0  glue_1.6.2       
-## [25] R6_2.5.1          fansi_1.0.4       rmarkdown_2.23    farver_2.1.1     
-## [29] magrittr_2.0.3    scales_1.2.1      htmltools_0.5.5   colorspace_2.1-0 
-## [33] labeling_0.4.2    utf8_1.2.3        munsell_0.5.0     crayon_1.5.2</code></pre>
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] here_1.0.1    knitr_1.43    ggplot2_3.4.3
+
+loaded via a namespace (and not attached):
+ [1] rstudioapi_0.15.0 magrittr_2.0.3    tidyselect_1.2.0  munsell_0.5.0    
+ [5] colorspace_2.1-0  R6_2.5.1          rlang_1.1.1       fastmap_1.1.1    
+ [9] fansi_1.0.4       dplyr_1.1.2       tools_4.2.3       grid_4.2.3       
+[13] gtable_0.3.3      xfun_0.39         utf8_1.2.3        cli_3.6.1        
+[17] withr_2.5.0       htmltools_0.5.5   rprojroot_2.0.3   yaml_2.3.7       
+[21] digest_0.6.33     tibble_3.2.1      lifecycle_1.0.3   farver_2.1.1     
+[25] htmlwidgets_1.6.2 vctrs_0.6.3       glue_1.6.2        evaluate_0.21    
+[29] rmarkdown_2.23    labeling_0.4.2    compiler_4.2.3    pillar_1.9.0     
+[33] generics_0.1.3    scales_1.2.1      jsonlite_1.8.7    pkgconfig_2.0.3  </code></pre>
+</div>
+</div>
 <p>Notice that we have some base packages active even though we did not explicitly call for them.</p>
 </section>
 </section>
-<section id="reproducible-science" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="reproducible-science"><span class="header-section-number">2.3</span> Reproducible Science</h2>
+<section id="reproducible-science" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="reproducible-science"><span class="header-section-number">2.4</span> Reproducible Science</h2>
 <ul>
 <li>Computational reproducibility
 <ul>
@@ -737,26 +625,26 @@ Vicki’s demo of her file directory.
 <ul>
 <li>must trust findings to build up on science</li>
 </ul>
-<ol type="1">
+<ol start="2" type="1">
 <li>What do you think about when you hear the term “open science”?</li>
 </ol>
 <ul>
 <li>open science: everything about a project (data, stats, code, funding, etc.) is open and available to viewing</li>
 </ul>
-<ol type="1">
+<ol start="3" type="1">
 <li>How does open science affect collaboration and the progress of science?</li>
 </ol>
 <p>What are the barriers to reproducibility? * people won’t care * people might want to steal results * researchers do not want to share (embarrassed, code is rushed, etc.)</p>
-<section id="reproducibility-in-data-science" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="reproducibility-in-data-science"><span class="header-section-number">2.3.1</span> Reproducibility in Data Science</h3>
+<section id="reproducibility-in-data-science" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="reproducibility-in-data-science"><span class="header-section-number">2.4.1</span> Reproducibility in Data Science</h3>
 <p>Material from this section adapted from <a href="https://r4ds.hadley.nz/whole-game">R for Data Science</a>.</p>
 <p>The main tools of data science are: importing, tidying, transforming, and visualizing data. We will go through all of these steps of data science so that you can tackle real datasets.</p>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<img src="figures/datascience-workflow.png" alt="Data Science Workflow" class="figure-img">
-<figcaption aria-hidden="true" class="figure-caption">
-Data Science Workflow
-</figcaption>
+<p><img src="figures/datascience-workflow.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Data Science Workflow</figcaption>
 </figure>
+</div>
 <ol type="1">
 <li>Before you can transform and visualize your data, you need to first get your data into R.</li>
 <li>Then, you’ll learn about tidy data, a consistent way of storing your data that makes transformation, visualization, and modelling easier. You’ll learn the underlying principles, and how to get your data into a tidy form.</li>
@@ -766,10 +654,10 @@ Data Science Workflow
 <p>Note that if you are interested in doing a modelling project, these steps are different. Talk to Vicki and Mete if you want to tackle mathematical models!</p>
 </section>
 </section>
-<section id="the-scientific-method" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="the-scientific-method"><span class="header-section-number">2.4</span> The Scientific Method</h2>
-<section id="steps-in-scientific-process" class="level3" data-number="2.4.1">
-<h3 data-number="2.4.1" class="anchored" data-anchor-id="steps-in-scientific-process"><span class="header-section-number">2.4.1</span> Steps in scientific process</h3>
+<section id="the-scientific-method" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="the-scientific-method"><span class="header-section-number">2.5</span> The Scientific Method</h2>
+<section id="steps-in-scientific-process" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="steps-in-scientific-process"><span class="header-section-number">2.5.1</span> Steps in scientific process</h3>
 <ol type="1">
 <li>Identify research question(s).</li>
 <li>Look into what the previous literature shows.</li>
@@ -780,22 +668,22 @@ Data Science Workflow
 <li>How will the data be obtained and what is the data (i.e.&nbsp;the source)?</li>
 <li>What statistical/mathematical techniques have previous researchers used? Will you use them? Are they appropriate (optional, may need expert)? ( How will the results/data be presented or visualized (possible tables/figures)?</li>
 </ul>
-<ol type="1">
+<ol start="5" type="1">
 <li>Run the planned analyses (or additional ones that come may up).</li>
 <li>Visualize or present all results from the analyses.</li>
 <li>Interpret the results and how they fit with the previous literature.</li>
 <li>Draw conclusions based on the hypotheses/objectives.</li>
 <li>Disseminate your results (in blogs, pre-print archives, journals, conferences)</li>
 </ol>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<img src="figures/fig_scientific_method.png" alt="Simplified diagram of the scientific method" class="figure-img">
-<figcaption aria-hidden="true" class="figure-caption">
-Simplified diagram of the scientific method
-</figcaption>
+<p><img src="figures/fig_scientific_method.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Simplified diagram of the scientific method</figcaption>
 </figure>
+</div>
 </section>
-<section id="basics-of-succeeding-as-a-team" class="level3" data-number="2.4.2">
-<h3 data-number="2.4.2" class="anchored" data-anchor-id="basics-of-succeeding-as-a-team"><span class="header-section-number">2.4.2</span> Basics of succeeding as a team</h3>
+<section id="basics-of-succeeding-as-a-team" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="basics-of-succeeding-as-a-team"><span class="header-section-number">2.5.2</span> Basics of succeeding as a team</h3>
 <p>Final assignment is in a group and to succeed, you need to understand team dynamics:</p>
 <ul>
 <li>Communication is vital to work together and to achieve the goal</li>
@@ -805,8 +693,8 @@ Simplified diagram of the scientific method
 <li>Rotate roles (specifically for the leader/facilitator)</li>
 </ul>
 </section>
-<section id="roles-and-responsibilities" class="level3" data-number="2.4.3">
-<h3 data-number="2.4.3" class="anchored" data-anchor-id="roles-and-responsibilities"><span class="header-section-number">2.4.3</span> Roles and responsibilities</h3>
+<section id="roles-and-responsibilities" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="roles-and-responsibilities"><span class="header-section-number">2.5.3</span> Roles and responsibilities</h3>
 <ul>
 <li>Leader/Facilitator’s duty:
 <ul>
@@ -830,8 +718,8 @@ Simplified diagram of the scientific method
 </ul></li>
 </ul>
 </section>
-<section id="code-of-conduct" class="level3" data-number="2.4.4">
-<h3 data-number="2.4.4" class="anchored" data-anchor-id="code-of-conduct"><span class="header-section-number">2.4.4</span> Code of Conduct</h3>
+<section id="code-of-conduct" class="level3" data-number="2.5.4">
+<h3 data-number="2.5.4" class="anchored" data-anchor-id="code-of-conduct"><span class="header-section-number">2.5.4</span> Code of Conduct</h3>
 <ul>
 <li>Vital to establishing boundaries and expectations of being a team member
 <ul>
@@ -845,17 +733,17 @@ Simplified diagram of the scientific method
 <li>But its important that you as a team write out what everyone wants and agrees to</li>
 </ul></li>
 </ul>
-<section id="example-code-of-conduct" class="level4" data-number="2.4.4.1">
-<h4 data-number="2.4.4.1" class="anchored" data-anchor-id="example-code-of-conduct"><span class="header-section-number">2.4.4.1</span> Example Code of Conduct</h4>
+<section id="example-code-of-conduct" class="level4" data-number="2.5.4.1">
+<h4 data-number="2.5.4.1" class="anchored" data-anchor-id="example-code-of-conduct"><span class="header-section-number">2.5.4.1</span> Example Code of Conduct</h4>
 <p><a href="https://www.contributor-covenant.org/version/1/4/code-of-conduct/">Contributor Convenent</a></p>
 <p><a href="https://github.com/UofTCoders/studyGroup/blob/gh-pages/codeOfConduct.md">UofT Coders Code of Conduct</a></p>
 </section>
 </section>
 </section>
-<section id="projects-1" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="projects-1"><span class="header-section-number">2.5</span> Projects!</h2>
-<section id="exercise-after-groups-are-formed" class="level3" data-number="2.5.1">
-<h3 data-number="2.5.1" class="anchored" data-anchor-id="exercise-after-groups-are-formed"><span class="header-section-number">2.5.1</span> Exercise after groups are formed</h3>
+<section id="projects-1" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="projects-1"><span class="header-section-number">2.6</span> Projects!</h2>
+<section id="exercise-after-groups-are-formed" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="exercise-after-groups-are-formed"><span class="header-section-number">2.6.1</span> Exercise after groups are formed</h3>
 <p>As a group, complete these tasks:</p>
 <ol type="1">
 <li>Get into your groups</li>
@@ -865,7 +753,7 @@ Simplified diagram of the scientific method
 <li>Name, year of study</li>
 <li>Other stuff (e.g., interests, plans for next years, etc.)</li>
 </ul>
-<ol type="1">
+<ol start="3" type="1">
 <li>Create a “team name”</li>
 <li>Assign roles to each other:</li>
 </ol>
@@ -873,26 +761,31 @@ Simplified diagram of the scientific method
 <li>These will be rotated: Leader/Facilitator, Recorder, Organizer</li>
 <li>Discuss how and when the roles will be rotated.</li>
 </ul>
-<ol type="1">
+<ol start="5" type="1">
 <li>Discuss and brainstorm code of conduct (record it).</li>
 <li>Take a minute to think about your own skills</li>
 </ol>
 <ul>
 <li>Share these with your group (record them).</li>
 </ul>
-<ol type="1">
+<ol start="7" type="1">
 <li>Discuss how responsibilities of each member will be decided on (record it).</li>
 </ol>
 </section>
-<section id="github" class="level3" data-number="2.5.2">
-<h3 data-number="2.5.2" class="anchored" data-anchor-id="github"><span class="header-section-number">2.5.2</span> GitHub</h3>
+<section id="github" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="github"><span class="header-section-number">2.6.2</span> GitHub</h3>
 <p>Make a GitHub account.</p>
 <p>If we run out of time to do this in lecture 1, do click-and-drag here.</p>
-<p>[1] This is the first footnote.</p>
-<p>[2] This is the second footnote.</p>
 
 
 </section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>This is the first footnote.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>This is the second footnote.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
