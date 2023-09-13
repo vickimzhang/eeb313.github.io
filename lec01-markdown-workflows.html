@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.301">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EEB313: Quantitative Methods in R for Biology - 2&nbsp; Markdown, Project Workflows</title>
+<title>EEB313: Quantitative Methods in R for Biology - 2&nbsp; Markdown, project workflows</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lec00-rstudio.html">Lectures</a></li><li class="breadcrumb-item"><a href="./lec01-markdown-workflows.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Markdown, Project Workflows</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lec00-rstudio.html">Lectures</a></li><li class="breadcrumb-item"><a href="./lec01-markdown-workflows.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Markdown, project workflows</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -171,7 +171,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lec01-markdown-workflows.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Markdown, Project Workflows</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Markdown, project workflows</span></span></a>
   </div>
 </li>
       </ul>
@@ -214,8 +214,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="header-section-number">2.2.2</span> Lists</a></li>
   <li><a href="#tables" id="toc-tables" class="nav-link" data-scroll-target="#tables"><span class="header-section-number">2.2.3</span> Tables</a></li>
   <li><a href="#images-and-links" id="toc-images-and-links" class="nav-link" data-scroll-target="#images-and-links"><span class="header-section-number">2.2.4</span> Images and Links</a></li>
-  <li><a href="#in-line-citations-and-bibliography" id="toc-in-line-citations-and-bibliography" class="nav-link" data-scroll-target="#in-line-citations-and-bibliography"><span class="header-section-number">2.2.5</span> In-line citations and bibliography</a></li>
-  <li><a href="#footnotes" id="toc-footnotes" class="nav-link" data-scroll-target="#footnotes"><span class="header-section-number">2.2.6</span> Footnotes</a></li>
+  <li><a href="#white-space-and-new-page" id="toc-white-space-and-new-page" class="nav-link" data-scroll-target="#white-space-and-new-page"><span class="header-section-number">2.2.5</span> White Space and New Page</a></li>
+  <li><a href="#in-line-citations-and-bibliography" id="toc-in-line-citations-and-bibliography" class="nav-link" data-scroll-target="#in-line-citations-and-bibliography"><span class="header-section-number">2.2.6</span> In-line citations and bibliography</a></li>
+  <li><a href="#footnotes" id="toc-footnotes" class="nav-link" data-scroll-target="#footnotes"><span class="header-section-number">2.2.7</span> Footnotes</a></li>
   </ul></li>
   <li><a href="#project-oriented-workflow" id="toc-project-oriented-workflow" class="nav-link" data-scroll-target="#project-oriented-workflow"><span class="header-section-number">2.3</span> Project-Oriented Workflow</a>
   <ul class="collapse">
@@ -248,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Markdown, Project Workflows</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Markdown, project workflows</span></h1>
 </div>
 
 
@@ -336,13 +337,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="changing-height-and-width-of-imagesfigures" class="level4" data-number="2.2.1.2">
 <h4 data-number="2.2.1.2" class="anchored" data-anchor-id="changing-height-and-width-of-imagesfigures"><span class="header-section-number">2.2.1.2</span> Changing height and width of images/figures</h4>
+<p>You can also indicate the sizes of figures by using <code>fig.width</code> and <code>fig.height</code> in your code chunk.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(mpg, wt, <span class="at">data =</span> mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## in this R chuck, fig.width=2, fig.height=2</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(mpg, wt, <span class="at">data =</span> mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="lec01-markdown-workflows_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="192"></p>
 </div>
 </div>
-<p>Here, fig.width=2, fig.height=2.</p>
 </section>
 </section>
 <section id="lists" class="level3" data-number="2.2.2">
@@ -508,18 +510,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>And use the following format to add weblinks: <code>[Description/Caption](weblink)</code>.</p>
 <p><a href="eeb313.github.io">The EEB website lives here!</a></p>
 </section>
-<section id="in-line-citations-and-bibliography" class="level3" data-number="2.2.5">
-<h3 data-number="2.2.5" class="anchored" data-anchor-id="in-line-citations-and-bibliography"><span class="header-section-number">2.2.5</span> In-line citations and bibliography</h3>
+<section id="white-space-and-new-page" class="level3" data-number="2.2.5">
+<h3 data-number="2.2.5" class="anchored" data-anchor-id="white-space-and-new-page"><span class="header-section-number">2.2.5</span> White Space and New Page</h3>
+<p>Use <code>\vspace{2pt}</code> to add white space, and use <code>\newpage</code> to add a page break.</p>
+</section>
+<section id="in-line-citations-and-bibliography" class="level3" data-number="2.2.6">
+<h3 data-number="2.2.6" class="anchored" data-anchor-id="in-line-citations-and-bibliography"><span class="header-section-number">2.2.6</span> In-line citations and bibliography</h3>
+<p>Export a <code>.bib</code> file (e.g., from Zotero and Mendeley). Then, add the <code>.bib</code> to your YAML header.</p>
 <pre><code>---
 title: My Report
 output: html_document
 bibliography: bibliography.bib
 ---</code></pre>
+<p>Now, you can cite directly in your report, like below:</p>
 <p>Some fact<span class="citation" data-cites="Smith2018">[@Smith2018]</span></p>
 <p>Some fact supported by multiple papers <span class="citation" data-cites="Smith2018 Tran1997">[@Smith2018; @Tran1997]</span></p>
 </section>
-<section id="footnotes" class="level3" data-number="2.2.6">
-<h3 data-number="2.2.6" class="anchored" data-anchor-id="footnotes"><span class="header-section-number">2.2.6</span> Footnotes</h3>
+<section id="footnotes" class="level3" data-number="2.2.7">
+<h3 data-number="2.2.7" class="anchored" data-anchor-id="footnotes"><span class="header-section-number">2.2.7</span> Footnotes</h3>
 <p>This is what a footnote looks like.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Here is another.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 </section>
 </section>
@@ -540,18 +548,18 @@ bibliography: bibliography.bib
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>here() starts at /Users/meteyuksel/eeb313website</code></pre>
+<pre><code>here() starts at /Users/vicki.zhang/Documents/UofT/PhD/Teaching/2023-2024/eeb313.github.io</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/Users/meteyuksel/eeb313website"</code></pre>
+<pre><code>[1] "/Users/vicki.zhang/Documents/UofT/PhD/Teaching/2023-2024/eeb313.github.io"</code></pre>
 </div>
 </div>
 <p>You can build a path relative to the top-level directory in order to read or write a file:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"1_lectures"</span>, <span class="st">"csv"</span>, <span class="st">"portal_data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/Users/meteyuksel/eeb313website/1_lectures/csv/portal_data.csv"</code></pre>
+<pre><code>[1] "/Users/vicki.zhang/Documents/UofT/PhD/Teaching/2023-2024/eeb313.github.io/1_lectures/csv/portal_data.csv"</code></pre>
 </div>
 </div>
 <p>These relative paths work regardless of where the associated source file lives inside your project, like analysis projects with data and reports in different subdirectories.</p>
@@ -565,12 +573,12 @@ bibliography: bibliography.bib
 <li>The folder <code>data</code> typically contains two subfolders, namely, <code>raw</code> and <code>processed.</code> The content of raw directory is data files of any kind, such as .csv, SAS, Excel, text and database files, etc. The content of this folder is read-only, so that no scripts should change the original files or create new ones inside it. For this purpose, the processed directory is used: all processed, cleaned, and tidied datasets are saved here. It is a good practice to save files in R specific format, rather than in .csv, since the saving in .csv is a less efficient way of storing data (both in terms of space and time of reading/writing).</li>
 <li>The folder <code>figures</code> is the place where you may store plots, diagrams, and other figures. There is not much to say about it. Common extensions of such files are .eps, .png, .pdf, etc. Again, file names in this folder should be meaningful (the name <code>img1.png</code> does not represent anything).</li>
 <li>All reports live in a directory with the corresponding name <code>reports.</code> These reports can be of any formats, such as LaTeX, Markdown, R Markdown, Jupyter Notebooks, etc. Currently, more and more people prefer rich documents with text and executable code to LaTeX and such.</li>
-<li>Perhaps the most important folder is <code>analyses</code> or <code>scripts</code>. Here, you keep all your R scripts and codes. That is the exact place to use prefix numbers, if files should be run in a particular order. If you have files in other scripted languages (e.g., Python), it is better to keep them in this folder as well. There is also an important subfolder called <code>deprecated.</code> Whenever you want to remove one or the other script, it is a good idea to move it to deprecated at first iteration. I recommend never deleting your code until you are sure that you have finished everything you wanted to do, even if the code doesn’t work (going back to it after a break usually helps!).</li>
+<li>Perhaps the most important folder is <code>analyses</code> or <code>scripts</code>. Here, you keep all your R scripts and codes. That is the exact place to use prefix numbers, if files should be run in a particular order. If you have files in other scripted languages (e.g., Python), it is better to keep them in this folder as well. There can also an important subfolder called <code>deprecated.</code> Whenever you want to remove one or the other script, it is a good idea to move it to deprecated at first iteration. I recommend never deleting your code until you are sure that you have finished everything you wanted to do, even if the code doesn’t work (going back to it after a break usually helps!).</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/demo_project.jpg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Vicki’s demo of her file directory.</figcaption>
+<p></p><figcaption class="figure-caption">Vicki’s demo of her file directory.</figcaption><p></p>
 </figure>
 </div>
 <p>This convention guarantees that the project is self-contained, and it can be moved around on your computer or onto other computers and will still “just work”. This is a really important convention that creates reliable, reproducible science across different computers or users and over time.</p>
@@ -581,16 +589,16 @@ bibliography: bibliography.bib
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.2.3 (2023-03-15)
+<pre><code>R version 4.1.1 (2021-08-10)
 Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Big Sur ... 10.16
+Running under: macOS Big Sur 10.16
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRblas.0.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib
+BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
 
 locale:
-[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+[1] en_CA.UTF-8/en_CA.UTF-8/en_CA.UTF-8/C/en_CA.UTF-8/en_CA.UTF-8
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
@@ -601,12 +609,12 @@ other attached packages:
 loaded via a namespace (and not attached):
  [1] rstudioapi_0.15.0 magrittr_2.0.3    tidyselect_1.2.0  munsell_0.5.0    
  [5] colorspace_2.1-0  R6_2.5.1          rlang_1.1.1       fastmap_1.1.1    
- [9] fansi_1.0.4       dplyr_1.1.2       tools_4.2.3       grid_4.2.3       
-[13] gtable_0.3.3      xfun_0.39         utf8_1.2.3        cli_3.6.1        
-[17] withr_2.5.0       htmltools_0.5.5   rprojroot_2.0.3   yaml_2.3.7       
+ [9] fansi_1.0.4       dplyr_1.1.2       tools_4.1.1       grid_4.1.1       
+[13] gtable_0.3.4      xfun_0.40         utf8_1.2.3        cli_3.6.1        
+[17] withr_2.5.0       htmltools_0.5.6   rprojroot_2.0.3   yaml_2.3.7       
 [21] digest_0.6.33     tibble_3.2.1      lifecycle_1.0.3   farver_2.1.1     
 [25] htmlwidgets_1.6.2 vctrs_0.6.3       glue_1.6.2        evaluate_0.21    
-[29] rmarkdown_2.23    labeling_0.4.2    compiler_4.2.3    pillar_1.9.0     
+[29] rmarkdown_2.24    labeling_0.4.3    compiler_4.1.1    pillar_1.9.0     
 [33] generics_0.1.3    scales_1.2.1      jsonlite_1.8.7    pkgconfig_2.0.3  </code></pre>
 </div>
 </div>
@@ -629,8 +637,14 @@ loaded via a namespace (and not attached):
 <li>Statistical reproducibility</li>
 </ul>
 <ol type="1">
-<li>Why does reproducibility matter in science?</li>
-<li>What do you think about when you hear the term “open science”?</li>
+<li>Why does reproducibility matter in science?
+<ul>
+<li>Must trust findings to build on scientific progress!</li>
+</ul></li>
+<li>What do you think about when you hear the term “open science”?
+<ul>
+<li>Open science: everything about a project (data, stats, code, funding, etc.) is open and available to viewing</li>
+</ul></li>
 <li>How does open science affect collaboration and the progress of science?</li>
 </ol>
 <p>What are the barriers to reproducibility?</p>
@@ -646,7 +660,7 @@ loaded via a namespace (and not attached):
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/datascience-workflow.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Data Science Workflow</figcaption>
+<p></p><figcaption class="figure-caption">Data Science Workflow</figcaption><p></p>
 </figure>
 </div>
 <ol type="1">
@@ -682,7 +696,7 @@ loaded via a namespace (and not attached):
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/fig_scientific_method.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Simplified diagram of the scientific method</figcaption>
+<p></p><figcaption class="figure-caption">Simplified diagram of the scientific method</figcaption><p></p>
 </figure>
 </div>
 </section>
@@ -739,10 +753,7 @@ loaded via a namespace (and not attached):
 </ul>
 <section id="example-code-of-conduct" class="level4" data-number="2.5.4.1">
 <h4 data-number="2.5.4.1" class="anchored" data-anchor-id="example-code-of-conduct"><span class="header-section-number">2.5.4.1</span> Example Code of Conduct</h4>
-<ul>
-<li><a href="https://www.contributor-covenant.org/version/1/4/code-of-conduct/">Contributor Convenent</a></li>
-<li><a href="https://github.com/UofTCoders/studyGroup/blob/gh-pages/codeOfConduct.md">UofT Coders Code of Conduct</a></li>
-</ul>
+<p>Check out the <a href="https://www.contributor-covenant.org/version/1/4/code-of-conduct/">Contributor Convenent</a> and the <a href="https://github.com/UofTCoders/studyGroup/blob/gh-pages/codeOfConduct.md">UofT Coders Code of Conduct</a></p>
 </section>
 </section>
 </section>
@@ -781,7 +792,6 @@ loaded via a namespace (and not attached):
 <section id="github" class="level3" data-number="2.6.2">
 <h3 data-number="2.6.2" class="anchored" data-anchor-id="github"><span class="header-section-number">2.6.2</span> GitHub</h3>
 <p>Make a GitHub account.</p>
-<p>If we run out of time to do this in lecture 1, do click-and-drag here.</p>
 
 
 </section>
