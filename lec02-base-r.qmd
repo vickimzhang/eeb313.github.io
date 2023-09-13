@@ -156,7 +156,7 @@ Notice that `weight_lb` is unchanged.
 
 What are the values of these variables after each statement in the following?
 
-```{r, eval=FALSE}
+```{r}
 mass <- 47.5
 age  <- 122
 mass <- mass * 2.0      
@@ -212,7 +212,7 @@ bit more specific and append a `q`, to find what we want. If we press tab again,
 To read the full help about `sqrt`, we can use the question mark, or type it
 directly into the help document browser.
 
-```{r, eval=FALSE}
+```{r}
 ?sqrt
 ```
 
@@ -224,7 +224,7 @@ create a vector. More on vectors later!
 
 Let's try a function that can take multiple arguments: `round()`.
 
-```{r, eval=FALSE}
+```{r}
 #round(<tab>)
 ?round
 ```
@@ -490,7 +490,7 @@ char_logical <- c('a', 'b', 'c', TRUE)
 tricky <- c(1, 2, 3, '4')
 ```
 
-```{r, include=FALSE}
+```{r}
 # Answer
 class(num_char)
 class(num_logical)
