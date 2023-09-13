@@ -346,7 +346,9 @@ check_if_numbers_are_postive_function2(4, 5)
 check_if_numbers_are_postive_function2(-4, 5)
 ```
 
-Although these functions agree when both inputs are positive (i.e., they return the same output), the second function does not return a statement indicating one or both of the inputs are non-positive when this is the case. This is because we have not indicated what should be returned when the condition in one or the other if the statement in `check_if_numbers_are_postive_function2` is not met. We can do this as follows:
+Although these functions agree when both inputs are positive (i.e., they return the same output), the second function does not return a statement indicating one or both of the inputs are non-positive when this is the case. This is because we have not indicated what should be returned when the condition in one or the other if the statement in `check_if_numbers_are_postive_function2` is not met. 
+
+We can do this as follows:
 
 ```{r}
 check_if_numbers_are_postive_function2 <- function(num1, num2) {
