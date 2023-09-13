@@ -76,6 +76,8 @@ qplot(mpg, wt, data = mtcars)
 
 #### Changing height and width of images/figures
 
+You can also indicate the sizes of figures by using `fig.width` and `fig.height` in your code chunk.
+
 ```{r, eval=TRUE, fig.width=2, fig.height=2}
 ## in this R chuck, fig.width=2, fig.height=2
 qplot(mpg, wt, data = mtcars)
@@ -132,7 +134,15 @@ And use the following format to add weblinks: `[Description/Caption](weblink)`.
 
 [The EEB website lives here!](eeb313.github.io)
 
+### White Space and New Page
+
+Use `\vspace{2pt}` to add white space, and use `\newpage` to add a page break.
+
+
 ### In-line citations and bibliography
+
+Export a `.bib` file (e.g., from Zotero and Mendeley). Then, add the `.bib` to your YAML header.
+
 
 ```         
 ---
@@ -141,6 +151,9 @@ output: html_document
 bibliography: bibliography.bib
 ---
 ```
+
+Now, you can cite directly in your report, like below:
+
 
 Some fact[@Smith2018]
 
@@ -253,7 +266,7 @@ Use subdirectories to organize data, code, figures, notes, etc.
     you keep all your R scripts and codes. That is the exact place to
     use prefix numbers, if files should be run in a particular order. If
     you have files in other scripted languages (e.g., Python), it is
-    better to keep them in this folder as well. There is also an
+    better to keep them in this folder as well. There can also an
     important subfolder called `deprecated.` Whenever you want to remove
     one or the other script, it is a good idea to move it to deprecated
     at first iteration. I recommend never deleting your code until you
@@ -290,8 +303,13 @@ Notice that we have some base packages active even though we did not explicitly 
     -   N.B., field work - hard to reproduce method
 -   Statistical reproducibility
 
-1.  Why does reproducibility matter in science?    -   Must trust findings to build on scientific progress!2.  What do you think about when you hear the term "open science"?    -   Open science: everything about a project (data, stats, code,
-    funding, etc.) is open and available to viewing3.  How does open science affect collaboration and the progress of    science?
+1.  Why does reproducibility matter in science?
+    -   Must trust findings to build on scientific progress!
+2.  What do you think about when you hear the term "open science"?
+    -   Open science: everything about a project (data, stats, code,
+    funding, etc.) is open and available to viewing
+3.  How does open science affect collaboration and the progress of
+    science?
 
 What are the barriers to reproducibility?
 
@@ -398,9 +416,9 @@ team dynamics:
 
 #### Example Code of Conduct
 
-- [Contributor
-Convenent](https://www.contributor-covenant.org/version/1/4/code-of-conduct/)
-- [UofT Coders Code of
+Check out the 
+[Contributor
+Convenent](https://www.contributor-covenant.org/version/1/4/code-of-conduct/) and the [UofT Coders Code of
 Conduct](https://github.com/UofTCoders/studyGroup/blob/gh-pages/codeOfConduct.md)
 
 ## Projects!
@@ -434,5 +452,3 @@ As a group, complete these tasks:
 ### GitHub
 
 Make a GitHub account.
-
-If we run out of time to do this in lecture 1, do click-and-drag here.
