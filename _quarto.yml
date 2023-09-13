@@ -12,7 +12,11 @@ book:
     - part: "Lectures"
       chapters:
       - lec00-rstudio.qmd
+      - lec01-markdown-workflows.qmd
     - part: "Assignments"
+    - part: "Project"
+      chapters:
+      - projects.qmd
   repo-url: https://github.com/EEB313/eeb313.github.io
   sidebar:
     search: true

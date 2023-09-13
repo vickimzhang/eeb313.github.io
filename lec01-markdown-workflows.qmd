@@ -1,0 +1,438 @@
+---
+title: "Markdown, project workflows"
+output: md_document
+urlcolor: blue
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+## Lesson preamble
+
+> ### Lesson objectives
+>
+> -   Learn about the Markdown syntax and how to use it within the R
+>     Notebook.
+> -   Set up the R Notebook
+> -   Set up an R Project
+> -   Understand how to follow the conventional data science workflow
+
+> ### Learning outline
+>
+> -   Explore RStudio interface (10 mins)
+> -   Reproducible science with Markdown (40 mins)
+> -   Project-Oriented Workflow (20 mins)
+> -   Reproducible Science (10 mins)
+> -   The Scientific Method (10 mins)
+> -   Find your groups! (10 mins)
+
+------------------------------------------------------------------------
+
+## Markdown
+
+Last class, we introduced Markdown, the text format that RStudio uses.
+In fact, if you are following along this far, you should have already
+been typing your notes and code in a .Rmd file, or a RMarkdown file.
+
+Let's introduce more Markdown features! We encourage groups to try
+completing their group projects in RMarkdown, but more about that later.
+
+### In-line code
+
+We talked about using RMarkdown for notes and inline code last class.
+This is extremely useful for when you need to update objects or rerun
+analyses. You can also comment out code within the code chunk.
+
+As a reminder, the keyboard shortcut to insert a code chunk is:
+
+* command + option + i (Mac)
+* ctrl + alt + i (Windows)
+
+```{r, eval=TRUE}
+x <- 5
+y <- 13
+
+# 5 plus 13
+x + y
+```
+
+#### R code chunk tricks
+
+-   `eval=TRUE` evaluates the code chunk (runs it); `eval=FALSE` does
+    not (will just print the chunk)
+-   `echo=TRUE` prints the code chunk; `echo=FALSE` hides it but will
+    still evaluate it
+      * this is useful if you need to save something as an object but you don't necessarily need it to print
+-   `warning=FALSE` will hide warnings; `message=FALSE` will hide
+    messages from output
+    -   only the case when `eval=TRUE`
+    
+    
+```{r, eval=TRUE}
+## eval=TRUE, echo=FALSE prints output, but does not print code chunk
+library(ggplot2)
+qplot(mpg, wt, data = mtcars)
+```
+
+#### Changing height and width of images/figures
+
+```{r, eval=TRUE, fig.width=2, fig.height=2}
+## in this R chuck, fig.width=2, fig.height=2
+qplot(mpg, wt, data = mtcars)
+```
+
+### Lists
+
+I've already used these! You can use either `*` or `-` to indicate unordered lists. To indent, hit tab. Make sure there's a space before your items in the list.
+
+Unordered Lists (bullet points)
+
+-   first item
+-   second item
+    -   sub-level item (two tabs)
+-   third item
+
+For ordered lists, use numbers. Again, hit tab to add sublists.
+
+Ordered Lists (numbers)
+
+1.  Ordered item
+2.  Ordered item
+    1.  Ordered sub-item
+3.  Item (will automatically re-number)
+
+### Tables
+
+`kable` displays r code chunks with tables nicely
+
+```{r, warning = F, results = "asis"}
+library(knitr)
+kable(head(mtcars))
+```
+
+In comparison:
+
+```{r, results = "asis"}
+library(knitr)
+head(mtcars) ## does not nicely format the table
+```
+
+### Images and Links
+
+Use the following format to add images:
+
+`![Description/Caption](/path/to/image.png)`
+
+For example:
+![Fun picture!](figures/rubberduck.jpeg)
+
+As an aside, let's talk about rubber duck debugging. It is a simple but effective technique used by scientists to debug code. By explaining the code line-by-line to an inanimate object, such as a rubber duck, programmers can break down the code into smaller, more manageable pieces, and potentially identify the root cause of the problem. Or, explain it to a friend in the course! They can also help you find typos and other errors
+
+And use the following format to add weblinks: `[Description/Caption](weblink)`.
+
+[The EEB website lives here!](eeb313.github.io)
+
+### In-line citations and bibliography
+
+```         
+---
+title: My Report
+output: html_document
+bibliography: bibliography.bib
+---
+```
+
+Some fact[@Smith2018]
+
+Some fact supported by multiple papers [@Smith2018; @Tran1997]
+
+### Footnotes
+
+This is what a footnote looks like.[^1] Here is another.[^2]
+
+[^1]: This is the first footnote.
+
+[^2]: This is the second footnote.
+
+## Project-Oriented Workflow
+
+### Projects
+
+Material adapted from
+[Posit](https://support.posit.co/hc/en-us/articles/200526207-Using-Projects)
+and
+[R-bloggers](https://www.r-bloggers.com/2019/01/%F0%9F%93%81-project-oriented-workflow/).
+
+RStudio projects make it straightforward to divide your work into
+multiple contexts, each with their own working directory, workspace,
+history, and source documents.
+
+To create a new project in the RStudio IDE, use the Create Project
+command (top right). You can link your new project to an existing
+directory, or create a new directory entirely. Since we already have
+some RMarkdown written, let's add our project to an existing directory.
+
+When a new project is created RStudio, it creates a project file (with
+an .Rproj extension) within the project directory. This file contains
+various project options (discussed below) and can also be used as a
+shortcut for opening the project directly from the filesystem. It also
+creates a hidden directory (named .Rproj.user) where project-specific
+temporary files (e.g., auto-saved source documents, window-state, etc.)
+are stored. This directory is also automatically added to .Rbuildignore,
+.gitignore, etc. if required.
+
+Now, whenever you open your project, it loads your project into RStudio
+and displays its name in the Projects toolbar (which is located on the
+far right side of the main toolbar). It even takes you back to where you
+were working last, so it opens all the scripts and files that were last
+open! You can also save your history, the objects in your environment, and an image of what your project looked like at the last time you closed it, but this can take up a lot of space if you do this each time.
+
+You can work with more than one RStudio project at a time by simply
+opening each project in its own window of RStudio.
+
+### Relative File Pathways
+
+The goal of the `here` package is to enable easy file referencing in
+project-oriented workflows. In contrast to using `setwd()`, which is
+fragile and dependent on the way you organize your files, here uses the
+top-level directory of a project to easily build paths to files.
+
+```{r}
+library(here)
+here()
+```
+
+You can build a path relative to the top-level directory in order to
+read or write a file:
+
+```{r}
+here("1_lectures", "csv", "portal_data.csv")
+```
+
+These relative paths work regardless of where the associated source file
+lives inside your project, like analysis projects with data and reports
+in different subdirectories.
+
+### Demo Project
+
+There is no a single "right" folder structure for analysis projects.
+However, this is a tried-and-true simple method that works (backed up by
+many data scientists!).
+
+Create a folder on your computer that holds all the files relevant to
+that particular piece of work. This parent folder will contain the
+project's .Rproj and all other subfolders, so it should have the same
+name as your project. Pick a good one. Spending an extra 5 minutes will
+save you from regrets in the future. The name should be short, concise,
+written in lower-case, and not containing any special symbols. One can
+apply similar strategies as for naming packages.
+
+Use subdirectories to organize data, code, figures, notes, etc.
+
+-   The folder `data` typically contains two subfolders, namely, `raw`
+    and `processed.` The content of raw directory is data files of any
+    kind, such as .csv, SAS, Excel, text and database files, etc. The
+    content of this folder is read-only, so that no scripts should
+    change the original files or create new ones inside it. For this
+    purpose, the processed directory is used: all processed, cleaned,
+    and tidied datasets are saved here. It is a good practice to save
+    files in R specific format, rather than in .csv, since the saving in
+    .csv is a less efficient way of storing data (both in terms of space
+    and time of reading/writing).
+-   The folder `figures` is the place where you may store plots,
+    diagrams, and other figures. There is not much to say about it.
+    Common extensions of such files are .eps, .png, .pdf, etc. Again,
+    file names in this folder should be meaningful (the name `img1.png`
+    does not represent anything).
+-   All reports live in a directory with the corresponding name
+    `reports.` These reports can be of any formats, such as LaTeX,
+    Markdown, R Markdown, Jupyter Notebooks, etc. Currently, more and
+    more people prefer rich documents with text and executable code to
+    LaTeX and such.
+-   Perhaps the most important folder is `analyses` or `scripts`. Here,
+    you keep all your R scripts and codes. That is the exact place to
+    use prefix numbers, if files should be run in a particular order. If
+    you have files in other scripted languages (e.g., Python), it is
+    better to keep them in this folder as well. There is also an
+    important subfolder called `deprecated.` Whenever you want to remove
+    one or the other script, it is a good idea to move it to deprecated
+    at first iteration. I recommend never deleting your code until you
+    are sure that you have finished everything you wanted to do, even if
+    the code doesn't work (going back to it after a break usually
+    helps!).
+
+![Vicki's demo of her file directory.](figures/demo_project.jpg)
+
+This convention guarantees that the project is self-contained, and it
+can be moved around on your computer or onto other computers and will
+still "just work". This is a really important convention that creates
+reliable, reproducible science across different computers or users and
+over time.
+
+### Documenting session info
+
+As an overview of our environment, we can also use the `sessionInfo()` command. This is a good practice to have at the end of your code to document which packages you used and what version they were. 
+
+```{r}
+sessionInfo()
+```
+
+Notice that we have some base packages active even though we did not explicitly call for them. 
+
+## Reproducible Science
+
+-   Computational reproducibility
+    -   code, software, etc.
+-   Scientific reproducibility
+    -   data (able to run the same statistical analysis on the same
+        data)
+    -   method, details about how the data was collected
+    -   N.B., field work - hard to reproduce method
+-   Statistical reproducibility
+
+1.  Why does reproducibility matter in science?    -   Must trust findings to build on scientific progress!2.  What do you think about when you hear the term "open science"?    -   Open science: everything about a project (data, stats, code,
+    funding, etc.) is open and available to viewing3.  How does open science affect collaboration and the progress of    science?
+
+What are the barriers to reproducibility?
+
+- people won't care
+- people might want to steal results
+- researchers do not want to share (embarrassed, code is rushed, etc.)
+
+### Reproducibility in Data Science
+
+Material from this section adapted from [R for Data
+Science](https://r4ds.hadley.nz/whole-game).
+
+The main tools of data science are: importing, tidying, transforming,
+and visualizing data. We will go through all of these steps of data
+science so that you can tackle real datasets.
+
+![Data Science Workflow](figures/datascience-workflow.png)
+
+1.  Before you can transform and visualize your data, you need to first
+    get your data into R.
+2.  Then, you'll learn about tidy data, a consistent way of storing your
+    data that makes transformation, visualization, and modelling easier.
+    You'll learn the underlying principles, and how to get your data
+    into a tidy form.
+3.  You'll learn the key verbs that allow you to select important
+    variables, filter out key observations, create new variables, and
+    compute summaries.
+4.  Finally, we will visualize by making elegant and informative plots
+    that help you understand data.
+
+Note that if you are interested in doing a modelling project, these
+steps are different. Talk to Vicki and Mete if you want to tackle
+mathematical models!
+
+
+## The Scientific Method
+
+### Steps in scientific process
+
+1.  Identify research question(s).
+2.  Look into what the previous literature shows.
+3.  Create one or more hypotheses or objectives.
+4.  Write up an outline or expected approach to answering those
+    questions/objectives (analysis and presentation plan):
+
+-   How will the data be obtained and what is the data (i.e. the
+    source)?
+-   What statistical/mathematical techniques have previous researchers
+    used? Will you use them? Are they appropriate (optional, may need
+    expert)? ( How will the results/data be presented or visualized
+    (possible tables/figures)?
+
+5.  Run the planned analyses (or additional ones that come may up).
+6.  Visualize or present all results from the analyses.
+7.  Interpret the results and how they fit with the previous literature.
+8.  Draw conclusions based on the hypotheses/objectives.
+9.  Disseminate your results (in blogs, pre-print archives, journals,
+    conferences)
+
+![Simplified diagram of the scientific method](figures/fig_scientific_method.png)
+
+### Basics of succeeding as a team
+
+Final assignment is in a group and to succeed, you need to understand
+team dynamics:
+
+-   Communication is vital to work together and to achieve the goal
+-   Teams go through various stages
+-   Need consensus for group norms, goals, duties/responsibilities, and
+    conduct/behaviour
+-   Important that everyone has a stake in the project
+-   Rotate roles (specifically for the leader/facilitator)
+
+### Roles and responsibilities
+
+-   Leader/Facilitator's duty:
+    -   Goal is to keep things running smoothly, focused on the task,
+        and on track for time
+    -   Keep everyone on topic and on task; stay aware of the time
+    -   (Try to) mediate or resolve any conflicts (there will always be
+        some type of conflict; how it's dealt with is what matters)
+    -   (Try to) encourage everyone to participate and allow everyone a
+        chance at talking
+-   Recorder's duty:
+    -   Goal is to write/type down main or important points raised or
+        discussed when team is meeting
+    -   Keep notes and files organized and orderly
+-   Organizer's duty:
+    -   Arrange for next meeting time and location
+-   Send reminders to members a day or two before meeting
+    -   Make and email a simple agenda of tasks to do or to discuss
+
+### Code of Conduct
+
+-   Vital to establishing boundaries and expectations of being a team
+    member
+    -   How do you want each member to treat each other?
+    -   How do you deal with conflict?
+    -   What is acceptable and unacceptable behaviour?
+-   These are outlined in the code of conduct
+-   Mostly its common sense (be kind and respectful)
+    -   But its important that you as a team write out what everyone
+        wants and agrees to
+
+#### Example Code of Conduct
+
+- [Contributor
+Convenent](https://www.contributor-covenant.org/version/1/4/code-of-conduct/)
+- [UofT Coders Code of
+Conduct](https://github.com/UofTCoders/studyGroup/blob/gh-pages/codeOfConduct.md)
+
+## Projects!
+
+### Exercise after groups are formed
+
+As a group, complete these tasks:
+
+1.  Get into your groups
+2.  Introduce one another:
+
+-   Name, year of study
+-   Other stuff (e.g., interests, plans for next years, etc.)
+
+3.  Create a "team name"
+4.  Assign roles to each other:
+
+-   These will be rotated: Leader/Facilitator, Recorder, Organizer
+-   Discuss how and when the roles will be rotated.
+
+5.  Discuss and brainstorm code of conduct (record it).
+6.  Take a minute to think about your own skills
+
+-   Share these with your group (record them).
+
+7.  Discuss how responsibilities of each member will be decided on
+    (record it).
+    
+    
+
+### GitHub
+
+Make a GitHub account.
+
+If we run out of time to do this in lecture 1, do click-and-drag here.

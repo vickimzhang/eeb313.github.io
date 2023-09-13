@@ -119,9 +119,7 @@ or <kbd>Ctrl</kbd>/<kbd>Command</kbd> + <kbd>Shift</kbd> +
 <kbd>Enter</kbd>.
 
 ```{r}
-
 1+1
-
 ```
 
 As you can see, the output appears right under the code block.
@@ -176,7 +174,6 @@ kind of output you want, and a few other things such as author list and
 date.
 
 ```{r eval=FALSE}
-
 ---
 title: "Your title here"
 author: "Your name here"
@@ -188,21 +185,17 @@ date: "Insert date"
 Then, let's type some notes and code together!
 
 ```{r eval=FALSE}
-
 # Attempt 1
 
 ## Here goes!
-
 ```
 
 ```{r}
-
 1+2+3+4
 
 x <- seq(0,100,1)
 
 plot(x, type = "l")
-
 ```
 
 Let's see what this looks like. To create the output document, we

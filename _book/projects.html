@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>EEB313: Quantitative Methods in R for Biology - 3&nbsp; Project description</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./lec01-markdown-workflows.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./projects.html">Project</a></li><li class="breadcrumb-item"><a href="./projects.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Project description</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">EEB313: Quantitative Methods in R for Biology</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/EEB313/eeb313.github.io" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about-us.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The 2023 teaching team</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./downloadingR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Downloading R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Lectures</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lec00-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with RStudio and R Notebook</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lec01-markdown-workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Markdown, project workflows</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Assignments</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Project</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./projects.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Project description</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#option-1-hypothesis-driven-project" id="toc-option-1-hypothesis-driven-project" class="nav-link active" data-scroll-target="#option-1-hypothesis-driven-project"><span class="header-section-number">3.1</span> Option 1: Hypothesis-driven project</a>
+  <ul class="collapse">
+  <li><a href="#what-is-a-hypotheses-what-is-a-prediction" id="toc-what-is-a-hypotheses-what-is-a-prediction" class="nav-link" data-scroll-target="#what-is-a-hypotheses-what-is-a-prediction"><span class="header-section-number">3.1.1</span> What is a hypotheses? What is a prediction?</a></li>
+  </ul></li>
+  <li><a href="#option-2-modeling" id="toc-option-2-modeling" class="nav-link" data-scroll-target="#option-2-modeling"><span class="header-section-number">3.2</span> Option 2: Modeling</a></li>
+  <li><a href="#option-3-simulation-study" id="toc-option-3-simulation-study" class="nav-link" data-scroll-target="#option-3-simulation-study"><span class="header-section-number">3.3</span> Option 3: Simulation study</a></li>
+  <li><a href="#finding-a-topic" id="toc-finding-a-topic" class="nav-link" data-scroll-target="#finding-a-topic"><span class="header-section-number">3.4</span> Finding a topic</a></li>
+  <li><a href="#project-timeline-and-deliverables" id="toc-project-timeline-and-deliverables" class="nav-link" data-scroll-target="#project-timeline-and-deliverables"><span class="header-section-number">3.5</span> Project timeline and deliverables</a>
+  <ul class="collapse">
+  <li><a href="#project-proposal" id="toc-project-proposal" class="nav-link" data-scroll-target="#project-proposal"><span class="header-section-number">3.5.1</span> Project proposal</a></li>
+  <li><a href="#mid-project-update" id="toc-mid-project-update" class="nav-link" data-scroll-target="#mid-project-update"><span class="header-section-number">3.5.2</span> Mid-project update</a></li>
+  <li><a href="#presentation" id="toc-presentation" class="nav-link" data-scroll-target="#presentation"><span class="header-section-number">3.5.3</span> Presentation</a></li>
+  <li><a href="#report" id="toc-report" class="nav-link" data-scroll-target="#report"><span class="header-section-number">3.5.4</span> Report</a></li>
+  </ul></li>
+  <li><a href="#project-grading-rubric" id="toc-project-grading-rubric" class="nav-link" data-scroll-target="#project-grading-rubric"><span class="header-section-number">3.6</span> Project grading rubric</a>
+  <ul class="collapse">
+  <li><a href="#project-proposal-1" id="toc-project-proposal-1" class="nav-link" data-scroll-target="#project-proposal-1"><span class="header-section-number">3.6.1</span> Project proposal</a></li>
+  <li><a href="#mid-project-update-1" id="toc-mid-project-update-1" class="nav-link" data-scroll-target="#mid-project-update-1"><span class="header-section-number">3.6.2</span> Mid-project update</a></li>
+  <li><a href="#the-presentation" id="toc-the-presentation" class="nav-link" data-scroll-target="#the-presentation"><span class="header-section-number">3.6.3</span> The presentation</a></li>
+  <li><a href="#the-report" id="toc-the-report" class="nav-link" data-scroll-target="#the-report"><span class="header-section-number">3.6.4</span> The report</a></li>
+  </ul></li>
+  <li><a href="#tips-on-writingpresenting-a-research-project" id="toc-tips-on-writingpresenting-a-research-project" class="nav-link" data-scroll-target="#tips-on-writingpresenting-a-research-project"><span class="header-section-number">3.7</span> Tips on writing/presenting a research project</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Project description</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>The course project is a self-directed group project that may take a couple forms (data analysis, modeling, or simulation study), but will make use of technical and scientific tools that we have learned in class. Aside from a couple constraints, groups are free to do their projects on any subject within ecology and evolution that they find interesting. The forms the project may take are:</p>
+<ol type="1">
+<li>A hypothesis-driven analysis of existing ecological or evolutionary data.</li>
+<li>Development and analysis of a mathematical model.</li>
+<li>Simulate data and analyze it using appropriate tools.</li>
+</ol>
+<p>In order to utilize conventional data science collaboration tools, students are required to use <a href="https://github.com">Github</a> for code-sharing, project management, and individual contributions. All sections of the project will be submitted via Github, not Quercus. Please make a GitHub account prior to the first project deadline. We will cover the basics of GitHub and Command Line in advance so that you are prepared to use it. We strongly encourage all students to use only GitHub for their projects (avoid Google Drive and DropBox!), in order to reduce confusion if there are different versions of code and texts.</p>
+<section id="option-1-hypothesis-driven-project" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="option-1-hypothesis-driven-project"><span class="header-section-number">3.1</span> Option 1: Hypothesis-driven project</h2>
+<p>Groups will formulate their own hypotheses based on their interests within ecology and evolution. Groups will test predictions borne out of their hypotheses with reproducible and quantitative analysis techniques (e.g., ANOVA). If your group has an idea for statistical analyses that are beyond the scope of the course, please let us know. We are happy to support any groups who want to learn new tools, but expect that these groups are ready to learn how these tools work on their own; we hope to equip you with enough understanding to learn new things independently. Finally, the work must be original – while we may be repurposing data, we will not be simply redoing analyses. Keep in mind also that any work you do as part of this course may not be submitted for credit in another course (such as a fourth-year research project) and vice versa. While you may not submit your work for this course for credit in another course, you are welcome to publish or present your work in an academic setting.</p>
+<p>A note about community/citizen science websites: since the data is community-controlled, it may not always be research quality. There may be incorrect species IDs, inaccurate geolocations or time of observations, or discrepancies in protocols. When working with community science data, make sure that the data is cleaned and wrangled so that it is reliable. Quality control is a good first step when working with data, as simple errors can exist in any dataset.</p>
+<section id="what-is-a-hypotheses-what-is-a-prediction" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="what-is-a-hypotheses-what-is-a-prediction"><span class="header-section-number">3.1.1</span> What is a hypotheses? What is a prediction?</h3>
+<p>A <strong>hypothesis</strong> is a testable and falsifiable statement that offers a possible explanation of a phenomenon based on background knowledge, preliminary observations, or logic.</p>
+<p><em>E.g., Primary productivity is an important driver of mammal species richness.</em></p>
+<p>A <strong>prediction</strong> is based on a hypothesis. It is meant to describe what will happen in a specific situation, such as during an experiment, if the hypothesis is correct.</p>
+<p><em>E.g., If primary productivity is an important driver of mammal species richness, then more mammalian species would be found in sites with more plant biomass (proxy for primary productivity) compared with sites with less plant growth.</em></p>
+</section>
+</section>
+<section id="option-2-modeling" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="option-2-modeling"><span class="header-section-number">3.2</span> Option 2: Modeling</h2>
+<p>Groups will develop a mathematical model to answer a question in ecology and/or evolution they find interesting. There are many reasons to develop models: they help clarify assumptions, generate predictions, nullify hypotheses, provide mechanistic explanations for observed data, and help us know <em>what kinds of data</em> to look for. New models almost always build on existing and well-studied ones (e.g., the Lotka-Volterra model). The fact models are simplifying representations of the real world is by design! The goal of building a model is to identify the key features that make a process interesting, represent the process mathematically (and, in doing so, clarify what assumptions are being made!), characterize the behavior of the model, and from this characterization draw conclusions about how the process being modeled works. Characterization of a model can involve mathematical analysis, simulation, and confrontation with data.</p>
+<p>The key steps in this project are to 1) identify an interesting question in ecology or evolution, 2) develop (and likely revise) a model to address that question, 3) characterize the behavior of the model, and 4) draw biological conclusions from the model and its characterization.</p>
+<p>If you are interested in modeling, let Vicki and Mete know as soon possible!</p>
+</section>
+<section id="option-3-simulation-study" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="option-3-simulation-study"><span class="header-section-number">3.3</span> Option 3: Simulation study</h2>
+<p>Similar to Option 1, groups that do a simulation study will formulate hypotheses and use reproducible and quantitative analysis techniques to test predictions borne out of those hypotheses. The difference is that students will <em>simulate</em> their own data, instead of using an existing dataset. One reason to do a simulation study is to see what kind of data would be needed to test a hypothesis in the field, e.g., how much data would be needed to find a significant association between response and predictor variables.</p>
+<p>If you are interested in doing a simulation study, let Vicki and Mete know as soon possible!</p>
+</section>
+<section id="finding-a-topic" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="finding-a-topic"><span class="header-section-number">3.4</span> Finding a topic</h2>
+<p>Here are some discussion questions to help you and your group work towards a research topic and set of hypotheses and predictions:</p>
+<ul>
+<li>What is a paper you read recently that you found really interesting?</li>
+<li>What is your favorite EEB course so far? Why did you like it?</li>
+<li>Thinking about EEB professors, was there anyone whose work you are particularly interested in?</li>
+<li>Browse through some recent issues of broad scope EEB journals such as <em>Trends in Ecology and Evolution</em> and <em>Annual Review of Ecology, Evolution, and Systematics</em>. Any articles catching your eyes?</li>
+<li>Check out <a href="https://besjournals.onlinelibrary.wiley.com/doi/10.1111/1365-2745.12025">this paper</a>. Any of those questions spark your interest?</li>
+</ul>
+</section>
+<section id="project-timeline-and-deliverables" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="project-timeline-and-deliverables"><span class="header-section-number">3.5</span> Project timeline and deliverables</h2>
+<p>As instructors, we are here to help your group work towards a project idea that you are excited about! We have included multiple check points and small assignments throughout the semester for you to get feedback on your project ideas and ask us questions.</p>
+<section id="project-proposal" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="project-proposal"><span class="header-section-number">3.5.1</span> Project proposal</h3>
+<p><em>Due Oct 3rd</em>, worth 4% of final grade</p>
+<p>Good research takes time! The purpose of the proposal is to get your group started on this process early on so that you will have sufficient time to do your project justice. This will also serve as official documentation of your project development process. Your projects will likely evolve over time, and there can be many reasons for this. For instance, as you explore your data, you might be inspired to ask different questions, or you may need to refine your hypotheses due to limitations in the data. All of these are fine, in fact, it happens all the time in real research settings.</p>
+<p>Include the following information in your proposal:</p>
+<ul>
+<li>Option 1: your hypotheses and predictions (point form or short paragraph) and data source (short paragraph). Include a citation, a brief description of how the data was collection, and which section of the dataset you plan to use in your analysis (e.g., which columns).</li>
+<li>Option 2: a question you want to answer using a mathematical model (short paragraph describing the problem and the value modeling may add). Be sure to include a description of the variables that you may want to track and the kind of model you envision using.</li>
+<li>Option 3: same as 1, except with a description of how to simulate the data.</li>
+</ul>
+</section>
+<section id="mid-project-update" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="mid-project-update"><span class="header-section-number">3.5.2</span> Mid-project update</h3>
+<p><em>Due Nov 2nd, worth 6% of final grade</em></p>
+<p>The purpose of the mid-project update is to ensure you are on track with your projects. By now, you should have completed your exploratory data analyses, modeling, or simulation. You should have also solidified your hypotheses, predictions, and analyses plan. Essentially, you should be ready to write the Methods section of your report!</p>
+<p>Included the following information in your mid-project review:</p>
+<ol type="1">
+<li>Options 1 and 3:</li>
+</ol>
+<ul>
+<li>Your hypotheses and predictions (point form or short paragraph). If these differ from the ones in your proposal, explain clearly the rationale for the change.</li>
+<li>A detailed description of your data (a paragraph), including how the data was collected or simulated, along with any manipulation(s) you performed to get your data ready for the analysis.</li>
+<li>Your analysis plan (a paragraph): describe the statistical test(s) that you will use to test <em>each</em> prediction, including how you will validate the assumptions of each test.</li>
+</ul>
+<ol type="1">
+<li>Option 2:</li>
+</ol>
+<ul>
+<li>A detailed description of the question you want to answer, any previous work (modeling and otherwise), the model you have built to answer this question, and your modeling assumptions.</li>
+<li>Detailed descriptions of the model analysis and biological interpretations of the results so far.</li>
+<li>Your analysis plan (a paragraph): describe additional analysis that you will do and any assumptions you would like to relax.</li>
+</ul>
+</section>
+<section id="presentation" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="presentation"><span class="header-section-number">3.5.3</span> Presentation</h3>
+<p><em>Due Dec 5th, worth 10% of final grade</em></p>
+<p>The presentations will be held on the last day of class during regular class hours (<em>Dec 5th</em>, 2-4 pm). Each presentation will be 10 minutes long, followed by 2 minutes of questions from the audience. If you cannot make it to class for your presentation, please get in touch with us to make alternative arrangements no later than Dec 1st.</p>
+</section>
+<section id="report" class="level3" data-number="3.5.4">
+<h3 data-number="3.5.4" class="anchored" data-anchor-id="report"><span class="header-section-number">3.5.4</span> Report</h3>
+<p><em>Due Dec 8th, worth 20% of final grade</em></p>
+<p>This report will be styled as a journal article, with these sections:</p>
+<ul>
+<li>Abstract</li>
+<li>Introduction</li>
+<li>Methods (including “Data Description” and “Data Analysis” subsections)</li>
+<li>Results</li>
+<li>Discussion</li>
+<li>References</li>
+<li>Supplementary material consisting of data and code required to reproduce analysis</li>
+</ul>
+<p><strong>For your sake (and ours), we are enforcing a two page limit (single spaced, excluding figures, tables, code, references, and appendices). Please use a standard font, size 12, with regular margins. One goal of this assignment is to write clearly and concisely – it is often clarifying to put your analyses in as few words as possible.</strong></p>
+<p>For the report, you are expected to:</p>
+<ul>
+<li>Put your research questions in the context of existing research and literature.</li>
+<li>Have clear and explicit objectives, hypotheses, and/or predictions.</li>
+<li>Adequately describe and properly cite the data source(s) you will analyze. If your project involves modeling, describe other modeling work that is relevant.</li>
+<li>Describe your analysis in sufficient detail for others to understand.</li>
+<li>Discuss the interpretation of your results and their implications.</li>
+</ul>
+<p>The data and code associated with your report is expected to be entirely reproducible. Your supplementary files must include the following:</p>
+<ul>
+<li>A description of what <em>every</em> column/row in your submitted data file.</li>
+<li>A well-annotated R script or R notebook file. We must be able to run your code once you submit the project. <a href="https://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R/">This lesson</a> on best practices for writing R code is a good starting place. Also check out this <a href="https://style.tidyverse.org/index.html">coding style guide</a> and <a href="https://gist.github.com/wojteklu/73c6914cc446146b8b533c0988cf8d29">these simple rules</a> on how to write code that is easy to read.</li>
+</ul>
+<p><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5210691/">Hermann et al.&nbsp;2016</a> is a great example of what we expect your code to look like. Refer to their supplementary materials for examples of <a href="https://figshare.com/articles/LTER_Lampyrid_data/2068098">how to describe your data set</a> and <a href="https://github.com/cbahlai/lampyrid/blob/master/lampyrid_analysis.R">how to annotate your code</a>.</p>
+</section>
+</section>
+<section id="project-grading-rubric" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="project-grading-rubric"><span class="header-section-number">3.6</span> Project grading rubric</h2>
+<section id="project-proposal-1" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="project-proposal-1"><span class="header-section-number">3.6.1</span> Project proposal</h3>
+<p><em>4 marks total</em></p>
+<p>Option 1: Two marks each for 1) your hypotheses and associated predictions and 2) a description of your data source(s). Students are expected to demonstrate effort in formulating hypotheses and predictions, and identifying a suitable dataset.</p>
+<p>Option 2: Two marks each for 1) a clear description of the question or problem in ecology or evolution you would like to address using a model, and 2) a description of the kind of model you envision using, including what variables to track.</p>
+<p>Option 3: One mark for simulating realistic data using appropriate tools, and one mark for your hypotheses and associated predictions, and two marks for describing the appropriate analyses.</p>
+<p>These components will be graded mostly on completion. The purpose of this assignment is to ensure you start early and are heading towards the right track.</p>
+</section>
+<section id="mid-project-update-1" class="level3" data-number="3.6.2">
+<h3 data-number="3.6.2" class="anchored" data-anchor-id="mid-project-update-1"><span class="header-section-number">3.6.2</span> Mid-project update</h3>
+<p><em>6 marks total</em></p>
+<p>Options 1 and 3: Two marks are given to clearly stating hypotheses and predictions. In the case that these are different from the original submission in the proposal, the rationale for refinement needs to be clearly explained.</p>
+<p>Each of the following criteria are scored out of 2: 2 == excellent, 1.5 == good, 1 == acceptable, but needs improvement.</p>
+<ol type="1">
+<li>Data description
+<ul>
+<li>The data source(s) are sufficiently described, specifically, where was the obtained and how it was originally collected.</li>
+<li>The data is sufficient described, including any initial observations from your exploratory data analyses.</li>
+<li>The suitability of the data is justified.</li>
+<li>Any manipulations done to the data are thoroughly explained and well-justified.</li>
+</ul></li>
+<li>Data analysis plan
+<ul>
+<li>Clearly lay out the statistical test(s) you will use to test each prediction.</li>
+<li>State how you will validating assumptions associated with each statistical test.</li>
+</ul></li>
+</ol>
+<p>Option 2: Each of the following criteria are scored out of 3: 3 == excellent, 2 == good, 1 == acceptable, but needs improvement.</p>
+<ol type="1">
+<li>Description of question, previous work, the model, modeling assumptions, and any predictions you have ahead of the analysis
+<ul>
+<li>The question you want to address and previous work in that direction (modeling or otherwise) is described in detail.</li>
+<li>The relationship between the question/problem and modeling approach is clear and well-justified.</li>
+<li>Modeling assumptions and choices (including limitations) are clear and well-motivated.</li>
+<li>Predictions for how the model will behave, what it might have to say about the question/problem, etc. are inclued and well thought out.</li>
+</ul></li>
+<li>Analysis and analysis plan
+<ul>
+<li>The details of all analysis (mathematical or computational) are explained clearly.</li>
+<li>The biological interpretations of results so far are clearly presented and their validity/applicability is discussed.</li>
+<li>Clearly lay out plans for remaining analysis (e.g., relaxing model assumptions) and justify why they are reasonable.</li>
+</ul></li>
+</ol>
+</section>
+<section id="the-presentation" class="level3" data-number="3.6.3">
+<h3 data-number="3.6.3" class="anchored" data-anchor-id="the-presentation"><span class="header-section-number">3.6.3</span> The presentation</h3>
+<p><em>10 marks total</em></p>
+<p>Each of the following criteria are scored out of 3: 3 == excellent, 2 == adequate, 1 == needs improvement.</p>
+<ol type="1">
+<li>Content – background and methods
+<ul>
+<li>The context for the study, along with hypotheses and predictions, are clearly set up.</li>
+<li>Data source(s), manipulations, and statistical tests used are succinctly and adequately described.</li>
+<li>If modeling, the relationship between the question/problem addressed and modeling approach is well-explained, and previous work (modeling or otherwise) is discussed.</li>
+</ul></li>
+<li>Content – results and conclusions
+<ul>
+<li>Results are accurately described and interpreted, with particular attention to how they related to the hypotheses and predictions the group set out to test.</li>
+<li>The conclusion to the study is succinct and clear.</li>
+</ul></li>
+<li>Delivery
+<ul>
+<li>All students participated in presenting the information.</li>
+<li>All students spoke clearly and without jargon.</li>
+<li>The presentation is well organized and ideas flowed naturally from one to the next.</li>
+<li>The presentation is well rehearsed and is an appropriate length.</li>
+<li>Figures are easy to read (e.g., axis labels are big enough to read and are informative) and are explained thoroughly (e.g., x and y axis and what each data point is).</li>
+</ul></li>
+</ol>
+<p>The final 1 mark will be assigned to the question period, and students will be assessed on whether they are able to answer questions thoughtfully.</p>
+</section>
+<section id="the-report" class="level3" data-number="3.6.4">
+<h3 data-number="3.6.4" class="anchored" data-anchor-id="the-report"><span class="header-section-number">3.6.4</span> The report</h3>
+<p><em>20 marks total</em></p>
+<p>Each of the following criteria are scored out of 4: 4 == excellent, 3 == good, 2 == acceptable, 1 == needs improvement.</p>
+<ol type="1">
+<li>Content and concepts
+<ul>
+<li>Authors demonstrate a full understanding of the existing literature on the topic, and these concepts are critically integrated into their own insights.</li>
+<li>Options 1 and 3: Hypotheses and predictions are clearly defined, and rational for choosing/simulating this data is justified.</li>
+<li>Option 2: The question, modeling approach, and relevant work are thoughtfully explained; the rationale for using the model (and its assumptions) is justified.</li>
+</ul></li>
+<li>Communication
+<ul>
+<li>Writing is succinct, clear, logical, and free of grammatical and spelling errors.</li>
+</ul></li>
+<li>Analysis: see below.</li>
+<li>Results
+<ul>
+<li>Results are accurately and sufficiently described.</li>
+<li>Conclusions are supported by evidence.</li>
+<li>Figures and tables are clearly presented and are informative.</li>
+</ul></li>
+<li>Coding style and reproducibility
+<ul>
+<li>Data and code are well-organized and well-documented.</li>
+<li>The analysis is easily reproducible.</li>
+</ul></li>
+</ol>
+<p><em>Note:</em> marks for the 3rd criterion (Analysis) depend on if groups did a modeling or data-driven project:</p>
+<p>Options 1 and 3: Statistical analysis</p>
+<ul>
+<li>Statistical tests chosen or modeling choices made are appropriate.</li>
+<li>Assumptions for each statistical test is validated.</li>
+<li>Limitations in the data and analysis are discussed.</li>
+</ul>
+<p>Option 2: Analysis of model</p>
+<ul>
+<li>Characterization of the model is appropriate and explained in detail.</li>
+<li>Importantly, biological conclusions explained in detail and in terms of the processes described (or not described) by the model.</li>
+<li>Limitations of modeling assumptions are discussed, and extensions are proposed.</li>
+</ul>
+<p>Please note that we are only going to be marking the two pages of your report. Please do not go over the page limit (with the exception of tables, figures, references, and appendices).</p>
+</section>
+</section>
+<section id="tips-on-writingpresenting-a-research-project" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="tips-on-writingpresenting-a-research-project"><span class="header-section-number">3.7</span> Tips on writing/presenting a research project</h2>
+<p>We know that students have very unique research interests and ideas, and we hope that your project encapsulates that! As instructors, we do not know everything, but we are excited to learn from you and your projects. Below are some tips that we have gathered that you may find helpful when preparing for the project presentation and writing your report.</p>
+<ol type="1">
+<li>Use a title that summarizes your project/results clearly.</li>
+<li>Define everything! Do not assume that we know about your question, study system, etc. For your presentations, adding some pictures will help when you are defining something.</li>
+<li>After introducing your study system, tell us clearly your hypothesis and prediction: “I hypothesize that there are more mosquitoes in the boreal forest because it is warmer. I predict this because insects have a thermal tolerance”. Then, after your methods, results, etc., remind us of your hypothesis again! For your presentation, you can even show the same slide you used for your hypothesis with a big red X or a big green checkmark. Assume we forgot and that we know nothing about the system.</li>
+<li>NEVER EVER USE THE WORD “prove”. Science cannot prove or disprove anything — the evidence can only support (or fail to support) how we think the world works.</li>
+<li>Use an appropriate font and font size. Also, use colours wisely (e.g., avoid red and blue together because of folks that are colourblind).</li>
+<li>A 10-minute presentation is about 10 slides (more or less depending on if you use animations). A note about animations: use “Appear”, not any of the fancy stuff. And no slide transitions!</li>
+<li>We will ask questions after your presentation, but we are not trying to trick you — we just want more information. Give us your best answer, and remember that it’s okay to say “I don’t know, but I think that…” or “I can test this further by doing this”. At this point, you should know more about your projects than we do. Also, when preparing for the presentation, it useful to think about what questions listeners may have and try to answer them preemptively.</li>
+<li>Practice your presentation at least once with your group! It’ll get rid of any nerves you have if you already know the words you are going to say. It’ll also help you ensure that you speak louder and slower. We know you all will do great projects, and we are excited to hear about them!</li>
+</ol>
+<p>Reading widely and often is one of the best ways to learn how to write well. Here are some papers which we think are clear, concise, and free of grammatical and logical flaws.</p>
+<ul>
+<li><a href="https://www.pnas.org/doi/abs/10.1073/pnas.1919176117?url_ver=Z39.88-2003&amp;rfr_id=ori:rid:crossref.org&amp;rfr_dat=cr_pub%20%200pubmed">Viral zoonotic risk is homogenous among taxonomic orders of mammalian and avian reservoir hosts</a></li>
+<li><a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecs2.1260">Nonsystemic fungal endophytes increase survival but reduce tolerance to simulated herbivory in subarctic Festuca rubra</a></li>
+<li><a href="https://academic.oup.com/evolut/article/76/1/29/6728984">Estimation of the strength of mate preference from mated pairs observed in the wild</a></li>
+<li><a href="https://link.springer.com/article/10.1007/s10530-011-0098-4">Humans introduce viable seeds to the Arctic on footwear</a></li>
+<li><a href="https://cdnsciencepub.com/doi/10.1139/cjz-2016-0233#:~:text=Temperature%20appears%20to%20increase%20odonate,heated%20conditions%20(McCauley%20et%20al)">Effects of environmental warming during early life history on libellulid odonates</a></li>
+<li><a href="https://www.nature.com/articles/nature02104">The role of evolution in the emergence of infectious diseases</a></li>
+<li><a href="https://www.pnas.org/doi/abs/10.1073/pnas.1508397112">Coevolution of parasite virulence and host mating strategies</a></li>
+<li><a href="https://www.pnas.org/doi/abs/10.1073/pnas.1817482116">A rigorous measure of genome-wide genetic shuffling that takes into account crossover positions and Mendel’s second law</a></li>
+<li><a href="https://www.science.org/doi/10.1126/science.abo7719">The role of divergent ecological adaptation during allopatric speciation in vertebrates</a></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./lec01-markdown-workflows.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Markdown, project workflows</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

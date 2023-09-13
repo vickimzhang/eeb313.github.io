@@ -10,5 +10,11 @@
   },
   "lec00-rstudio.qmd": {
     "lec00-rstudio.html": "09382a71"
+  },
+  "lec01-markdown-workflows.qmd": {
+    "lec01-markdown-workflows.html": "bcc89a17"
+  },
+  "projects.qmd": {
+    "projects.html": "382a4dd9"
   }
 }

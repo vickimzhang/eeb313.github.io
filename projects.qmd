@@ -1,0 +1,484 @@
+## Project description
+
+The course project is a self-directed group project that may take a
+couple forms (data analysis, modeling, or simulation study), but will
+make use of technical and scientific tools that we have learned in
+class. Aside from a couple constraints, groups are free to do their
+projects on any subject within ecology and evolution that they find
+interesting. The forms the project may take are:
+
+1.  A hypothesis-driven analysis of existing ecological or evolutionary
+    data.
+2.  Development and analysis of a mathematical model.
+3.  Simulate data and analyze it using appropriate tools.
+
+In order to utilize conventional data science collaboration tools,
+students are required to use [Github](https://github.com) for
+code-sharing, project management, and individual contributions. All
+sections of the project will be submitted via Github, not Quercus.
+Please make a GitHub account prior to the first project deadline. We
+will cover the basics of GitHub and Command Line in advance so that you
+are prepared to use it. We strongly encourage all students to use only
+GitHub for their projects (avoid Google Drive and DropBox!), in order to
+reduce confusion if there are different versions of code and texts.
+
+## Option 1: Hypothesis-driven project
+
+Groups will formulate their own hypotheses based on their interests
+within ecology and evolution. Groups will test predictions borne out of
+their hypotheses with reproducible and quantitative analysis techniques
+(e.g., ANOVA). If your group has an idea for statistical analyses that
+are beyond the scope of the course, please let us know. We are happy to
+support any groups who want to learn new tools, but expect that these
+groups are ready to learn how these tools work on their own; we hope to
+equip you with enough understanding to learn new things independently.
+Finally, the work must be original – while we may be repurposing data,
+we will not be simply redoing analyses. Keep in mind also that any work
+you do as part of this course may not be submitted for credit in another
+course (such as a fourth-year research project) and vice versa. While
+you may not submit your work for this course for credit in another
+course, you are welcome to publish or present your work in an academic
+setting.
+
+A note about community/citizen science websites: since the data is
+community-controlled, it may not always be research quality. There may
+be incorrect species IDs, inaccurate geolocations or time of
+observations, or discrepancies in protocols. When working with community
+science data, make sure that the data is cleaned and wrangled so that it
+is reliable. Quality control is a good first step when working with
+data, as simple errors can exist in any dataset.
+
+### What is a hypotheses? What is a prediction?
+
+A **hypothesis** is a testable and falsifiable statement that offers a
+possible explanation of a phenomenon based on background knowledge,
+preliminary observations, or logic.
+
+*E.g., Primary productivity is an important driver of mammal species
+richness.*
+
+A **prediction** is based on a hypothesis. It is meant to describe what
+will happen in a specific situation, such as during an experiment, if
+the hypothesis is correct.
+
+*E.g., If primary productivity is an important driver of mammal species
+richness, then more mammalian species would be found in sites with more
+plant biomass (proxy for primary productivity) compared with sites with
+less plant growth.*
+
+## Option 2: Modeling
+
+Groups will develop a mathematical model to answer a question in ecology
+and/or evolution they find interesting. There are many reasons to
+develop models: they help clarify assumptions, generate predictions,
+nullify hypotheses, provide mechanistic explanations for observed data,
+and help us know *what kinds of data* to look for. New models almost
+always build on existing and well-studied ones (e.g., the Lotka-Volterra
+model). The fact models are simplifying representations of the real
+world is by design! The goal of building a model is to identify the key
+features that make a process interesting, represent the process
+mathematically (and, in doing so, clarify what assumptions are being
+made!), characterize the behavior of the model, and from this
+characterization draw conclusions about how the process being modeled
+works. Characterization of a model can involve mathematical analysis,
+simulation, and confrontation with data.
+
+The key steps in this project are to 1) identify an interesting question
+in ecology or evolution, 2) develop (and likely revise) a model to
+address that question, 3) characterize the behavior of the model, and 4)
+draw biological conclusions from the model and its characterization.
+
+If you are interested in modeling, let Vicki and Mete know as soon
+possible!
+
+## Option 3: Simulation study
+
+Similar to Option 1, groups that do a simulation study will formulate
+hypotheses and use reproducible and quantitative analysis techniques to
+test predictions borne out of those hypotheses. The difference is that
+students will *simulate* their own data, instead of using an existing
+dataset. One reason to do a simulation study is to see what kind of data
+would be needed to test a hypothesis in the field, e.g., how much data
+would be needed to find a significant association between response and
+predictor variables.
+
+If you are interested in doing a simulation study, let Vicki and Mete
+know as soon possible!
+
+## Finding a topic
+
+Here are some discussion questions to help you and your group work
+towards a research topic and set of hypotheses and predictions:
+
+-   What is a paper you read recently that you found really interesting?
+-   What is your favorite EEB course so far? Why did you like it?
+-   Thinking about EEB professors, was there anyone whose work you are
+    particularly interested in?
+-   Browse through some recent issues of broad scope EEB journals such
+    as *Trends in Ecology and Evolution* and *Annual Review of Ecology,
+    Evolution, and Systematics*. Any articles catching your eyes?
+-   Check out [this
+    paper](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/1365-2745.12025).
+    Any of those questions spark your interest?
+
+## Project timeline and deliverables
+
+As instructors, we are here to help your group work towards a project
+idea that you are excited about! We have included multiple check points
+and small assignments throughout the semester for you to get feedback on
+your project ideas and ask us questions.
+
+### Project proposal
+
+*Due Oct 3rd*, worth 4% of final grade
+
+Good research takes time! The purpose of the proposal is to get your
+group started on this process early on so that you will have sufficient
+time to do your project justice. This will also serve as official
+documentation of your project development process. Your projects will
+likely evolve over time, and there can be many reasons for this. For
+instance, as you explore your data, you might be inspired to ask
+different questions, or you may need to refine your hypotheses due to
+limitations in the data. All of these are fine, in fact, it happens all
+the time in real research settings.
+
+Include the following information in your proposal:
+
+-   Option 1: your hypotheses and predictions (point form or short
+    paragraph) and data source (short paragraph). Include a citation, a
+    brief description of how the data was collection, and which section
+    of the dataset you plan to use in your analysis (e.g., which
+    columns).
+-   Option 2: a question you want to answer using a mathematical model
+    (short paragraph describing the problem and the value modeling may
+    add). Be sure to include a description of the variables that you may
+    want to track and the kind of model you envision using.
+-   Option 3: same as 1, except with a description of how to simulate
+    the data.
+
+### Mid-project update
+
+*Due Nov 2nd, worth 6% of final grade*
+
+The purpose of the mid-project update is to ensure you are on track with
+your projects. By now, you should have completed your exploratory data
+analyses, modeling, or simulation. You should have also solidified your
+hypotheses, predictions, and analyses plan. Essentially, you should be
+ready to write the Methods section of your report!
+
+Included the following information in your mid-project review:
+
+1.  Options 1 and 3:
+
+-   Your hypotheses and predictions (point form or short paragraph). If
+    these differ from the ones in your proposal, explain clearly the
+    rationale for the change.
+-   A detailed description of your data (a paragraph), including how the
+    data was collected or simulated, along with any manipulation(s) you
+    performed to get your data ready for the analysis.
+-   Your analysis plan (a paragraph): describe the statistical test(s)
+    that you will use to test *each* prediction, including how you will
+    validate the assumptions of each test.
+
+1.  Option 2:
+
+-   A detailed description of the question you want to answer, any
+    previous work (modeling and otherwise), the model you have built to
+    answer this question, and your modeling assumptions.
+-   Detailed descriptions of the model analysis and biological
+    interpretations of the results so far.
+-   Your analysis plan (a paragraph): describe additional analysis that
+    you will do and any assumptions you would like to relax.
+
+### Presentation
+
+*Due Dec 5th, worth 10% of final grade*
+
+The presentations will be held on the last day of class during regular
+class hours (*Dec 5th*, 2-4 pm). Each presentation will be 10 minutes
+long, followed by 2 minutes of questions from the audience. If you
+cannot make it to class for your presentation, please get in touch with
+us to make alternative arrangements no later than Dec 1st.
+
+### Report
+
+*Due Dec 8th, worth 20% of final grade*
+
+This report will be styled as a journal article, with these sections:
+
+-   Abstract
+-   Introduction
+-   Methods (including “Data Description” and “Data Analysis”
+    subsections)
+-   Results
+-   Discussion
+-   References
+-   Supplementary material consisting of data and code required to
+    reproduce analysis
+
+**For your sake (and ours), we are enforcing a two page limit (single
+spaced, excluding figures, tables, code, references, and appendices).
+Please use a standard font, size 12, with regular margins. One goal of
+this assignment is to write clearly and concisely – it is often
+clarifying to put your analyses in as few words as possible.**
+
+For the report, you are expected to:
+
+-   Put your research questions in the context of existing research and
+    literature.
+-   Have clear and explicit objectives, hypotheses, and/or predictions.
+-   Adequately describe and properly cite the data source(s) you will
+    analyze. If your project involves modeling, describe other modeling
+    work that is relevant.
+-   Describe your analysis in sufficient detail for others to
+    understand.
+-   Discuss the interpretation of your results and their implications.
+
+The data and code associated with your report is expected to be entirely
+reproducible. Your supplementary files must include the following:
+
+-   A description of what *every* column/row in your submitted data
+    file.
+-   A well-annotated R script or R notebook file. We must be able to run
+    your code once you submit the project. [This
+    lesson](https://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R/)
+    on best practices for writing R code is a good starting place. Also
+    check out this [coding style
+    guide](https://style.tidyverse.org/index.html) and [these simple
+    rules](https://gist.github.com/wojteklu/73c6914cc446146b8b533c0988cf8d29)
+    on how to write code that is easy to read.
+
+[Hermann et
+al. 2016](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5210691/) is a
+great example of what we expect your code to look like. Refer to their
+supplementary materials for examples of [how to describe your data
+set](https://figshare.com/articles/LTER_Lampyrid_data/2068098) and [how
+to annotate your
+code](https://github.com/cbahlai/lampyrid/blob/master/lampyrid_analysis.R).
+
+## Project grading rubric
+
+### Project proposal
+
+*4 marks total*
+
+Option 1: Two marks each for 1) your hypotheses and associated
+predictions and 2) a description of your data source(s). Students are
+expected to demonstrate effort in formulating hypotheses and
+predictions, and identifying a suitable dataset.
+
+Option 2: Two marks each for 1) a clear description of the question or
+problem in ecology or evolution you would like to address using a model,
+and 2) a description of the kind of model you envision using, including
+what variables to track.
+
+Option 3: One mark for simulating realistic data using appropriate
+tools, and one mark for your hypotheses and associated predictions, and
+two marks for describing the appropriate analyses.
+
+These components will be graded mostly on completion. The purpose of
+this assignment is to ensure you start early and are heading towards the
+right track.
+
+### Mid-project update
+
+*6 marks total*
+
+Options 1 and 3: Two marks are given to clearly stating hypotheses and
+predictions. In the case that these are different from the original
+submission in the proposal, the rationale for refinement needs to be
+clearly explained.
+
+Each of the following criteria are scored out of 2: 2 == excellent, 1.5
+== good, 1 == acceptable, but needs improvement.
+
+1.  Data description
+    -   The data source(s) are sufficiently described, specifically,
+        where was the obtained and how it was originally collected.
+    -   The data is sufficient described, including any initial
+        observations from your exploratory data analyses.
+    -   The suitability of the data is justified.
+    -   Any manipulations done to the data are thoroughly explained and
+        well-justified.
+2.  Data analysis plan
+    -   Clearly lay out the statistical test(s) you will use to test
+        each prediction.
+    -   State how you will validating assumptions associated with each
+        statistical test.
+
+Option 2: Each of the following criteria are scored out of 3: 3 ==
+excellent, 2 == good, 1 == acceptable, but needs improvement.
+
+1.  Description of question, previous work, the model, modeling
+    assumptions, and any predictions you have ahead of the analysis
+    -   The question you want to address and previous work in that
+        direction (modeling or otherwise) is described in detail.
+    -   The relationship between the question/problem and modeling
+        approach is clear and well-justified.
+    -   Modeling assumptions and choices (including limitations) are
+        clear and well-motivated.
+    -   Predictions for how the model will behave, what it might have to
+        say about the question/problem, etc. are inclued and well
+        thought out.
+2.  Analysis and analysis plan
+    -   The details of all analysis (mathematical or computational) are
+        explained clearly.
+    -   The biological interpretations of results so far are clearly
+        presented and their validity/applicability is discussed.
+    -   Clearly lay out plans for remaining analysis (e.g., relaxing
+        model assumptions) and justify why they are reasonable.
+
+### The presentation
+
+*10 marks total*
+
+Each of the following criteria are scored out of 3: 3 == excellent, 2 ==
+adequate, 1 == needs improvement.
+
+1.  Content – background and methods
+    -   The context for the study, along with hypotheses and
+        predictions, are clearly set up.
+    -   Data source(s), manipulations, and statistical tests used are
+        succinctly and adequately described.
+    -   If modeling, the relationship between the question/problem
+        addressed and modeling approach is well-explained, and previous
+        work (modeling or otherwise) is discussed.
+2.  Content – results and conclusions
+    -   Results are accurately described and interpreted, with
+        particular attention to how they related to the hypotheses and
+        predictions the group set out to test.
+    -   The conclusion to the study is succinct and clear.
+3.  Delivery
+    -   All students participated in presenting the information.
+    -   All students spoke clearly and without jargon.
+    -   The presentation is well organized and ideas flowed naturally
+        from one to the next.
+    -   The presentation is well rehearsed and is an appropriate length.
+    -   Figures are easy to read (e.g., axis labels are big enough to
+        read and are informative) and are explained thoroughly (e.g., x
+        and y axis and what each data point is).
+
+The final 1 mark will be assigned to the question period, and students
+will be assessed on whether they are able to answer questions
+thoughtfully.
+
+### The report
+
+*20 marks total*
+
+Each of the following criteria are scored out of 4: 4 == excellent, 3 ==
+good, 2 == acceptable, 1 == needs improvement.
+
+1.  Content and concepts
+    -   Authors demonstrate a full understanding of the existing
+        literature on the topic, and these concepts are critically
+        integrated into their own insights.
+    -   Options 1 and 3: Hypotheses and predictions are clearly defined,
+        and rational for choosing/simulating this data is justified.
+    -   Option 2: The question, modeling approach, and relevant work are
+        thoughtfully explained; the rationale for using the model (and
+        its assumptions) is justified.
+2.  Communication
+    -   Writing is succinct, clear, logical, and free of grammatical and
+        spelling errors.
+3.  Analysis: see below.
+4.  Results
+    -   Results are accurately and sufficiently described.
+    -   Conclusions are supported by evidence.
+    -   Figures and tables are clearly presented and are informative.
+5.  Coding style and reproducibility
+    -   Data and code are well-organized and well-documented.
+    -   The analysis is easily reproducible.
+
+*Note:* marks for the 3rd criterion (Analysis) depend on if groups did a
+modeling or data-driven project:
+
+Options 1 and 3: Statistical analysis
+
+-   Statistical tests chosen or modeling choices made are appropriate.
+-   Assumptions for each statistical test is validated.
+-   Limitations in the data and analysis are discussed.
+
+Option 2: Analysis of model
+
+-   Characterization of the model is appropriate and explained in
+    detail.
+-   Importantly, biological conclusions explained in detail and in terms
+    of the processes described (or not described) by the model.
+-   Limitations of modeling assumptions are discussed, and extensions
+    are proposed.
+
+Please note that we are only going to be marking the two pages of your
+report. Please do not go over the page limit (with the exception of
+tables, figures, references, and appendices).
+
+## Tips on writing/presenting a research project
+
+We know that students have very unique research interests and ideas, and
+we hope that your project encapsulates that! As instructors, we do not
+know everything, but we are excited to learn from you and your projects.
+Below are some tips that we have gathered that you may find helpful when
+preparing for the project presentation and writing your report.
+
+1.  Use a title that summarizes your project/results clearly.
+2.  Define everything! Do not assume that we know about your question,
+    study system, etc. For your presentations, adding some pictures will
+    help when you are defining something.
+3.  After introducing your study system, tell us clearly your hypothesis
+    and prediction: “I hypothesize that there are more mosquitoes in the
+    boreal forest because it is warmer. I predict this because insects
+    have a thermal tolerance”. Then, after your methods, results, etc.,
+    remind us of your hypothesis again! For your presentation, you can
+    even show the same slide you used for your hypothesis with a big red
+    X or a big green checkmark. Assume we forgot and that we know
+    nothing about the system.
+4.  NEVER EVER USE THE WORD “prove”. Science cannot prove or disprove
+    anything — the evidence can only support (or fail to support) how we
+    think the world works.
+5.  Use an appropriate font and font size. Also, use colours wisely
+    (e.g., avoid red and blue together because of folks that are
+    colourblind).
+6.  A 10-minute presentation is about 10 slides (more or less depending
+    on if you use animations). A note about animations: use “Appear”,
+    not any of the fancy stuff. And no slide transitions!
+7.  We will ask questions after your presentation, but we are not trying
+    to trick you — we just want more information. Give us your best
+    answer, and remember that it’s okay to say “I don’t know, but I
+    think that…” or “I can test this further by doing this”. At this
+    point, you should know more about your projects than we do. Also,
+    when preparing for the presentation, it useful to think about what
+    questions listeners may have and try to answer them preemptively.
+8.  Practice your presentation at least once with your group! It’ll get
+    rid of any nerves you have if you already know the words you are
+    going to say. It’ll also help you ensure that you speak louder and
+    slower. We know you all will do great projects, and we are excited
+    to hear about them!
+
+Reading widely and often is one of the best ways to learn how to write
+well. Here are some papers which we think are clear, concise, and free
+of grammatical and logical flaws.
+
+-   [Viral zoonotic risk is homogenous among taxonomic orders of
+    mammalian and avian reservoir
+    hosts](https://www.pnas.org/doi/abs/10.1073/pnas.1919176117?url_ver=Z39.88-2003&rfr_id=ori:rid:crossref.org&rfr_dat=cr_pub%20%200pubmed)
+-   [Nonsystemic fungal endophytes increase survival but reduce
+    tolerance to simulated herbivory in subarctic Festuca
+    rubra](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecs2.1260)
+-   [Estimation of the strength of mate preference from mated pairs
+    observed in the
+    wild](https://academic.oup.com/evolut/article/76/1/29/6728984)
+-   [Humans introduce viable seeds to the Arctic on
+    footwear](https://link.springer.com/article/10.1007/s10530-011-0098-4)
+-   [Effects of environmental warming during early life history on
+    libellulid
+    odonates](https://cdnsciencepub.com/doi/10.1139/cjz-2016-0233#:~:text=Temperature%20appears%20to%20increase%20odonate,heated%20conditions%20(McCauley%20et%20al))
+-   [The role of evolution in the emergence of infectious
+    diseases](https://www.nature.com/articles/nature02104)
+-   [Coevolution of parasite virulence and host mating
+    strategies](https://www.pnas.org/doi/abs/10.1073/pnas.1508397112)
+-   [A rigorous measure of genome-wide genetic shuffling that takes into
+    account crossover positions and Mendel’s second
+    law](https://www.pnas.org/doi/abs/10.1073/pnas.1817482116)
+-   [The role of divergent ecological adaptation during allopatric
+    speciation in
+    vertebrates](https://www.science.org/doi/10.1126/science.abo7719)
