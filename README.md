@@ -1,1 +1,1 @@
-This is where the course content of Quantitative Methods in R for Biology (EEB313) lives.
+This is where the course content of EEB313: Quantitative Methods in R for Biology lives.
