@@ -320,7 +320,7 @@ if (t <= 10 & t2 > 19){
 
 ## Writing functions
 
-We have seen there are many built-in functions in R, which we will use throughout the semester: `sum`, `c()`, `mean()`, `all()`, `plot()`, `ifelse()`, `print()`. We can also write our own functions for custom use. For example, the below chuck defines two functions which check if two scalar inputs are postie.
+We have seen there are many built-in functions in R, which we will use throughout the semester: `sum`, `c()`, `mean()`, `all()`, `plot()`, `ifelse()`, `print()`. We can also write our own functions for custom use. For example, the below chuck defines two functions which check if two scalar inputs are positive.
 
 ```{r}
 check_if_numbers_are_postive_function1 <- function(num1, num2) {
@@ -371,7 +371,7 @@ check_if_numbers_are_postive_function2(-4, 5)
 check_if_numbers_are_postive_function2(4, -5)
 ```
 
-This scratches the surface of what we can do with if else statements! They can, for example, be used to subset data based on conditions on the rows/columns, which we will get into in a couple lectures.
+Importantly, these functions are not written with elegance in mind. There are better ways to check if two numbers are both positive. We encourage you to think more about how to write functions (like the above) with elegance and efficiency in mind, and how trade-offs between the two might come up.
 
 #### Challenge
 

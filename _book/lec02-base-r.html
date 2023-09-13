@@ -574,7 +574,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="writing-functions" class="level2" data-number="3.7">
 <h2 data-number="3.7" class="anchored" data-anchor-id="writing-functions"><span class="header-section-number">3.7</span> Writing functions</h2>
-<p>We have seen there are many built-in functions in R, which we will use throughout the semester: <code>sum</code>, <code>c()</code>, <code>mean()</code>, <code>all()</code>, <code>plot()</code>, <code>ifelse()</code>, <code>print()</code>. We can also write our own functions for custom use. For example, the below chuck defines two functions which check if two scalar inputs are postie.</p>
+<p>We have seen there are many built-in functions in R, which we will use throughout the semester: <code>sum</code>, <code>c()</code>, <code>mean()</code>, <code>all()</code>, <code>plot()</code>, <code>ifelse()</code>, <code>print()</code>. We can also write our own functions for custom use. For example, the below chuck defines two functions which check if two scalar inputs are positive.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>check_if_numbers_are_postive_function1 <span class="ot">&lt;-</span> <span class="cf">function</span>(num1, num2) {</span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (num1 <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> num2 <span class="sc">&gt;</span> <span class="dv">0</span>){</span>
@@ -638,7 +638,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] "one or both numbers are not postive."</code></pre>
 </div>
 </div>
-<p>This scratches the surface of what we can do with if else statements! They can, for example, be used to subset data based on conditions on the rows/columns, which we will get into in a couple lectures.</p>
+<p>Importantly, these functions are not written with elegance in mind. There are better ways to check if two numbers are both positive. We encourage you to think more about how to write functions (like the above) with elegance and efficiency in mind, and how trade-offs between the two might come up.</p>
 <section id="challenge-2" class="level4" data-number="3.7.0.1">
 <h4 data-number="3.7.0.1" class="anchored" data-anchor-id="challenge-2"><span class="header-section-number">3.7.0.1</span> Challenge</h4>
 <p>Can you write a function that calculates the mean of 3 numbers?</p>
