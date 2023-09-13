@@ -1,0 +1,672 @@
+---
+title: "Assignments, vectors, functions, and loops"
+output: md_document
+urlcolor: blue
+---
+
+## Lesson Preamble
+
+> ### Learning Objectives
+>
+> * Define the following terms as they relate to R: call, function, arguments, options.
+> * Do simple arithmetic operations in R using values and objects.
+> * Call functions and use arguments to change their default options.
+> * Understand the logic and use of if else statements.
+> * Define our own functions.
+> * Create for and while loops.
+> * Inspect the content of vectors and manipulate their content.
+>
+>
+> ### Learning outline
+>
+> * Creating objects/variables in R 
+> * If else statements
+> * Using and writing functions 
+> * Vectors and data types 
+> * Subsetting vectors 
+> * Missing data 
+> * Loops and vectorization 
+
+Note: Parts of this lecture were originally created by combining contributions to
+[Data Carpentry](https://datacarpentry.org) and has been modified to align with
+the aims of EEB313.
+
+-----
+
+```{r}
+print("hello! today we are talking about vectors, functions, and the like.")
+```
+
+## Clear your worksapce
+
+When using Rstudio, it is best practice to turn off automatic save and restore of global workspace.  To do this, go to the “Tools” menu in Rstudio, select “Global Options”, and make sure the “Restore .RData into workspace at startup” box is not selected For good measure, set the “Save workspace to .RData on exit” to “Never”. The command to clear your workspace in a script is
+
+```{r}
+rm(list=ls())
+```
+
+Today we will go through some R basics, including how to create objects, assign values, define functions, and use for and while loops to iteratively preform calculations.
+
+## Creating objects in R
+
+As we saw in our first class, you can get output from R simply by typing math in
+the console:
+
+```{r}
+3 + 5
+12 / 7
+```
+
+However, to do more complex calcualtions, we need to assign _values_ to _objects_.
+
+```{r}
+x <- 3
+y <- x + 5
+y
+```
+
+You can name an object in R almost anything you want:
+
+```{r, error=TRUE}
+joel <- 3
+joel + 5
+
+TRUE <- 3
+### not allowed to overwrite logical operators
+
+T <- 3 
+### for some reason this is allowed, but problematic
+### T and TRUE are often used interchangeably
+```
+
+There are some names that cannot be used because they are they are reserved for commands, operators, functions, etc. in base R (e.g., `while`, `TRUE`). See `?Reserved` for a list these names.
+Even if it's allowed, it's best to not use names of 
+functions that already exist in R (e.g., `c`, `T`, `mean`, `data`, `df`, `weights`). 
+When in doubt, check the help or use tab completion to see if the name is already in use.
+
+#### Challenge
+
+We have created two variables, `joel` and `x`. What is their sum? The sum of `joel` six times?
+
+```{r}
+joel + x
+joel + joel + joel + joel + joel + joel
+```
+
+## Some tips on naming objects
+
+- Objects can be given any name: `x`, `current_temperature`, `thing`, or `subject_id`.
+- You want your object names to be explicit and not too long.
+- Object names cannot start with a number: `x2` is valid, but `2x` is not vali. 
+- R is also case sensitive: `joel` is different from `Joel`.
+
+It is recommended to use nouns for variable names, and verbs for function names. It's
+important to be consistent in the styling of your code (where you put spaces,
+how you name variables, etc.). Using a consistent coding style[^coding_style]
+makes your code clearer to read for your future self and your collaborators.
+RStudio will format code for you if you highlight a section of code and press
+<kbd>Ctrl/Cmd</kbd> + <kbd>Shift</kbd> + <kbd>a</kbd>.
+
+[^coding_style]: Refer to the [tidy style guide](https://style.tidyverse.org/index.html) for which style to adhere to.
+
+### Preforming calculations
+
+When assigning a value to an object, R does not print anything. You can force R
+to print the value by using parentheses or by typing the object name:
+
+```{r}
+weight_kg <- 55    # doesn't print anything
+(weight_kg <- 55)  # putting parentheses around the call prints the value of `weight_kg`
+weight_kg          # and so does typing the name of the object
+```
+
+The variable `weight_kg` is stored in the computer's memory where R can access
+it, and we can start doing arithmetic with it efficiently. For instance, we may
+want to convert this weight into pounds:
+
+```{r}
+2.2 * weight_kg
+```
+
+We can also change a variable's value by assigning it a new one:
+
+```{r}
+weight_kg <- 57.5
+2.2 * weight_kg
+```
+
+Importantly, assigning a value to one variable does not change the values of
+other variables. For example, let's store the animal's weight in pounds in a
+new variable, `weight_lb`:
+
+```{r}
+weight_lb <- 2.2 * weight_kg
+```
+
+and then change `weight_kg` to 100.
+
+```{r}
+weight_kg <- 100
+weight_lb
+```
+
+Notice that `weight_lb` is unchanged.
+
+#### Challenge
+
+What are the values of these variables after each statement in the following?
+
+```{r, eval=FALSE}
+mass <- 47.5
+age  <- 122
+mass <- mass * 2.0      
+age  <- age - 20  
+mass_index <- mass/age
+```
+
+## Functions and their arguments!
+
+Functions are sets of statements that are organized to preform certain tasks. They 
+can be understood through analogy with cooking. Ingredients (called inputs or arguments)
+combine according to some set of reactions (the statements and commands of the function)
+to yield a product or output. A function does not have to return a number: a list of values could be returned, another function, or a list of functions.
+
+Many functions are built into R, including `sqrt()`. For `sqrt()`, the input must be a number larger than zero, and the value that is returned by the function is the **sq**uare **r**oo**t** of that number. Executing a function is called _running_ or _calling_ the function. An example of a function call is:
+
+```{r, error=TRUE}
+sqrt(9)
+
+# the input must be in the domain of the function:
+sqrt("hello")
+sqrt(-1) # note: sqrt() can take in *complex* numbers, including -1+0i
+```
+
+This is the same as assigning the value to a variable and then passing that variable to the function:
+
+```{r}
+a <- 9
+b <- sqrt(a)
+b
+```
+
+Here, the value of `a` is given to the `sqrt()` function, the `sqrt()` function
+calculates the square root, and returns the value which is then assigned to
+variable `b`. This set up is important when you write more complex functions where multiple variables are passed to different arguments in different parts of a function.
+
+`sqrt()` is very simple because it takes just one argument. Arguments can be anything, not only numbers or files. Some functions take arguments which may either be specified by the user, or, if left out, take on a _default_ value: these are called _options_. Options are typically used to alter the way the function operates, such as whether it ignores 'bad values', or what symbol to
+use in a plot. However, if you want something specific, you can specify a value
+of your choice which will be used instead of the default.
+
+### Tab-completion
+
+To access help about `sqrt`, tab-completion can be a useful tool.
+Type `s` and press <kbd>Tab</kbd>. You can see that R gives you suggestions of what functions and variables are available that start with the letter `s`, and thanks to RStudio they are
+formatted in this nice list. There are *many* suggestions here, so let's be a
+bit more specific and append a `q`, to find what we want. If we press tab again, R will helpfully display all the available _parameters_ for this function that we can pass an argument to. 
+
+```{r, eval=FALSE}
+#s<tab>q
+#sqrt(<tab>)
+```
+
+To read the full help about `sqrt`, we can use the question mark, or type it
+directly into the help document browser.
+
+```{r, eval=FALSE}
+?sqrt
+```
+
+As you can see, `sqrt()` takes only one argument, `x`, which needs to be a
+_numerical vector_. Don't worry too much about the fact that it says _vector_ here;
+we will talk more about that later. Briefly, a numerical vector is one or more
+numbers. In R, every number is a vector, so you don't have to do anything special to
+create a vector. More on vectors later!
+
+Let's try a function that can take multiple arguments: `round()`.
+
+```{r, eval=FALSE}
+#round(<tab>)
+?round
+```
+
+If we try round with a value:
+
+```{r}
+round(3.14159)
+```
+
+Here, we've called `round()` with just one argument, `3.14159`, and it has
+returned the value `3`. That's because the default is to round to the nearest
+whole number, or integer. If we want more digits we can pass an argument to the
+`digits` parameter, to specify how many decimals we want to round to.
+
+```{r}
+round(3.14159, digits = 2)
+```
+
+Above we have passed the _argument_ `2` to the _parameter_ `digits`. We can leave out the word `digits` since we know it comes as the second parameter, after `x`.
+
+```{r}
+round(3.14159, 2)
+```
+
+As you notice, we have been leaving out `x` from the beginning. If you provide
+the names for both the arguments, we can switch their order:
+
+```{r}
+round(digits = 2, x = 3.14159)
+```
+
+It's good practice to put non-optional arguments before optional arguments, 
+and to specify the names of all optional arguments. If you don't, someone reading your code might have to look up the definition of a function with unfamiliar arguments to understand what you're doing.
+
+## If else statements
+
+It is often useful to preform calculations only when certain conditions are met. One way to do this is using an "if else" statement. The syntax of such a statement is below:
+
+```{r}
+# if (condition){
+#   computation
+# } else{ 
+#   another computation
+# }
+```
+
+Without the `else` bit, the computation will be preformed if the condition is satisfied and nothing will be done (and variables in the environment will be unchanged) otherwise.
+
+```{r}
+t <- 1
+
+t < 10 # returns the truth value of this statement
+t == 10
+t > 10
+t > 10 | t == 10
+### < (less than), > (greater than), == (equals)
+### & (and), | (or), ! (not) are common logical operators
+
+if (t < 10){
+  print(t)
+} else{
+  print(t-1)
+}
+### setting t <- 10 and executing the above returns 9
+```
+
+In fact, if else statements lend themselves naturally to deciding which of >2 alternative computations should be preformed, based on a set of appropriate conditions. For example,
+
+```{r}
+t <- 10
+t2 <- 20
+
+if (t < 10 & t2 > 19){
+  print("1")
+} else if (t < 10 & t2 > 19){
+  print("2")
+} else if (t <= 10 & t2 > 19){
+  print("3")
+}
+
+### notice how the third condition is met, but the others are not
+### when the first condition is met (even if the others are too), "1" is printed:
+
+if (t <= 10 & t2 > 19){
+  print("1")
+} else if (t <= 10 & t2 > 19){
+  print("2")
+} else if (t <= 10 & t2 > 19){
+  print("3")
+}
+```
+
+## Writing functions
+
+We have seen there are many built-in functions in R, which we will use throughout the semester: `sum`, `c()`, `mean()`, `all()`, `plot()`, `ifelse()`, `print()`. We can also write our own functions for custom use. For example, the below chuck defines two functions which check if two scalar inputs are postie.
+
+```{r}
+check_if_numbers_are_postive_function1 <- function(num1, num2) {
+  if (num1 > 0 & num2 > 0){
+    return("both numbers are postive!")
+  } else{
+    return("one or both numbers are not postive.")
+  }
+}
+
+check_if_numbers_are_postive_function1(4, 5)
+check_if_numbers_are_postive_function1(-4, 5)
+
+check_if_numbers_are_postive_function2 <- function(num1, num2) {
+  if (num1 > 0){
+    if (num2 > 0){
+      return("both numbers are postive!")
+    }
+  }
+}
+
+check_if_numbers_are_postive_function2(4, 5)
+check_if_numbers_are_postive_function2(-4, 5)
+```
+
+Although these functions agree when both inputs are positive (i.e., they return the same output), the second function does not return a statement indicating one or both of the inputs are non-positive when this is the case. This is because we have not indicated what should be returned when the condition in one or the other if the statement in `check_if_numbers_are_postive_function2` is not met. We can do this as follows:
+
+```{r}
+check_if_numbers_are_postive_function2 <- function(num1, num2) {
+  
+  if (! num1 > 0){
+    return("one or both numbers are not postive.")
+  }
+  
+  if (num1 > 0){
+    if (num2 > 0){
+      return("both numbers are postive!")
+    }
+     if (! num2 > 0){
+      return("one or both numbers are not postive.")
+    }
+  }
+  
+}
+
+check_if_numbers_are_postive_function2(4, 5)
+check_if_numbers_are_postive_function2(-4, 5)
+check_if_numbers_are_postive_function2(4, -5)
+```
+
+This scratches the surface of what we can do with if else statements! They can, for example, be used to subset data based on conditions on the rows/columns, which we will get into in a couple lectures.
+
+#### Challenge
+
+Can you write a function that calculates the mean of 3 numbers?
+
+```{r}
+mean_of_three_numbers <- function(num1, num2, num3) {
+   my_sum <- num1 + num2 + num3
+   my_mean <- my_sum / 3
+   return(my_mean)
+}
+mean_of_three_numbers(2, 4, 6)
+```
+
+## Vectors and data types
+
+A vector is the most common data type in R, and is the workhorse of the language. 
+A vector is composed by a series of values, which can be
+numbers (0, $\pi$, 72) or characters ("hello", "I'm a ChaRaCTER"). 
+We can assign a series of values to a vector using the
+`c()` function, which stands for _concatenate_. For example we can create a vector of animal weights and assign it to a new object `weight_g`:
+
+```{r}
+weight_g <- c(50, 60, 65, 82) # concatenate values into a vector
+weight_g
+```
+
+You can also use the command `seq` to create a **seq**uence of numbers.
+
+```{r}
+seq(from = 0, to = 30) # default spacing is =1
+seq(from = 0, to = 30, by = 3) # returns every third number in c(0,1,2,...,30)
+```
+
+A vector can also contain characters (in addition to numbers):
+
+```{r}
+animals <- c('mouse', 'rat', 'dog')
+animals
+```
+
+The quotes around "mouse", "rat", etc. are essential here and can be either
+single or double quotes. Without the quotes R will assume there are objects
+called `mouse`, `rat` and `dog`. As these objects don't exist in R's memory,
+there will be an error message.
+
+There are many functions that allow you to inspect the content of a
+vector. `length()` tells you how many elements are in a particular vector:
+
+```{r}
+length(weight_g)
+length(animals)
+```
+
+An important feature of a vector is that all of the elements are the same type
+of data. The function `class()` indicates the class (the type of element) of an
+object:
+
+```{r}
+class(weight_g)
+class(animals)
+```
+
+The function `str()` provides an overview of the **str**ucture of an object and its
+elements. It is a useful function when working with large and complex
+objects:
+
+```{r}
+str(weight_g)
+str(animals)
+```
+
+You can use the `c()` function to add other elements to your vector:
+
+```{r}
+weight_g <- c(weight_g, 90) # add to the end of the vector
+weight_g <- c(30, weight_g) # add to the beginning of the vector
+weight_g
+```
+
+In the first line, we take the original vector `weight_g`,
+add the value `90` to the end of it, and save the result back into
+`weight_g`. Then we add the value `30` to the beginning, again saving the result
+back into `weight_g`.
+
+We can do this over and over again to grow a vector, or assemble a dataset.
+As we program, this may be useful to add results that we are collecting or
+calculating.
+
+An **atomic vector** is the simplest R **data type** and it is a linear vector
+of a single type, e.g., all numbers. Above, we saw two of the six **atomic vector** types that R uses: `"character"` and `"numeric"` (or `"double"`).
+These are the basic building blocks that all R objects are built from. 
+
+The other four **atomic vector** types are:
+
+* `"logical"` for `TRUE` and `FALSE` (the boolean data type)
+* `"integer"` for integer numbers (e.g., `2L`, the `L` indicates to R that it's an integer)
+* `"complex"` to represent complex numbers with real and imaginary parts (e.g.,
+  `1 + 4i`).
+* `"raw"` for bitstreams. We will not discuss this type further.
+
+Vectors are one of the many **data structures** that R uses. Other important
+ones are lists (`list`), matrices (`matrix`), data frames (`data.frame`),
+factors (`factor`) and arrays (`array`). In this class, we will focus on data
+frames, which is most commonly used one for data analyses.
+
+#### Challenge
+
+We’ve seen that atomic vectors can be of type character, numeric (or double),
+integer, and logical. What happens if we try to mix these types? Find out by using `class` to test these examples.
+
+```{r}
+num_char <- c(1, 2, 3, 'a')
+num_logical <- c(1, 2, 3, TRUE)
+char_logical <- c('a', 'b', 'c', TRUE)
+tricky <- c(1, 2, 3, '4')
+```
+
+```{r, include=FALSE}
+# Answer
+class(num_char)
+class(num_logical)
+class(char_logical)
+class(tricky)
+```
+
+This happens because vectors can be of only one data type. Instead of throwing
+an error and saying that you are trying to mix different types in the same
+vector, R tries to convert (coerce) the content of this vector to find a "common
+denominator". A logical can be turn into 1 or 0, and a number can be turned into
+a string/character representation. It would be difficult to do it the other way
+around: would 5 be TRUE or FALSE? What number would 't' be? This establishes a hierarchy for conversions/coercions, whereby some types get preferentially coerced into other types. From the above example, we can see that the hierarchy goes logical -> numeric -> character, and logical can also be directly coerced into character.
+
+## Subsetting vectors
+
+If we want to extract one or several values from a vector, we provide one
+or several _indices_ in square brackets:
+
+```{r}
+animals <- c("mouse", "rat", "dog", "cat")
+animals[2]
+animals[c(3, 2)] # Provide multiple indices simultaneously
+```
+
+We can also repeat the indices to create an object with more elements than the
+original one:
+
+```{r}
+more_animals <- animals[c(1, 2, 3, 2, 1, 4)]
+more_animals
+```
+
+R indices start at 1. Programming languages like Fortran, MATLAB, Julia, and R
+start counting at 1, because that's what human beings typically do. Languages in
+the C family (including C++, Java, Perl, and Python) start counting at 0.
+
+### Conditional subsetting
+
+Another common way of subsetting is by using a logical vector. `TRUE` will
+select the element with the same index, while `FALSE` will not:
+
+```{r}
+weight_g <- c(21, 34, 39, 54, 55)
+weight_g[c(TRUE, FALSE, TRUE, TRUE, FALSE)]
+```
+
+Typically, these logical vectors are not typed by hand, but are the output of
+other functions or logical tests.
+
+## NA NA NA NA NA NA... Missing data??
+
+Due to its origins as a statistical computing language, R includes tools to deal with missing data easily. Missing data are represented in vectors as `NA`. 
+
+Importantly, many built-in R functions will return `NA` if the data you are working with include missing values. This feature makes it harder to 
+overlook the cases where you are dealing with missing data.
+
+```{r}
+heights <- c(2, 4, 4, NA, 6)
+mean(heights)
+max(heights)
+```
+
+For functions such as `mean()`, you can add the argument `na.rm = TRUE` to preform calculations _ignoring the missing values_:
+
+```{r}
+mean(heights, na.rm = TRUE)
+max(heights, na.rm = TRUE)
+```
+
+It is also possible to use conditional subsetting to remove NAs. The function ```is.na()``` is helpful in this case. This function examines each element in a vector to see whether it is NA, and returns a logical vector.
+
+```{r}
+is.na(heights)
+```
+
+Combining this function and ```!``` (the logical operator _not_), we can extract elements that are _not_ NAs:
+
+```{r}
+## Extract those elements which are not missing values.
+heights[!is.na(heights)]
+```
+
+Alternatively, we can use the these functions to achieve the same outcome.  
+
+```{r}
+# Returns the object with incomplete cases removed. 
+na.omit(heights)
+
+# Extract those elements which are complete cases. 
+heights[complete.cases(heights)]
+```
+
+*Important note: missing data are ubiquitous. Make sure you know why NAs exist in your data before removing them. If NAs are removed, document why and be sure to store the data pre- and post-processing.*
+
+## Loops and vectorization
+
+Loops are essential in programming. They come in two types: for and while. 
+
+The syntax for a for loop is as follows:
+
+```{r}
+# for (iterator in values_iterator_can_assume){
+#   computation
+# }
+```
+
+The syntax for a while loop is as follows:
+
+```{r}
+# while (condition){
+#   computation
+# }
+```
+
+The key difference between these types of loop is that a while loop breaks when the condition fails to be met; the loop preforms calculations _while_ the condition is met. A for loop preforms the computation for all values of the iterator in the list/vector/etc. of values specified in the "for" statement.
+
+The below for loop prints the values in the vector the iterator `num` can assume (one by one):
+
+```{r}
+v <- c(2, 4, 6, 8, 10)
+for (num in v) {
+    print(num)
+}
+```
+
+Equivalently, we could write
+
+```{r}
+for (i in 1:5) {
+  print(v[i])
+}
+```
+
+This set up is quite powerful. We can now perform tasks _iteratively_:
+
+```{r}
+# creates vector where each number is 3 more than the previous number:
+
+x <- c(0.4)
+
+for (i in 1:5) {
+  x[i+1] <- x[i] + 3 
+}
+
+x
+
+# calls sqrt() function from inside loop
+
+x <- c(0.4)
+
+for (i in 1:5) {
+  x[i+1] <- sqrt(x[i])
+}
+
+x
+```
+
+To constrast for and while loops, consider the following:
+
+```{r}
+x <- 0.4
+i <- 1
+y <- c() ### need to declare y so that values can be added in below loop
+
+while (x <= 0.9999) {
+  y[i] <- x
+  x <- sqrt(x)
+  i <- i + 1 # updating i so that y can be updated in next step
+}
+
+### note we could just keep track of x if we:
+### 1) use the condition x[i] <= 0.9999
+### 2) calculate the next term in the sequence of sqrts using x[i+1] <- sqrt(x[i])
+
+y
+```
+
+The above loop returns the sequence of square roots $0.4, \sqrt{0.4}, \sqrt{\sqrt{0.4}}, \dots$. Importantly, the loop terminates when an element of this sequence is greater than 0.9999. The number of iterations until this happens is not specified. This means while loops can run for infinite time if their conditions fail to be violated at a given iteration. It is best to have checks in place to make sure this doesn't happen!

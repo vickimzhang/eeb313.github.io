@@ -13,7 +13,7 @@ interesting. The forms the project may take are:
 3.  Simulate data and analyze it using appropriate tools.
 
 In order to utilize conventional data science collaboration tools,
-students are required to use [Github](https://github.com) for
+students are required to use [GitHub](https://github.com) for
 code-sharing, project management, and individual contributions. All
 sections of the project will be submitted via Github, not Quercus.
 Please make a GitHub account prior to the first project deadline. We

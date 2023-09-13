@@ -13,6 +13,7 @@ book:
       chapters:
       - lec00-rstudio.qmd
       - lec01-markdown-workflows.qmd
+      - lec02-base-r.qmd
     - part: "Assignments"
     - part: "Project"
       chapters:

@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./projects.html" rel="next">
+<link href="./lec02-base-r.html" rel="next">
 <link href="./lec00-rstudio.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -174,6 +174,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Markdown, project workflows</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lec02-base-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Assignments, vectors, functions, and loops</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -192,7 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Project description</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Project description</span></span></a>
   </div>
 </li>
       </ul>
@@ -214,8 +220,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="header-section-number">2.2.2</span> Lists</a></li>
   <li><a href="#tables" id="toc-tables" class="nav-link" data-scroll-target="#tables"><span class="header-section-number">2.2.3</span> Tables</a></li>
   <li><a href="#images-and-links" id="toc-images-and-links" class="nav-link" data-scroll-target="#images-and-links"><span class="header-section-number">2.2.4</span> Images and Links</a></li>
-  <li><a href="#in-line-citations-and-bibliography" id="toc-in-line-citations-and-bibliography" class="nav-link" data-scroll-target="#in-line-citations-and-bibliography"><span class="header-section-number">2.2.5</span> In-line citations and bibliography</a></li>
-  <li><a href="#footnotes" id="toc-footnotes" class="nav-link" data-scroll-target="#footnotes"><span class="header-section-number">2.2.6</span> Footnotes</a></li>
+  <li><a href="#white-space-and-new-page" id="toc-white-space-and-new-page" class="nav-link" data-scroll-target="#white-space-and-new-page"><span class="header-section-number">2.2.5</span> White Space and New Page</a></li>
+  <li><a href="#in-line-citations-and-bibliography" id="toc-in-line-citations-and-bibliography" class="nav-link" data-scroll-target="#in-line-citations-and-bibliography"><span class="header-section-number">2.2.6</span> In-line citations and bibliography</a></li>
+  <li><a href="#footnotes" id="toc-footnotes" class="nav-link" data-scroll-target="#footnotes"><span class="header-section-number">2.2.7</span> Footnotes</a></li>
   </ul></li>
   <li><a href="#project-oriented-workflow" id="toc-project-oriented-workflow" class="nav-link" data-scroll-target="#project-oriented-workflow"><span class="header-section-number">2.3</span> Project-Oriented Workflow</a>
   <ul class="collapse">
@@ -336,6 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="changing-height-and-width-of-imagesfigures" class="level4" data-number="2.2.1.2">
 <h4 data-number="2.2.1.2" class="anchored" data-anchor-id="changing-height-and-width-of-imagesfigures"><span class="header-section-number">2.2.1.2</span> Changing height and width of images/figures</h4>
+<p>You can also indicate the sizes of figures by using <code>fig.width</code> and <code>fig.height</code> in your code chunk.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## in this R chuck, fig.width=2, fig.height=2</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(mpg, wt, <span class="at">data =</span> mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -508,18 +516,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>And use the following format to add weblinks: <code>[Description/Caption](weblink)</code>.</p>
 <p><a href="eeb313.github.io">The EEB website lives here!</a></p>
 </section>
-<section id="in-line-citations-and-bibliography" class="level3" data-number="2.2.5">
-<h3 data-number="2.2.5" class="anchored" data-anchor-id="in-line-citations-and-bibliography"><span class="header-section-number">2.2.5</span> In-line citations and bibliography</h3>
+<section id="white-space-and-new-page" class="level3" data-number="2.2.5">
+<h3 data-number="2.2.5" class="anchored" data-anchor-id="white-space-and-new-page"><span class="header-section-number">2.2.5</span> White Space and New Page</h3>
+<p>Use <code>\vspace{2pt}</code> to add white space, and use <code>\newpage</code> to add a page break.</p>
+</section>
+<section id="in-line-citations-and-bibliography" class="level3" data-number="2.2.6">
+<h3 data-number="2.2.6" class="anchored" data-anchor-id="in-line-citations-and-bibliography"><span class="header-section-number">2.2.6</span> In-line citations and bibliography</h3>
+<p>Export a <code>.bib</code> file (e.g., from Zotero and Mendeley). Then, add the <code>.bib</code> to your YAML header.</p>
 <pre><code>---
 title: My Report
 output: html_document
 bibliography: bibliography.bib
 ---</code></pre>
+<p>Now, you can cite directly in your report, like below:</p>
 <p>Some fact<span class="citation" data-cites="Smith2018">[@Smith2018]</span></p>
 <p>Some fact supported by multiple papers <span class="citation" data-cites="Smith2018 Tran1997">[@Smith2018; @Tran1997]</span></p>
 </section>
-<section id="footnotes" class="level3" data-number="2.2.6">
-<h3 data-number="2.2.6" class="anchored" data-anchor-id="footnotes"><span class="header-section-number">2.2.6</span> Footnotes</h3>
+<section id="footnotes" class="level3" data-number="2.2.7">
+<h3 data-number="2.2.7" class="anchored" data-anchor-id="footnotes"><span class="header-section-number">2.2.7</span> Footnotes</h3>
 <p>This is what a footnote looks like.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Here is another.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 </section>
 </section>
@@ -565,7 +579,7 @@ bibliography: bibliography.bib
 <li>The folder <code>data</code> typically contains two subfolders, namely, <code>raw</code> and <code>processed.</code> The content of raw directory is data files of any kind, such as .csv, SAS, Excel, text and database files, etc. The content of this folder is read-only, so that no scripts should change the original files or create new ones inside it. For this purpose, the processed directory is used: all processed, cleaned, and tidied datasets are saved here. It is a good practice to save files in R specific format, rather than in .csv, since the saving in .csv is a less efficient way of storing data (both in terms of space and time of reading/writing).</li>
 <li>The folder <code>figures</code> is the place where you may store plots, diagrams, and other figures. There is not much to say about it. Common extensions of such files are .eps, .png, .pdf, etc. Again, file names in this folder should be meaningful (the name <code>img1.png</code> does not represent anything).</li>
 <li>All reports live in a directory with the corresponding name <code>reports.</code> These reports can be of any formats, such as LaTeX, Markdown, R Markdown, Jupyter Notebooks, etc. Currently, more and more people prefer rich documents with text and executable code to LaTeX and such.</li>
-<li>Perhaps the most important folder is <code>analyses</code> or <code>scripts</code>. Here, you keep all your R scripts and codes. That is the exact place to use prefix numbers, if files should be run in a particular order. If you have files in other scripted languages (e.g., Python), it is better to keep them in this folder as well. There is also an important subfolder called <code>deprecated.</code> Whenever you want to remove one or the other script, it is a good idea to move it to deprecated at first iteration. I recommend never deleting your code until you are sure that you have finished everything you wanted to do, even if the code doesn’t work (going back to it after a break usually helps!).</li>
+<li>Perhaps the most important folder is <code>analyses</code> or <code>scripts</code>. Here, you keep all your R scripts and codes. That is the exact place to use prefix numbers, if files should be run in a particular order. If you have files in other scripted languages (e.g., Python), it is better to keep them in this folder as well. There can also an important subfolder called <code>deprecated.</code> Whenever you want to remove one or the other script, it is a good idea to move it to deprecated at first iteration. I recommend never deleting your code until you are sure that you have finished everything you wanted to do, even if the code doesn’t work (going back to it after a break usually helps!).</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -745,10 +759,7 @@ loaded via a namespace (and not attached):
 </ul>
 <section id="example-code-of-conduct" class="level4" data-number="2.5.4.1">
 <h4 data-number="2.5.4.1" class="anchored" data-anchor-id="example-code-of-conduct"><span class="header-section-number">2.5.4.1</span> Example Code of Conduct</h4>
-<ul>
-<li><a href="https://www.contributor-covenant.org/version/1/4/code-of-conduct/">Contributor Convenent</a></li>
-<li><a href="https://github.com/UofTCoders/studyGroup/blob/gh-pages/codeOfConduct.md">UofT Coders Code of Conduct</a></li>
-</ul>
+<p>Check out the <a href="https://www.contributor-covenant.org/version/1/4/code-of-conduct/">Contributor Convenent</a> and the <a href="https://github.com/UofTCoders/studyGroup/blob/gh-pages/codeOfConduct.md">UofT Coders Code of Conduct</a></p>
 </section>
 </section>
 </section>
@@ -787,7 +798,6 @@ loaded via a namespace (and not attached):
 <section id="github" class="level3" data-number="2.6.2">
 <h3 data-number="2.6.2" class="anchored" data-anchor-id="github"><span class="header-section-number">2.6.2</span> GitHub</h3>
 <p>Make a GitHub account.</p>
-<p>If we run out of time to do this in lecture 1, do click-and-drag here.</p>
 
 
 </section>
@@ -1041,8 +1051,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./projects.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Project description</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./lec02-base-r.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Assignments, vectors, functions, and loops</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
