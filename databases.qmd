@@ -1,0 +1,17 @@
+---
+title: "Some open-access databases"
+output: md_document
+urlcolor: blue
+---
+
+Below are some resources that would be a good to look at if you are in search of data for the term project, or in search of a question in ecology or evolution:
+
+- [GenBank](https://www.ncbi.nlm.nih.gov/genbank/): annotated collection of all publicly available DNA/protein sequences. It is possible to download sequences manually, but command line tools can help to automate the process.
+- [PanTHERIA](https://esajournals.onlinelibrary.wiley.com/doi/10.1890/08-1494.1): database of ecology, life history, and geography of all extant and recently extinct mammal species. Includes body size, lifespan, litter size, and other trait data at the species level.
+- [Gene Expression Omnibus](https://www.ncbi.nlm.nih.gov/geo/): repository of gene expression, methylation, and annotated genomic data which are (like GenBank) most readily accessible using command line tools.
+- [Continuous Plankton Recorder Survey](https://www.gbif.org/dataset/67c54f85-7910-4cbf-8de4-6f0b136a0e34): data (going back to 1958!) on northern hemisphere plankton species, including the location (latitude, longitude) and date of sampling.
+- [Red-backed salamander abundance](https://open.canada.ca/data/en/dataset/3571474b-8d75-491d-816e-f84677b81a7c): abundance of red-backed salamanders from 4 sites in the Bruce Peninsula from 2004 to 2017.
+- [North American Bird Breeding Survey](https://www.pwrc.usgs.gov/BBS/RawData/): repository containing information regarding the number of birds at multiple sites in North America. Many datasets of varying size that need to be linked together.
+- [Malaria Atlas Project](https://malariaatlas.org): publicly available and up-to-date malaria prevalence and distribution data. Vector distribution, bednet coverage, etc. data also available.
+
+Let Vicki or Mete know if data from any of these resources interests you, or if you would like to discuss where data to answer questions you find interesting live (...or if they exist at all!).

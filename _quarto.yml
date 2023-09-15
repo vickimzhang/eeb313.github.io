@@ -18,6 +18,7 @@ book:
     - part: "Project"
       chapters:
       - projects.qmd
+      - databases.qmd
   repo-url: https://github.com/EEB313/eeb313.github.io
   sidebar:
     search: true
