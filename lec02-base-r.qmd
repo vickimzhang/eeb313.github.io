@@ -100,7 +100,7 @@ joel + joel + joel + joel + joel + joel
 
 - Objects can be given any name: `x`, `current_temperature`, `thing`, or `subject_id`.
 - You want your object names to be explicit and not too long.
-- Object names cannot start with a number: `x2` is valid, but `2x` is not vali. 
+- Object names cannot start with a number: `x2` is valid, but `2x` is not valid. 
 - R is also case sensitive: `joel` is different from `Joel`.
 
 It is recommended to use nouns for variable names, and verbs for function names. It's
@@ -394,7 +394,7 @@ mean_of_three_numbers(2, 4, 6)
 ## Vectors and data types
 
 A vector is the most common data type in R, and is the workhorse of the language. 
-A vector is composed by a series of values, which can be
+A vector is composed of a series of values, which can be
 numbers (0, $\pi$, 72) or characters ("hello", "I'm a ChaRaCTER"). 
 We can assign a series of values to a vector using the
 `c()` function, which stands for _concatenate_. For example we can create a vector of animal weights and assign it to a new object `weight_g`:
@@ -674,4 +674,4 @@ while (x <= 0.9999) {
 y
 ```
 
-The above loop returns the sequence of square roots $0.4, \sqrt{0.4}, \sqrt{\sqrt{0.4}}, \dots$. Importantly, the loop terminates when an element of this sequence is greater than 0.9999. The number of iterations until this happens is not specified. This means while loops can run for infinite time if their conditions fail to be violated at a given iteration. It is best to have checks in place to make sure this doesn't happen!
+The above loop returns the sequence of square roots $0.4, \sqrt{0.4}, \sqrt{\sqrt{0.4}}, \dots$. Importantly, the loop terminates when an element of this sequence is greater than 0.9999. The number of iterations until this happens is not specified. This means while loops can run for infinite time if their conditions are never violated. It is best to have checks in place to make sure this doesn't happen!
