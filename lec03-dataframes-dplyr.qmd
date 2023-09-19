@@ -1,0 +1,597 @@
+---
+title: "Dataframes and Introduction to Data Wrangling"
+output: md_document
+urlcolor: blue
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+## Lesson Preamble
+
+> ### Learning Objectives
+>
+> * Describe what a data frame is.
+> * Load external data from a .csv file into a data frame in R.
+> * Summarize the contents of a data frame in R.
+> * Understand the purpose of the `dplyr` package.
+>
+> ### Lecture outline
+>
+> * R packages for data analyses (20 mins)
+> * Data set background (10 mins)
+> * What are data frames (10 mins)
+> * Introduction to data (40 mins)
+
+-----
+
+## Setting up the workspace
+
+One of the keys to a successful R working session is to make sure you have everything you need ready to go, and neatly organized. Just like when you are cooking or baking, having everything pre-measured and organized in neat way can be so helpful to ensure efficient, no fuss, and nice dishes in the end. 
+
+Now we'll take another couple of minutes to get our R workspace ready.
+
+
+### Set up your Notebook
+
+First, we are going to set up our Notebook. 
+
+```yaml
+---
+title: Introduction to R
+---
+```
+
+Recall that this header block is called the YAML header. This is optional, without this your document will still knit, but this is useful for fine-tuning the output of your document, such as font size, figure sizes, and generating a table of content. We will mostly be using it to give our documents nice headers. If you are interested in playing with other customizations options the YAML provides, check out [this guide](https://bookdown.org/yihui/rmarkdown/html-document.html). 
+
+
+### Check your directory
+
+Ok, now the Notebook is ready. Next, we want to make sure we are working out of the correct _directory_, which is a fancy way to say the folder that we will be reading files from, and saving files to. 
+
+By default, R works out of your _Documents_ folder. We can check this with the following function ```getwd()```, which stands for **get** **w**orking **d**irectory.
+
+```{r eval=FALSE}
+getwd()
+```
+
+If this is the folder you wish to work out of, then we are good to go. If not, then we need to redirect R to some place else. Normally, in an R Script, you would do so by using the function ```setwd()``` (**set** **w**orking **d**irectory). In R Notebook, this is a slightly more involved process, because you cannot just quickly switch directories with ```setwd()```. The reason for this is because R is trying to be helpful making sure you don't lose your files half way through a script when you switch folders. In order to change directories in R Notebook, we have to reach all the way in and change the _root directory_ in a special "setup code chunk". To make this setup code chunk, add the words ```setup``` after ```r``` in your code chunk header.
+
+
+<!-- ```{r, setup, eval = FALSE} -->
+
+<!-- ``` -->
+
+The setup code chunk must **NOT** contain any commands other than the setup options you wish to change. 
+
+We then need to find the path to the folder we want R to work out of. In PC, right-click on the desired folder, and you can find its location under the _General_ tab. In Mac, right-click on the desired folder and choose _Get Info_ to find it's location. 
+
+```{r, setup, eval=FALSE}
+# For PC (remember to change forward-slash to back-slash):
+# knitr::opts_knit$set(root.dir = "C:/Users/Documents/UofT/eeb313")
+
+# For Mac (can get away with using ~ as short hand):
+# knitr::opts_knit$set(root.dir = "~/Documents/UofT/eeb313")
+
+getwd()
+```
+
+However, remember last week when we talked about relative file paths? The functions to set your working directory is slowly becoming outdated as project-oriented workflows become the norm. 
+
+Each R script or .Rmd report should contain a call to `here::i_am('path/to/this/file')` at the top to establish the root directory.
+
+Subsequent file paths can be made using the `here` function. You should also be saving your files and plots by using the `here()` function. More on that later.
+
+
+```{r}
+library(here)
+here()
+
+here::i_am("1_lectures/lec00-RStudio-and-R-Notebook.Rmd")
+```
+
+One important distinction from the working directory is that this remains stable even if the working directory is changed. I recommend that you steer clear from ever changing the working directory.
+
+
+### Load your packages
+
+Next, we want to check to see that all of our required _packages_ are properly loaded and ready to go.
+
+In a nutshell, packages are bundles of functions that perform related tasks (like a book of recipes). Our installation of R comes with some packages already, since they are considered critical for using R, e.g., ```c()```, ```mean()```, ```+```, ```-```, etc. These pre-installed packages and function are commonly collectively referred to as _base R_. 
+
+In addition to these foundational packages and functions, CRAN (Comprehensive R Archive Network), the official repository for R-packages, houses thousands more packages. There is literally a package for every occasion you can and cannot imagine. Did you know that you can call an Uber from R (```ubeR```)? How about, instead of boring dots as data points in figures, you can plot emojis (```emojifont```)? Frustrated with code and need a pick-me-up? The packages ```praise```[^praise] and ```kittyR```[^kitty] got you covered! All of this is possible due to R being an open language, and many people generously contribute their time to its development. 
+
+[^praise]: Every time you call the function ```praise()``` you get praised once. Can you think of creative ways to get praised faster? (Hint 1: What about those loops we talked about earlier?) (Hint 2: Can we vectorize this operation and make the praising even more efficient?)
+
+[^kitty]: To install the ```kittyR``` package, use this code: ```devtools::install_github("IndrajeetPatil/kittyR")```
+
+These additionally packages are not installed by default, because
+then base R installation would be huge and most people would only be using a
+fraction of everything installed on their machine. It would be like if you
+downloaded the Firefox or Chrome browser and you would get all extensions and
+add-ons installed by default, or as if your phone came with every app ever made
+for it already installed when you bought it: quite impractical.
+
+To install a package in R, we use the function `install.packages()`. Think of this function as downloading the package to your machine - you only need to do this once.
+
+```{r, eval=FALSE}
+install.packages('tidyverse') # This is a chonky package, takes a while to download
+```
+
+[`tidyverse`](https://www.tidyverse.org/)[^tidy] is a conglomerate package that is a collection of packages that has similar functions, just like Microsoft Word is part of Microsoft Office. ```tidyverse```, as its name may suggest, contains many packages that makes data cleaning and exploring more intuitive and effective. It is basically an entire philosophy on how to handle data and has a massive following.
+
+[^tidy]: This course is focused on ```tidyverse``` functions, because that seems to be the trend these days. Although all of our teaching material is written in tidy lingo, it is mostly for the sake of consistency. In all honesty, tidy is pretty great, but some functions are more intuitive in base, so most people code in a mix of the two. If you learned base R elsewhere and perfer to use those functions instead, by all means, go ahead. The correct code is code that does what you want it to do.
+
+The two ```tidyverse``` packages we will be using the most frequently in this course is ```dplyr``` and ```ggplot2```. ```dplyr``` is great for data wrangling (Lecture 2) and ```ggplot2``` makes killer plots (Lecture 3). 
+
+To use functions in the ```dplyr``` package, type ```dplyr::``` and then the function name. 
+
+```{r}
+dplyr::glimpse(cars) 
+
+# `glimpse` gives us a glimpse... of an object
+# `cars` is a base R dataset
+```
+
+Since we will be using this package a lot, it would be a little annoying to have
+to type ```dplyr::``` every time. We can bypass this step by loading the package into our current environment. Think of this is "opening" the package for your work session.
+
+```{r}
+library(tidyverse) # More convenient to load all tidy packages at once
+
+glimpse(cars)
+```
+
+This needs to be done once for every new R session, and so it is common practice to keep a list of all the packages used at the top of your script or notebook for convenience and load all of it at start up.
+
+That's a lot of red though! What are these warning signs and checks?
+
+All the warning signs indicate are the version of R that they were built under. They can frequently be ignored unless your version of R is so old that the packages can no longer be run on R! Note that packages are frequently updated, and functions may become deprecated.
+
+Next, the warning shows you all the packages that were successfully installed.
+
+Finally, there are some conflicts! All this means is that there are multiple functions with the same name that may do different things. R prioritizes functions from certain packages over others. So, in this case, the `filter()` function from `dplyr` will take precedent over the `filter()` function from the `stats` package. If you want to use the latter, use double colons `::` to indicate that you are calling a function from a certain package:
+
+```{r eval = FALSE}
+stats::filter()
+```
+
+#### An Aside on Reproducible Environments
+
+At this point, you are already living a project-centric lifestyle. With `renv`, you’ll start using project libraries, giving each project its own independent collection of packages. To increase reproducibility of a project, we must keep track of what packages are used. This also helps us avoid error messages if we update R or update a package, and things no longer work.
+
+To convert a project to use renv, call renv::init(). It adds three new files and directories to your project. Make sure you indicate where your project lives by using `here()`
+
+```{r eval = FALSE}
+# install.packages("renv")
+library(renv)
+renv::init(here())
+```
+
+That's a lot of output! What does it mean?
+
+You should now see lockfile, `project_name/renv.lock`. This lockfile records all of the information about packages needed by your project, such as the version of package and where was it installed from. It knows all this because `renv` scans all files in your project directory, and looks for functions like `library`, `require`, or `package::function`.
+
+We also see `project_name/.Rprofile`, containing one line. When R starts, it searches for .Rprofile and runs what it finds. We can use this file to change various options. 
+
+You will also see a folder `project_name/renv/`, which contains your project library. If you already have a package installed elsewhere, `renv` will link to it. Otherwise, it'll be installed in `renv/library`.
+
+Essentially, whenever we open our project, we activate our R environment using these three files. `renv` will automatically be active in any R session that is run from the project directory. To activate
+
+```{r eval = FALSE}
+activate(here())
+
+# or use
+knitr::opts_knit$set(root.dir = here())
+```
+
+Now, every time you open your project, run `restore()` in order to start from where you left off!
+
+```{r eval = FALSE}
+restore()
+```
+
+If you are adding new packages that you require to your code, uses `snapshot()` to record changes to the `renv.lock` file. This function captures the state of your project at that point in time.
+
+```{r eval = FALSE}
+snapshot()
+```
+
+
+To summarize, the general workflow[^1] when working with `renv` is:
+
+1. Call `renv::init()` to initialize a new project-local environment with a private R library. Work in the project as normal, installing and removing new R packages as they are needed in the project.
+2. Call `renv::snapshot()` to save the state of the project library to the lockfile (called `renv.lock`). Continue working on your project, installing and updating R packages as needed.
+3. Call `renv::snapshot()` again to save the state of your project library if your attempts to update R packages were successful, or call `renv::restore()` to revert to the previous state as encoded in the lockfile if your attempts to update packages introduced some new problems.
+
+[^1] Material taken from
+[Posit](https://docs.posit.co/ide/user/ide/guide/environments/r/renv.html).
+
+The last thing required for reproducibility is a version control system, like Git and GitHub. That lecture will be coming later on in the semester!
+
+
+### Load your data
+
+Just a moment ago we took a ```glimpse``` of the dataset _cars_, which is one of the datasets that came with R. Now we are going to try loading our own data. 
+
+We will be working with real data from a longitudinal study of the
+species abundance in the Chihuahuan desert ecosystem near Portal, Arizona, USA.
+This study includes observations of plants, ants, and rodents from 1977 - 2002,
+and has been used in over 100 publications. More information is available in
+[the abstract of this paper from 2009](
+https://onlinelibrary.wiley.com/doi/10.1890/08-1222.1/full). There are several
+datasets available related to this study, and we will be working with datasets
+that have been preprocessed by [Data
+Carpentry](https://www.datacarpentry.org) to facilitate teaching. These are made
+available online as _The Portal Project Teaching Database_, both at the [Data
+Carpentry website](https://datacarpentry.org/ecology-workshop/data/), and on
+[Figshare](https://figshare.com/articles/Portal_Project_Teaching_Database/1314459/6).
+Figshare is a great place to publish data, code, figures, and more openly to
+make them available for other researchers and to communicate findings that are
+not part of a longer paper.
+
+We are studying the species and weight of animals caught in plots in our study
+area. The dataset is stored as a comma separated value (CSV) file. Each row
+holds information for a single animal, and the columns represent:
+
+| Column           | Description                        |
+|------------------|------------------------------------|
+| record_id        | unique id for the observation      |
+| month            | month of observation               |
+| day              | day of observation                 |
+| year             | year of observation                |
+| plot_id          | ID of a particular plot            |
+| species_id       | 2-letter code                      |
+| sex              | sex of animal ("M", "F")           |
+| hindfoot_length  | length of the hindfoot in mm       |
+| weight           | weight of the animal in grams      |
+| genus            | genus of animal                    |
+| species          | species of animal                  |
+| taxa             | e.g. rodent, reptile, bird, rabbit |
+| plot_type        | type of plot                       |
+
+To read data into R, we are going to use a function called `read_csv`. One useful option that `read_csv` includes is the ability to read a CSV file directly from a URL, without downloading it in a separate step:
+
+```{r}
+library(readr)
+surveys <- read_csv('https://ndownloader.figshare.com/files/2292169')
+```
+
+However, it is often a good idea to download the data first, so you have a copy
+stored locally on your computer in case you want to do some offline analyses, or
+the online version of the file changes or the file is taken down. You can either
+download the data manually or from within R:
+
+```{r}
+download.file("https://ndownloader.figshare.com/files/2292169",
+              "portal_data.csv")
+# Saves file to current or root directory with this name
+# You can use `here()` to indicate sublevels in your directory
+```
+
+The data is read in by specifying its file name. R knows to look in your current directory for something with this name (don't forget the quotation marks).
+
+```{r}
+surveys <- read_csv("portal_data.csv")
+```
+
+Let's have a look at this dataset.
+
+```{r}
+surveys
+```
+
+This displays a nice tabular view of the data, which also includes pagination;  there are many rows and we can click the arrow to view all the columns.
+Technically, this object is actually a `tibble` rather than a data frame, as
+indicated in the output. The reason for this is that `read_csv` automatically
+converts the data into to a `tibble` when loading it. Since a `tibble` is just
+a data frame with some convenient extra functionality, we will use these words
+interchangeably from now on.
+
+If we just want to glance at how the data frame looks, it is sufficient to
+display only the top (the first 6 lines) using the function `head()`:
+
+```{r}
+head(surveys)
+```
+
+Awesome! Everything is set, and now we are _finally_ ready to start working with real data in R!
+
+
+## What are data frames?
+
+Data frames are the _de facto_ data structure for most tabular data, and what we
+use for statistics and plotting. A data frame can be created by hand, but most
+commonly they are generated by the function `read_csv()`; in other words, when
+importing spreadsheets from your hard drive (or the web).
+
+A data frame is a representation of data in the format of a table where the
+columns are vectors that all have the same length. Because the columns are
+vectors, each column contain the same type of data (e.g., characters, integers, factors). We can see this when inspecting the structure of a data frame with the function `str()` (*str*ucture):
+
+```{r}
+str(surveys)
+```
+
+Integer refers to a whole number, such as 1, 2, 3, 4, etc. Numbers with
+decimals, 1.0, 2.4, 3.333, are referred to as floats. Factors are used to
+represent categorical data. Factors can be ordered or unordered, and
+understanding them is necessary for statistical analysis and for plotting.
+Factors are stored as integers, and have labels (text) associated with these
+unique integers. While factors look (and often behave) like character vectors,
+they are actually integers under the hood, and you need to be careful when
+treating them like strings.
+
+
+### Inspecting `data.frame` objects
+
+We already saw how the functions `head()` and `str()` can be useful to check the
+content and the structure of a data frame. Here is a non-exhaustive list of
+functions to get a sense of the content/structure of the data. Let's try them
+out!
+
+* Size:
+    * `dim(surveys)` - returns a vector with the number of rows in the first element
+      and the number of columns as the second element (the dimensions of the object)
+    * `nrow(surveys)` - returns the number of rows
+    * `ncol(surveys)` - returns the number of columns
+
+* Content:
+    * `head(surveys)` - shows the first 6 rows
+    * `tail(surveys)` - shows the last 6 rows
+
+* Names:
+    * `names(surveys)` - returns the column names (synonym of `colnames()` for `data.frame`
+      objects)
+    * `rownames(surveys)` - returns the row names
+
+* Summary:
+    * `str(surveys)` - structure of the object and information about the class,
+      length, and content of  each column
+    * `summary(surveys)` - summary statistics for each column
+
+Note: most of these functions are "generic", they can be used on other types of
+objects besides `data.frame`.
+
+
+#### Challenge
+
+Based on the output of `str(surveys)`, can you answer the following questions?
+
+* What is the class of the object `surveys`?
+* How many rows and how many columns are in this object?
+* How many species have been recorded during these surveys?
+
+```{r, include=FALSE}
+## Answers
+##
+## * class: data frame
+## * how many rows: 34786,  how many columns: 13
+## * how many species: 48
+
+unique(surveys$species)
+```
+
+
+
+### Indexing and subsetting data frames
+
+Our survey data frame has rows and columns (that is, it has 2 dimensions). If we want to
+extract some specific data from it, we need to specify the "coordinates" we
+want from it in a manner similar to when we indexed vectors. Row numbers come first, followed by column numbers. When indexing, base R data frames return a different format depending on how we index the data (i.e., either a vector or a data frame), but with enhanced data frames, `tibbles`, the returned object is almost always a data frame.
+
+```{r}
+surveys[1, 1]   # First element in the first column of the data frame
+surveys[1, 6]   # First element in the 6th column
+surveys[, 1]    # First column in the data frame
+surveys[1]      # First column in the data frame
+surveys[1:3, 7] # First three elements in the 7th column
+surveys[3, ]    # The 3rd element for all columns
+surveys[1:6, ]  # Equivalent to head(surveys)
+```
+
+You can also exclude certain parts of a data frame using the "`-`" sign:
+
+```{r}
+surveys[,-1]    # All columns, except the first
+surveys[-c(7:34786),] # Equivalent to head(surveys)
+```
+
+In addition to using numeric values to subset a `data.frame` (or `matrix`), columns can be called by name, using the following notations: 
+
+```{r}
+# Only printing the first six rows as a demonstration
+
+surveys[1:6, "species_id"] # Result is a data.frame
+head(surveys$species_id) # Result is a vector
+```
+
+
+#### Challenge
+
+1. Create a `data.frame` (`surveys_200`) containing only the observations from
+   row 200 of the `surveys` dataset.
+
+2. Notice how `nrow()` gave you the number of rows in a `data.frame`?
+
+     * Use that number to pull out just that last row in the data frame.
+     * Compare that with what you see as the last row using `tail()` to make
+       sure it's meeting expectations.
+     * Pull out that last row using `nrow()` instead of the row number.
+     * Create a new data frame object (`surveys_last`) from that last row.
+
+3. Use `nrow()` to extract the row that is in the middle of the data
+   frame. Store the content of this row in an object named `surveys_middle`.
+
+4. Combine `nrow()` with the `-` notation above to reproduce the behavior of
+   `head(surveys)` keeping just the first through 6th rows of the surveys
+   dataset.
+
+```{r, include=FALSE}
+## Answers
+surveys_200 <- surveys[200, ]
+surveys_last <- surveys[nrow(surveys), ]
+surveys_middle <- surveys[nrow(surveys)/2, ]
+surveys_head <- surveys[-c(7:nrow(surveys)),]
+```
+
+
+
+## Working with a subset of the data 
+
+Sometimes when we are working with a big dataset, we might want to test our code on a smaller portion of the data first to make sure it works before running the code on the entire thing, which could take a long time. There are many ways to subset your data. Common practices include pulling a random number of samples from the full dataset or take the first _n_ rows of your dataset. Here, we take every 8th row from the dataset to work with for the rest of the lecture. This ensures that everybody is working with the same dataset (we don't want to randomize) and we also have a good representation of observations from different plot types (the first 5000 rows only captured two out of a total of five plot types). Think about these issues when you create your own test data set. 
+
+**When you work on your own projects, don't forget to go back to the full data set for your final, official analysis!!!**
+
+```{r}
+str(surveys)
+surveys_subset<- surveys[seq(1, 34786, 8), ]
+str(surveys_subset)
+```
+
+## Exporting data
+
+As you begin to play with your raw data, you may want to export these new, processed, datasets to share them with your collaborators or for archival.
+
+Similar to the `read_csv()` function used for reading CSV files into R, there is
+a `write_csv()` function that generates CSV files from data frames.
+
+Before using `write_csv()`, we are going to create a new folder,
+`data-processed`, in our working directory that will store this generated
+dataset. We don't want to store manipulated datasets in the same directory as
+our raw data. It's good practice to keep them separate. The raw data would
+ideally be put in a `data-raw` folder, which should only contain the raw,
+unaltered data, and should be left alone to make sure we don't delete or modify
+it from how it was when we downloaded or recorded it ourself. Keep good notes on this original data, e.g., when did you download it and which links were used. 
+
+Manually create a new folder called "data-processed" in your directory. Alternatively, get R to help you with it. Remember to make sure that we are in the correct relative file directory!
+
+```{r, eval=FALSE}
+here()
+
+dir.create(here("1_lectures", "processed_data"))
+```
+
+Save the new dataset to a directory where you will be able to access it for next class. There are a couple ways you could do this depending on which function you use. The function `write_csv` exists in the `readr` package, while `write.csv` is from `base` R. These two functions have slightly different arguments. Or, you can use `save` from `base`, which writes the R object into a specific file format.
+
+```{r, eval=FALSE}
+write_csv(surveys_subset,
+          file = here("processed_data", "survey_subset.csv"))
+
+# If that fails you can always go back to base R! 
+write.csv(surveys_subset,
+          file = here("processed_data/survey_subset.csv"))
+
+save(surveys_subset, file = here("1_lectures", "processed_data", "survey_subset.csv"))
+```
+
+
+We are going to prepare a cleaned up version of the data without NAs. 
+
+```{r}
+# Note that this omits observations with NA in *any* column.
+# There is no way to control which columns to use.
+surveys_complete_naomit <- na.omit(surveys)
+
+# Compare the dimensions of the original and the cleaned data frame
+dim(surveys)
+dim(surveys_complete_naomit)
+```
+
+
+Now that our dataset is ready, we can save it as a CSV file in our `Processed data`
+folder.
+
+```{r, eval=FALSE}
+# To save to newly created directory
+write_csv(surveys_complete_naomit, here("1_lectures", "processed_data", "surveys_complete_naomit.csv"))
+```
+
+
+
+## Data wrangling with `dplyr`
+
+Wrangling here is used in the sense of maneuvering, managing, controlling, cleaning, and turning your data upside down and inside out to look at it from different angles
+in order to understand it and prepare it for analyses. The package `dplyr` provides easy tools for the
+most common data manipulation tasks. It is built to work directly with data
+frames, with many common tasks optimized by being written in a compiled language
+(C++), which means that many operations run much faster than similar tools
+in R. An additional feature is the ability to work directly with data stored in
+an external database, such as SQL-databases. The ability to work with databases
+is great because you are able to work with much bigger datasets (100s of GB)
+than your computer could normally handle. We will not talk in detail about this
+in class, but there are great resources online to learn more (e.g., [this lecture
+from Data
+Carpentry](https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html)).
+
+### Coercing as factors
+
+Notice for the sex of the observations, the summary is returning that there are characters in this column but not much else. Let's take a look at the data in this column closer. Again, previous function parameters have words read in as characters but recent defaults have changed to read words in as factors.
+
+As a column of character values, the relationship between the observations being recorded as "M", or "F" are not being recognized. We will need convert this column to factor. 
+
+
+Let's overwrite the column in the original dataset. **Remember, there is no undo button in programming. Double check your work before you overwrite objects**
+
+```{r}
+surveys_subset$sex <- as.factor(surveys_subset$sex)
+```
+
+
+### Renaming columns in a dataframe
+
+
+First, let's check out our `surveys_subset` dataframe.
+
+```{r}
+surveys_subset
+```
+
+This dataframe contains hindfoot length and weight data of several species in different taxanomic groups. While we were collecting data, we notice that we didn't write down the units in our lab notebook of `hindfoot_length` and `weight`! Let's add it into the column manually here so that we don't forget.
+
+We can do that by renaming our column, using the `rename()` function.
+
+```{r}
+rename(surveys_subset,
+       hindfoot_length_cm = hindfoot_length,
+       weight_g = weight)
+```
+
+Let's assign this dataframe to an object, by using the put `<-` function.
+
+```{r}
+surveys_subset_units <- rename(surveys_subset,
+       hindfoot_length_cm = hindfoot_length,
+       weight_g = weight)
+```
+
+
+#### An aside on naming conventions
+
+There are several different styles of naming objects in R. We talked about this briefly last class when discussing how to name our functions. Naming things is one of the most difficult problems in data science since it can be instrumental in helping with maintenance of code and code-sharing These styles include:
+
+- camelCase
+  - These names start with small letter and every subsequent word will start with upperCase letter
+- PascalCase
+  - PascalCase is just like camel case but the only difference is the first letter is also UpperCase.
+- snake_case
+  - These names are all lower case with underscore between the name. 
+- kebab-case
+  - this is the style that is recommended to be avoided, because the `-` sign can be mistaken for the sign for subtraction! If you have a value saved in `kebab`, and another value saved in `case`, then R will try to find the difference between these two objects, as opposed to saving it as an object.
+
+Where possible, avoid re-using names of common functions and variables. This will cause confusion for the readers of your code. This comes with more practice in common R packages - once you get a sense of the names of functions and data frames that already exist, you will know to avoid them!
+
+
+Other object-naming tips:
+
+- choose a convention and stick with it!
+- don't use dots `.`
+- use names that are concise, meaningful, and consistent throughout your document. This is not easy!
+- generally, variable names should be nouns, and function names should be verbs.
+
+
+
+
+
+
+
