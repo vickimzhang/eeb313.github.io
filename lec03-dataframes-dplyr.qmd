@@ -21,7 +21,7 @@ editor_options:
 > * R packages for data analyses (20 mins)
 > * Data set background (10 mins)
 > * What are data frames (10 mins)
-> * Introduction to data (40 mins)
+> * Introduction to data and wrangling (40 mins)
 
 -----
 
@@ -83,7 +83,7 @@ Each R script or .Rmd report should contain a call to `here::i_am('path/to/this/
 Subsequent file paths can be made using the `here` function. You should also be saving your files and plots by using the `here()` function. More on that later.
 
 
-```{r}
+```{r, eval = FALSE}
 library(here)
 here()
 
