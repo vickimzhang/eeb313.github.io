@@ -22,5 +22,8 @@
   },
   "databases.qmd": {
     "databases.html": "3412faa4"
+  },
+  "lec03-dataframes-dplyr.qmd": {
+    "lec03-dataframes-dplyr.html": "a250510d"
   }
 }

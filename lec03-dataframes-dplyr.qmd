@@ -87,7 +87,8 @@ Subsequent file paths can be made using the `here` function. You should also be 
 library(here)
 here()
 
-here::i_am("1_lectures/lec00-RStudio-and-R-Notebook.Rmd")
+# use to set "lectures" as working directory
+# here::i_am("lectures", "lec03-dataframes-dplyr.Rmd")
 ```
 
 One important distinction from the working directory is that this remains stable even if the working directory is changed. I recommend that you steer clear from ever changing the working directory.
@@ -474,15 +475,16 @@ dir.create(here("1_lectures", "processed_data"))
 
 Save the new dataset to a directory where you will be able to access it for next class. There are a couple ways you could do this depending on which function you use. The function `write_csv` exists in the `readr` package, while `write.csv` is from `base` R. These two functions have slightly different arguments. Or, you can use `save` from `base`, which writes the R object into a specific file format.
 
+
 ```{r, eval=FALSE}
 write_csv(surveys_subset,
-          file = here("processed_data", "survey_subset.csv"))
+          file = here("survey_subset.csv"))
 
 # If that fails you can always go back to base R! 
 write.csv(surveys_subset,
-          file = here("processed_data/survey_subset.csv"))
+          file = here("survey_subset.csv"))
 
-save(surveys_subset, file = here("1_lectures", "processed_data", "survey_subset.csv"))
+save(surveys_subset, file = here("survey_subset.csv"))
 ```
 
 
@@ -498,13 +500,12 @@ dim(surveys)
 dim(surveys_complete_naomit)
 ```
 
-
 Now that our dataset is ready, we can save it as a CSV file in our `Processed data`
 folder.
 
 ```{r, eval=FALSE}
 # To save to newly created directory
-write_csv(surveys_complete_naomit, here("1_lectures", "processed_data", "surveys_complete_naomit.csv"))
+write_csv(surveys_complete_naomit, here("surveys_complete_naomit.csv"))
 ```
 
 

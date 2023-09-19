@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Dataframes and Introduction to Data Wrangling</title>
+<title>EEB313: Quantitative Methods in R for Biology - 4&nbsp; Dataframes and Introduction to Data Wrangling</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,29 +57,203 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="lec03-dataframes-dplyr_files/libs/clipboard/clipboard.min.js"></script>
-<script src="lec03-dataframes-dplyr_files/libs/quarto-html/quarto.js"></script>
-<script src="lec03-dataframes-dplyr_files/libs/quarto-html/popper.min.js"></script>
-<script src="lec03-dataframes-dplyr_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="lec03-dataframes-dplyr_files/libs/quarto-html/anchor.min.js"></script>
-<link href="lec03-dataframes-dplyr_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="lec03-dataframes-dplyr_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="lec03-dataframes-dplyr_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="lec03-dataframes-dplyr_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="lec03-dataframes-dplyr_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./projects.html" rel="next">
+<link href="./lec02-base-r.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
 
 
 </head>
 
-<body class="fullcontent">
+<body class="nav-sidebar floating">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lec00-rstudio.html">Lectures</a></li><li class="breadcrumb-item"><a href="./lec03-dataframes-dplyr.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Dataframes and Introduction to Data Wrangling</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">EEB313: Quantitative Methods in R for Biology</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/EEB313/eeb313.github.io" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about-us.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The 2023 teaching team</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./downloadingR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Downloading R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Lectures</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lec00-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with RStudio and R Notebook</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lec01-markdown-workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Markdown, project workflows</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lec02-base-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Assignments, vectors, functions, and loops</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lec03-dataframes-dplyr.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Dataframes and Introduction to Data Wrangling</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Assignments</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Project</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./projects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Project description</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Some open-access databases</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#lesson-preamble" id="toc-lesson-preamble" class="nav-link active" data-scroll-target="#lesson-preamble"><span class="header-section-number">4.1</span> Lesson Preamble</a></li>
+  <li><a href="#setting-up-the-workspace" id="toc-setting-up-the-workspace" class="nav-link" data-scroll-target="#setting-up-the-workspace"><span class="header-section-number">4.2</span> Setting up the workspace</a>
+  <ul class="collapse">
+  <li><a href="#set-up-your-notebook" id="toc-set-up-your-notebook" class="nav-link" data-scroll-target="#set-up-your-notebook"><span class="header-section-number">4.2.1</span> Set up your Notebook</a></li>
+  <li><a href="#check-your-directory" id="toc-check-your-directory" class="nav-link" data-scroll-target="#check-your-directory"><span class="header-section-number">4.2.2</span> Check your directory</a></li>
+  <li><a href="#load-your-packages" id="toc-load-your-packages" class="nav-link" data-scroll-target="#load-your-packages"><span class="header-section-number">4.2.3</span> Load your packages</a></li>
+  <li><a href="#load-your-data" id="toc-load-your-data" class="nav-link" data-scroll-target="#load-your-data"><span class="header-section-number">4.2.4</span> Load your data</a></li>
+  </ul></li>
+  <li><a href="#what-are-data-frames" id="toc-what-are-data-frames" class="nav-link" data-scroll-target="#what-are-data-frames"><span class="header-section-number">4.3</span> What are data frames?</a>
+  <ul class="collapse">
+  <li><a href="#inspecting-data.frame-objects" id="toc-inspecting-data.frame-objects" class="nav-link" data-scroll-target="#inspecting-data.frame-objects"><span class="header-section-number">4.3.1</span> Inspecting <code>data.frame</code> objects</a></li>
+  <li><a href="#indexing-and-subsetting-data-frames" id="toc-indexing-and-subsetting-data-frames" class="nav-link" data-scroll-target="#indexing-and-subsetting-data-frames"><span class="header-section-number">4.3.2</span> Indexing and subsetting data frames</a></li>
+  </ul></li>
+  <li><a href="#working-with-a-subset-of-the-data" id="toc-working-with-a-subset-of-the-data" class="nav-link" data-scroll-target="#working-with-a-subset-of-the-data"><span class="header-section-number">4.4</span> Working with a subset of the data</a></li>
+  <li><a href="#exporting-data" id="toc-exporting-data" class="nav-link" data-scroll-target="#exporting-data"><span class="header-section-number">4.5</span> Exporting data</a></li>
+  <li><a href="#data-wrangling-with-dplyr" id="toc-data-wrangling-with-dplyr" class="nav-link" data-scroll-target="#data-wrangling-with-dplyr"><span class="header-section-number">4.6</span> Data wrangling with <code>dplyr</code></a>
+  <ul class="collapse">
+  <li><a href="#coercing-as-factors" id="toc-coercing-as-factors" class="nav-link" data-scroll-target="#coercing-as-factors"><span class="header-section-number">4.6.1</span> Coercing as factors</a></li>
+  <li><a href="#renaming-columns-in-a-dataframe" id="toc-renaming-columns-in-a-dataframe" class="nav-link" data-scroll-target="#renaming-columns-in-a-dataframe"><span class="header-section-number">4.6.2</span> Renaming columns in a dataframe</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Dataframes and Introduction to Data Wrangling</h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Dataframes and Introduction to Data Wrangling</span></h1>
 </div>
 
 
@@ -94,17 +268,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="lesson-preamble" class="level2">
-<h2 class="anchored" data-anchor-id="lesson-preamble">Lesson Preamble</h2>
+<section id="lesson-preamble" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="lesson-preamble"><span class="header-section-number">4.1</span> Lesson Preamble</h2>
 <blockquote class="blockquote">
-<h3 id="learning-objectives" class="anchored">Learning Objectives</h3>
+<h3 id="learning-objectives" data-number="4.1.1" class="anchored"><span class="header-section-number">4.1.1</span> Learning Objectives</h3>
 <ul>
 <li>Describe what a data frame is.</li>
 <li>Load external data from a .csv file into a data frame in R.</li>
 <li>Summarize the contents of a data frame in R.</li>
 <li>Understand the purpose of the <code>dplyr</code> package.</li>
 </ul>
-<h3 id="lecture-outline" class="anchored">Lecture outline</h3>
+<h3 id="lecture-outline" data-number="4.1.2" class="anchored"><span class="header-section-number">4.1.2</span> Lecture outline</h3>
 <ul>
 <li>R packages for data analyses (20 mins)</li>
 <li>Data set background (10 mins)</li>
@@ -114,20 +288,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <hr>
 </section>
-<section id="setting-up-the-workspace" class="level2">
-<h2 class="anchored" data-anchor-id="setting-up-the-workspace">Setting up the workspace</h2>
+<section id="setting-up-the-workspace" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="setting-up-the-workspace"><span class="header-section-number">4.2</span> Setting up the workspace</h2>
 <p>One of the keys to a successful R working session is to make sure you have everything you need ready to go, and neatly organized. Just like when you are cooking or baking, having everything pre-measured and organized in neat way can be so helpful to ensure efficient, no fuss, and nice dishes in the end.</p>
 <p>Now we’ll take another couple of minutes to get our R workspace ready.</p>
-<section id="set-up-your-notebook" class="level3">
-<h3 class="anchored" data-anchor-id="set-up-your-notebook">Set up your Notebook</h3>
+<section id="set-up-your-notebook" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="set-up-your-notebook"><span class="header-section-number">4.2.1</span> Set up your Notebook</h3>
 <p>First, we are going to set up our Notebook.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Introduction to R</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Recall that this header block is called the YAML header. This is optional, without this your document will still knit, but this is useful for fine-tuning the output of your document, such as font size, figure sizes, and generating a table of content. We will mostly be using it to give our documents nice headers. If you are interested in playing with other customizations options the YAML provides, check out <a href="https://bookdown.org/yihui/rmarkdown/html-document.html">this guide</a>.</p>
 </section>
-<section id="check-your-directory" class="level3">
-<h3 class="anchored" data-anchor-id="check-your-directory">Check your directory</h3>
+<section id="check-your-directory" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="check-your-directory"><span class="header-section-number">4.2.2</span> Check your directory</h3>
 <p>Ok, now the Notebook is ready. Next, we want to make sure we are working out of the correct <em>directory</em>, which is a fancy way to say the folder that we will be reading files from, and saving files to.</p>
 <p>By default, R works out of your <em>Documents</em> folder. We can check this with the following function <code>getwd()</code>, which stands for <strong>get</strong> <strong>w</strong>orking <strong>d</strong>irectory.</p>
 <div class="cell">
@@ -154,12 +328,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>()</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">i_am</span>(<span class="st">"1_lectures/lec00-RStudio-and-R-Notebook.Rmd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># use to set "lectures" as working directory</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># here::i_am("lectures", "lec03-dataframes-dplyr.Rmd")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>One important distinction from the working directory is that this remains stable even if the working directory is changed. I recommend that you steer clear from ever changing the working directory.</p>
 </section>
-<section id="load-your-packages" class="level3">
-<h3 class="anchored" data-anchor-id="load-your-packages">Load your packages</h3>
+<section id="load-your-packages" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="load-your-packages"><span class="header-section-number">4.2.3</span> Load your packages</h3>
 <p>Next, we want to check to see that all of our required <em>packages</em> are properly loaded and ready to go.</p>
 <p>In a nutshell, packages are bundles of functions that perform related tasks (like a book of recipes). Our installation of R comes with some packages already, since they are considered critical for using R, e.g., <code>c()</code>, <code>mean()</code>, <code>+</code>, <code>-</code>, etc. These pre-installed packages and function are commonly collectively referred to as <em>base R</em>.</p>
 <p>In addition to these foundational packages and functions, CRAN (Comprehensive R Archive Network), the official repository for R-packages, houses thousands more packages. There is literally a package for every occasion you can and cannot imagine. Did you know that you can call an Uber from R (<code>ubeR</code>)? How about, instead of boring dots as data points in figures, you can plot emojis (<code>emojifont</code>)? Frustrated with code and need a pick-me-up? The packages <code>praise</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> and <code>kittyR</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> got you covered! All of this is possible due to R being an open language, and many people generously contribute their time to its development.</p>
@@ -237,8 +412,8 @@ $ dist  &lt;dbl&gt; 2, 10, 4, 22, 16, 10, 18, 26, 34, 17, 28, 14, 20, 24, 28, 26
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>stats<span class="sc">::</span><span class="fu">filter</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="an-aside-on-reproducible-environments" class="level4">
-<h4 class="anchored" data-anchor-id="an-aside-on-reproducible-environments">An Aside on Reproducible Environments</h4>
+<section id="an-aside-on-reproducible-environments" class="level4" data-number="4.2.3.1">
+<h4 data-number="4.2.3.1" class="anchored" data-anchor-id="an-aside-on-reproducible-environments"><span class="header-section-number">4.2.3.1</span> An Aside on Reproducible Environments</h4>
 <p>At this point, you are already living a project-centric lifestyle. With <code>renv</code>, you’ll start using project libraries, giving each project its own independent collection of packages. To increase reproducibility of a project, we must keep track of what packages are used. This also helps us avoid error messages if we update R or update a package, and things no longer work.</p>
 <p>To convert a project to use renv, call renv::init(). It adds three new files and directories to your project. Make sure you indicate where your project lives by using <code>here()</code></p>
 <div class="cell">
@@ -275,8 +450,8 @@ $ dist  &lt;dbl&gt; 2, 10, 4, 22, 16, 10, 18, 26, 34, 17, 28, 14, 20, 24, 28, 26
 <p>The last thing required for reproducibility is a version control system, like Git and GitHub. That lecture will be coming later on in the semester!</p>
 </section>
 </section>
-<section id="load-your-data" class="level3">
-<h3 class="anchored" data-anchor-id="load-your-data">Load your data</h3>
+<section id="load-your-data" class="level3" data-number="4.2.4">
+<h3 data-number="4.2.4" class="anchored" data-anchor-id="load-your-data"><span class="header-section-number">4.2.4</span> Load your data</h3>
 <p>Just a moment ago we took a <code>glimpse</code> of the dataset <em>cars</em>, which is one of the datasets that came with R. Now we are going to try loading our own data.</p>
 <p>We will be working with real data from a longitudinal study of the species abundance in the Chihuahuan desert ecosystem near Portal, Arizona, USA. This study includes observations of plants, ants, and rodents from 1977 - 2002, and has been used in over 100 publications. More information is available in <a href="https://onlinelibrary.wiley.com/doi/10.1890/08-1222.1/full">the abstract of this paper from 2009</a>. There are several datasets available related to this study, and we will be working with datasets that have been preprocessed by <a href="https://www.datacarpentry.org">Data Carpentry</a> to facilitate teaching. These are made available online as <em>The Portal Project Teaching Database</em>, both at the <a href="https://datacarpentry.org/ecology-workshop/data/">Data Carpentry website</a>, and on <a href="https://figshare.com/articles/Portal_Project_Teaching_Database/1314459/6">Figshare</a>. Figshare is a great place to publish data, code, figures, and more openly to make them available for other researchers and to communicate findings that are not part of a longer paper.</p>
 <p>We are studying the species and weight of animals caught in plots in our study area. The dataset is stored as a comma separated value (CSV) file. Each row holds information for a single animal, and the columns represent:</p>
@@ -419,8 +594,8 @@ dbl (7): record_id, month, day, year, plot_id, hindfoot_length, weight
 <p>Awesome! Everything is set, and now we are <em>finally</em> ready to start working with real data in R!</p>
 </section>
 </section>
-<section id="what-are-data-frames" class="level2">
-<h2 class="anchored" data-anchor-id="what-are-data-frames">What are data frames?</h2>
+<section id="what-are-data-frames" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="what-are-data-frames"><span class="header-section-number">4.3</span> What are data frames?</h2>
 <p>Data frames are the <em>de facto</em> data structure for most tabular data, and what we use for statistics and plotting. A data frame can be created by hand, but most commonly they are generated by the function <code>read_csv()</code>; in other words, when importing spreadsheets from your hard drive (or the web).</p>
 <p>A data frame is a representation of data in the format of a table where the columns are vectors that all have the same length. Because the columns are vectors, each column contain the same type of data (e.g., characters, integers, factors). We can see this when inspecting the structure of a data frame with the function <code>str()</code> (<em>str</em>ucture):</p>
 <div class="cell">
@@ -460,8 +635,8 @@ dbl (7): record_id, month, day, year, plot_id, hindfoot_length, weight
 </div>
 </div>
 <p>Integer refers to a whole number, such as 1, 2, 3, 4, etc. Numbers with decimals, 1.0, 2.4, 3.333, are referred to as floats. Factors are used to represent categorical data. Factors can be ordered or unordered, and understanding them is necessary for statistical analysis and for plotting. Factors are stored as integers, and have labels (text) associated with these unique integers. While factors look (and often behave) like character vectors, they are actually integers under the hood, and you need to be careful when treating them like strings.</p>
-<section id="inspecting-data.frame-objects" class="level3">
-<h3 class="anchored" data-anchor-id="inspecting-data.frame-objects">Inspecting <code>data.frame</code> objects</h3>
+<section id="inspecting-data.frame-objects" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="inspecting-data.frame-objects"><span class="header-section-number">4.3.1</span> Inspecting <code>data.frame</code> objects</h3>
 <p>We already saw how the functions <code>head()</code> and <code>str()</code> can be useful to check the content and the structure of a data frame. Here is a non-exhaustive list of functions to get a sense of the content/structure of the data. Let’s try them out!</p>
 <ul>
 <li>Size:
@@ -487,8 +662,8 @@ dbl (7): record_id, month, day, year, plot_id, hindfoot_length, weight
 </ul></li>
 </ul>
 <p>Note: most of these functions are “generic”, they can be used on other types of objects besides <code>data.frame</code>.</p>
-<section id="challenge" class="level4">
-<h4 class="anchored" data-anchor-id="challenge">Challenge</h4>
+<section id="challenge" class="level4" data-number="4.3.1.1">
+<h4 data-number="4.3.1.1" class="anchored" data-anchor-id="challenge"><span class="header-section-number">4.3.1.1</span> Challenge</h4>
 <p>Based on the output of <code>str(surveys)</code>, can you answer the following questions?</p>
 <ul>
 <li>What is the class of the object <code>surveys</code>?</li>
@@ -497,8 +672,8 @@ dbl (7): record_id, month, day, year, plot_id, hindfoot_length, weight
 </ul>
 </section>
 </section>
-<section id="indexing-and-subsetting-data-frames" class="level3">
-<h3 class="anchored" data-anchor-id="indexing-and-subsetting-data-frames">Indexing and subsetting data frames</h3>
+<section id="indexing-and-subsetting-data-frames" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="indexing-and-subsetting-data-frames"><span class="header-section-number">4.3.2</span> Indexing and subsetting data frames</h3>
 <p>Our survey data frame has rows and columns (that is, it has 2 dimensions). If we want to extract some specific data from it, we need to specify the “coordinates” we want from it in a manner similar to when we indexed vectors. Row numbers come first, followed by column numbers. When indexing, base R data frames return a different format depending on how we index the data (i.e., either a vector or a data frame), but with enhanced data frames, <code>tibbles</code>, the returned object is almost always a data frame.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>surveys[<span class="dv">1</span>, <span class="dv">1</span>]   <span class="co"># First element in the first column of the data frame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -635,8 +810,8 @@ dbl (7): record_id, month, day, year, plot_id, hindfoot_length, weight
 <pre><code>[1] "NL" "NL" "NL" "NL" "NL" "NL"</code></pre>
 </div>
 </div>
-<section id="challenge-1" class="level4">
-<h4 class="anchored" data-anchor-id="challenge-1">Challenge</h4>
+<section id="challenge-1" class="level4" data-number="4.3.2.1">
+<h4 data-number="4.3.2.1" class="anchored" data-anchor-id="challenge-1"><span class="header-section-number">4.3.2.1</span> Challenge</h4>
 <ol type="1">
 <li><p>Create a <code>data.frame</code> (<code>surveys_200</code>) containing only the observations from row 200 of the <code>surveys</code> dataset.</p></li>
 <li><p>Notice how <code>nrow()</code> gave you the number of rows in a <code>data.frame</code>?</p>
@@ -652,8 +827,8 @@ dbl (7): record_id, month, day, year, plot_id, hindfoot_length, weight
 </section>
 </section>
 </section>
-<section id="working-with-a-subset-of-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="working-with-a-subset-of-the-data">Working with a subset of the data</h2>
+<section id="working-with-a-subset-of-the-data" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="working-with-a-subset-of-the-data"><span class="header-section-number">4.4</span> Working with a subset of the data</h2>
 <p>Sometimes when we are working with a big dataset, we might want to test our code on a smaller portion of the data first to make sure it works before running the code on the entire thing, which could take a long time. There are many ways to subset your data. Common practices include pulling a random number of samples from the full dataset or take the first <em>n</em> rows of your dataset. Here, we take every 8th row from the dataset to work with for the rest of the lecture. This ensures that everybody is working with the same dataset (we don’t want to randomize) and we also have a good representation of observations from different plot types (the first 5000 rows only captured two out of a total of five plot types). Think about these issues when you create your own test data set.</p>
 <p><strong>When you work on your own projects, don’t forget to go back to the full data set for your final, official analysis!!!</strong></p>
 <div class="cell">
@@ -711,8 +886,8 @@ dbl (7): record_id, month, day, year, plot_id, hindfoot_length, weight
 </div>
 </div>
 </section>
-<section id="exporting-data" class="level2">
-<h2 class="anchored" data-anchor-id="exporting-data">Exporting data</h2>
+<section id="exporting-data" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="exporting-data"><span class="header-section-number">4.5</span> Exporting data</h2>
 <p>As you begin to play with your raw data, you may want to export these new, processed, datasets to share them with your collaborators or for archival.</p>
 <p>Similar to the <code>read_csv()</code> function used for reading CSV files into R, there is a <code>write_csv()</code> function that generates CSV files from data frames.</p>
 <p>Before using <code>write_csv()</code>, we are going to create a new folder, <code>data-processed</code>, in our working directory that will store this generated dataset. We don’t want to store manipulated datasets in the same directory as our raw data. It’s good practice to keep them separate. The raw data would ideally be put in a <code>data-raw</code> folder, which should only contain the raw, unaltered data, and should be left alone to make sure we don’t delete or modify it from how it was when we downloaded or recorded it ourself. Keep good notes on this original data, e.g., when did you download it and which links were used.</p>
@@ -725,13 +900,13 @@ dbl (7): record_id, month, day, year, plot_id, hindfoot_length, weight
 <p>Save the new dataset to a directory where you will be able to access it for next class. There are a couple ways you could do this depending on which function you use. The function <code>write_csv</code> exists in the <code>readr</code> package, while <code>write.csv</code> is from <code>base</code> R. These two functions have slightly different arguments. Or, you can use <code>save</code> from <code>base</code>, which writes the R object into a specific file format.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(surveys_subset,</span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">file =</span> <span class="fu">here</span>(<span class="st">"processed_data"</span>, <span class="st">"survey_subset.csv"</span>))</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">file =</span> <span class="fu">here</span>(<span class="st">"survey_subset.csv"</span>))</span>
 <span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="co"># If that fails you can always go back to base R! </span></span>
 <span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(surveys_subset,</span>
-<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">file =</span> <span class="fu">here</span>(<span class="st">"processed_data/survey_subset.csv"</span>))</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">file =</span> <span class="fu">here</span>(<span class="st">"survey_subset.csv"</span>))</span>
 <span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(surveys_subset, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">"1_lectures"</span>, <span class="st">"processed_data"</span>, <span class="st">"survey_subset.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(surveys_subset, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">"survey_subset.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We are going to prepare a cleaned up version of the data without NAs.</p>
 <div class="cell">
@@ -752,14 +927,14 @@ dbl (7): record_id, month, day, year, plot_id, hindfoot_length, weight
 <p>Now that our dataset is ready, we can save it as a CSV file in our <code>Processed data</code> folder.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To save to newly created directory</span></span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(surveys_complete_naomit, <span class="fu">here</span>(<span class="st">"1_lectures"</span>, <span class="st">"processed_data"</span>, <span class="st">"surveys_complete_naomit.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(surveys_complete_naomit, <span class="fu">here</span>(<span class="st">"surveys_complete_naomit.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="data-wrangling-with-dplyr" class="level2">
-<h2 class="anchored" data-anchor-id="data-wrangling-with-dplyr">Data wrangling with <code>dplyr</code></h2>
+<section id="data-wrangling-with-dplyr" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="data-wrangling-with-dplyr"><span class="header-section-number">4.6</span> Data wrangling with <code>dplyr</code></h2>
 <p>Wrangling here is used in the sense of maneuvering, managing, controlling, cleaning, and turning your data upside down and inside out to look at it from different angles in order to understand it and prepare it for analyses. The package <code>dplyr</code> provides easy tools for the most common data manipulation tasks. It is built to work directly with data frames, with many common tasks optimized by being written in a compiled language (C++), which means that many operations run much faster than similar tools in R. An additional feature is the ability to work directly with data stored in an external database, such as SQL-databases. The ability to work with databases is great because you are able to work with much bigger datasets (100s of GB) than your computer could normally handle. We will not talk in detail about this in class, but there are great resources online to learn more (e.g., <a href="https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html">this lecture from Data Carpentry</a>).</p>
-<section id="coercing-as-factors" class="level3">
-<h3 class="anchored" data-anchor-id="coercing-as-factors">Coercing as factors</h3>
+<section id="coercing-as-factors" class="level3" data-number="4.6.1">
+<h3 data-number="4.6.1" class="anchored" data-anchor-id="coercing-as-factors"><span class="header-section-number">4.6.1</span> Coercing as factors</h3>
 <p>Notice for the sex of the observations, the summary is returning that there are characters in this column but not much else. Let’s take a look at the data in this column closer. Again, previous function parameters have words read in as characters but recent defaults have changed to read words in as factors.</p>
 <p>As a column of character values, the relationship between the observations being recorded as “M”, or “F” are not being recognized. We will need convert this column to factor.</p>
 <p>Let’s overwrite the column in the original dataset. <strong>Remember, there is no undo button in programming. Double check your work before you overwrite objects</strong></p>
@@ -767,8 +942,8 @@ dbl (7): record_id, month, day, year, plot_id, hindfoot_length, weight
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>surveys_subset<span class="sc">$</span>sex <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(surveys_subset<span class="sc">$</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="renaming-columns-in-a-dataframe" class="level3">
-<h3 class="anchored" data-anchor-id="renaming-columns-in-a-dataframe">Renaming columns in a dataframe</h3>
+<section id="renaming-columns-in-a-dataframe" class="level3" data-number="4.6.2">
+<h3 data-number="4.6.2" class="anchored" data-anchor-id="renaming-columns-in-a-dataframe"><span class="header-section-number">4.6.2</span> Renaming columns in a dataframe</h3>
 <p>First, let’s check out our <code>surveys_subset</code> dataframe.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>surveys_subset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -821,8 +996,8 @@ dbl (7): record_id, month, day, year, plot_id, hindfoot_length, weight
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">hindfoot_length_cm =</span> hindfoot_length,</span>
 <span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">weight_g =</span> weight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="an-aside-on-naming-conventions" class="level4">
-<h4 class="anchored" data-anchor-id="an-aside-on-naming-conventions">An aside on naming conventions</h4>
+<section id="an-aside-on-naming-conventions" class="level4" data-number="4.6.2.1">
+<h4 data-number="4.6.2.1" class="anchored" data-anchor-id="an-aside-on-naming-conventions"><span class="header-section-number">4.6.2.1</span> An aside on naming conventions</h4>
 <p>There are several different styles of naming objects in R. We talked about this briefly last class when discussing how to name our functions. Naming things is one of the most difficult problems in data science since it can be instrumental in helping with maintenance of code and code-sharing These styles include:</p>
 <ul>
 <li>camelCase
@@ -850,20 +1025,21 @@ dbl (7): record_id, month, day, year, plot_id, hindfoot_length, weight
 <li>use names that are concise, meaningful, and consistent throughout your document. This is not easy!</li>
 <li>generally, variable names should be nouns, and function names should be verbs.</li>
 </ul>
+
+
 </section>
 </section>
 </section>
-
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
 <ol>
 <li id="fn1"><p>Every time you call the function <code>praise()</code> you get praised once. Can you think of creative ways to get praised faster? (Hint 1: What about those loops we talked about earlier?) (Hint 2: Can we vectorize this operation and make the praising even more efficient?)<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>To install the <code>kittyR</code> package, use this code: <code>devtools::install_github("IndrajeetPatil/kittyR")</code><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>This course is focused on <code>tidyverse</code> functions, because that seems to be the trend these days. Although all of our teaching material is written in tidy lingo, it is mostly for the sake of consistency. In all honesty, tidy is pretty great, but some functions are more intuitive in base, so most people code in a mix of the two. If you learned base R elsewhere and perfer to use those functions instead, by all means, go ahead. The correct code is code that does what you want it to do.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-</section></div></main>
-<!-- /main column -->
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1097,6 +1273,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./lec02-base-r.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Assignments, vectors, functions, and loops</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./projects.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Project description</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

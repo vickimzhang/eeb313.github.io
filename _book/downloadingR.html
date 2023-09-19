@@ -180,6 +180,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Assignments, vectors, functions, and loops</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lec03-dataframes-dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Dataframes and Introduction to Data Wrangling</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -198,13 +204,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Project description</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Project description</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./databases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Some open-access databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Some open-access databases</span></span></a>
   </div>
 </li>
       </ul>
@@ -276,7 +282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Install <a href="https://posit.co/download/rstudio-desktop/">RStudio</a></strong>, a graphical user interface (GUI) for R. Click the link under “2: Install RStudio”. RStudio comes with a text editor, so there is no immediate need to install a separate stand-alone editor.</li>
 </ol>
 <p>If R is already installed, <strong>ensure that the R version is 4.0 or higher.</strong> You can do this by opening RStudio, where you should see a multi-section window like below. Locate the quadrant named “Console”, and put your cursor at the start of the prompt indicated by the <code>&gt;</code> symbol and where the red arrow is pointing. Type or copy <code>sessionInfo()</code> - make sure that only the I at the start of Info is capitalized and you are including the round brackets. Press enter to run this command and R should return an output to you. The first line shows what version of R is installed. Ensure that the R version installed is at least 4.0.</p>
-<p><img src="figs/rconsole.png" class="img-fluid" style="width:100.0%"></p>
+<p><img src="figures/rconsole.png" class="img-fluid" style="width:100.0%"></p>
 </section>
 <section id="download-packages" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="download-packages">Download Packages</h2>
@@ -299,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"lsmeans"</span>, <span class="st">"ggfortify"</span>, <span class="st">"vegan"</span>), <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>During installation, if you ever get the below message, click “No”.</p>
-<p><img src="figs/restartr.png" class="img-fluid" style="width:30.0%"></p>
+<p><img src="figures/restartr.png" class="img-fluid" style="width:30.0%"></p>
 <p>If you get the message “Do you want to install from sources the packages which need compilation? (Yes/no/cancel)” in the Console, type “Yes” and press enter.</p>
 <ol start="2" type="1">
 <li><strong>Check that these packages have been installed correctly</strong>. To do this, go to the bottom right pane and click the tab for “Packages”. If you can search for and find the below packages, then they have been installed! They do not need to be checked off. Alternatively, go to the Console and type <code>library(lme4)</code> to verify that the <code>lme4</code> package is installed. An error along the lines “there is no package called lme4” will be returned if the package is not installed.</li>

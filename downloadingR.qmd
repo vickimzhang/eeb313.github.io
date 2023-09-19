@@ -59,7 +59,7 @@ including the round brackets. Press enter to run this command and R
 should return an output to you. The first line shows what version of R is installed.
 Ensure that the R version installed is at least 4.0.
 
-![](figs/rconsole.png){width=100%}
+![](figures/rconsole.png){width=100%}
 
 ## Download Packages {-}
 
@@ -87,7 +87,7 @@ install.packages(c("tidyverse", "here", "knitr", "datasauRus", "car",
 
 During installation, if you ever get the below message, click "No". 
 
-![](figs/restartr.png){width=30%}
+![](figures/restartr.png){width=30%}
 
 If you get the message "Do you want to install from
 sources the packages which need compilation? (Yes/no/cancel)" in the Console, type
