@@ -1,0 +1,613 @@
+---
+title: "Data Wrangling with dplyr"
+output: md_document
+urlcolor: blue
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+## Lesson preamble
+
+> ### Learning Objectives
+>
+> * Learn to use data wrangling commands `select`, `filter`, `%>%,` and `mutate` from the `dplyr` package.
+> * Understand the split-apply-combine concept for data analysis.
+> * Use `summarize`, `group_by`, and `tally` to split a data frame into groups of observations, apply a summary statistics for each group, and then combine the results.
+> * Learn to switch between long and wide format
+> 
+> ### Lesson outline
+>
+> - Continue data wrangling in dplyr (30 mins) 
+> - Split-apply-combine techniques in `dplyr` (20 mins)
+> - Using `group_by` and `tally` to summarize categorical data (25 mins)
+> - Reshaping data (15 mins)
+
+-----
+
+## Getting ready to code 
+
+We are going to pick up where we left off last lecture, and continue to work with the same desert animal survey data.
+
+We'll start by doing our checks. You can set up your yaml block and check your working directory with getwd() on your own. Make sure you are in the directory where you saved our dataset last time and clear your workspace for our new session. We'll also load the required packages (mostly ```tidyverse``` for this class) and data. Make sure what you need to be comfortable is within reach such as tea, coffee, cookies, blankets. 
+
+<!-- Last class, some of us had trouble loading the data correctly due to an update in tidyverse but not to worry, we have a solution! We will tell R exactly what should be coded as NA using the following code when we load in our data.  -->
+
+```{r}
+# setwd("~/Documents/UofT/PhD/Teaching/2022-2023/EEB313/2022/Lectures")
+
+library(tidyverse)
+surveys <- read.csv("portal_data.csv", na.strings = c("",".","NA"))
+surveys
+
+surveys_subset <- surveys[seq(1, 34786, 8), ]
+```
+
+
+
+## Data wrangling with `dplyr`
+
+Wrangling here is used in the sense of maneuvering, managing, controlling, and
+turning your data upside down and inside out to look at it from different angles
+in order to understand it. The package `dplyr` provides easy tools for the
+most common data manipulation tasks. It is built to work directly with data
+frames, with many common tasks optimized by being written in a compiled language
+(C++), which means that many operations run much faster than similar tools
+in R. An additional feature is the ability to work directly with data stored in
+an external database, such as SQL-databases. The ability to work with databases
+is great because you are able to work with much bigger datasets (100s of GB)
+than your computer could normally handle. We will not talk in detail about this
+in class, but there are great resources online to learn more (e.g. [this lecture
+from Data
+Carpentry](https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html)).
+
+
+### Selecting columns and filtering rows
+
+We're going to learn some of the most common `dplyr` functions: `select()`,
+`filter()`, `mutate()`, `group_by()`, `arrange`, and `summarise()`. To select columns of a
+data frame, use `select()`. The first argument to this function is the data
+frame (`surveys_subset`), and the subsequent arguments are the columns to keep.
+
+```{r}
+select(surveys_subset, plot_id, species_id, weight, year)
+```
+
+_Note: Unlike in base R, here we don't need to use quotations around column names._
+
+To choose rows based on a specific criteria, use `filter()`:
+
+```{r}
+filter(surveys_subset, year == 1995)
+```
+
+_Note2: To check for equality, R requires **two** equal signs (`==`). This is different than object assignment where we use ('<-') or ('=') to assign values to an object. With `filter` we want to pull out all rows where `year` is equal to 1995 not assign the value 1995 to an object named `year`, so we use the `==` symbol._
+
+_Note3: In general, when you want to find all rows that equal a numeric number you don't have to use quotes. However, when you want to find all rows that equal a character you do need to put quotes around the value (for instance `taxa == "Rodent"`)._
+
+
+#### An aside on conditionals
+
+Within `filter` you might want to filter rows using conditionals. Basic conditionals in R are broadly similar to how they're expressed mathematically:
+
+```{r}
+2 < 3
+5 > 9
+5 == 5
+```
+
+However, there are a few idiosyncrasies to be mindful of for other conditionals:
+
+```{r}
+2 != 3 # Not equal
+2 <= 3 # Less than or equal to
+5 >= 9 # Greater than or equal to
+```
+
+Finally, the `%in%` operator is used to check for membership:
+
+```{r}
+2 %in% c(2, 3, 4) # Checks whether 2 is in c(2, 3, 4), returns logical vector
+```
+
+All of the above conditionals are compatible with `filter`, with the
+key difference being that `filter` expects column names as part of
+conditional statements instead of individual numbers. 
+
+
+### Chaining functions together using pipes
+
+But what if you wanted to select and filter at the same time? There are three
+ways to do this: use intermediate steps, nesting functions, or pipes. 
+
+With intermediate steps, you essentially create a temporary data frame and use that
+as input to the next function:
+
+```{r}
+temp_df <- select(surveys_subset, plot_id, species_id, weight, year)
+filter(temp_df, year == 1995)
+```
+
+This can quickly clutter up your workspace with lots of objects.
+
+You can also nest functions (i.e., one function inside of another).
+
+```{r}
+filter(select(surveys_subset, plot_id, species_id, weight, year), year == 1995)
+```
+
+This is handy, but can be difficult to read if too many functions are nested as
+they are evaluated from the inside out.
+
+The last option, forward _pipes_, are a fairly recent addition to R. Pipes let you take
+the output of one function and send it directly to the next, which is useful
+when you need to do many things to the same dataset. Pipes in R look like `%>%`
+and are made available via the `magrittr` package that is a part of the
+`tidyverse`. If you use RStudio, you can type the pipe with <kbd>Ctrl/Cmd</kbd> +
+<kbd>Shift</kbd> + <kbd>M</kbd>. 
+
+**Fun fact: The name `magrittr` comes from the Belgian artist Rene Magritte, who has a painting called "[The Treachery of Images](https://collections.lacma.org/node/239578)" that says in French "This is not a pipe".**
+
+```{r}
+surveys_subset %>% 
+    select(., plot_id, species_id, weight, year) %>% 
+    filter(., year == 1995)
+```
+
+The `.` refers to the object that is passed from the previous line. In this
+example, the data frame `surveys_subset` is passed to the `.` in the `select()`
+statement. Then, the modified data frame (which is the result of the `select()`
+operation) is passed to the `.` in the filter() statement. Put more simply:
+whatever was the result from the line above will be used in the current line.
+
+Since it gets a bit tedious to write out all the dots, `dplyr` allows for
+them to be omitted. In the `dplyr` family of functions, the first argument is always a data frame, and by default the pipe will pass the output from the line above to this argument. The chunk below, with the `.` omitted, gives the same output as the one above:
+
+```{r}
+surveys_subset %>% 
+    select(plot_id, species_id, weight, year) %>% 
+    filter(year == 1995)
+```
+
+If this runs off your screen and you just want to see the first few rows, you
+can use a pipe to view the `head()` of the data. Pipes work with
+non-`dplyr` functions, too, as long as either the `dplyr` or `magrittr` 
+package is loaded.
+
+```{r}
+surveys_subset %>% 
+    select(plot_id, species_id, weight, year) %>% 
+    filter(year == 1995) %>%
+    head()
+```
+
+If we wanted to create a new object with this smaller version of the data, we
+could do so by assigning it a new name:
+
+```{r}
+surveys_1995 <- surveys_subset %>% 
+    select(plot_id, species_id, weight, year) %>% 
+    filter(year == 1995)
+
+surveys_1995
+```
+
+
+#### Challenge
+
+Use the pipe to subset the data frame, keeping only rows where `weight` is less than 10, and only the columns `species_id`, `sex`, and `weight`.
+
+```{r, include=FALSE}
+surveys_subset %>%
+  filter(weight < 10) %>%
+  select(species_id, sex, weight)
+```
+
+
+We could write a single expression to filter for several criteria, either
+matching _all_ criteria (`&`) or _any_ criteria (`|`):
+
+```{r}
+surveys_subset %>% 
+    filter(taxa == 'Rodent' & sex == 'F') %>% 
+    select(sex, taxa)
+```
+
+```{r}
+surveys_subset %>% 
+    filter(species == 'clarki' | species == 'audubonii') %>% 
+    select(species, taxa)
+```
+
+
+### Creating new columns with mutate
+
+Frequently, you'll want to create new columns based on the values in existing
+columns. For instance, you might want to do unit conversions, or find the ratio 
+of values in two columns. For this we'll use `mutate()`.
+
+To create a new column of weight in kg:
+
+```{r}
+surveys_subset %>%
+    mutate(weight_kg = weight / 1000)
+```
+
+You can also create a second new column based on the first new column within the
+same call of `mutate()`:
+
+```{r}
+surveys_subset %>%
+    mutate(weight_kg = weight / 1000,
+           weight_kg2 = weight_kg * 2)
+```
+
+We can see that there is some `NA`s in our new column. If we wanted to remove
+those we could insert a `filter()` in the chain, paired with the `!is.na` notation we learned in the last lecture:
+
+```{r}
+surveys_subset %>%
+    filter(!is.na(weight)) %>%s
+    mutate(weight_kg = weight / 1000)
+```
+
+
+#### Challenge
+
+Create a new data frame from the `surveys_subset` data that meets the following
+criteria: contains only the `species_id` column and a new column called
+`hindfoot_half` containing values that are half the `hindfoot_length` values.
+In this `hindfoot_half` column, there should be no `NA`s and all values should be less
+than 30. (Hint: think about how the commands should be ordered to produce this data frame.)
+
+```{r, include=FALSE}
+## Answer
+surveys_hindfoot_half <- surveys_subset %>%
+    filter(!is.na(hindfoot_length)) %>%
+    mutate(hindfoot_half = hindfoot_length / 2) %>%
+    filter(hindfoot_half < 30) %>%
+    select(species_id, hindfoot_half)
+```
+
+
+## Split-apply-combine techniques in dplyr
+
+Many data analysis tasks can be approached using the _split-apply-combine_
+paradigm: split the data into groups, apply some analysis to each group, and
+then combine the results.
+
+`dplyr` facilitates this workflow through the use of `group_by()`
+and `summarize()`, which collapses each group into a single-row
+summary of that group. The arguments to `group_by()` are the column names that
+contain the _categorical_ variables for which you want to calculate the
+summary statistics. Let's view the mean `weight` by sex.
+
+```{r}
+surveys_subset %>%
+    group_by(sex) %>%
+    summarize(mean_weight = mean(weight))
+```
+
+The mean weights become `NA` since there are individual observations that are
+`NA`. Let's remove those observations.
+
+```{r}
+surveys_subset %>%
+    filter(!is.na(weight)) %>%
+    group_by(sex) %>%
+    summarize(mean_weight = mean(weight))
+```
+
+There is one row here that is neither male nor female. These are observations
+where the animal escaped before the sex could be determined. Let's remove
+those as well.
+
+```{r}
+surveys_subset %>%
+    filter(!is.na(weight) & !is.na(sex)) %>%
+    group_by(sex) %>%
+    summarize(mean_weight = mean(weight))
+```
+
+You can also group by multiple columns:
+
+```{r}
+surveys_subset %>%
+    filter(!is.na(weight) & !is.na(sex)) %>%
+    group_by(genus, sex) %>%
+    summarize(mean_weight = mean(weight))
+```
+
+Since we will use the same filtered and grouped data frame in multiple code
+chunks below, we could assign this subset of the data to a new name and use
+this data frame in the subsequent code chunks instead of typing out the functions
+each time.
+
+```{r}
+filtered_surveys <- surveys_subset %>%
+    filter(!is.na(weight) & !is.na(sex)) %>%
+    group_by(genus, sex)
+```
+
+Once the data are grouped, you can also summarize multiple variables at the same
+time. For instance, we could add a column indicating the minimum weight for each
+species for each sex:
+
+```{r}
+filtered_surveys %>%
+    summarize(mean_weight = mean(weight),
+              min_weight = min(weight))
+```
+
+
+#### Challenge
+
+1. Using the surveys_subset dataframe, use `group_by()` and `summarize()` to find the mean hindfoot length for the species _Ammospermophilus harrisi_.
+
+2. What was the heaviest animal measured in 1979? 
+
+```{r, include=FALSE}
+# Answer 1
+surveys_subset %>%
+    filter(!is.na(hindfoot_length)) %>%
+    group_by(species) %>%
+    summarize(mean_hindfoot_length = mean(hindfoot_length)) # 31
+
+# Answer 2
+surveys_subset %>%
+    filter(!is.na(weight)) %>%
+    filter(year == 1979) %>% 
+    filter(weight == max(weight)) %>% 
+    select(genus, species) # Neotoma albigula (white-throated woodrat)
+```
+
+
+## Using tally to summarize categorical data
+
+When working with data, it is also common to want to know the number of observations found for each factor or combination of factors. For this, `dplyr` provides `tally()`. For example, if we want to group by taxa and find the number of observations for each taxa, we would do:
+
+```{r}
+surveys_subset %>%
+    group_by(taxa) %>%
+    tally()
+```
+
+You can also use `count()` to quickly count the unique values of one or more variables. `count()` combines  `group_by()` and `summarise()`, so the following will give the same result as the code above:
+```{r}
+surveys_subset %>%
+    count(taxa)
+```
+
+We can also use `tally()` or `count()` when grouping on multiple variables:
+
+```{r}
+surveys_subset %>%
+    group_by(taxa, sex) %>%
+    tally()
+
+surveys_subset %>% 
+  count(taxa, sex)
+```
+
+Here, `tally()` is the action applied to the groups created by `group_by()` and
+counts the total number of records for each category.
+
+If there are many groups, `tally()` is not that useful on its own. For example,
+when we want to view the five most abundant species among the observations:
+
+```{r}
+surveys_subset %>%
+    group_by(species) %>%
+    tally()
+```
+
+Since there are 32 rows in this output, we would like to order the table to
+display the most abundant species first. In `dplyr`, we say that we want to
+`arrange()` the data.
+
+```{r}
+surveys_subset %>%
+    group_by(species) %>%
+    tally() %>%
+    arrange(n) # `n` is the name of the column `tally` generated
+```
+
+Still not that useful. Since we are interested in the most abundant species, we
+want to display those with the highest count first, in other words, we want to
+arrange the column `n` in descending order:
+
+```{r}
+surveys_subset %>%
+    group_by(species) %>%
+    tally() %>%
+    arrange(desc(n)) %>%
+    head(5)
+```
+
+If we want to include more attributes (like `taxa` and `genus`) about these 
+species, we can include these in the call to `group_by()`:
+
+```{r}
+surveys_subset %>%
+    group_by(species, taxa, genus) %>%
+    tally() %>%
+    arrange(desc(n)) %>%
+    head(5)
+```
+
+Here, we are using additional columns that are unique. Be careful not to include anything that would split the group into subgroups, such as `sex`, `year` etc.
+
+
+#### Challenge
+
+How many individuals were caught in the rodent enclosure plot type?
+
+```{r, include=FALSE}
+surveys_subset %>%
+    group_by(plot_type) %>%
+    tally()
+```
+
+
+#### Challenge
+
+You saw above how to count the number of individuals of each `sex` using a
+combination of `group_by()` and `tally()`. How could you get the same result
+using `group_by()` and `summarize()`? (Hint: see `?n`.)
+
+```{r, include=FALSE}
+surveys_subset %>%
+  group_by(sex) %>%
+  summarize(n = n())
+```
+
+
+## Reshaping with gather and spread
+
+The survey data presented here is almost in what we call a _long_ format -- every observation of every individual is its own row. This is an ideal format for data with a rich set of information per observation. It makes it difficult, however, to look at
+the relationships between measurements across plots. For example, what is the
+relationship between mean weights of different genera across all plots?
+
+To answer that question, we want each plot to have a single row, with all of
+the measurements in a single plot having their own column. This is called a
+_wide_ data format. For the `surveys_subset` data as we have it right now, this is
+going to be one heck of a wide data frame! However, if we were to summarize data
+within plots and species, we can reduce the dataset and begin to look for some
+relationships we'd want to examine. We need to create a new table where each row is the values for a particular variable associated with each plot. In practical terms, this means the values in genus would become the names of column variables and the cells would contain the values of the mean weight observed on each plot by genus.
+
+So, in summary:
+
+Long format:
+
+- every column is a variable
+  - first column(s) repeat
+- every row is an observation
+
+Wide format:
+
+- each row is a measured thing
+- each column is an independent observation
+  - first column does not repeat
+
+We can use the functions called `pivot_wider()` and `pivot_longer()` (these are newer replacements for `spread()` and `gather()`, which were the older functions). Both functions are explained, but take some time to see what you prefer using!   
+
+Let's start by using `dplyr` to create a data frame with the mean body weight of 
+each genus by plot.
+
+```{r}
+surveys_gw <- surveys_subset %>%
+    filter(!is.na(weight)) %>%
+    group_by(genus, plot_id) %>%
+    summarize(mean_weight = mean(weight))
+
+head(surveys_gw)
+```
+
+
+### Long to Wide with `spread` and `pivot_wider`
+
+Now, to make this long data wide, we use `spread()` from `tidyr` to spread out the
+diffe   rent taxa into columns. `spread()` takes three arguments: the data, the
+_key_ column (or column with identifying information), and the _values_ column (the
+one with the numbers/values). We'll use a pipe so we can ignore the data
+argument.
+
+```{r}
+surveys_gw_wide1 <- surveys_gw %>%
+  spread(key = genus, value = mean_weight) 
+
+head(surveys_gw_wide1)
+```
+
+Notice that some genera have `NA` values. That's because some of those genera
+don't have any record in that plot. Sometimes it is fine to leave those as
+`NA`. Sometimes we want to fill them as zeros, in which case we would add the
+argument `fill=0`. Remember, if arguments are presented in the correct order, you don't have to specify them.
+
+```{r}
+surveys_gw <- surveys_gw %>%
+  spread(genus, mean_weight, fill = 0)
+
+surveys_gw %>% 
+  head()
+```
+
+Another way to spread your data out is to use `pivot_wider()`, which takes 3 arguments as well: the data, the `names_from` column variable that will eventually become the column names, and the `values_from` column variable that will fill in the values.
+
+```{r}
+surveys_gw_wide2 <- surveys_gw %>% 
+  pivot_wider(names_from = genus, values_from = mean_weight)
+
+head(surveys_gw_wide2)
+```
+
+Now we can go back to our original question: what is the relationship between mean
+weights of different genera across all plots? We can easily see the weights for each
+genus in each plot! 
+
+
+### Wide to long with `gather` and `pivot_longer`
+
+What if we had the opposite problem, and wanted to go from a wide to long
+format? For that, we can use `gather()` to sweep up a set of columns into one
+key-value pair. We give it the arguments of a new key and value column name, and
+then we specify which columns we either want or do not want gathered up. So, to
+go backwards from `surveys_gw_wide`, and exclude `plot_id` from the gathering,
+we would do the following:
+
+```{r}
+surveys_gw_long1 <- surveys_gw_wide1 %>%
+  gather(genus, mean_weight, -plot_id) 
+
+head(surveys_gw_long1)
+```
+
+Note that now the `NA` genera are included in the long format. Going from wide
+to long to wide can be a useful way to _balance_ out a dataset so every replicate
+has the same composition.
+
+We could also have used a specification for what columns to include. This can be
+useful if you have a large number of identifying columns, and it's easier to
+specify what to gather than what to leave alone. And if the columns are
+sequential, we don't even need to list them all out - just use the `:` operator! Say we only wanted the columns from `Baiomys` to `Onychomys` to be gathered together. 
+
+```{r}
+surveys_gw_wide1 %>%
+  gather(genus, mean_weight_of_some_genera, Baiomys:Onychomys)
+```
+
+Another method is to use `pivot_longer()`, which takes 4 arguments: the data, the `names_to` column variable that comes from the column names, the `values_to` column with the values, and `cols` which specifies which columns we want to keep or drop. Again, we will pipe from the dataset so we don't have to specify the data argument:
+
+```{r}
+surveys_gw_long2 <- surveys_gw_wide2 %>% 
+  pivot_longer(names_to = "genus", values_to = "mean_weight", cols = -plot_id)
+
+surveys_gw_long2
+```
+
+If the columns are directly adjacent as they are here, we don’t even need to list the all out: we can just use the : operator, as before.
+```{r}
+surveys_gw_wide2 %>% 
+  pivot_longer(names_to = "genus", values_to = "mean_weight", cols = Baiomys:Sigmodon)
+```
+
+
+
+#### Challenge 
+
+Starting with the `surveys_gw_wide2` dataset, how would you create a new dataset that
+gathers the mean weight of all the genera (excluding NAs) except for the genus 
+`Perognathus`?  
+
+```{r, include=FALSE}
+surveys_gw_wide2 %>%
+  gather(genus, mean_weight, -plot_id, -Perognathus) %>%
+  filter(!is.na(mean_weight)) %>%
+  head()
+```
+
+

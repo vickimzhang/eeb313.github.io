@@ -15,6 +15,7 @@ book:
       - lec01-markdown-workflows.qmd
       - lec02-base-r.qmd
       - lec03-dataframes-dplyr.qmd
+      - lec04-data-wrangling.qmd
     - part: "Assignments"
     - part: "Project"
       chapters:
