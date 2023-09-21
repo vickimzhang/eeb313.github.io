@@ -1,5 +1,5 @@
 ---
-title: "Data Wrangling with dplyr"
+title: "Data wrangling with dplyr"
 output: md_document
 urlcolor: blue
 editor_options: 

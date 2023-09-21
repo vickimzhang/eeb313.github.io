@@ -1,5 +1,5 @@
 ---
-title: "Dataframes and Introduction to Data Wrangling"
+title: "Dataframes and introduction to data wrangling"
 output: md_document
 urlcolor: blue
 editor_options: 
