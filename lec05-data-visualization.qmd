@@ -23,7 +23,8 @@ editor_options:
 > - Building plots iteratively (30 mins)
 > - Split-apply-combine... plot! (20 mins)
 > - Faceting (10 mins)
-> - Generalizable plots (20 mins)
+> - Why plot? (15 mins)
+> - Generalizable plots (15 mins)
 > - Exporting (10 mins)
 
  
