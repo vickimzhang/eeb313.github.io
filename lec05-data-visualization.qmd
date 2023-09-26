@@ -21,7 +21,7 @@ editor_options:
 >
 > - Plotting with `ggplot2` (10 mins)
 > - Building plots iteratively (30 mins)
-> - Split-apply-combine... plot! (20. mins)
+> - Split-apply-combine... plot! (20 mins)
 > - Faceting (10 mins)
 > - Generalizable plots (20 mins)
 > - Exporting (10 mins)
