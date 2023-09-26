@@ -1,0 +1,701 @@
+---
+title: "Data visualization with ggplot"
+output: md_document
+urlcolor: blue
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+
+## Lesson preamble
+
+> ### Learning Objectives
+>
+> - Produce scatter plots, line plots, and histograms using ggplot.
+> - Set universal plot settings.
+> - Understand how to combine dplyr and ggplot.
+> - Understand and apply faceting in ggplot.
+> 
+> ### Lesson outline
+>
+> - Plotting with `ggplot2` (10 mins)
+> - Building plots iteratively (30 mins)
+> - Split-apply-combine... plot! (20. mins)
+> - Faceting (10 mins)
+> - Generalizable plots (20 mins)
+> - Exporting (10 mins)
+
+ 
+-----
+
+Now we have seen how to get our data set in our desired shape and form (aka "tidy", where every column is a variable, and every row is an observation), we are of course itching to actually _see_ what the data actually looks like. Luckily, our favourite package-of-packages ```tidyverse``` got us covered -- it comes with a wonderful package for generating graphics called ```ggplot2```!
+
+So we'll go ahead and load that up and let's get graphing! We will use the subset data again but remember to plot everything for your projects! 
+
+```{r, message=FALSE,}
+library(tidyverse)
+# from last class
+# download file
+# download.file("https://ndownloader.figshare.com/files/2292169",
+#               "portal_data.csv")
+
+# read file into R
+# portal_data <- read_csv("portal_data.csv")
+
+# subset every 8th row
+# surveys_subset <- portal_data[seq(1, 34786, 8), ]
+
+# save subsetted dataframe into a new .csv in your file folder
+# write.csv(surveys_subset,
+#           file = "survey_subset.csv")
+
+# if you already have surveys_subset.csv in your file folder, you only have to run this
+surveys_subset <- read_csv('survey_subset.csv')
+
+# always good to inspect your data frame to make sure there are no errors
+head(surveys_subset)
+str(surveys_subset)
+```
+
+
+## Plotting with ggplot2
+
+`ggplot2` is a plotting package that makes it simple to create complex plots
+from data frames. The name `ggplot2` comes from its inspiration, the book [_A Grammar of Graphics_](https://www.springer.com/gp/book/9780387245447), and the main goal is to allow coders to distill complex data structure and express their desired graphical outcome in a concise manner instead of telling the computer every detail about what should happen. For example, you would say "colour my data by species" instead of "go through this data frame and plot any observations of species1 in blue, any observations of species2 in red, etc". Thanks to this functional way of interfaces with data, various plot elements interact seamlessly, publication-quality plots can be created with minimal amounts of adjustment and tweaking.
+
+`ggplot2` graphics are built step by step by adding new elements, or layers. Adding layers in this fashion allows for extensive flexibility and customization of plots. To
+build a ggplot, we need to:
+
+1. Use the `ggplot()` function and bind the plot to a specific data frame using the
+      `data` argument
+
+```{r}
+ggplot(data = surveys_subset)
+```
+
+Remember, if the arguments are provided in the right order then the names of the
+arguments can be omitted.
+
+```{r}
+ggplot(surveys_subset)
+```
+
+2. Define aesthetics (`aes`), by selecting the variables to be plotted and the
+   variables to define the presentation such as plotting size, shape colour, etc.
+
+```{r}
+ggplot(surveys_subset, aes(x = weight, y = hindfoot_length))
+```
+
+3. Add `geoms` -- geometrical objects as a graphical representation of the data
+in the plot (points, lines, bars). `ggplot2` offers many different geoms. We
+will use a few common ones today, including:
+      * `geom_point()` for scatter plots, dot plots, etc.
+      * `geom_line()` for trend lines, time-series, etc.
+      * `geom_histogram()` for histograms
+
+To add a geom to the plot use `+` operator. Because we have two continuous
+variables, let's use `geom_point()` first:
+
+```{r}
+ggplot(surveys_subset, aes(x = weight, y = hindfoot_length)) +
+  geom_point()
+```
+
+_Note: Notice that triangle-! warning sign above the plot? `ggplot` is telling you that it wasn't able to plot all of your data. Typically this means that there are NAs in the data, or that some data points lie outside of the bounds of the axes. Can you figure what it is in this instance?_
+
+The `+` in the `ggplot2` package is particularly useful because it allows you
+to modify existing `ggplot` objects. This means you can easily set up plot
+"templates" and conveniently explore different types of plots. The `+` sign used to add layers must be placed at the end of each line containing a layer. If, instead, the `+` sign is added in the line before the other layer, `ggplot2` will not add the new layer and R will return an error message.
+
+The above plot can be generated with code like this:
+
+```{r, first-ggplot-with-plus}
+# Assign plot to a variable
+surveys_plot <- ggplot(surveys_subset, aes(x = weight, y = hindfoot_length))
+
+# Draw the plot
+surveys_plot + geom_point()
+```
+
+Anything you put in the `ggplot()` function can be seen by any geom layers that you add (i.e., these are universal plot settings). This includes the x and y axis you set up in `aes()`. You can also specify aesthetics for a given geom independently of the aesthetics defined globally in the `ggplot()` function, which is particularly handy when you are building complex plots layering data from different data frames.
+
+
+### Building plots iteratively
+
+Building plots with ggplot is typically an iterative process -- we sequentially add more layers and options until we are satisfied. Typically, the process starts with defining the dataset we'll use, laying the axes, and choosing a geom, as we just did:
+
+```{r}
+ggplot(surveys_subset, aes(x = weight, y = hindfoot_length)) +
+    geom_point()
+```
+
+Then, we start modifying this plot to extract more information from it. For
+instance, we can add the argument for transparency (`alpha`) to reduce overplotting:
+
+```{r}
+ggplot(data = surveys_subset, aes(x = weight, y = hindfoot_length)) +
+    geom_point(alpha = 0.2)
+```
+
+Based on the hindfoot length and the weights, there appears to be 4 clusters
+in this data. Potentially, one of the categorical variables we have in the data
+could explain this pattern. Colouring the data points according to a
+categorical variable is an easy way to find out if there seems to be
+correlation. Let's try colouring this points according to `plot_type`.
+
+```{r}
+ggplot(surveys_subset, aes(x = weight, y = hindfoot_length, colour = plot_type)) +
+    geom_point(alpha = 0.2)
+```
+
+It seems like the type of plot the animal was captured on correlates well with
+some of these clusters, but there are still many that are quite mixed. Let's try
+to do better! This time, the information about the data can provide some clues
+to which variable to look at. The plot above suggests that there might be 4
+clusters, so a variable with 4 values is a good guess for what could explain
+the observed pattern in the scatter plot.
+
+Both `dplyr` and `ggplot2` are developed within "the tidyverse" and can use the pipes, but you may not be able to pipe in base R functions or functions from different packages. 
+
+
+```{r}
+surveys_subset %>%
+    summarize_all(n_distinct) 
+# `n_distinct` is a function that counts unique values in a set of vectors
+```
+
+Remember that there are still `NA` values here, that's why there appears to be
+three sexes although there is only male and female. There are four taxa so that
+could be a good candidate, let's see which those are.
+
+```{r}
+surveys_subset %>%
+    distinct(taxa)
+```
+
+It seems reasonable that these taxa contain animals different enough to have
+diverse weights and length of their feet. Lets use this categorical variable to
+colour the scatter plot.
+
+```{r}
+ggplot(surveys_subset, aes(x = weight, y = hindfoot_length, colour = taxa)) +
+    geom_point(alpha = 0.2)
+```
+
+Only rodents? That was unexpected... Let's check what's going on.
+
+```{r}
+surveys_subset %>%
+    group_by(taxa) %>%
+    tally()
+```
+
+Definitely mostly rodents in our data set... 
+
+```{r}
+surveys_subset %>%
+    filter(!is.na(hindfoot_length)) %>% # control by removing `!`
+    group_by(taxa) %>%
+    tally()
+```
+
+...and it turns out that only rodents have had their hindfeet measured! Rats.
+
+Let's remove all animals that did not have their hindfeet measured, including
+those rodents that did not. We'll also remove animals whose weights weren't measured.
+
+```{r}
+surveys_hf_wt <- surveys_subset %>%
+    filter(!is.na(hindfoot_length) & !is.na(weight))
+
+surveys_hf_wt %>%
+    summarize_all(n_distinct)
+```
+
+Maybe the genus of the animals can explain what we are seeing.
+
+```{r}
+ggplot(surveys_hf_wt, aes(x = weight, y = hindfoot_length, colour = genus)) +
+    geom_point(alpha = 0.2)
+```
+
+Now this looks good! There is a clear separation between different genus, but
+also significant spread within genus. For example, in the weight of the green
+_Neotoma_ observations. There are also two clearly separate clusters that are both
+coloured in olive green (_Dipodomys_). Maybe separating the observations into
+different species would be better?
+
+```{r}
+ggplot(surveys_hf_wt, aes(x = weight, y = hindfoot_length, colour = species)) +
+    geom_point(alpha = 0.2)
+```
+
+Great! Together with the genus plot, this definitely seem to explain most of the
+variation we see in the hindfoot length and weight measurements. It is still a
+bit messy as it appears like we have around four clusters of data points, maybe three colours of points that really stood out, but there are 21 species in the legend. Let's investigate!
+
+```{r}
+surveys_subset %>%
+    filter(!is.na(hindfoot_length) & !is.na(weight)) %>%
+    group_by(species) %>%
+    tally() %>%
+    arrange(desc(n))
+```
+
+When we look at the number of observations for each species, it seems like most species are fairly well represented. However some have rarely been sampled, and there is a big drop from 104 to 19 observations. Let's include only species with more than 100 observations and see what happens.
+
+```{r}
+surveys_abun_species <- surveys_subset %>%
+    filter(!is.na(hindfoot_length) & !is.na(weight)) %>%
+    group_by(species) %>%
+    mutate(n = n()) %>% # add count value to each row
+    filter(n > 100) %>%
+    select(-n)
+
+surveys_abun_species
+```
+
+Still has 3791 observations, so only 558 observations were removed.
+
+```{r}
+ggplot(surveys_abun_species, aes(x = weight, y = hindfoot_length, colour = species)) +
+    geom_point(alpha = 0.2)
+```
+
+The plot is now cleaner -- there are less species and so less colours, and the clusters are now more distinct.
+
+
+#### Challenge
+
+Create a scatter plot of `hindfoot_length` against `species` with the `wesight` showing in different colours. _Hint: If you are confused about which variable to put on the x-axis, we generally describe a plot by saying plot the y variable against the x variable._
+
+```{r, include=FALSE}
+ggplot(surveys_abun_species, aes(x = species, y = hindfoot_length, colour = weight)) +
+    geom_point(size = 0.1, position = 'jitter')
+# `jitter` adds a small amount of noise to a numseric vector
+# used to visualize values with a lot of overlaps
+# here, we are jittering along the x-axis because the x-axis is categorical
+```
+
+
+#### Take home challenge
+
+How would you improve the readability of this plot?
+
+Answer: using `jitter`
+
+
+## Split-apply-combine... plot!
+
+In this section, we will learn how to work with `dplyr` and `ggplot`
+together. Aided by the pipes (`%>%`), we can create a powerful data exploration
+workflow using these two packages.
+
+Let's calculate number of counts per year for each species. First, we need
+to group the data and count records within each group:
+
+```{r}
+surveys_abun_species %>%
+    group_by(year, species) %>%
+    tally() %>%
+    arrange(desc(n)) # Adding arrange just to compare with histogram
+```
+
+We could assign this table to a variable, and then pass that variable to
+`ggplot()`.
+
+```{r, message=FALSE, warning=FALSE}
+yearly_counts <- surveys_abun_species %>%
+    group_by(year, species) %>%
+    tally() %>%
+    arrange(desc(n))
+
+ggplot(yearly_counts, aes(x = n)) +
+    geom_histogram()
+```
+Remember that a histogram plots the number of observations based on a variable, so you only need to specify the x-axis in the `ggplot()` call.
+
+To change up how the n variable is binned on the x-axis, you can adjust the number of bins in your plot! 
+
+```{r}
+ggplot(yearly_counts, aes(x = n)) +
+    geom_histogram(bins=10)
+```
+
+Creating an intermediate variable would be preferable for time consuming
+calculations, because you would not want to do that operation every time you
+change the plot aesthetics.
+
+If it is not a time consuming calculation or you would like the flexibility of
+changing the data summary and the plotting options in the same code chunk, you
+can pipe the output of your split-apply-combine operation to the plotting
+command:
+
+```{r, message=FALSE, warning=FALSE}
+surveys_abun_species %>%
+    group_by(year, species) %>%
+    tally() %>%
+    ggplot(aes(x = n)) +
+        geom_histogram()
+```
+
+We can perform a quick check that the plot corresponds to the table by colouring
+the histogram by species:
+
+```{r, message=FALSE, warning=FALSE}
+surveys_abun_species %>%
+    group_by(year, species) %>%
+    tally() %>%
+    ggplot(aes(x = n, fill = species)) + 
+        geom_histogram()
+```
+
+_Note2: Here we are using `fill` to assign colours to species rather than `colour`. In general `colour` refers to the outline of points/bars or whatever it is you are plotting and `fill` refers to the colour that goes inside the point or bar. If you are confused, try switching out `fill` for `colour` to see what looks best!_
+
+Let's explore how the number of each genus varies over time. Longitudinal data
+can be visualized as a line plot with years on the x axis and counts on the y
+axis:
+
+```{r}
+surveys_abun_species %>%
+    group_by(year, species) %>%
+    tally() %>%
+    ggplot(aes(x = year, y = n)) +
+        geom_line()
+```
+
+Unfortunately, this does not work because we plotted data for all the species
+together as one line. We need to tell `ggplot` to draw a line for each species by modifying the aesthetic function to include `group = species`:
+
+```{r}
+surveys_abun_species %>%
+    group_by(year, species) %>%
+    tally() %>%
+    ggplot(aes(x = year, y = n, group = species)) +
+        geom_line()
+```
+
+We will be able to distinguish species in the plot if we add colours (using
+`colour` also automatically groups the data):
+
+```{r}
+surveys_abun_species %>%
+    group_by(year, species) %>%
+    tally() %>%
+    ggplot(aes(x = year, y = n, colour = species)) + # `colour` groups automatically
+        geom_line() 
+```
+
+
+## Faceting
+
+`ggplot` has a special technique called _faceting_ that allows the user to split
+one plot into multiple subplots based on a variable included in the dataset. This allows us to examine the trends associated with each grouping variable more closely. We will use it to make the plot above more readable:
+
+```{r}
+surveys_abun_species %>%
+    group_by(year, species) %>%
+    tally() %>%
+    ggplot(aes(x = year, y = n)) + 
+        geom_line() +
+        facet_wrap(~species)
+```
+
+Now we would like to split the line in each plot by the sex of each individual
+measured. To do that we need to make counts in the data frame grouped by `year`,
+`species`, and `sex`:
+
+```{r}
+surveys_abun_species %>%
+    group_by(year, species, sex) %>%
+    tally()
+```
+
+We can make the faceted plot by splitting further by sex using `colour` (within a
+single plot):
+
+```{r}
+surveys_abun_species %>%
+    group_by(year, species, sex) %>%
+    tally() %>%
+    ggplot(aes(x = year, y = n, colour = sex)) +
+        geom_line() +
+        facet_wrap(~species)
+```
+
+There are several observations where sex was not recorded. Let's filter out
+those values.
+
+```{r}
+surveys_abun_species %>%
+    filter(!is.na(sex)) %>%
+    group_by(year, species, sex) %>%
+    tally() %>%
+    ggplot(aes(x = year, y = n, color = sex)) +
+        geom_line() +
+        facet_wrap(~species)
+```
+
+It is possible to specify exactly which colors[^colors] to use and to change the thickness of the lines to make the them easier to distinguish. 
+
+[^colors]: There are *so* many colors to chose from in R. Check out the [R Color](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) doc to find your gem.
+
+```{r}
+surveys_abun_species %>%
+    filter(!is.na(sex)) %>%
+    group_by(year, species, sex) %>%
+    tally() %>%
+    ggplot(aes(x = year, y = n, colour = sex)) +
+        geom_line(size = 1) +
+        scale_colour_manual(values = c("black", "orange")) +
+        facet_wrap(~species) 
+```
+
+Not sure what colours would look good on your plot? The R Community got you covered! Check out these awesome [color palettes](https://www.datanovia.com/en/blog/top-r-color-palettes-to-know-for-great-data-visualization/) where nice-looking color combos come predefined. We especially recommend the [`viridis` color palettes](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html). These palettes are not only pretty, they are specifically designed to be easier to read by those with colorblindness. 
+
+Tia hinted at a [Studio Ghibli](https://github.com/ewenme/ghibli) colour palette during the first class, so let's use it! You'll need to download the `ghibli` package and call `library()`.
+
+```{r}
+# install.packages("ghibli")
+library(ghibli)
+
+# check out their palettes
+# display palettes w/ names
+par(mfrow=c(9,3))
+for(i in names(ghibli_palettes)) print(ghibli_palette(i))
+
+surveys_abun_species %>%
+  filter(!is.na(sex)) %>%
+  group_by(year, species, sex) %>%
+  tally() %>%
+  ggplot(aes(x = year, y = n, color = sex)) +
+        geom_line(size = 1) +
+  # make sure to read the package documentation so that you know how it works!
+  scale_colour_ghibli_d("SpiritedMedium", direction = -1) +
+  facet_wrap(~species)
+```
+
+
+Lastly, let's change the x labels so that they don't overlap, and remove the gray background so that the lines can stand out more. To customize the non-data components of the plot, we will pass some _theme_ statements[^theme] to `ggplot`.
+
+```{r}
+surveys_abun_species %>%
+  filter(!is.na(sex)) %>%
+  group_by(year, species, sex) %>%
+  tally() %>%
+  ggplot(aes(x = year, y = n, color = sex)) +
+  geom_line(size = 1) +
+  scale_colour_ghibli_d("SpiritedMedium", direction = -1) +       
+  facet_wrap(~species) +
+  theme_bw() +
+  theme(text = element_text(size=12),
+        axis.text.x = element_text(angle=30, hjust=1))
+```
+
+[^theme]: The amount of control over various plot elements in `ggplot` is truly astonishing. Check out the complete list of themes [here](https://ggplot2.tidyverse.org/reference/theme.html). Have fun!
+
+I like to use the classic `theme_classic` because it also gets rid of grid lines
+```{r}
+surveys_abun_species %>%
+  filter(!is.na(sex)) %>%
+  group_by(year, species, sex) %>%
+  tally() %>%
+  ggplot(aes(x = year, y = n, colour = sex)) +
+  geom_line(size = 1) +
+  scale_colour_ghibli_d("SpiritedMedium", direction = -1) +       
+  facet_wrap(~species) +
+  theme_classic() +
+  theme(text = element_text(size=12),
+        axis.text.x = element_text(angle=30, hjust=1))
+```
+
+
+
+#### Challenge
+
+1. Remember the histogram coloured according to each species? Starting from that
+code, how could we separate each species into its own subplot?
+
+Use the filtered data frame (`surveys_abun_species`) for these two questions.
+
+2. Create a plot to determine to show changes in average weight over years. Which year was the average weight of the animals the highest?
+
+3. Create a plot to show differences in yearly trends across species. Is the yearly trend the same for all species?
+
+
+```{r, include=FALSE}
+# Answers
+# 1
+ggplot(yearly_counts, aes(x = n, fill = species)) +
+    geom_histogram() +
+    facet_wrap(~species)
+```
+
+```{r, include=FALSE}
+# 2.a
+surveys_abun_species %>%
+    filter(!is.na(weight)) %>%
+    group_by(year) %>%
+    summarize(mean_weight = mean(weight)) %>%
+    ggplot(aes(x = year, y = mean_weight)) +
+        geom_line()
+```
+
+```{r, include=FALSE}
+# 2.b
+surveys_abun_species %>%
+    filter(!is.na(weight)) %>%
+    group_by(year, species) %>%
+    summarize(mean_weight = mean(weight)) %>%
+    ggplot(aes(x = year, y = mean_weight, colour = species)) +
+        geom_line() +
+        facet_wrap(~ species)
+```
+
+## Why visualize?
+
+The Datasaurus Dozen dataset is a handful of datasets that complement the `dplyr` package. Aside from functions, packages can also import objects.
+
+```{r}
+library(tidyverse)
+library(dplyr)
+
+# install.packages("datasauRus")
+library(datasauRus)
+```
+
+```{r}
+summary(datasaurus_dozen)
+
+head(datasaurus_dozen)
+
+table(datasaurus_dozen$dataset)
+```
+
+There are 13 different datasets in this one object. We will use tidyverse functions to take a look at the object, grouped by the datasets. 
+
+```{r}
+datasaurus_dozen %>% 
+    group_by(dataset) %>% 
+    summarize(
+      mean_x    = mean(x),
+      mean_y    = mean(y),
+      std_dev_x = sd(x),
+      std_dev_y = sd(y),
+      corr_x_y  = cor(x, y)
+    )
+```
+
+All of the datasets have roughly the same mean and standard deviation along both the x and y axis. 
+
+Let's take a look at how the data looks in a graphical sense. We will use `filter` to extract the rows belonging to one dataset and then pipe that directly into a ggplot.
+
+```{r}
+datasaurus_dozen %>% 
+  filter(dataset == "circle") %>% 
+  ggplot(aes(x=x, y=y)) +
+  geom_point()
+```
+
+Remember that tidyverse's data wranging packages use the pipe ` %>% ` to move the previous output to the next line, where as ggplot uses the plus sign `+`
+
+Try editing the code above to display different datasets. Notice how different distributions of data can all give similar statistical summaries - so it's always a good choice to visualize your data rather than relying on just numbers! 
+
+If we wanted to take a look at all of the datasets at once, we can also use the `facet_wrap()` function 
+
+```{r}
+datasaurus_dozen %>% 
+  #filter(dataset == "circle") %>% remove filter 
+  ggplot(aes(x=x, y=y, color = dataset)) + # Add color 
+  geom_point() + 
+  facet_wrap(~dataset, ncol = 3) + 
+  theme_void() + 
+  theme(legend.position = "none")
+```
+
+
+## Generalizable plots
+
+Remember when we edited our code to test out multiple datasets in the datasaurus dozen object? Perhaps you copy and pasted the code several time and changed the column name? This is not optimal because if you need to change the code in one instance (for example changing the x-axis label), you'll need to revisit ever instance that you copy and pasted to code to. This approach leads you vulnerable to errors when copy and pasting. 
+
+One way to make your code robust is to bring all the factors that need editing to the start of the data. This may seem cumbersome for such a simple example where we are only changing the dataset name, but we'll return to this concept later with more complicated examples. 
+
+Let's grab the code we used to make one plot earlier and modify it to be more generalizable
+
+```{r}
+unique(datasaurus_dozen$dataset)
+```
+
+```{r}
+dataset_name <- "dino" # new addition
+
+datasaurus_dozen %>% 
+  filter(dataset == dataset_name) %>% # change object name 
+  ggplot(aes(x=x, y=y)) +
+  geom_point()
+```
+
+Once we have converted our code to a generalized format, we can convert it into a more versatile custom function! 
+
+Remember that curly brackets are used for inputting multiple lines of code. It is generally attached to the function that proceeds it. 
+
+```{r}
+dino_plot <- function(data_name) {
+  
+  datasaurus_dozen %>% 
+    filter(dataset == data_name) %>% # change object name 
+    ggplot(aes(x=x, y=y)) +
+    geom_point()
+}
+
+dino_plot("circle")
+dino_plot("dino")
+dino_plot("star")
+```
+
+
+## Export plots
+
+Let's save our star-shaped plot.
+
+```{r}
+dino_star <- datasaurus_dozen %>% 
+  filter(dataset == "star") %>% 
+  ggplot(aes(x=x, y=y)) +
+  geom_point()
+```
+
+There are multiple ways we can save a plot. Using a point-and-click method, you can display your plot in the Viewer and save straight from that panel. Run your ggplot object in the Console. Once it pops up in the Viewer, click "Export", and save your plot! You can also readjust the width and height of your plot, so you can have a look at the size of it before saving it to any directory.
+
+Another way to save a plot is by using R Graphics, which will save your plot to your working directory. Remember that you should be using relative paths!
+
+```{r}
+getwd()
+
+library(here)
+here()
+```
+
+Use the function `png` to save your file. Make sure to run all three lines together, including `dev.off()`, which ensures that your graphics device is closed - otherwise, R will try to keep saving your figures!
+
+```{r}
+png(file = "dino_star1.png", bg = "transparent")
+dino_star
+dev.off()
+```
+
+
+Finally, you can save your figures using `ggsave()`, from `ggplot2`.
+
+```{r}
+ggsave("dino_star2.png", dino_star, width = 6, height = 8)
+```
+
+
+
+*Parts of this lesson material were taken and modified from [Data
+Carpentry](https://datacarpentry.org) under their CC-BY copyright license. See
+their [lesson page](https://datacarpentry.org/R-ecology-lesson/03-dplyr.html)
+for the original source.*
