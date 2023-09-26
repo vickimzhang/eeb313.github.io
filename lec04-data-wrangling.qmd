@@ -1,14 +1,11 @@
 ---
 title: "Data wrangling with dplyr"
-output: md_document
 urlcolor: blue
-editor_options: 
-  markdown: 
-    wrap: 72
+output: md_document
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(eval = FALSE)
+knitr::opts_chunk$set(eval = T)
 ```
 
 ## Lesson preamble
@@ -42,12 +39,10 @@ We'll start by doing our checks. You can set up your yaml block and check your w
 
 library(tidyverse)
 surveys <- read.csv("portal_data.csv", na.strings = c("",".","NA"))
-surveys
+surveys %>% head()
 
 surveys_subset <- surveys[seq(1, 34786, 8), ]
 ```
-
-
 
 ## Data wrangling with `dplyr`
 
@@ -65,7 +60,6 @@ in class, but there are great resources online to learn more (e.g. [this lecture
 from Data
 Carpentry](https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html)).
 
-
 ### Selecting columns and filtering rows
 
 We're going to learn some of the most common `dplyr` functions: `select()`,
@@ -74,7 +68,7 @@ data frame, use `select()`. The first argument to this function is the data
 frame (`surveys_subset`), and the subsequent arguments are the columns to keep.
 
 ```{r}
-select(surveys_subset, plot_id, species_id, weight, year)
+select(surveys_subset, plot_id, species_id, weight, year) %>% head()
 ```
 
 _Note: Unlike in base R, here we don't need to use quotations around column names._
@@ -82,7 +76,7 @@ _Note: Unlike in base R, here we don't need to use quotations around column name
 To choose rows based on a specific criteria, use `filter()`:
 
 ```{r}
-filter(surveys_subset, year == 1995)
+filter(surveys_subset, year == 1995) %>% head()
 ```
 
 _Note2: To check for equality, R requires **two** equal signs (`==`). This is different than object assignment where we use ('<-') or ('=') to assign values to an object. With `filter` we want to pull out all rows where `year` is equal to 1995 not assign the value 1995 to an object named `year`, so we use the `==` symbol._
@@ -129,7 +123,7 @@ as input to the next function:
 
 ```{r}
 temp_df <- select(surveys_subset, plot_id, species_id, weight, year)
-filter(temp_df, year == 1995)
+filter(temp_df, year == 1995) %>% head()
 ```
 
 This can quickly clutter up your workspace with lots of objects.
@@ -137,7 +131,7 @@ This can quickly clutter up your workspace with lots of objects.
 You can also nest functions (i.e., one function inside of another).
 
 ```{r}
-filter(select(surveys_subset, plot_id, species_id, weight, year), year == 1995)
+filter(select(surveys_subset, plot_id, species_id, weight, year), year == 1995) %>% head()
 ```
 
 This is handy, but can be difficult to read if too many functions are nested as
@@ -155,7 +149,7 @@ and are made available via the `magrittr` package that is a part of the
 ```{r}
 surveys_subset %>% 
     select(., plot_id, species_id, weight, year) %>% 
-    filter(., year == 1995)
+    filter(., year == 1995) %>% head()
 ```
 
 The `.` refers to the object that is passed from the previous line. In this
@@ -170,7 +164,7 @@ them to be omitted. In the `dplyr` family of functions, the first argument is al
 ```{r}
 surveys_subset %>% 
     select(plot_id, species_id, weight, year) %>% 
-    filter(year == 1995)
+    filter(year == 1995) %>% head()
 ```
 
 If this runs off your screen and you just want to see the first few rows, you
@@ -193,7 +187,7 @@ surveys_1995 <- surveys_subset %>%
     select(plot_id, species_id, weight, year) %>% 
     filter(year == 1995)
 
-surveys_1995
+surveys_1995 %>% head()
 ```
 
 
@@ -201,10 +195,10 @@ surveys_1995
 
 Use the pipe to subset the data frame, keeping only rows where `weight` is less than 10, and only the columns `species_id`, `sex`, and `weight`.
 
-```{r, include=FALSE}
+```{r}
 surveys_subset %>%
   filter(weight < 10) %>%
-  select(species_id, sex, weight)
+  select(species_id, sex, weight) %>% head()
 ```
 
 
@@ -214,13 +208,13 @@ matching _all_ criteria (`&`) or _any_ criteria (`|`):
 ```{r}
 surveys_subset %>% 
     filter(taxa == 'Rodent' & sex == 'F') %>% 
-    select(sex, taxa)
+    select(sex, taxa) %>% head()
 ```
 
 ```{r}
 surveys_subset %>% 
     filter(species == 'clarki' | species == 'audubonii') %>% 
-    select(species, taxa)
+    select(species, taxa) %>% head()
 ```
 
 
@@ -234,7 +228,7 @@ To create a new column of weight in kg:
 
 ```{r}
 surveys_subset %>%
-    mutate(weight_kg = weight / 1000)
+    mutate(weight_kg = weight / 1000) %>% head()
 ```
 
 You can also create a second new column based on the first new column within the
@@ -243,7 +237,7 @@ same call of `mutate()`:
 ```{r}
 surveys_subset %>%
     mutate(weight_kg = weight / 1000,
-           weight_kg2 = weight_kg * 2)
+           weight_kg2 = weight_kg * 2) %>% head()
 ```
 
 We can see that there is some `NA`s in our new column. If we wanted to remove
@@ -251,8 +245,8 @@ those we could insert a `filter()` in the chain, paired with the `!is.na` notati
 
 ```{r}
 surveys_subset %>%
-    filter(!is.na(weight)) %>%s
-    mutate(weight_kg = weight / 1000)
+    filter(!is.na(weight)) %>%
+    mutate(weight_kg = weight / 1000) %>% head()
 ```
 
 
@@ -264,13 +258,15 @@ criteria: contains only the `species_id` column and a new column called
 In this `hindfoot_half` column, there should be no `NA`s and all values should be less
 than 30. (Hint: think about how the commands should be ordered to produce this data frame.)
 
-```{r, include=FALSE}
+```{r}
 ## Answer
 surveys_hindfoot_half <- surveys_subset %>%
     filter(!is.na(hindfoot_length)) %>%
     mutate(hindfoot_half = hindfoot_length / 2) %>%
     filter(hindfoot_half < 30) %>%
     select(species_id, hindfoot_half)
+
+surveys_hindfoot_half %>% head()
 ```
 
 
@@ -350,7 +346,7 @@ filtered_surveys %>%
 
 2. What was the heaviest animal measured in 1979? 
 
-```{r, include=FALSE}
+```{r}
 # Answer 1
 surveys_subset %>%
     filter(!is.na(hindfoot_length)) %>%
@@ -446,7 +442,7 @@ Here, we are using additional columns that are unique. Be careful not to include
 
 How many individuals were caught in the rodent enclosure plot type?
 
-```{r, include=FALSE}
+```{r}
 surveys_subset %>%
     group_by(plot_type) %>%
     tally()
@@ -459,7 +455,7 @@ You saw above how to count the number of individuals of each `sex` using a
 combination of `group_by()` and `tally()`. How could you get the same result
 using `group_by()` and `summarize()`? (Hint: see `?n`.)
 
-```{r, include=FALSE}
+```{r}
 surveys_subset %>%
   group_by(sex) %>%
   summarize(n = n())
@@ -504,16 +500,12 @@ surveys_gw <- surveys_subset %>%
     group_by(genus, plot_id) %>%
     summarize(mean_weight = mean(weight))
 
-head(surveys_gw)
+surveys_gw %>% head()
 ```
-
-
 ### Long to Wide with `spread` and `pivot_wider`
 
-Now, to make this long data wide, we use `spread()` from `tidyr` to spread out the
-diffe   rent taxa into columns. `spread()` takes three arguments: the data, the
-_key_ column (or column with identifying information), and the _values_ column (the
-one with the numbers/values). We'll use a pipe so we can ignore the data
+Now, to make this long data wide, we use `spread()` from `tidyr` to spread out the different taxa into columns. `spread()` takes three arguments: the data, the
+_key_ column (or column with identifying information), and the _values_ column (the one with the numbers/values). We'll use a pipe so we can ignore the data
 argument.
 
 ```{r}
@@ -529,11 +521,10 @@ don't have any record in that plot. Sometimes it is fine to leave those as
 argument `fill=0`. Remember, if arguments are presented in the correct order, you don't have to specify them.
 
 ```{r}
-surveys_gw <- surveys_gw %>%
+surveys_gw_wide1_fill0 <- surveys_gw %>%
   spread(genus, mean_weight, fill = 0)
 
-surveys_gw %>% 
-  head()
+head(surveys_gw)
 ```
 
 Another way to spread your data out is to use `pivot_wider()`, which takes 3 arguments as well: the data, the `names_from` column variable that will eventually become the column names, and the `values_from` column variable that will fill in the values.
@@ -545,9 +536,7 @@ surveys_gw_wide2 <- surveys_gw %>%
 head(surveys_gw_wide2)
 ```
 
-Now we can go back to our original question: what is the relationship between mean
-weights of different genera across all plots? We can easily see the weights for each
-genus in each plot! 
+Now we can go back to our original question: what is the relationship between mean weights of different genera across all plots? We can easily see the weights for each genus in each plot! 
 
 
 ### Wide to long with `gather` and `pivot_longer`
@@ -567,8 +556,7 @@ head(surveys_gw_long1)
 ```
 
 Note that now the `NA` genera are included in the long format. Going from wide
-to long to wide can be a useful way to _balance_ out a dataset so every replicate
-has the same composition.
+to long to wide can be a useful way to _balance_ out a dataset so every replicate has the same composition.
 
 We could also have used a specification for what columns to include. This can be
 useful if you have a large number of identifying columns, and it's easier to
@@ -603,11 +591,9 @@ Starting with the `surveys_gw_wide2` dataset, how would you create a new dataset
 gathers the mean weight of all the genera (excluding NAs) except for the genus 
 `Perognathus`?  
 
-```{r, include=FALSE}
+```{r}
 surveys_gw_wide2 %>%
   gather(genus, mean_weight, -plot_id, -Perognathus) %>%
   filter(!is.na(mean_weight)) %>%
   head()
 ```
-
-
