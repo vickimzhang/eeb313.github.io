@@ -16,6 +16,7 @@ book:
       - lec02-base-r.qmd
       - lec03-dataframes-dplyr.qmd
       - lec04-data-wrangling.qmd
+      - lec05-data-visualization.qmd
     - part: "Assignments"
     - part: "Project"
       chapters:

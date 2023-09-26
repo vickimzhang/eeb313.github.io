@@ -34,7 +34,7 @@ Now we have seen how to get our data set in our desired shape and form (aka "tid
 
 So we'll go ahead and load that up and let's get graphing! We will use the subset data again but remember to plot everything for your projects! 
 
-```{r, message=FALSE,}
+```{r, message=FALSE}
 library(tidyverse)
 # from last class
 # download file
@@ -71,14 +71,14 @@ build a ggplot, we need to:
 1. Use the `ggplot()` function and bind the plot to a specific data frame using the
       `data` argument
 
-```{r}
+```{r, include=FALSE}
 ggplot(data = surveys_subset)
 ```
 
 Remember, if the arguments are provided in the right order then the names of the
 arguments can be omitted.
 
-```{r}
+```{r, include=FALSE}
 ggplot(surveys_subset)
 ```
 
@@ -693,8 +693,6 @@ Finally, you can save your figures using `ggsave()`, from `ggplot2`.
 ```{r}
 ggsave("dino_star2.png", dino_star, width = 6, height = 8)
 ```
-
-
 
 *Parts of this lesson material were taken and modified from [Data
 Carpentry](https://datacarpentry.org) under their CC-BY copyright license. See
