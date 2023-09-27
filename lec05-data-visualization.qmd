@@ -7,7 +7,6 @@ editor_options:
     wrap: 72
 ---
 
-
 ## Lesson preamble
 
 > ### Learning Objectives
@@ -26,33 +25,34 @@ editor_options:
 > - Why plot? (15 mins)
 > - Generalizable plots (15 mins)
 > - Exporting (10 mins)
-
  
 -----
 
-Now we have seen how to get our data set in our desired shape and form (aka "tidy", where every column is a variable, and every row is an observation), we are of course itching to actually _see_ what the data actually looks like. Luckily, our favourite package-of-packages ```tidyverse``` got us covered -- it comes with a wonderful package for generating graphics called ```ggplot2```!
+Now we have seen how to get our dataset in our desired shape and form (aka "tidy", where every column is a variable, and every row is an observation), we are of course itching to actually _see_ what the data actually looks like. Luckily, our favourite package-of-packages ```tidyverse``` got us covered -- it comes with a wonderful package for generating graphics called ```ggplot2```!
 
-So we'll go ahead and load that up and let's get graphing! We will use the subset data again but remember to plot everything for your projects! 
+So we'll go ahead and load that up and let's get graphing! We will use the subset data again but remember to plot everything for your projects.
 
 ```{r, message=FALSE}
 library(tidyverse)
+library(here)
+
 # from last class
 # download file
-# download.file("https://ndownloader.figshare.com/files/2292169",
-#               "portal_data.csv")
+download.file("https://ndownloader.figshare.com/files/2292169",
+              here("1_lectures/csv/portal_data.csv"))
 
 # read file into R
-# portal_data <- read_csv("portal_data.csv")
+portal_data <- read_csv(here('1_lectures/csv/portal_data.csv'))
 
 # subset every 8th row
-# surveys_subset <- portal_data[seq(1, 34786, 8), ]
+surveys_subset <- portal_data[seq(1, 34786, 8), ]
 
 # save subsetted dataframe into a new .csv in your file folder
-# write.csv(surveys_subset,
-#           file = "survey_subset.csv")
+write.csv(surveys_subset,
+          file = here("1_lectures/csv/survey_subset.csv"))
 
 # if you already have surveys_subset.csv in your file folder, you only have to run this
-surveys_subset <- read_csv('survey_subset.csv')
+surveys_subset <- read_csv(here('1_lectures/csv/survey_subset.csv'))
 
 # always good to inspect your data frame to make sure there are no errors
 head(surveys_subset)
@@ -270,12 +270,12 @@ The plot is now cleaner -- there are less species and so less colours, and the c
 
 #### Challenge
 
-Create a scatter plot of `hindfoot_length` against `species` with the `wesight` showing in different colours. _Hint: If you are confused about which variable to put on the x-axis, we generally describe a plot by saying plot the y variable against the x variable._
+Create a scatter plot of `hindfoot_length` against `species` with the `weight` showing in different colours. _Hint: If you are confused about which variable to put on the x-axis, we generally describe a plot by saying plot the y variable against the x variable._
 
 ```{r, include=FALSE}
 ggplot(surveys_abun_species, aes(x = species, y = hindfoot_length, colour = weight)) +
     geom_point(size = 0.1, position = 'jitter')
-# `jitter` adds a small amount of noise to a numseric vector
+# `jitter` adds a small amount of noise to a numeric vector
 # used to visualize values with a lot of overlaps
 # here, we are jittering along the x-axis because the x-axis is categorical
 ```
@@ -679,10 +679,10 @@ library(here)
 here()
 ```
 
-Use the function `png` to save your file. Make sure to run all three lines together, including `dev.off()`, which ensures that your graphics device is closed - otherwise, R will try to keep saving your figures!
+Use the function `png()` to save your file. Make sure to run all three lines together, including `dev.off()`, which ensures that your graphics device is closed - otherwise, R will try to keep saving your figures!
 
 ```{r}
-png(file = "dino_star1.png", bg = "transparent")
+png(file = "figures/dino_star1.png", bg = "transparent")
 dino_star
 dev.off()
 ```
@@ -691,7 +691,7 @@ dev.off()
 Finally, you can save your figures using `ggsave()`, from `ggplot2`.
 
 ```{r}
-ggsave("dino_star2.png", dino_star, width = 6, height = 8)
+ggsave("figures/dino_star2.png", dino_star, width = 6, height = 8)
 ```
 
 *Parts of this lesson material were taken and modified from [Data
