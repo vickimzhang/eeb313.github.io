@@ -39,20 +39,19 @@ library(here)
 # from last class
 # download file
 download.file("https://ndownloader.figshare.com/files/2292169",
-              here("1_lectures/csv/portal_data.csv"))
+              here("portal_data.csv"))
 
 # read file into R
-portal_data <- read_csv(here('1_lectures/csv/portal_data.csv'))
+portal_data <- read_csv(here('portal_data.csv'))
 
 # subset every 8th row
 surveys_subset <- portal_data[seq(1, 34786, 8), ]
 
 # save subsetted dataframe into a new .csv in your file folder
-write.csv(surveys_subset,
-          file = here("1_lectures/csv/survey_subset.csv"))
+write.csv(surveys_subset, file = here("survey_subset.csv"))
 
 # if you already have surveys_subset.csv in your file folder, you only have to run this
-surveys_subset <- read_csv(here('1_lectures/csv/survey_subset.csv'))
+surveys_subset <- read_csv(here('survey_subset.csv'))
 
 # always good to inspect your data frame to make sure there are no errors
 head(surveys_subset)
