@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>EEB313: Quantitative Methods in R for Biology - 7&nbsp; Exploratory data analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./projects.html" rel="next">
+<link href="./lec05-data-visualization.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lec00-rstudio.html">Lectures</a></li><li class="breadcrumb-item"><a href="./lec06-exploratory-data-analysis.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploratory data analysis</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">EEB313: Quantitative Methods in R for Biology</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/EEB313/eeb313.github.io" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about-us.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The 2023 teaching team</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./downloadingR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Downloading R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Lectures</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lec00-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with RStudio and R Notebook</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lec01-markdown-workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Markdown, project workflows</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lec02-base-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Assignments, vectors, functions, and loops</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lec03-dataframes-dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Dataframes and introduction to data wrangling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lec04-data-wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data wrangling with dplyr</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lec05-data-visualization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization with ggplot</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lec06-exploratory-data-analysis.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploratory data analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Assignments</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Project</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./projects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Project description</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Some open-access databases</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#lesson-preamble" id="toc-lesson-preamble" class="nav-link active" data-scroll-target="#lesson-preamble"><span class="header-section-number">8</span> Lesson preamble:</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">9</span> Introduction</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">10</span> Setup</a></li>
+  <li><a href="#what-is-my-data-actually" id="toc-what-is-my-data-actually" class="nav-link" data-scroll-target="#what-is-my-data-actually"><span class="header-section-number">11</span> What is my data, actually?</a>
+  <ul class="collapse">
+  <li><a href="#predictions" id="toc-predictions" class="nav-link" data-scroll-target="#predictions"><span class="header-section-number">11.1</span> Predictions</a></li>
+  <li><a href="#first-peek" id="toc-first-peek" class="nav-link" data-scroll-target="#first-peek"><span class="header-section-number">11.2</span> First Peek</a></li>
+  <li><a href="#basic-variable-categories" id="toc-basic-variable-categories" class="nav-link" data-scroll-target="#basic-variable-categories"><span class="header-section-number">11.3</span> Basic Variable Categories</a></li>
+  </ul></li>
+  <li><a href="#visualizing-your-data" id="toc-visualizing-your-data" class="nav-link" data-scroll-target="#visualizing-your-data"><span class="header-section-number">12</span> Visualizing Your Data</a>
+  <ul class="collapse">
+  <li><a href="#describing-patterns-in-histograms" id="toc-describing-patterns-in-histograms" class="nav-link" data-scroll-target="#describing-patterns-in-histograms"><span class="header-section-number">12.1</span> Describing Patterns in Histograms</a></li>
+  <li><a href="#qualitative-data-with-histograms" id="toc-qualitative-data-with-histograms" class="nav-link" data-scroll-target="#qualitative-data-with-histograms"><span class="header-section-number">12.2</span> Qualitative Data with Histograms</a></li>
+  <li><a href="#quantitative-data-with-histograms" id="toc-quantitative-data-with-histograms" class="nav-link" data-scroll-target="#quantitative-data-with-histograms"><span class="header-section-number">12.3</span> Quantitative Data with Histograms</a></li>
+  <li><a href="#binning-quantitative-data" id="toc-binning-quantitative-data" class="nav-link" data-scroll-target="#binning-quantitative-data"><span class="header-section-number">12.4</span> Binning Quantitative Data</a>
+  <ul class="collapse">
+  <li><a href="#histogram-for-one-chromosome" id="toc-histogram-for-one-chromosome" class="nav-link" data-scroll-target="#histogram-for-one-chromosome"><span class="header-section-number">12.4.1</span> Histogram for One Chromosome</a></li>
+  </ul></li>
+  <li><a href="#scatterplots-box-plots" id="toc-scatterplots-box-plots" class="nav-link" data-scroll-target="#scatterplots-box-plots"><span class="header-section-number">12.5</span> Scatterplots &amp; Box plots</a>
+  <ul class="collapse">
+  <li><a href="#more-info-less-bias" id="toc-more-info-less-bias" class="nav-link" data-scroll-target="#more-info-less-bias"><span class="header-section-number">12.5.1</span> More info! Less bias!</a></li>
+  <li><a href="#visualize-raw-data-as-a-scatterplot" id="toc-visualize-raw-data-as-a-scatterplot" class="nav-link" data-scroll-target="#visualize-raw-data-as-a-scatterplot"><span class="header-section-number">12.5.2</span> Visualize raw data as a scatterplot</a></li>
+  <li><a href="#boxplots-for-better-comparisons" id="toc-boxplots-for-better-comparisons" class="nav-link" data-scroll-target="#boxplots-for-better-comparisons"><span class="header-section-number">12.5.3</span> Boxplots for better comparisons</a></li>
+  <li><a href="#what-about-the-other-variables" id="toc-what-about-the-other-variables" class="nav-link" data-scroll-target="#what-about-the-other-variables"><span class="header-section-number">12.5.4</span> What about the other variables?</a></li>
+  <li><a href="#boxplot-augmentations" id="toc-boxplot-augmentations" class="nav-link" data-scroll-target="#boxplot-augmentations"><span class="header-section-number">12.5.5</span> Boxplot augmentations</a></li>
+  </ul></li>
+  <li><a href="#challenge" id="toc-challenge" class="nav-link" data-scroll-target="#challenge"><span class="header-section-number">12.6</span> Challenge!</a></li>
+  </ul></li>
+  <li><a href="#outliers" id="toc-outliers" class="nav-link" data-scroll-target="#outliers"><span class="header-section-number">13</span> Outliers</a>
+  <ul class="collapse">
+  <li><a href="#but-why-are-you-like-this" id="toc-but-why-are-you-like-this" class="nav-link" data-scroll-target="#but-why-are-you-like-this"><span class="header-section-number">13.1</span> But why are you like this?</a></li>
+  <li><a href="#lets-take-a-look" id="toc-lets-take-a-look" class="nav-link" data-scroll-target="#lets-take-a-look"><span class="header-section-number">13.2</span> Let’s take a look!</a></li>
+  <li><a href="#wholesome-thoughts-about-your-data" id="toc-wholesome-thoughts-about-your-data" class="nav-link" data-scroll-target="#wholesome-thoughts-about-your-data"><span class="header-section-number">13.3</span> Wholesome thoughts about your data</a></li>
+  <li><a href="#challenge-1" id="toc-challenge-1" class="nav-link" data-scroll-target="#challenge-1"><span class="header-section-number">13.4</span> Challenge!</a></li>
+  </ul></li>
+  <li><a href="#so-what-does-this-mean-for-our-predictions" id="toc-so-what-does-this-mean-for-our-predictions" class="nav-link" data-scroll-target="#so-what-does-this-mean-for-our-predictions"><span class="header-section-number">14</span> So what does this mean for our predictions?</a>
+  <ul class="collapse">
+  <li><a href="#how-do-we-explore-these-questions" id="toc-how-do-we-explore-these-questions" class="nav-link" data-scroll-target="#how-do-we-explore-these-questions"><span class="header-section-number">14.1</span> How do we explore these questions?</a>
+  <ul class="collapse">
+  <li><a href="#actual-wrangling" id="toc-actual-wrangling" class="nav-link" data-scroll-target="#actual-wrangling"><span class="header-section-number">14.1.1</span> Actual wrangling</a></li>
+  <li><a href="#knowledge-check-challenge" id="toc-knowledge-check-challenge" class="nav-link" data-scroll-target="#knowledge-check-challenge"><span class="header-section-number">14.1.2</span> ? Knowledge Check Challenge</a></li>
+  </ul></li>
+  <li><a href="#is-gene-density-high-when-ltr-density-is-low-hyp-1" id="toc-is-gene-density-high-when-ltr-density-is-low-hyp-1" class="nav-link" data-scroll-target="#is-gene-density-high-when-ltr-density-is-low-hyp-1"><span class="header-section-number">14.2</span> Is gene density high when LTR density is low? (hyp #1)</a>
+  <ul class="collapse">
+  <li><a href="#challenge-2" id="toc-challenge-2" class="nav-link" data-scroll-target="#challenge-2"><span class="header-section-number">14.2.1</span> Challenge</a></li>
+  </ul></li>
+  <li><a href="#is-gene-density-high-when-ltr-age-is-high-hyp-2" id="toc-is-gene-density-high-when-ltr-age-is-high-hyp-2" class="nav-link" data-scroll-target="#is-gene-density-high-when-ltr-age-is-high-hyp-2"><span class="header-section-number">14.3</span> Is gene density high when LTR age is high? (hyp #2)</a></li>
+  <li><a href="#discretizing-our-ages" id="toc-discretizing-our-ages" class="nav-link" data-scroll-target="#discretizing-our-ages"><span class="header-section-number">14.4</span> Discretizing our ages</a></li>
+  <li><a href="#missing-values-in-gene-density-comparison" id="toc-missing-values-in-gene-density-comparison" class="nav-link" data-scroll-target="#missing-values-in-gene-density-comparison"><span class="header-section-number">14.5</span> Missing values in gene density comparison</a></li>
+  <li><a href="#does-the-sex-chromosome-lg_x-have-higher-ltr-density-hyp-3" id="toc-does-the-sex-chromosome-lg_x-have-higher-ltr-density-hyp-3" class="nav-link" data-scroll-target="#does-the-sex-chromosome-lg_x-have-higher-ltr-density-hyp-3"><span class="header-section-number">14.6</span> Does the sex chromosome (LG_X) have higher LTR density? (hyp #3)</a>
+  <ul class="collapse">
+  <li><a href="#challenge-3" id="toc-challenge-3" class="nav-link" data-scroll-target="#challenge-3"><span class="header-section-number">14.6.1</span> Challenge!</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploratory data analysis</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="lesson-preamble" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Lesson preamble:</h1>
+<blockquote class="blockquote">
+<h3 id="lesson-objectives" data-number="8.0.1" class="anchored" data-anchor-id="lesson-preamble"><span class="header-section-number">8.0.1</span> Lesson objectives:</h3>
+<ul>
+<li>Implications of (not) understanding your data
+<ul>
+<li>How did you collect your data?</li>
+<li>What are the properties of your data?</li>
+</ul></li>
+<li>Exploring and asking questions about your data with graphing/visualization</li>
+<li>Using insights from exploratory analysis to clean up data:
+<ul>
+<li>Dealing with unusual values/outliers</li>
+<li>Dealing with missing values (NAs)</li>
+</ul></li>
+</ul>
+<h3 id="lesson-outline" data-number="8.0.2" class="anchored"><span class="header-section-number">8.0.2</span> Lesson outline:</h3>
+<p>Total lesson time: 2 hours</p>
+<ul>
+<li>Data properties, initial predictions (15 min)</li>
+<li>Plotting and exploring data (45 min)</li>
+<li>Dealing with unusual values (15 min)</li>
+<li>Re-connecting with our predictions (30 min)</li>
+<li>Dealing with missing values (15 min)</li>
+</ul>
+</blockquote>
+<hr>
+</section>
+<section id="introduction" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Introduction</h1>
+<p>Exploratory data analysis is your exciting first look at your data! It’s a chance to develop a better understanding of the variables in your data set and the relationships between them. You can check your assumptions, find outliers, and possible errors. But THEN you’ll get to ask your questions! Yay!!</p>
+<p>You <em>need</em> to understand your data you before you analyze it.</p>
+<ol type="1">
+<li><p>What kind of data is it?</p></li>
+<li><p>What variation is present in my data?</p></li>
+<li><p>Are there any data points with values beyond the limits I anticipated?</p></li>
+<li><p>Do you notice any patterns?</p></li>
+</ol>
+<p>The patterns you see can lead you to exciting new questions you may not have anticipated!</p>
+</section>
+<section id="setup" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Setup</h1>
+<p>We’ll use what you’ve learned in past lectures about summarizing and visualizing data with dplyr and ggplot to get to know some data!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://uoftcoders.github.io/rcourse/data/pseudo.ara.busco"</span>, </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>              <span class="st">"pseudo.ara.busco"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://uoftcoders.github.io/rcourse/data/pseudo.LTRs"</span>, </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>              <span class="st">"pseudo.LTRs"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://uoftcoders.github.io/rcourse/data/pseudoMol_Kdist.txt"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>              <span class="st">"pseudoMol_Kdist.txt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We’re going to load the genomic data we have on the frequency of genes, the frequency of a type of repetitive element (LTRs stands for Long Terminal Repeat - there’s some more info on them coming up in the ‘predictions’ section), and the approximate evolutionary age of those repetitive elements.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>geneDensity <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"pseudo.ara.busco"</span>, </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"chromosome"</span>, <span class="st">"start"</span>, <span class="st">"end"</span>, <span class="st">"winNum"</span>, </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">"numElements"</span>, <span class="st">"numBases"</span>, <span class="st">"winSize"</span>, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">"density"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 48952 Columns: 8
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (1): chromosome
+dbl (7): start, end, winNum, numElements, numBases, winSize, density
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ltrDensity <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"pseudo.LTRs"</span>, </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"chromosome"</span>, <span class="st">"start"</span>, <span class="st">"end"</span>, <span class="st">"winNum"</span>, </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">"numElements"</span>, <span class="st">"numBases"</span>, <span class="st">"winSize"</span>, </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">"density"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 48952 Columns: 8
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (1): chromosome
+dbl (7): start, end, winNum, numElements, numBases, winSize, density
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ltrAge <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"pseudoMol_Kdist.txt"</span>, <span class="at">col_names=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 42339 Columns: 4
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (1): chrom
+dbl (3): start, end, K2P
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<p>We’re using “read_tsv” because the columns in this file are separated by tabs instead of commas or white space. The LTR age data (pseudoMol_Kdist.txt) already has column names, but the other two data sets need some more information</p>
+</section>
+<section id="what-is-my-data-actually" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> What is my data, actually?</h1>
+<p>Before we do anything else, we have to think about where this came from &amp; whether the data is appropriate for the kinds of questions we might have.</p>
+<p>This data describes a two of the genetic units (we’ll call them “elements”) that live in one plant genome: a set of highly conserved genes and one type of transposon (a “selfish” gene that makes copies of itself at the expense of its host genome). The chromosomes have been broken down into 1Mb pieces (“windows”) that overlap each other. In each window, we know the number and size (base pairs occupied) of the conserved genes and transposons.</p>
+<section id="predictions" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="predictions"><span class="header-section-number">11.1</span> Predictions</h2>
+<p>It’s always good to lay out your hypotheses first. It can help you figure out how you need to assemble your data in order to test those predictions effectively.</p>
+<ol type="1">
+<li>In areas where gene density is high, LTR density is low
+<ul>
+<li>LTRs are a type of <strong>transposable element</strong>, aka “genomic parasite”
+<ul>
+<li>They make copies of themselves at the expense of their host genome</li>
+<li>They make up a large portion of plant genomes (can be &gt;40%!)</li>
+<li>The host genome wants to prevent them from replicating</li>
+</ul></li>
+<li>Certain regions of a chromosome are more tightly wound up with histones
+<ul>
+<li>This makes them less accessible to molecular machinery</li>
+<li>If polymerases aren’t likely to access a region, the region can’t be expressed</li>
+<li>If a region is unexpressed, you don’t want genes there!!</li>
+<li>LTRs tend to accumulate in these regions</li>
+</ul></li>
+<li>More accessible, active regions of a chromosome have higher gene content
+<ul>
+<li>These regions can be expressed effectively!</li>
+<li>LTRs that insert into these regions have a worse impact on the host</li>
+</ul></li>
+<li>Other factors like recombination rate and methylation also support this pattern</li>
+</ul></li>
+<li>In areas where gene density is high, LTR age will be high (old, not transposing anymore)
+<ul>
+<li>There won’t be many new deleterious LTR insertions
+<ul>
+<li>Few young LTRs</li>
+</ul></li>
+<li>The LTRs that are present in those regions can’t have lethal effects
+<ul>
+<li>If they’re there, their effects are unlikely to have terrible effects on fitness</li>
+<li>Some transposable elements have been “domesticated” by their hosts</li>
+<li>This all contributes to the likelihood that LTRs present can/have persisted</li>
+<li>LTRs present are more likely to be older</li>
+</ul></li>
+</ul></li>
+<li>The sex chromosome (LG_X) will have higher LTR density
+<ul>
+<li>Larger proportions of sex chromosomes are less accessible</li>
+<li>Sex chromosomes experience lower rates of recombination relative to autosomes
+<ul>
+<li>Also correlated with higher transposon density and lower gene density</li>
+</ul></li>
+<li>These trends are more true for non-recombining Y chromosomes than X chromosomes
+<ul>
+<li>Recombination can occur between the two X chromosomes in females</li>
+</ul></li>
+</ul></li>
+</ol>
+</section>
+<section id="first-peek" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="first-peek"><span class="header-section-number">11.2</span> First Peek</h2>
+<p>First, let’s just take a quick look at the gene density data set and ask ourselves what we’re dealing with. On a very basic level, what kind of variables do we have?</p>
+<p>What is one way to view a data frame?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#head(geneDensity) # prints the first 6 rows</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#tail(geneDensity) #prints the last 6 rows</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(geneDensity) <span class="co">#prints number of rows and columns, column names, types, and several entries</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 48,952
+Columns: 8
+$ chromosome  &lt;chr&gt; "LG_N", "LG_N", "LG_N", "LG_N", "LG_N", "LG_N", "LG_N", "L…
+$ start       &lt;dbl&gt; 0, 20000, 40000, 60000, 80000, 100000, 120000, 140000, 160…
+$ end         &lt;dbl&gt; 1000000, 1020000, 1040000, 1060000, 1080000, 1100000, 1120…
+$ winNum      &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,…
+$ numElements &lt;dbl&gt; 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2…
+$ numBases    &lt;dbl&gt; 2499, 2499, 10158, 11583, 11583, 11583, 11583, 11583, 1158…
+$ winSize     &lt;dbl&gt; 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e…
+$ density     &lt;dbl&gt; 0.002499, 0.002499, 0.010158, 0.011583, 0.011583, 0.011583…</code></pre>
+</div>
+</div>
+<p>What are your first impressions of the data?</p>
+<p>Which variables will be relevant for testing our predictions?</p>
+<p><strong>Something to note here: in this data set, there are a number of things that will be clearly</strong></p>
+</section>
+<section id="basic-variable-categories" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="basic-variable-categories"><span class="header-section-number">11.3</span> Basic Variable Categories</h2>
+<p>Common variable types:</p>
+<ul>
+<li>Independent vs dependent</li>
+<li>Continuous vs discrete</li>
+<li>Qualitative: categorical/nominal, ranked/ordinal, dichotomous</li>
+<li>Quantitative: interval, ratio</li>
+</ul>
+<p>This matters because the type of data tells us the appropriate way to visualize it:</p>
+<ul>
+<li>Qualitative data: pie charts or bar charts</li>
+<li>Quantitative data: histograms, box plots</li>
+</ul>
+</section>
+</section>
+<section id="visualizing-your-data" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Visualizing Your Data</h1>
+<section id="describing-patterns-in-histograms" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="describing-patterns-in-histograms"><span class="header-section-number">12.1</span> Describing Patterns in Histograms</h2>
+<p>For a given variable, you’re generally looking at the range of values and where the majority of the data lies. This gives you an idea of the <strong>distribution</strong> of your data. As you’re aware, many statistical tests make assumptions about the distribution of your input data - it’s very important to make note of the shapely properties of your data.</p>
+<ul>
+<li>Average (mean, median, mode)</li>
+<li>Range (max, min)</li>
+<li>Skewness: how symmetrical is your data around the average?
+<ul>
+<li>Classic bell curve has a skew of zero</li>
+<li>If your data isn’t symmetrical, that can give you important info!</li>
+<li>Skewed distributions aren’t likely to be normally distributed</li>
+</ul></li>
+<li>Kurtosis: how sharp is your central peak?
+<ul>
+<li>If your distribution is basically flat, its kurtosis is negative</li>
+<li>If your distribution has a huge spike, its kurtosis will be positive</li>
+</ul></li>
+</ul>
+</section>
+<section id="qualitative-data-with-histograms" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="qualitative-data-with-histograms"><span class="header-section-number">12.2</span> Qualitative Data with Histograms</h2>
+<p>Histograms are great for qualitative data because they visualize the number of times a given value appears in your data.</p>
+</section>
+<section id="quantitative-data-with-histograms" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="quantitative-data-with-histograms"><span class="header-section-number">12.3</span> Quantitative Data with Histograms</h2>
+<p>Histograms provide an important view into continuous data, providing that you tell ggplot how to group your data into discrete bins. Here, we can look at our data’s values for gene density. This density is a measurement of the number of base pairs in a 1Mb window that are part of a gene divided by the total number of base pairs in the window (1 000 000).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(geneDensity, <span class="fu">aes</span>(density)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.01</span>) <span class="sc">+</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of gene density values"</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Gene density"</span>, <span class="at">y =</span> <span class="st">"Count (bin size = 0.01)"</span>) <span class="co"># Adding labels helps!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>What are some words you’d use to describe this distribution?</p>
+<p>Does this change</p>
+</section>
+<section id="binning-quantitative-data" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="binning-quantitative-data"><span class="header-section-number">12.4</span> Binning Quantitative Data</h2>
+<p>When you’re subsetting continuous data into discrete bin widths, it’s important to try out different values because different bin sizes can give <em>vastly</em> different impressions of your data’s distribution.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(geneDensity, <span class="fu">aes</span>(density)) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.001</span>) <span class="sc">+</span>  <span class="co"># Teeny tiny bins</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of gene density values"</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Gene density"</span>, <span class="at">y =</span> <span class="st">"Count (bin size = 0.001)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(geneDensity, <span class="fu">aes</span>(density)) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.1</span>) <span class="sc">+</span>  <span class="co"># Huge bins! (for this data)</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of gene density values"</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Gene density"</span>, <span class="at">y =</span> <span class="st">"Count (bin size = 0.1)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>It’s also interesting to see whether your data’s distribution is different for any of the categories you’re looking at. Is there greater variation in height among women vs humans as a whole? (Do be careful with this, because looking for patterns by poking your data into a bunch of different subsets will basically guarantee you’ll find <em>a</em> pattern, whether or not it’s biologically relevant.)</p>
+<section id="histogram-for-one-chromosome" class="level3" data-number="12.4.1">
+<h3 data-number="12.4.1" class="anchored" data-anchor-id="histogram-for-one-chromosome"><span class="header-section-number">12.4.1</span> Histogram for One Chromosome</h3>
+<p>Let’s see whether the gene density on one of the autosomes (how about LG_2) fits the general pattern.</p>
+<p>(Based on our initial hypotheses, would you predict that it would?)</p>
+<p>It is important to consider how your predictions may affect the way you filter your data, so be mindful about tweaking parameters (like bin width) to fit the output you expect!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>geneDensity <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(chromosome <span class="sc">==</span> <span class="st">"LG_2"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(density)) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of gene density values on LG_2"</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Gene density"</span>, <span class="at">y =</span> <span class="st">"Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The range for the x axis is much smaller! The maximum gene density here (~12%) is much smaller than the highest value in the full genome data set (~40/50%).</p>
+<p>(Why might this be?)</p>
+<p>One of the aspects of your data that you can’t visualize well with a histogram is whether there are any values that exceed the limits you expected for your data.</p>
+</section>
+</section>
+<section id="scatterplots-box-plots" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="scatterplots-box-plots"><span class="header-section-number">12.5</span> Scatterplots &amp; Box plots</h2>
+<section id="more-info-less-bias" class="level3" data-number="12.5.1">
+<h3 data-number="12.5.1" class="anchored" data-anchor-id="more-info-less-bias"><span class="header-section-number">12.5.1</span> More info! Less bias!</h3>
+<p>With quantitative data, we can get more information by looking at scatterplots and box plots. Not only are they immune to bin size bias, they can help us find outliers and let us make initial visual comparisons of averages across categories.</p>
+</section>
+<section id="visualize-raw-data-as-a-scatterplot" class="level3" data-number="12.5.2">
+<h3 data-number="12.5.2" class="anchored" data-anchor-id="visualize-raw-data-as-a-scatterplot"><span class="header-section-number">12.5.2</span> Visualize raw data as a scatterplot</h3>
+<p>We know that “chromosome” is a categorical, independent variable appropriate for our X axis and that “density” is a continuous, dependent variable that will be appropriate for the Y.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(geneDensity, <span class="fu">aes</span>(<span class="at">x =</span> chromosome, <span class="at">y =</span> density)) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Comparison of gene density across chromosomes"</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Chromosome"</span>, <span class="at">y =</span> <span class="st">"Gene density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Already, we can see that there different maximum gene density values on each chromosome. Because the points are overlapping, it’s hard to evaluate what the average or skewness might be for any of the categories.</p>
+</section>
+<section id="boxplots-for-better-comparisons" class="level3" data-number="12.5.3">
+<h3 data-number="12.5.3" class="anchored" data-anchor-id="boxplots-for-better-comparisons"><span class="header-section-number">12.5.3</span> Boxplots for better comparisons</h3>
+<p>Because boxplots display the median and quartile limits, it’s much easier to evaluate the properties of the distribution.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(geneDensity, <span class="fu">aes</span>(<span class="at">x =</span> chromosome, <span class="at">y =</span> density)) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Comparison of gene density across chromosomes"</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Chromosome"</span>, <span class="at">y =</span> <span class="st">"Gene density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>There’s definitely a value that jumps out immediately. It’s stretching the scale of the Y axis so that it’s hard to effectively compare the medians of each of the chromosomes.</p>
+<p>Before we officially decide what to do with this outlier, we’ll visually set it aside for now by re-scaling our Y axis, which we’ve already learned how to do!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(geneDensity, <span class="fu">aes</span>(<span class="at">x =</span> chromosome, <span class="at">y =</span> density)) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="fl">0.125</span>) <span class="sc">+</span> <span class="co">#other methods possible</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Comparison of gene density across chromosomes"</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Chromosome"</span>, <span class="at">y =</span> <span class="st">"Gene density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Look at that handy warning! It lets us know that one value was thrown out: “removed 1 rows”. This view helps us to get a better general understanding of how this categorical “chromosome” value might relate to gene density. However! It’s important not to throw out data unless you have good reason to believe it doesn’t belong in the data set.</p>
+<p>Bonus note: you can use the coord_cartesian function instead of ylim. It won’t warn you if any of your data points are beyond the limits of the axes, though.</p>
+</section>
+<section id="what-about-the-other-variables" class="level3" data-number="12.5.4">
+<h3 data-number="12.5.4" class="anchored" data-anchor-id="what-about-the-other-variables"><span class="header-section-number">12.5.4</span> What about the other variables?</h3>
+<blockquote class="blockquote">
+<p>This data describes a few of the genetic “bits” (we generally call them “elements”) live in one plant genome. The chromosomes have been broken down into 1Mb pieces (“windows”) that overlap each other and the contents of each window have been averaged. We’ve got information on the density of conserved genes and one type of transposon for each window. Additionally, we have the evolutionary age for those transposons.</p>
+</blockquote>
+<p>Average number of genes in bins along chromosomes.</p>
+<p>Definitely more interesting to compare across the categories built into our data (here, chromosomes) to see how the gene density looks in each one separately. We can see whether the global pattern is present in each category. But how can we get all that info in one graph??</p>
+<p>First step is to ask ourselves what we currently have in our data. If our category for comparison is chromosome, what independent variables are shared among them that could facilitate comparison of the dependent gene density variable?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(geneDensity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  chromosome  start     end winNum numElements numBases winSize density
+  &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 LG_N            0 1000000      1           1     2499 1000000 0.00250
+2 LG_N        20000 1020000      2           1     2499 1000000 0.00250
+3 LG_N        40000 1040000      3           2    10158 1000000 0.0102 
+4 LG_N        60000 1060000      4           2    11583 1000000 0.0116 
+5 LG_N        80000 1080000      5           2    11583 1000000 0.0116 
+6 LG_N       100000 1100000      6           2    11583 1000000 0.0116 </code></pre>
+</div>
+</div>
+<p>Start, end, and winNum would all be reasonable proxies for position along the chromosome.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>geneDensity <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(chromosome <span class="sc">==</span> <span class="st">"LG_2"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> start, <span class="at">y =</span> density)) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Comparison of gene density along LG_2"</span>,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Chromosomal position (bp)"</span>, <span class="at">y =</span> <span class="st">"Gene density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This gives us an overview of how many of the conserved genes are found in which region of this LG_2 chromosome.</p>
+<p>To be able to compare all the chromosomes at the same time, we can split our graph into “facets” so there’s one per chromosome, as you’ve learned how to in the last lecture.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(geneDensity, <span class="fu">aes</span>(<span class="at">x=</span>start, <span class="at">y=</span>density)) <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Comparison of gene density across chromosomes"</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Chromosomal position (bp)"</span>, <span class="at">y=</span><span class="st">"Gene density"</span>) <span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="fu">vars</span>(chromosome) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Because not all of the chromosomes are the same length, the data appears more squished in some of the panels. We can adjust that by telling facet wrap to scale the X axis per-panel instead of globally.</p>
+<p>If we want to be able to visually compare the densities across chromosomes, we should <em>not</em> allow the Y axis to scale freely. We can, however, set a limit for the Y axis values, as we’ve done before.</p>
+<p>Use different command for scaling the Y axis</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(geneDensity, <span class="fu">aes</span>(<span class="at">x =</span> start, <span class="at">y =</span> density)) <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>( <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.13</span>) ) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Comparison of gene density across chromosomes"</span>,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Chromosomal position (bp)"</span>, <span class="at">y =</span> <span class="st">"Gene density"</span>) <span class="sc">+</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="fu">vars</span>(chromosome), <span class="at">scales =</span> <span class="st">"free_x"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Cool, eh?? The chromosomes have very different patterns! The range and distribution of values differs considerably!</p>
+<p>What are some reasons for gene density to change along a chromosome?</p>
+<ul>
+<li>Centromeres are mostly made up of repeats - very low gene content
+<ul>
+<li><p>Centromeres can be in the middle or near one end of a chromosome</p></li>
+<li><p>Where do you think the centromeres are in these chromosomes?</p></li>
+</ul></li>
+<li>Certain regions of a chromosome are more tightly wound up with histones
+<ul>
+<li><p>Makes them less accessible to molecular machinery</p></li>
+<li><p>If polymerases don’t reach a region, that region can’t be expressed</p></li>
+<li><p>If a region is unexpressed, you don’t want genes there!</p></li>
+<li><p>Centromeres are generally one of these ‘inactive’ regions</p></li>
+</ul></li>
+<li>More accessible, active regions of a chromosome have higher gene content
+<ul>
+<li>These regions are generally along chromosome arms</li>
+</ul></li>
+</ul>
+</section>
+<section id="boxplot-augmentations" class="level3" data-number="12.5.5">
+<h3 data-number="12.5.5" class="anchored" data-anchor-id="boxplot-augmentations"><span class="header-section-number">12.5.5</span> Boxplot augmentations</h3>
+<p>There are a few additional things we can do that might make boxplots even more informative for our data.</p>
+<ul>
+<li><strong>Violin</strong> plots - boxplots but with curves instead of boxes</li>
+<li>Adding a <strong>scatterplot</strong> behind the boxplot</li>
+<li>Adding “<strong>jitter</strong>” to scatterplots so the points are offset
+<ul>
+<li>Additionally, you can make the points more transparent (change the <strong>alpha</strong> value)</li>
+</ul></li>
+<li>You can also add a <strong>trend line</strong> to help you visualize potential relationships</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(geneDensity, <span class="fu">aes</span>(<span class="at">x =</span> chromosome, <span class="at">y =</span> density)) <span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>, <span class="at">position =</span> <span class="st">"jitter"</span>) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span> </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Comparison of gene density across chromosomes"</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Chromosome"</span>, <span class="at">y =</span> <span class="st">"Gene density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Making the points more transparent gives us a better idea of what density values are most common. You can see this at the bottom of the graph, where the points don’t look transparent at all - <em>so</em> many data points!!</p>
+</section>
+</section>
+<section id="challenge" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="challenge"><span class="header-section-number">12.6</span> Challenge!</h2>
+<p>How could you visualize the LTR data across chromosomes? Don’t forget to use axis labels.</p>
+<p>What is the range of LTR density for the LG_2 chromosome?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ltrDensity, <span class="fu">aes</span>(<span class="at">x =</span> chromosome, <span class="at">y =</span> density)) <span class="sc">+</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span> <span class="co">#boxplot also valid</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.01</span>, <span class="at">position =</span> <span class="st">"jitter"</span>) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Comparison of LTR density across Chromosomes"</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Chromosome"</span>, <span class="at">y =</span> <span class="st">"LTR density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ltrDensity <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(chromosome) <span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(density), <span class="at">median =</span> <span class="fu">median</span>(density), </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">n =</span> <span class="fu">n</span>(), <span class="at">max =</span> <span class="fu">max</span>(density))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  chromosome  mean median     n   max
+  &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;
+1 LG_2       0.324  0.331 11234 0.488
+2 LG_4       0.303  0.320  6520 0.973
+3 LG_7       0.331  0.339 15938 0.503
+4 LG_N       0.318  0.332  8551 0.476
+5 LG_X       0.307  0.315  6709 0.477</code></pre>
+</div>
+</div>
+<p>Now it’s time to start thinking about what to do with rebellious outliers!</p>
+</section>
+</section>
+<section id="outliers" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Outliers</h1>
+<section id="but-why-are-you-like-this" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="but-why-are-you-like-this"><span class="header-section-number">13.1</span> But why are you like this?</h2>
+<p>There could be many reasons why your data has values that exceed the limits you expected it would have. It basically comes down to <strong>error</strong>, whether in your data or in the expectation you had for its limits. Consider error <em>carefully</em>.</p>
+<ul>
+<li>Incorrect prediction of what the limits should be
+<ul>
+<li>Maybe your study system has different qualities than literature spp.</li>
+</ul></li>
+<li><strong>Systematic error</strong> is predictable and affects a measurement’s accuracy
+<ul>
+<li>Incorrectly calibrated lab equipment (pH meter, thermometer, etc.)</li>
+<li>Genomics - your gene annotation can be biased by repetitive elements</li>
+<li>Can be very difficult to compensate for this kind of error</li>
+</ul></li>
+<li><strong>Random error</strong> affects measurement precision (think significant figures)
+<ul>
+<li>Writing down measurements incorrectly in your notes</li>
+<li>A lab scale can only weigh samples to a given decimal point</li>
+<li>Simple human fallibility when it comes to assessing measurements</li>
+<li>Take multiple measurements and average the results to compensate</li>
+</ul></li>
+<li>Common sources
+<ul>
+<li>This (exploratory data analysis) is a great time to look for issues!</li>
+<li>Error in previous analysis steps (code that produced LTR age estimates)</li>
+<li>Erroneous assumptions about your sample sites or methods</li>
+</ul></li>
+<li>Don’t just throw out a point because you <em>can</em> ascribe it to error</li>
+</ul>
+<p>IMPORTANT NOTE: if you do end up removing <em>any</em> data, you <strong>MUST disclose the removal</strong> and your justification for the removal. Your reasons could be great, but you need to make sure your audience has access to those reasons.</p>
+<p>This consideration of weird values brings up an interesting point: you’re doing these checks because your values are <em>different</em> than what you expected. It’s important to think about analytical ‘controls’ to look for potential errors even when your data looks the way you <em>expect</em> it to! Steps towards this can be as simple as sharing your code publicly.</p>
+</section>
+<section id="lets-take-a-look" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="lets-take-a-look"><span class="header-section-number">13.2</span> Let’s take a look!</h2>
+<p>We had that weird really high gene density value on the LG_X chromosome. Let’s look at what’s happening there.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(geneDensity, density <span class="sc">&gt;</span> <span class="fl">0.13</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 8
+  chromosome     start       end winNum numElements numBases winSize density
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 LG_X       134160000 134165151   6709           1     2655    5151   0.515</code></pre>
+</div>
+</div>
+<p>What do the other variables tell us about this data point?</p>
+<p>This data point has a really high winNum, so it’s likely located near the end of the chromosome. But importantly, our windows are supposed to be 1Mb in size (1 000 000 value in the winSize column). The winSize value for this outlier is tiny in comparison!!</p>
+</section>
+<section id="wholesome-thoughts-about-your-data" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="wholesome-thoughts-about-your-data"><span class="header-section-number">13.3</span> Wholesome thoughts about your data</h2>
+<p>Averages – how was your data collected &amp; what biases might be inherent? The data I’m showing you is a pretty clear example of how important (and difficult) it is to understand what the variables mean in your data sets. What might cause outliers in the kind of data you’re interested in?</p>
+<p>That last look showed us that it’s definitely very important to consider our data as a whole: to think not only about the variables relevant to our hypotheses, but the way in which it was collected (how that was reflected in the other properties of the data).</p>
+<p>So. Let’s try to understand more about the interaction between gene density and window size in the rest of our data. Visualization time!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(geneDensity, <span class="fu">aes</span>(<span class="at">x =</span> start,<span class="at">y =</span> winSize, <span class="at">colour =</span> chromosome)) <span class="sc">+</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Window sizes along the chromosome"</span>,</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Chromosomal position (bp)"</span>, <span class="at">y =</span> <span class="st">"Window size (bp)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>It looks like <em>all</em> of the chromosomes get this trail-off in window size near their ends. This is not what we expected!! All of the squish at the end is basically just error from a previous analysis.</p>
+</section>
+<section id="challenge-1" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="challenge-1"><span class="header-section-number">13.4</span> Challenge!</h2>
+<p>Create a category based on window size: density as either belonging in a “small window” or a “normal window”. We can create a new “winCategory” variable using mutate() and assign the value of “small” to windows with winSize less than 1Mb and “normal” to all the other windows (which we expect will have a value of 1Mb).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>geneDensity2 <span class="ot">&lt;-</span> geneDensity <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">winCategory =</span> <span class="fu">case_when</span>(winSize<span class="sc">&lt;</span><span class="dv">1000000</span> <span class="sc">~</span> <span class="st">"small"</span>,</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"normal"</span>) ) <span class="sc">%&gt;%</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(winCategory, chromosome)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(geneDensity2,</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">mean =</span> <span class="fu">mean</span>(density), <span class="at">median =</span> <span class="fu">median</span>(density), <span class="at">n =</span> <span class="fu">n</span>(), </span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">max =</span> <span class="fu">max</span>(density), <span class="at">sd =</span> <span class="fu">sd</span>(density), <span class="at">.groups =</span> <span class="st">"keep"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 7
+# Groups:   winCategory, chromosome [10]
+   winCategory chromosome    mean  median     n    max     sd
+   &lt;chr&gt;       &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1 normal      LG_2       0.0104  0.00481 11184 0.119  0.0168
+ 2 normal      LG_4       0.0123  0.00730  6470 0.0900 0.0146
+ 3 normal      LG_7       0.00909 0.00284 15888 0.123  0.0151
+ 4 normal      LG_N       0.0111  0.00464  8501 0.0690 0.0143
+ 5 normal      LG_X       0.0119  0.00449  6659 0.0960 0.0175
+ 6 small       LG_2       0.0443  0.0472     50 0.0964 0.0299
+ 7 small       LG_4       0       0          50 0      0     
+ 8 small       LG_7       0.0443  0.0370     50 0.122  0.0233
+ 9 small       LG_N       0       0          50 0      0     
+10 small       LG_X       0.0358  0.0226     50 0.515  0.0705</code></pre>
+</div>
+</div>
+<p>What can we take away from this table?</p>
+<p>The n values are considerably larger for the normal-sized windows group. LG_4 and LG_N had 0 gene density in their small windows but have some of the highest median gene densities in the normal-sized windows.</p>
+<p>The standard deviation of the small windows is much higher. Is that what we would expect for that data category? Perhaps most importantly for our purposes, the <strong>mean</strong> and <strong>median</strong> are quite different. These smaller windows have considerably different values.</p>
+<p>What does this look like in an actual plot? This is going to take a bit of black magic in the form of two separate calls to geom_boxplot(). The first will use all the windows (setting it to colour values by ‘all’) and the second will actually create (and colour) different box plots based on their winCategory value.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(geneDensity2, <span class="fu">aes</span>(<span class="at">x =</span> chromosome, <span class="at">y =</span> density, <span class="at">colour =</span> winCategory)) <span class="sc">+</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>( <span class="fu">aes</span>(<span class="at">x =</span> chromosome, <span class="at">y =</span> density, <span class="at">colour =</span> <span class="st">"all"</span>) ) <span class="sc">+</span> </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="fl">0.125</span>) <span class="sc">+</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Visualizing gene density across window size and chromosome"</span>,</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Chromosome"</span>, <span class="at">y=</span><span class="st">"Gene density"</span>, <span class="at">colour=</span><span class="st">"Window</span><span class="sc">\n</span><span class="st">Category"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 rows containing non-finite values (`stat_boxplot()`).
+Removed 1 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The small window values seem quite different than the global gene density results!</p>
+<p>Why do you think this might be? Looking back on the summaries, we can see that there aren’t many data points in the ‘small’ window category.</p>
+<p>In conclusion!!</p>
+<p>These small windows do seem to contain interesting information, but they are over-weighted given the amount of information they’re based on. Based on the analysis conducted to create the windows, it <em>might</em> be appropriate to discard the small windows on the ends of the chromosomes. Each windowed data point is weighted equally, even though these smaller windows contain less information, which creates a bias.</p>
+<p>What do <strong>you</strong> think is the most appropriate way to deal with this data?</p>
+<p>Is there a way to weight the gene density by window size?</p>
+</section>
+</section>
+<section id="so-what-does-this-mean-for-our-predictions" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> So what does this mean for our predictions?</h1>
+<p>Right. The reason we collected this data in the first place!</p>
+<ol type="1">
+<li>In areas where gene density is high, LTR density is low</li>
+<li>In areas where gene density is high, LTR age will be high</li>
+<li>The sex chromosome (LG_X) will have higher LTR density</li>
+</ol>
+<p>Note: <em>preparing</em> data for analysis is generally the most time-consuming part of any project. Establishing what you need to do with your data in order to test your hypotheses &amp; thoroughly exploring your data and its properties are <em>extremely</em> useful steps in this process.</p>
+<section id="how-do-we-explore-these-questions" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="how-do-we-explore-these-questions"><span class="header-section-number">14.1</span> How do we explore these questions?</h2>
+<p>We need to relate gene density, LTR density, and LTR age. Do we have this data?</p>
+<p>Is it currently in a form where we can make comparisons?</p>
+<p>Based on the properties of our gene and LTR density data sets, what are the shared “units”? Essentially, what are we trying to compare within and among each chromosome?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(geneDensity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  chromosome  start     end winNum numElements numBases winSize density
+  &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 LG_N            0 1000000      1           1     2499 1000000 0.00250
+2 LG_N        20000 1020000      2           1     2499 1000000 0.00250
+3 LG_N        40000 1040000      3           2    10158 1000000 0.0102 
+4 LG_N        60000 1060000      4           2    11583 1000000 0.0116 
+5 LG_N        80000 1080000      5           2    11583 1000000 0.0116 
+6 LG_N       100000 1100000      6           2    11583 1000000 0.0116 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(ltrDensity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 48,952 × 8
+   chromosome  start     end winNum numElements numBases winSize density
+   &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 LG_N            0 1000000      1         396   258184 1000000   0.258
+ 2 LG_N        20000 1020000      2         400   274748 1000000   0.275
+ 3 LG_N        40000 1040000      3         390   271692 1000000   0.272
+ 4 LG_N        60000 1060000      4         390   271540 1000000   0.272
+ 5 LG_N        80000 1080000      5         386   268414 1000000   0.268
+ 6 LG_N       100000 1100000      6         380   268519 1000000   0.269
+ 7 LG_N       120000 1120000      7         396   285314 1000000   0.285
+ 8 LG_N       140000 1140000      8         396   284053 1000000   0.284
+ 9 LG_N       160000 1160000      9         396   270360 1000000   0.270
+10 LG_N       180000 1180000     10         388   267071 1000000   0.267
+# ℹ 48,942 more rows</code></pre>
+</div>
+</div>
+<p>The basic “unit” in this data is the 1Mb window. Because this is shared across the two data sets, we can use it to join them together. Excellent!</p>
+<p>What about the LTR age data set?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(ltrAge)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 42,339 × 4
+   chrom    start      end     K2P
+   &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+ 1 LG_2  61204840 61212964 0.0202 
+ 2 LG_2  61219360 61221366 0.0538 
+ 3 LG_2  61236795 61241286 0.00514
+ 4 LG_2  61241905 61249226 0.00100
+ 5 LG_2  61268475 61269268 0.0808 
+ 6 LG_2  61337049 61348048 0.00472
+ 7 LG_2  61365365 61372328 0.0260 
+ 8 LG_2  61382447 61389344 0.0617 
+ 9 LG_2  61396331 61407449 0.00800
+10 LG_2  61413022 61414052 0.0984 
+# ℹ 42,329 more rows</code></pre>
+</div>
+</div>
+<p>This data was prepared differently, so it doesn’t have the same ‘window’ units. It does contain chromosomal position information, however, which we can use to make some preliminary comparisons.</p>
+<section id="actual-wrangling" class="level3" data-number="14.1.1">
+<h3 data-number="14.1.1" class="anchored" data-anchor-id="actual-wrangling"><span class="header-section-number">14.1.1</span> Actual wrangling</h3>
+<p>We’re also going to pull out only the variables we now know we’ll need (what’s shared among the data sets and what will be used to try and test our predictions), just because of how large this data frame will be. It’s <em>not</em> a good idea to do this before looking at all the variables together.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>simpleGeneDensity <span class="ot">&lt;-</span> geneDensity <span class="sc">%&gt;%</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">elementType =</span> <span class="st">"gene"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(chromosome, start, elementType, density)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>simpleLTRdensity <span class="ot">&lt;-</span> ltrDensity <span class="sc">%&gt;%</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">elementType =</span> <span class="st">"LTR"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(chromosome, start, elementType, density)</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(simpleLTRdensity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  chromosome  start elementType density
+  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
+1 LG_N            0 LTR           0.258
+2 LG_N        20000 LTR           0.275
+3 LG_N        40000 LTR           0.272
+4 LG_N        60000 LTR           0.272
+5 LG_N        80000 LTR           0.268
+6 LG_N       100000 LTR           0.269</code></pre>
+</div>
+</div>
+<p>At this point, are these data “long” or “wide”? #throwback</p>
+</section>
+<section id="knowledge-check-challenge" class="level3" data-number="14.1.2">
+<h3 data-number="14.1.2" class="anchored" data-anchor-id="knowledge-check-challenge"><span class="header-section-number">14.1.2</span> ? Knowledge Check Challenge</h3>
+<p>Join the two data sets (simpleLTRdensity and simpleGeneDensity) into one data frame called “densities”. As a bonus, try mutating the <em>start</em> variable so that it’s measured in 10kb increments instead of 1bp. This will just make our X axis labels are easier to interpret.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>densities <span class="ot">&lt;-</span> <span class="fu">full_join</span>(simpleLTRdensity, simpleGeneDensity,</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"chromosome"</span>, <span class="st">"start"</span>, <span class="st">"elementType"</span>, <span class="st">"density"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">start =</span> start <span class="sc">/</span> <span class="dv">10000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(chromosome, elementType)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(densities)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+# Groups:   chromosome, elementType [1]
+  chromosome start elementType density
+  &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
+1 LG_N           0 LTR           0.258
+2 LG_N           2 LTR           0.275
+3 LG_N           4 LTR           0.272
+4 LG_N           6 LTR           0.272
+5 LG_N           8 LTR           0.268
+6 LG_N          10 LTR           0.269</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(simpleGeneDensity, simpleLTRdensity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We’ve got two independent categorical variables, an independent numerical variable, and a dependent numerical variable. It’s beautiful.</p>
+</section>
+</section>
+<section id="is-gene-density-high-when-ltr-density-is-low-hyp-1" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="is-gene-density-high-when-ltr-density-is-low-hyp-1"><span class="header-section-number">14.2</span> Is gene density high when LTR density is low? (hyp #1)</h2>
+<p>What variables do we want to plot?</p>
+<ul>
+<li>Chromosome</li>
+<li>Start position (bp)</li>
+<li>Element type</li>
+<li>Element density</li>
+<li></li>
+</ul>
+<section id="challenge-2" class="level3" data-number="14.2.1">
+<h3 data-number="14.2.1" class="anchored" data-anchor-id="challenge-2"><span class="header-section-number">14.2.1</span> Challenge</h3>
+<p>Of the plot types we’ve used so far, what would you use to try and compare gene densities along the chromosomal positions on each chromosome?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(densities, <span class="fu">aes</span>(<span class="at">x =</span> density, <span class="at">fill =</span> elementType)) <span class="sc">+</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>( <span class="at">binwidth =</span> <span class="fl">0.03</span> ) <span class="sc">+</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="fu">vars</span>(chromosome), <span class="at">scales =</span> <span class="st">"free_y"</span> ) <span class="sc">+</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.6</span>)) <span class="sc">+</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Element Density"</span>, <span class="at">y =</span> <span class="st">"Count"</span>, <span class="at">fill =</span> <span class="st">"Element</span><span class="sc">\n</span><span class="st">Type"</span>,</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Element densities among chromosomes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/histogram-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Poking at the histogram shows us some interesting things about differences in the frequencies of LTRs and genes. Gene values have extremely high kurtosis near 0. LG_4 may have the highest median/mode LTR density.</p>
+<p>The Y axis can be free-scaled here because all of the counts are based on the size of their chromosome. We don’t want one chromosome to seem like it has a much higher LTR count just because it has more windows (greater n) than the other chromosomes.</p>
+<p>This was an interesting plot, but it <strong>compares densities across chromosomes</strong> more than it looks at <strong>differences in LTR/gene patterns within chromosomes</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(densities, <span class="fu">aes</span>(<span class="at">x =</span> start,<span class="at">y =</span> density,<span class="at">colour =</span> elementType)) <span class="sc">+</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="fu">vars</span>(chromosome), <span class="at">scales =</span> <span class="st">"free_x"</span> ) <span class="sc">+</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Element densities along chromosomes"</span>,</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Chromosomal position (10kb)"</span>, <span class="at">y =</span> <span class="st">"Element density"</span>,</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">"Element</span><span class="sc">\n</span><span class="st">Type"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 5 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/scatterplot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This looks like the kind of information we want! If we squint, we can almost see that increases in gene density seem to correlate with decreases in LTR density.</p>
+<p>If you can remember how to add a <em>smooth</em> line to show broad patterns, this will be the easiest view.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(densities, <span class="fu">aes</span>(<span class="at">x =</span> start,<span class="at">y =</span> density,<span class="at">colour =</span> elementType)) <span class="sc">+</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="fu">vars</span>(chromosome), <span class="at">scales =</span> <span class="st">"free_x"</span> ) <span class="sc">+</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Element densities along chromosomes"</span>,</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Chromosomal position (10kb)"</span>, <span class="at">y =</span> <span class="st">"Element density"</span>,</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">"Element</span><span class="sc">\n</span><span class="st">Type"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 3700 rows containing non-finite values (`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 6 rows containing missing values (`geom_smooth()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/trendline-advanced-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Broadly, we can see that when the LTR density plummets, gene density smudges upward.</p>
+</section>
+</section>
+<section id="is-gene-density-high-when-ltr-age-is-high-hyp-2" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="is-gene-density-high-when-ltr-age-is-high-hyp-2"><span class="header-section-number">14.3</span> Is gene density high when LTR age is high? (hyp #2)</h2>
+<p>Let’s take a look at the LTR age data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ltrAge)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  chrom    start      end     K2P
+  &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+1 LG_2  61204840 61212964 0.0202 
+2 LG_2  61219360 61221366 0.0538 
+3 LG_2  61236795 61241286 0.00514
+4 LG_2  61241905 61249226 0.00100
+5 LG_2  61268475 61269268 0.0808 
+6 LG_2  61337049 61348048 0.00472</code></pre>
+</div>
+</div>
+<p>Some of the variable names are different (K2P is our measure of age) but are really familiar to the other data we’ve been analyzing (chrom instead of chromosome). Let’s see if the LTR age data looks anything like our gene and LTR density data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ltrAge, <span class="fu">aes</span>(<span class="at">x =</span> start,<span class="at">y =</span> K2P)) <span class="sc">+</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="fu">vars</span>(chrom), <span class="at">scales =</span> <span class="st">"free_x"</span> ) <span class="sc">+</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"LTR age along chromosomes"</span>,</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Chromosomal position"</span>, <span class="at">y =</span> <span class="st">"LTR age (K2P)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>These clouds of points are really hard to understand. We can try using geom_smooth to see if it can reveal what’s going on in these clouds. The one argument we’ll make note of right now is <em>n</em>, which tells geom_smooth how many points along the x it should be using to make its average. Because of how big our data is, we’ll give it a smaller value so it doesn’t take forever to plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ltrAge, <span class="fu">aes</span>(<span class="at">x =</span> start,<span class="at">y =</span> K2P)) <span class="sc">+</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">n =</span> <span class="dv">50</span>) <span class="sc">+</span> <span class="co"># try different values (think histogram bin widths)</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="fu">vars</span>(chrom), <span class="at">scales =</span> <span class="st">"free_x"</span> ) <span class="sc">+</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"LTR age along chromosomes"</span>,</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Chromosomal position"</span>, <span class="at">y =</span> <span class="st">"LTR age (K2P)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Well, what can we take away from this visualization? Not much. It seems pretty clear that the average LTR is old (darkness at the bottom of the clouds). The few younger LTRs near the top of the plots might have useful information for us, given that LTR “reproduction” (transposition) is generally rare.</p>
+</section>
+<section id="discretizing-our-ages" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="discretizing-our-ages"><span class="header-section-number">14.4</span> Discretizing our ages</h2>
+<p>We can try binning LTRs based on their age, to see if the youngest LTRs are able to be “born” in gene-dense regions. Note: don’t categorize numerical data like this without considering what information you’re losing!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ltrAge, <span class="fu">aes</span>( <span class="at">x =</span> start <span class="sc">/</span> <span class="dv">10000</span>,</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y =</span> K2P,</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">colour =</span> <span class="fu">cut</span>(K2P, <span class="dv">4</span>,</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"youngest"</span>, <span class="st">"young"</span>,</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">"old"</span>, <span class="st">"oldest"</span>)) </span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>                    )) <span class="sc">+</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#geom_smooth() + #just aren't enough points in the younger categories</span></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="fu">vars</span>(chrom), <span class="at">scales =</span> <span class="st">"free_x"</span> ) <span class="sc">+</span></span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"LTR age along chromosomes"</span>,</span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Chromosomal position (10Mb)"</span>, <span class="at">y =</span> <span class="st">"LTR age (K2P)"</span>,</span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">"Age Class"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>There are few young LTRs, but their positions match with the pattern of our overall TE density plot. The positions of the young LTRs aren’t close to gene-dense regions on the autosomes, though interestingly there are a few on the right-hand side of LG_X, which was the most gene-dense region of our sex chormosome!</p>
+<p>That was cool. Definitely <strong>not</strong> a statistical test of correlations between LTR age and gene density, but the fact that sub-sections of this data behave quite differently is really interesting to see!</p>
+</section>
+<section id="missing-values-in-gene-density-comparison" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="missing-values-in-gene-density-comparison"><span class="header-section-number">14.5</span> Missing values in gene density comparison</h2>
+<p>You might remember that in last lecture, when you encountered missing values in your data, you could replace them with 0. If we want to put our LTR age data into the same kind of windows that the gene density data is in, we’re going to have <em>some windows without any age data</em>. Do you think that setting LTR age to 0 would be a good way to handle the windows with missing age data?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>windowedAges <span class="ot">&lt;-</span> ltrAge <span class="sc">%&gt;%</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">chromosome =</span> chrom,            <span class="co"># get the "chromosome" col name to match</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">age =</span> K2P,                     <span class="co"># might as well give a better name</span></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">winNum =</span> <span class="fu">floor</span>(start<span class="sc">/</span><span class="dv">20000</span>)) <span class="sc">%&gt;%</span> <span class="co"># bin the start (20Mb) &amp; round </span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(chromosome, winNum, age)</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>genesPlusAges <span class="ot">&lt;-</span> geneDensity <span class="sc">%&gt;%</span></span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">"chromosome"</span>, <span class="st">"winNum"</span>, <span class="st">"density"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(windowedAges, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"chromosome"</span>, <span class="st">"winNum"</span>) )</span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(genesPlusAges)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 57,617 × 4
+   chromosome winNum density      age
+   &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+ 1 LG_N            1 0.00250  0.0122 
+ 2 LG_N            2 0.00250  0.0508 
+ 3 LG_N            3 0.0102   0.0181 
+ 4 LG_N            4 0.0116   0.111  
+ 5 LG_N            5 0.0116  NA      
+ 6 LG_N            6 0.0116   0.0343 
+ 7 LG_N            6 0.0116   0.00505
+ 8 LG_N            7 0.0116   0.0277 
+ 9 LG_N            8 0.0116   0.0318 
+10 LG_N            9 0.0116   0.0629 
+# ℹ 57,607 more rows</code></pre>
+</div>
+</div>
+<p>Just for the record, this is not a great way to window data.</p>
+<p>But! Look what happens when you change the join method! Got more missing data… Maybe it’ll be easier to understand if we plot it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>findMissing <span class="ot">&lt;-</span> genesPlusAges <span class="sc">%&gt;%</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">noDense =</span> <span class="fu">is.na</span>(density),</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">noAges =</span> <span class="fu">is.na</span>(age))</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(findMissing) <span class="sc">+</span></span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>( <span class="fu">aes</span>(<span class="at">x =</span> winNum, <span class="at">y =</span> density, <span class="at">colour =</span> noAges) ) <span class="sc">+</span></span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>( <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.15</span>) ) <span class="sc">+</span></span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="fu">vars</span>(chromosome), <span class="at">scales =</span> <span class="st">"free_x"</span> ) <span class="sc">+</span></span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Missing gene density data"</span>,</span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Window number"</span>, <span class="at">y =</span> <span class="st">"Gene density"</span>, <span class="at">colour =</span> <span class="st">"Missing ages!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 3 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(findMissing) <span class="sc">+</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>( <span class="fu">aes</span>(<span class="at">x =</span> winNum, <span class="at">y =</span> age, <span class="at">colour =</span> noDense) ) <span class="sc">+</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="fu">vars</span>(chromosome), <span class="at">scales =</span> <span class="st">"free_x"</span> ) <span class="sc">+</span></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Missing LTR age data"</span>,</span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Window number"</span>, <span class="at">y =</span> <span class="st">"LTR age"</span>, <span class="at">colour =</span> <span class="st">"Missing densitiy!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 15278 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-26-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Ooph. We’re only missing gene density data for 3 windows, but we’re missing out on LTR age data for around 15k windows… Is there anything we can do about it?</p>
+<p>Assigning a value of 0 to our LTR ages is asserting we have different data than we actually have: that we know there’s an LTR in that position and that it’s an incredibly recent insertion. But what if we replace the missing age points with the mean LTR age?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>findMissing <span class="ot">&lt;-</span> genesPlusAges <span class="sc">%&gt;%</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">noDense =</span> <span class="fu">is.na</span>(density),</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">noAges =</span> <span class="fu">is.na</span>(age),</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">rplAge =</span> <span class="fu">replace_na</span>( age,<span class="fu">mean</span>(age,<span class="at">na.rm=</span><span class="cn">TRUE</span>) ),</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">rplDensity =</span> <span class="fu">replace_na</span>( density,<span class="fu">mean</span>(density,<span class="at">na.rm=</span><span class="cn">TRUE</span>) ))</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>( <span class="fu">is.na</span>(findMissing<span class="sc">$</span>rplDensity) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>( <span class="fu">is.na</span>(findMissing<span class="sc">$</span>rplAge) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(findMissing) <span class="sc">+</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> winNum, <span class="at">y =</span> rplAge,</span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">colour =</span> <span class="fu">cut</span>(rplAge, <span class="dv">3</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"youngest"</span>, <span class="st">"middle"</span>, <span class="st">"oldest"</span>)))) <span class="sc">+</span></span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> winNum, <span class="at">y =</span> rplDensity)) <span class="sc">+</span></span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.2</span>)) <span class="sc">+</span></span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(chromosome), <span class="at">scales =</span> <span class="st">"free_x"</span> ) <span class="sc">+</span></span>
+<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Gene density and LTR age along chromosomes"</span>,</span>
+<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Chromosomal position (window number)"</span>, <span class="at">y =</span> <span class="st">"Altered ages"</span>,</span>
+<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">"Age Class"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 rows containing missing values (`position_stack()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 21 rows containing missing values (`geom_col()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>No more warnings about missing data! Woo! We can feel whole again! On the other hand, replacing these values didn’t actually help us improve our understanding of our age-density prediction…</p>
+<p>We should actually plot a window’s LTR age against its gene density! First, let’s look at the general pattern with the adjusted ages (when we replaced NA with the mean value for the variable).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(findMissing) <span class="sc">+</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> rplDensity, <span class="at">y =</span> rplAge,</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">colour =</span> <span class="fu">cut</span>(rplAge, <span class="dv">3</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"youngest"</span>, <span class="st">"middle"</span>, <span class="st">"oldest"</span>)))) <span class="sc">+</span></span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>( <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.13</span>) ) <span class="sc">+</span>    <span class="co"># being mindful of our outlier</span></span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="fu">vars</span>(chromosome), <span class="at">scales=</span><span class="st">"free_x"</span> ) <span class="sc">+</span></span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Gene density vs LTR age post-adjustment"</span>,</span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Gene density (adjusted)"</span>, <span class="at">y=</span><span class="st">"LTR age (adjusted)"</span>,</span>
+<span id="cb72-9"><a href="#cb72-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour=</span><span class="st">"Age Class"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>That’s pretty dang cool! We do see a general downward trend - as gene density increases (going right along the X axis), LTR age tends to decrease! We can even see some interesting differences among the chromosomes.</p>
+<p>LG_7 is our biggest chromosome and it seems to have a lot of the young (blue) LTRs. Why do you think that might be? <em>Generally</em>, as chromosome length increases, recombination rate decreases. Recombination rate is one of the properties we know correlates with the accessibility of genomic regions. So, we might predict that longer chromosomes have a larger proportion of ‘inactive’ regions and a greater number of TEs.</p>
+<p>Moving on!</p>
+<p>Let’s judge our past selves! Let’s see the effects of our decision to replace the missing age data with an average. Was it foolish or as wise as the time we joined a dragon boat team?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(findMissing) <span class="sc">+</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This time, we'll colour the points based on whether the age should be NA</span></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.5</span>, <span class="fu">aes</span>(<span class="at">x=</span>rplDensity,<span class="at">y=</span>rplAge, <span class="at">colour=</span>noAges)) <span class="sc">+</span></span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>( <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.13</span>) ) <span class="sc">+</span>    <span class="co"># being mindful of our outlier</span></span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="fu">vars</span>(chromosome), <span class="at">scales=</span><span class="st">"free_x"</span> ) <span class="sc">+</span></span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Gene density vs LTR age post-adjustment"</span>,</span>
+<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Gene density (adjusted)"</span>, <span class="at">y=</span><span class="st">"LTR age (adjusted)"</span>,</span>
+<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour=</span><span class="st">"Agelessss"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Not too bad! Not mechanistically motivated, but it does show that replacing missing data with the value we would expect (basically the definition of the mean) can have fewer consequences than replacing it with 0 in some contexts.</p>
+</section>
+<section id="does-the-sex-chromosome-lg_x-have-higher-ltr-density-hyp-3" class="level2" data-number="14.6">
+<h2 data-number="14.6" class="anchored" data-anchor-id="does-the-sex-chromosome-lg_x-have-higher-ltr-density-hyp-3"><span class="header-section-number">14.6</span> Does the sex chromosome (LG_X) have higher LTR density? (hyp #3)</h2>
+<p>We want to compare LTR densities across chromosomes. How would you do this?</p>
+<section id="challenge-3" class="level3" data-number="14.6.1">
+<h3 data-number="14.6.1" class="anchored" data-anchor-id="challenge-3"><span class="header-section-number">14.6.1</span> Challenge!</h3>
+<p>Box plot is a good base line. Ask for types of improvements that could be made to a basic box plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ltrDensity, <span class="fu">aes</span>(<span class="at">x =</span> chromosome, <span class="at">y =</span> density)) <span class="sc">+</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"LTR densities among chromosomes"</span>,</span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Chromosome"</span>, <span class="at">y =</span> <span class="st">"LTR density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>What unusual things do you notice about this plot?</p>
+<p>Does this initial exploration lead us to think that the sex chromosome, with its reduced rate of recombination, has accumulated more LTRs?</p>
+<p>Based on what we know about the gene density data, what would you suggest we might need to do with this LTR density data?</p>
+<p>There is one extreme outlier again - let’s see what happens if we colour the data based on window size.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>ltrDensity <span class="sc">%&gt;%</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>( <span class="fu">aes</span>(<span class="at">x =</span> chromosome, <span class="at">y =</span> density, <span class="at">colour =</span> winSize<span class="sc">==</span><span class="dv">1000000</span>) ) <span class="sc">+</span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.6</span>)) <span class="sc">+</span></span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"LTR densities among chromosomes"</span>,</span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Chromosome"</span>, <span class="at">y =</span> <span class="st">"LTR density"</span>, <span class="at">colour =</span> <span class="st">"Normal</span><span class="sc">\n</span><span class="st">Window</span><span class="sc">\n</span><span class="st">Size"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="lec06-exploratory-data-analysis_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>There are fewer outliers, but the pattern remains the same. GOOD SIGN! :)</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./lec05-data-visualization.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization with ggplot</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./projects.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Project description</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
