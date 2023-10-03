@@ -10,20 +10,20 @@ urlcolor: blue
 
 > ### Lesson objectives
 > 
-> - Develop understanding of random variables, probability distributions, and liklihood.
+> - Develop understanding of random variables, probability distributions, and likelihood.
 > - Understand how to simulate realizations of of a random variable.
-> - Develop familarity with maximum liklihood estimation and inference.
+> - Develop familarity with maximum likelihood estimation and inference.
 > - Become familar with hypothesis testing: null and alternate hypotheses, test statistics, power, significance, p-values, and the duality of hypothesis tests and confidence intervals.
 >
 > ### Lesson outline
 > 
-> - Random variables, probability distributions, and liklihood
+> - Random variables, probability distributions, and likelihood
 >     - Interpretations of probability, sources of uncertainty
 >     - Discrete vs continuous RVs
 >     - Simulating random variables in R
 >     - Means, variences, and other moments
-> - Liklihood estimation and inference 
->     - Understanding the liklihood function
+> - likelihood estimation and inference 
+>     - Understanding the likelihood function
 >     - Mathematical and numerical optimization
 > - Hypothesis testing: theory and examples
 
@@ -43,10 +43,10 @@ In this lecture, we will introduce key concepts in probability and statistics. T
 
 ## Random variables and probability distributions
 
-Consider an experiment which gives rise to a set $\Omega$ of outcomes. This set of outcomes is called the sample space. The space of all \textit{events} is formed by considering all possible combinations of outcomes (or some combinations but not all for technical reasons). Suppose the sample space is $\Omega = \{1,2,3,4\}$, so that the experiment might be rolling a four-sided die. One event is observing 2 or 3 upon rolling the die: this event is denoted $\{2,3\}$. (This is only one of many such events!). Probability allows us to assign to each event ($\{2,3\}, \{\}, \{1,2,3,4\}$, etc.) a value between zero and one capturing how likely that event is to occur under the experiment we have preformed. We also need certain conditions on this function to be met:
+Consider an experiment which gives rise to a set $\Omega$ of outcomes. This set of outcomes is called the sample space. The space of all *events* is formed by considering all possible combinations of outcomes (or some combinations but not all for technical reasons). Suppose the sample space is $\Omega = \{1,2,3,4\}$, so that the experiment might be rolling a four-sided die. One event is observing 2 or 3 upon rolling the die: this event is denoted $\{2,3\}$. (This is only one of many such events!). Probability allows us to assign to each event ($\{2,3\}, \{\}, \{1,2,3,4\}$, etc.) a value between zero and one capturing how likely that event is to occur under the experiment we have preformed. We also need certain conditions on this function to be met:
 
 - The probability of any event must be $\geqslant 0$. Negative probabilities make no sense!
-- The probability of the event $\Omega$ must be $=1$. \textit{Something} must have happened!
+- The probability of the event $\Omega$ must be $=1$. *Something* must have happened!
 - Countably many mutually exclusive events $A_1,A_2,\dots,$ must satisfy the following:
 
 \vspace{-12pt}
@@ -55,11 +55,11 @@ $$\Pr (A_1 \text{ and } A_2 \text{ and } A_3 \text{ and } \cdots) = \sum_{i=1}^\
 
 \vspace{3pt}
 
-$A_1,\dots,A_n,\dots$ are mutually exclusive if $A_i, A_j$ do not share outcomes for all $i \neq j$. (The events $A_1 = \{1,2\}$ and $A_2 = \{3,4\}$ are distinct, while the events $A_1 = \{1,3\}$ and $A_2 = \{3,4\}$ are not.)
+$A_1,\dots,A_n,\dots$ are mutually exclusive if $A_i, A_j$ do not share outcomes for all $i \neq j$. (The events $A_1 = \{1,2\}$ and $A_2 = \{3,4\}$ are distinct, while the events $A_1 = \{1,3\}$ and $A_2 = \{3,4\}$ are not..)
 
 In the case of rolling a four-sided die, the probability of all events can be calculated (due to the extra conditions) by specifying what the probability of each outcome. Suppose $\Pr(\{1\}) = 0.2, \Pr(\{2\}) = 0.3, \Pr(\{3\}) = \Pr(\{4\}) = 0.25$, i.e., the die is not fair but not horribly biased to one side.
 
-A random variable is \textit{the (uncertain) outcome of a random experiment}; more precisely, a RV is a function from the sample space to the real numbers. In the above example, the experiment is the roll of a four-sided die and the outcomes are 1,2,3, and 4. The random variable, which we call $X$, has an associated probability distribution: $\Pr(X = 1) = 0.2, \Pr(X = 2) = 0.3, \Pr(X = 3) = \Pr(X = 4) = 0.25$. Capital letters are often used to denote random variables and lower case letters to denote the values they can assume (i.e., elements of their range). We can use this probability distribution to simulate realizations (draws) of $X$, which correspond to repeatedly and independently preforming the experiment:
+A random variable is *the (uncertain) outcome of a random experiment*; more precisely, a RV is a function from the sample space to the real numbers. In the above example, the experiment is the roll of a four-sided die and the outcomes are 1,2,3, and 4. The random variable, which we call $X$, has an associated probability distribution: $\Pr(X = 1) = 0.2, \Pr(X = 2) = 0.3, \Pr(X = 3) = \Pr(X = 4) = 0.25$. Capital letters are often used to denote random variables and lower case letters to denote the values they can assume (i.e., elements of their range). We can use this probability distribution to simulate realizations (draws) of $X$, which correspond to repeatedly and independently preforming the experiment:
 
 ```{r, warning = FALSE}
 N <- 100 # = number of experiments (realizations)
@@ -76,7 +76,7 @@ ggplot(realizations_N_die_rolls,
 
 This example gives rise to a probability distribution on the set $\{1,2,3,4\}$ and, in fact, all of its subsets. Discrete probability distributions like this show up quite often, but so do continuous ones.
 
-For example, a uniform distribution assigns equal weight to all real numbers between, say, $0$ and $1$. If $X \sim \text{Uniform}(0,1)$, i.e., $X$ is a random variable with a uniform distribution, then $\Pr(a_1 < X < b_1) = (b_1 - a_1).$ We can simulate realizations of a uniform random variable using
+For example, a uniform distribution assigns equal weight to all real numbers between, say, $0$ and $1$. If $X \sim \text{Uniform}(0,1)$, i.e., $X$ is a random variable with a uniform distribution, then $\Pr(a_1 < X < b_1) = (b_1 - a_1).$. We can simulate realizations of a uniform random variable using
 
 ```{r, warning = FALSE}
 N <- 10000
@@ -98,7 +98,7 @@ bernouli <- function(p, n){
 bernouli(0.1, 100) ### 100 realizations of a Bernouli(p = 0.1) RV
 ```
 
-The distribution of a continuous random variable $Y$ is defined by a function $f(y|\theta)$ called its probability \textit{density}. The probability of an event $A$ (for example, observing a number between 0.3 and 0.7) is
+The distribution of a continuous random variable $Y$ is defined by a function $f(y|\theta)$ called its probability *density*. The probability of an event $A$ (for example, observing a number between 0.3 and 0.7) is
 
 $$\Pr(Y \in A) = \int_A f(y|\theta) \text{d} y.$$
 
@@ -158,7 +158,7 @@ X <- rnorm(n = 20, mean = 0, sd = 1)
 X^2 + 6
 ```
 
-## All about liklihood!
+## All about likelihood!
 
 So far we have seen:
 
@@ -170,17 +170,17 @@ So far we have seen:
 
 **Now, we turn our attention to the central problem of statistics:** determining what processes and parameters gave rise to data (estimation), and quantifying uncertainty in those estimates (inference). *Estimation and inference based on the likelihood function is the basis/foundation for most statistical procedures used in the sciences (including Analysis of Variance, fitting mixed models).*
 
-### The liklihood function
+### The likelihood function
 
-The idea is as follows. Given data $X_1,X_2,\dots,X_n \sim f(x|\theta)$, we want to estimate $\theta$, i.e., to determine what parameters were mostly likely to have given rise to the data (\textit{under the assumption $f$ models the data generating process}). We do this by maximizing the likelihood function
+The idea is as follows. Given data $X_1,X_2,\dots,X_n \sim f(x|\theta)$, we want to estimate $\theta$, i.e., to determine what parameters were mostly likely to have given rise to the data (*under the assumption $f$ models the data generating process*). We do this by maximizing the likelihood function
 
 $$L(X_1,\dots,X_n|\theta) = f(X_1|\theta) \cdots f(X_n|\theta) = \prod_{i=1}^n f(X_i|\theta),$$
 
-which is formed the assumption $X_1,\dots,X_n$ are independent. (There are methods that accommodate for dependent data, but we will not get into them here.) **The likelihood function is a function of the parameters $\theta$, but not of the data. It contains all of the information in the data about the parameters. The likelihood is formed by simply \textit{plugging in the data into the probability distribution function} from which they jointly arose.** When the data are independent, the joint probability distribution function is the product of the individual distribution functions. 
+which is formed the assumption $X_1,\dots,X_n$ are independent. (There are methods that accommodate for dependent data, but we will not get into them here.) **The likelihood function is a function of the parameters $\theta$, but not of the data. It contains all of the information in the data about the parameters. The likelihood is formed by simply *plugging in the data into the probability distribution function* from which they jointly arose.** When the data are independent, the joint probability distribution function is the product of the individual distribution functions. 
 
 Viewed as a function of $\theta$, the likelihood tells us how likely each set of parameter values is to have given rise to the data. The set of parameter values which jointly maximize $L$ (i.e., have the highest likelihood of generating the observed data) is called the maximum likelihood estimator $\hat{\theta}_{\text{MLE}}$.
 
-### An example of maximum liklihood estimation
+### An example of maximum likelihood estimation
 
 Suppose $X_1, X_2, \dots, X_n \sim \text{Exponential}(\lambda)$. The probability distribution for an Exponential random variable is $f(x|\lambda) = \lambda e^{-\lambda x}$, where $x \geqslant 0$. The likelihood function for $\lambda$ is
 
@@ -232,9 +232,9 @@ ggplot(estimator, aes(x = value)) +  geom_histogram(aes(y = ..density..),
              color = "red", linetype = "dashed")
 ```
 
-Importantly, the distribution of $\hat{\lambda}_{\text{MLE}}$ is approximately normal for large $n$, and has mean equal to the true value of $\lambda$. When R returns a confidence interval, it often makes use of the asymptotic distribution of the maximum liklihood estimator (even when the assumption of a large sample size is not satified).
+Importantly, the distribution of $\hat{\lambda}_{\text{MLE}}$ is approximately normal for large $n$, and has mean equal to the true value of $\lambda$. When R returns a confidence interval, it often makes use of the asymptotic distribution of the maximum likelihood estimator (even when the assumption of a large sample size is not satified).
 
-### An aside: numerical evaluation of the liklihood
+### An aside: numerical evaluation of the likelihood
 
 Often, it is not possible to use calculus to maximize the likelihood function. Sometimes it is not even possible to write down a closed form for the likelihood! In this case, we can use numerical methods to evaluate and maximize the likelihood. The following code chunk illustrates how to do this when the data arise from a mixture of two Normal distributions: $X \sim \text{Normal}(\mu,\sigma^2)$ with probability $p$ and $X \sim \text{Normal}(\nu,\tau^2)$ with probability $1-p$. The probability distribution function for this data is
 
@@ -250,12 +250,12 @@ return_LL_at_given_set_parameters <- function(parameters){
   # parameters is a vector with values at which evaluate the likelihood
   # contains value for normal means and standard deviations
   
-  liklihood_each_observation <- 
+  likelihood_each_observation <- 
     0.1*dnorm(data, mean = parameters$mean1, sd = parameters$sd1) +
     0.9*dnorm(data, mean = parameters$mean2, sd = parameters$sd2) 
   # this is the prob. dist of the data, but will look different depending on the application
   
-  LL_at_given_theta <- sum(log((liklihood_each_observation)))
+  LL_at_given_theta <- sum(log((likelihood_each_observation)))
   return(LL_at_given_theta)
 }
 
@@ -269,18 +269,18 @@ for (i in 1:nrow(values_to_test)){
   LL[i] <- return_LL_at_given_set_parameters(parameters)
 }
 
-log_liklihood <- 
+log_likelihood <- 
   as.data.frame(cbind(LL, values_to_test)) %>% subset(is.finite(LL))
 
 ### returns which parameters gave rise to max likelihood
-MLE <- log_liklihood %>% subset(LL == max(LL)); MLE
+MLE <- log_likelihood %>% subset(LL == max(LL)); MLE
 
-log_liklihood %>% subset(mean1 == MLE$mean1 & 
+log_likelihood %>% subset(mean1 == MLE$mean1 & 
                          mean2 == MLE$mean2 & sd1 == MLE$sd1) %>%
 ggplot(aes(x = sd2, y = LL)) + geom_line() +
   geom_vline(xintercept = MLE$sd2, color = "red") + 
   labs(x = "tau", 
-       y = "log-liklihood (fixing all other parameters at their MLEs)")
+       y = "log-likelihood (fixing all other parameters at their MLEs)")
 
 ## this shows the *profile* likelihood, a slice of the full likelihood
 ## mu, sigma, and nu are fixed at their MLEs
@@ -288,7 +288,7 @@ ggplot(aes(x = sd2, y = LL)) + geom_line() +
 
 ## Hypothesis testing: theory
 
-Often, the objective of a study is not to estimate a parameter but to decide which of two (or more) contradictory claims about the parameter is consistent with the data. This part of statistics is called \textit{hypothesis testing}. Hypothesis testing is intimately connected to the construction and interpretation of confidence intervals which quantify estimation uncertainty.
+Often, the objective of a study is not to estimate a parameter but to decide which of two (or more) contradictory claims about the parameter is consistent with the data. This part of statistics is called *hypothesis testing*. Hypothesis testing is intimately connected to the construction and interpretation of confidence intervals which quantify estimation uncertainty.
  
 ### Null and alternative hypotheses
 
@@ -301,7 +301,7 @@ $$H_1: \theta \neq \theta_0$$
 
 \vspace{6pt}
 
-The first hypothesis is called the \textit{null hypothesis} and may correspond to an expectation we have about the parameter (from, e.g., prior data). The second hypothesis is called the \textit{alternative hypothesis}. The data are used to make a principle conclusion about if the null hypothesis is consistent with the data; if so, we reject the alternative hypothesis and, if not, we reject the null hypothesis as an explanation for the data generative process. In the following sections, we will describe the process for conducting such a hypothesis test.
+The first hypothesis is called the *null hypothesis* and may correspond to an expectation we have about the parameter (from, e.g., prior data). The second hypothesis is called the *alternative hypothesis*. The data are used to make a principle conclusion about if the null hypothesis is consistent with the data; if so, we reject the alternative hypothesis and, if not, we reject the null hypothesis as an explanation for the data generative process. In the following sections, we will describe the process for conducting such a hypothesis test.
 
 ### Test statistics
 
@@ -315,7 +315,7 @@ The statistic is based on the likelihood function, and its asymptotic distributi
 
 ### How do we do this?
 
-To decide between the null and alternative hypothesis, given a test statistic and its distribution under $H_0$, we must specify a \textit{significance level} $\alpha$. The significance level measures how likely we are to reject the null hypothesis, given that it is true: $\alpha = P(\text{reject } H_0 | H_0)$. The significance level is chosen \textit{before data collection}, and is typically set to 0.05 or smaller. By a similar token, the \textit{power} of a statistical test is defined as the probability of rejecting the alternative hypothesis, given it is true: $1-\beta = \Pr(\text{reject } H_0 | H_1).$ Many factors affect the power of a test, but a test based on the likelihood ratio test statistic is the uniformly most powerful among all alternatives to test the above hypothesis. In general, one can preform (and it is best practice to preform!) analyses ahead of data collection to ensure power at a certain level.
+To decide between the null and alternative hypothesis, given a test statistic and its distribution under $H_0$, we must specify a *significance level* $\alpha$. The significance level measures how likely we are to reject the null hypothesis, given that it is true: $\alpha = P(\text{reject } H_0 | H_0)$. The significance level is chosen *before data collection*, and is typically set to 0.05 or smaller. By a similar token, the *power* of a statistical test is defined as the probability of rejecting the alternative hypothesis, given it is true: $1-\beta = \Pr(\text{reject } H_0 | H_1).$ Many factors affect the power of a test, but a test based on the likelihood ratio test statistic is the uniformly most powerful among all alternatives to test the above hypothesis. In general, one can preform (and it is best practice to preform!) analyses ahead of data collection to ensure power at a certain level.
 
 **We conduct a hypothesis test at significance level $\alpha$ as follows:**
 
@@ -327,10 +327,10 @@ To decide between the null and alternative hypothesis, given a test statistic an
 To illustrate how this works, we will return to the previous example. A test of $H_0: (\mu,\sigma,\nu,\tau) = (0,1,10,10)$ vs $H_1: (\mu,\sigma,\nu,\tau) \neq (0,1,10,10)$ at significance level $\alpha = 0.05$ can be preformed as follows.
 
 ```{r}
-liklihood_at_null <- log_liklihood %>% 
+likelihood_at_null <- log_likelihood %>% 
   subset(mean1 == 0 & mean2 == 10 & sd1 == 1 & sd2 == 10)
 
-test_statistic <- -2*(liklihood_at_null$LL - MLE$LL) 
+test_statistic <- -2*(likelihood_at_null$LL - MLE$LL) 
 test_statistic ### realized value of the likelihood ratio test statistic
 
 pchisq(test_statistic, df = 1, lower.tail = FALSE)
@@ -342,10 +342,10 @@ Since we have designed $H_0$ so that it is true (i.e., the values for the parame
 In contrast, consider the test $H_0: (\mu,\sigma,\nu,\tau) = (0,1,10,0)$ vs $H_1: (\mu,\sigma,\nu,\tau) \neq (0,1,10,5)$. In this case, $p < \alpha$, so that we have sufficient evidence to reject the null hypothesis.
 
 ```{r}
-liklihood_at_null <- log_liklihood %>% 
+likelihood_at_null <- log_likelihood %>% 
   subset(mean1 == 0 & mean2 == 10 & sd1 == 1 & sd2 == 5)
 
-test_statistic <- -2*(liklihood_at_null$LL - MLE$LL) 
+test_statistic <- -2*(likelihood_at_null$LL - MLE$LL) 
 test_statistic ### realized value of the likelihood ratio test statistic
 
 pchisq(test_statistic, df = 1, lower.tail = FALSE)
@@ -360,7 +360,7 @@ One way to think of a $100(1-\alpha)\%$ confidence interval is as the set of val
 cutoff <- qchisq(0.95,df=1)/2 
 # cutoff for admissible values based on 95%-ile for a chi-squared dist df=1
 
-log_liklihood %>% subset(mean1 == MLE$mean1 & 
+log_likelihood %>% subset(mean1 == MLE$mean1 & 
                          mean2 == MLE$mean2 & sd1 == MLE$sd1) -> LL_plot
 
 LL_plot %>% subset(abs(LL - MLE$LL) < cutoff) -> values_inconfidence_interval
@@ -374,7 +374,7 @@ LL_plot %>% ggplot(aes(x = sd2, y = LL)) + geom_line() +
               color = "red", linetype = "dashed") +
    geom_vline(xintercept = max(values_inconfidence_interval$sd2), 
               color = "red", linetype = "dashed") +
-  labs(x = "tau", y = "log-liklihood (all other parameters at their MLEs)")
+  labs(x = "tau", y = "log-likelihood (all other parameters at their MLEs)")
 ```
 
 The limits for the $95\%$ confidence interval for $\tau$ are given by the dashed red lines. As before, the maximum likelihood estimate for $\tau$ (with all other parameters fixed at their MLEs) is represented by the solid red line.
@@ -431,7 +431,7 @@ t.test(obs~ID, data) ### the syntax will be the same for linear models!
 # anova(lm(obs~ID, data))
 ```
 
-When the goal of an investigation is to test if mean values of a dependent variable are different between categories that were _paired by design_, a paired $t$-test is used. An example where this would be appropriate is an experiment in which Daphnia abundance was sampled before and after exposure to a pathogen.
+When the goal of an investigation is to test if mean values of a dependent variable are different between categories that were *paired by design*, a paired $t$-test is used. An example where this would be appropriate is an experiment in which Daphnia abundance was sampled before and after exposure to a pathogen.
 
 The syntax for a paired $t$-test is as follows:
 

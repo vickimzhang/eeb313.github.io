@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./projects.html" rel="next">
+<link href="./lec08-linear-models.html" rel="next">
 <link href="./lec06-exploratory-data-analysis.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -212,6 +212,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction to inference</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lec08-linear-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear models</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -230,13 +236,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Project description</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Project description</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./databases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Some open-access databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Some open-access databases</span></span></a>
   </div>
 </li>
       </ul>
@@ -260,11 +266,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#higher-moments" id="toc-higher-moments" class="nav-link" data-scroll-target="#higher-moments"><span class="header-section-number">9.3.1</span> Higher moments</a></li>
   </ul></li>
   <li><a href="#simulating-important-random-variables" id="toc-simulating-important-random-variables" class="nav-link" data-scroll-target="#simulating-important-random-variables"><span class="header-section-number">9.4</span> Simulating important random variables</a></li>
-  <li><a href="#all-about-liklihood" id="toc-all-about-liklihood" class="nav-link" data-scroll-target="#all-about-liklihood"><span class="header-section-number">9.5</span> All about liklihood!</a>
+  <li><a href="#all-about-likelihood" id="toc-all-about-likelihood" class="nav-link" data-scroll-target="#all-about-likelihood"><span class="header-section-number">9.5</span> All about likelihood!</a>
   <ul class="collapse">
-  <li><a href="#the-liklihood-function" id="toc-the-liklihood-function" class="nav-link" data-scroll-target="#the-liklihood-function"><span class="header-section-number">9.5.1</span> The liklihood function</a></li>
-  <li><a href="#an-example-of-maximum-liklihood-estimation" id="toc-an-example-of-maximum-liklihood-estimation" class="nav-link" data-scroll-target="#an-example-of-maximum-liklihood-estimation"><span class="header-section-number">9.5.2</span> An example of maximum liklihood estimation</a></li>
-  <li><a href="#an-aside-numerical-evaluation-of-the-liklihood" id="toc-an-aside-numerical-evaluation-of-the-liklihood" class="nav-link" data-scroll-target="#an-aside-numerical-evaluation-of-the-liklihood"><span class="header-section-number">9.5.3</span> An aside: numerical evaluation of the liklihood</a></li>
+  <li><a href="#the-likelihood-function" id="toc-the-likelihood-function" class="nav-link" data-scroll-target="#the-likelihood-function"><span class="header-section-number">9.5.1</span> The likelihood function</a></li>
+  <li><a href="#an-example-of-maximum-likelihood-estimation" id="toc-an-example-of-maximum-likelihood-estimation" class="nav-link" data-scroll-target="#an-example-of-maximum-likelihood-estimation"><span class="header-section-number">9.5.2</span> An example of maximum likelihood estimation</a></li>
+  <li><a href="#an-aside-numerical-evaluation-of-the-likelihood" id="toc-an-aside-numerical-evaluation-of-the-likelihood" class="nav-link" data-scroll-target="#an-aside-numerical-evaluation-of-the-likelihood"><span class="header-section-number">9.5.3</span> An aside: numerical evaluation of the likelihood</a></li>
   </ul></li>
   <li><a href="#hypothesis-testing-theory" id="toc-hypothesis-testing-theory" class="nav-link" data-scroll-target="#hypothesis-testing-theory"><span class="header-section-number">9.6</span> Hypothesis testing: theory</a>
   <ul class="collapse">
@@ -306,23 +312,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <h3 id="lesson-objectives" data-number="9.0.1" class="anchored"><span class="header-section-number">9.0.1</span> Lesson objectives</h3>
 <ul>
-<li>Develop understanding of random variables, probability distributions, and liklihood.</li>
+<li>Develop understanding of random variables, probability distributions, and likelihood.</li>
 <li>Understand how to simulate realizations of of a random variable.</li>
-<li>Develop familarity with maximum liklihood estimation and inference.</li>
+<li>Develop familarity with maximum likelihood estimation and inference.</li>
 <li>Become familar with hypothesis testing: null and alternate hypotheses, test statistics, power, significance, p-values, and the duality of hypothesis tests and confidence intervals.</li>
 </ul>
 <h3 id="lesson-outline" data-number="9.0.2" class="anchored"><span class="header-section-number">9.0.2</span> Lesson outline</h3>
 <ul>
-<li>Random variables, probability distributions, and liklihood
+<li>Random variables, probability distributions, and likelihood
 <ul>
 <li>Interpretations of probability, sources of uncertainty</li>
 <li>Discrete vs continuous RVs</li>
 <li>Simulating random variables in R</li>
 <li>Means, variences, and other moments</li>
 </ul></li>
-<li>Liklihood estimation and inference
+<li>likelihood estimation and inference
 <ul>
-<li>Understanding the liklihood function</li>
+<li>Understanding the likelihood function</li>
 <li>Mathematical and numerical optimization</li>
 </ul></li>
 <li>Hypothesis testing: theory and examples</li>
@@ -340,16 +346,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="random-variables-and-probability-distributions" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="random-variables-and-probability-distributions"><span class="header-section-number">9.2</span> Random variables and probability distributions</h2>
-<p>Consider an experiment which gives rise to a set <span class="math inline">\(\Omega\)</span> of outcomes. This set of outcomes is called the sample space. The space of all is formed by considering all possible combinations of outcomes (or some combinations but not all for technical reasons). Suppose the sample space is <span class="math inline">\(\Omega = \{1,2,3,4\}\)</span>, so that the experiment might be rolling a four-sided die. One event is observing 2 or 3 upon rolling the die: this event is denoted <span class="math inline">\(\{2,3\}\)</span>. (This is only one of many such events!). Probability allows us to assign to each event (<span class="math inline">\(\{2,3\}, \{\}, \{1,2,3,4\}\)</span>, etc.) a value between zero and one capturing how likely that event is to occur under the experiment we have preformed. We also need certain conditions on this function to be met:</p>
+<p>Consider an experiment which gives rise to a set <span class="math inline">\(\Omega\)</span> of outcomes. This set of outcomes is called the sample space. The space of all <em>events</em> is formed by considering all possible combinations of outcomes (or some combinations but not all for technical reasons). Suppose the sample space is <span class="math inline">\(\Omega = \{1,2,3,4\}\)</span>, so that the experiment might be rolling a four-sided die. One event is observing 2 or 3 upon rolling the die: this event is denoted <span class="math inline">\(\{2,3\}\)</span>. (This is only one of many such events!). Probability allows us to assign to each event (<span class="math inline">\(\{2,3\}, \{\}, \{1,2,3,4\}\)</span>, etc.) a value between zero and one capturing how likely that event is to occur under the experiment we have preformed. We also need certain conditions on this function to be met:</p>
 <ul>
 <li>The probability of any event must be <span class="math inline">\(\geqslant 0\)</span>. Negative probabilities make no sense!</li>
-<li>The probability of the event <span class="math inline">\(\Omega\)</span> must be <span class="math inline">\(=1\)</span>. must have happened!</li>
+<li>The probability of the event <span class="math inline">\(\Omega\)</span> must be <span class="math inline">\(=1\)</span>. <em>Something</em> must have happened!</li>
 <li>Countably many mutually exclusive events <span class="math inline">\(A_1,A_2,\dots,\)</span> must satisfy the following:</li>
 </ul>
 <p><span class="math display">\[\Pr (A_1 \text{ and } A_2 \text{ and } A_3 \text{ and } \cdots) = \sum_{i=1}^\infty \Pr (A_i)\]</span></p>
-<p><span class="math inline">\(A_1,\dots,A_n,\dots\)</span> are mutually exclusive if <span class="math inline">\(A_i, A_j\)</span> do not share outcomes for all <span class="math inline">\(i \neq j\)</span>. (The events <span class="math inline">\(A_1 = \{1,2\}\)</span> and <span class="math inline">\(A_2 = \{3,4\}\)</span> are distinct, while the events <span class="math inline">\(A_1 = \{1,3\}\)</span> and <span class="math inline">\(A_2 = \{3,4\}\)</span> are not.)</p>
+<p><span class="math inline">\(A_1,\dots,A_n,\dots\)</span> are mutually exclusive if <span class="math inline">\(A_i, A_j\)</span> do not share outcomes for all <span class="math inline">\(i \neq j\)</span>. (The events <span class="math inline">\(A_1 = \{1,2\}\)</span> and <span class="math inline">\(A_2 = \{3,4\}\)</span> are distinct, while the events <span class="math inline">\(A_1 = \{1,3\}\)</span> and <span class="math inline">\(A_2 = \{3,4\}\)</span> are not..)</p>
 <p>In the case of rolling a four-sided die, the probability of all events can be calculated (due to the extra conditions) by specifying what the probability of each outcome. Suppose <span class="math inline">\(\Pr(\{1\}) = 0.2, \Pr(\{2\}) = 0.3, \Pr(\{3\}) = \Pr(\{4\}) = 0.25\)</span>, i.e., the die is not fair but not horribly biased to one side.</p>
-<p>A random variable is ; more precisely, a RV is a function from the sample space to the real numbers. In the above example, the experiment is the roll of a four-sided die and the outcomes are 1,2,3, and 4. The random variable, which we call <span class="math inline">\(X\)</span>, has an associated probability distribution: <span class="math inline">\(\Pr(X = 1) = 0.2, \Pr(X = 2) = 0.3, \Pr(X = 3) = \Pr(X = 4) = 0.25\)</span>. Capital letters are often used to denote random variables and lower case letters to denote the values they can assume (i.e., elements of their range). We can use this probability distribution to simulate realizations (draws) of <span class="math inline">\(X\)</span>, which correspond to repeatedly and independently preforming the experiment:</p>
+<p>A random variable is <em>the (uncertain) outcome of a random experiment</em>; more precisely, a RV is a function from the sample space to the real numbers. In the above example, the experiment is the roll of a four-sided die and the outcomes are 1,2,3, and 4. The random variable, which we call <span class="math inline">\(X\)</span>, has an associated probability distribution: <span class="math inline">\(\Pr(X = 1) = 0.2, \Pr(X = 2) = 0.3, \Pr(X = 3) = \Pr(X = 4) = 0.25\)</span>. Capital letters are often used to denote random variables and lower case letters to denote the values they can assume (i.e., elements of their range). We can use this probability distribution to simulate realizations (draws) of <span class="math inline">\(X\)</span>, which correspond to repeatedly and independently preforming the experiment:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># = number of experiments (realizations)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>realizations_N_die_rolls <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>), </span>
@@ -358,9 +364,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">replace =</span> T)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>realizations_N_die_rolls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  [1] 4 3 4 2 3 4 1 4 1 2 2 2 4 4 3 4 1 1 1 4 2 3 2 2 4 1 2 4 1 1 4 1 1 1 4 4 4
- [38] 2 3 4 3 2 2 2 2 3 2 1 1 2 4 2 4 2 1 4 2 4 3 1 3 3 3 3 2 1 3 1 4 2 3 3 4 3
- [75] 3 2 3 3 2 3 4 3 1 3 4 4 3 4 4 2 1 1 1 1 3 3 2 2 1 4</code></pre>
+<pre><code>  [1] 3 2 4 4 3 4 3 4 1 4 3 1 3 2 2 4 1 2 3 3 4 2 2 2 2 3 3 2 2 2 3 3 2 3 1 4 1
+ [38] 4 3 3 1 2 1 1 1 3 2 3 4 4 1 3 4 2 2 3 4 1 2 3 2 1 3 4 2 2 4 4 1 2 3 2 2 2
+ [75] 2 1 1 4 2 4 4 1 4 1 1 2 1 4 3 2 1 1 4 2 2 1 4 1 3 3</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>realizations_N_die_rolls <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">value =</span> realizations_N_die_rolls)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(realizations_N_die_rolls, </span>
@@ -373,7 +379,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>This example gives rise to a probability distribution on the set <span class="math inline">\(\{1,2,3,4\}\)</span> and, in fact, all of its subsets. Discrete probability distributions like this show up quite often, but so do continuous ones.</p>
-<p>For example, a uniform distribution assigns equal weight to all real numbers between, say, <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>. If <span class="math inline">\(X \sim \text{Uniform}(0,1)\)</span>, i.e., <span class="math inline">\(X\)</span> is a random variable with a uniform distribution, then <span class="math inline">\(\Pr(a_1 &lt; X &lt; b_1) = (b_1 - a_1).\)</span> We can simulate realizations of a uniform random variable using</p>
+<p>For example, a uniform distribution assigns equal weight to all real numbers between, say, <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>. If <span class="math inline">\(X \sim \text{Uniform}(0,1)\)</span>, i.e., <span class="math inline">\(X\)</span> is a random variable with a uniform distribution, then <span class="math inline">\(\Pr(a_1 &lt; X &lt; b_1) = (b_1 - a_1).\)</span>. We can simulate realizations of a uniform random variable using</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>realizations_N_uniform <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> N, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
@@ -396,12 +402,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">bernouli</span>(<span class="fl">0.1</span>, <span class="dv">100</span>) <span class="do">### 100 realizations of a Bernouli(p = 0.1) RV</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  [1] 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0 1 0 0 0 1 0 1 0 0
- [38] 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0
- [75] 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0</code></pre>
+<pre><code>  [1] 0 0 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0
+ [38] 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0
+ [75] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0</code></pre>
 </div>
 </div>
-<p>The distribution of a continuous random variable <span class="math inline">\(Y\)</span> is defined by a function <span class="math inline">\(f(y|\theta)\)</span> called its probability . The probability of an event <span class="math inline">\(A\)</span> (for example, observing a number between 0.3 and 0.7) is</p>
+<p>The distribution of a continuous random variable <span class="math inline">\(Y\)</span> is defined by a function <span class="math inline">\(f(y|\theta)\)</span> called its probability <em>density</em>. The probability of an event <span class="math inline">\(A\)</span> (for example, observing a number between 0.3 and 0.7) is</p>
 <p><span class="math display">\[\Pr(Y \in A) = \int_A f(y|\theta) \text{d} y.\]</span></p>
 <p>For example, if <span class="math inline">\(Y \sim \text{Uniform}(a,b)\)</span>,</p>
 <p><span class="math display">\[\Pr(a &lt; Y &lt; b) = \int_a^b \frac{1}{b-a} \text{d} y = \frac{1}{b-a}(b-a) = 1.\]</span></p>
@@ -427,33 +433,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">min =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">max =</span> <span class="dv">1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] -0.3139176 -0.1397117  0.2775813  0.5772223 -0.2754951  0.7106046
- [7] -0.9947281 -0.7123226  0.7948344 -0.4501034</code></pre>
+<pre><code> [1]  0.28175527 -0.88295744 -0.05622804 -0.55220323  0.44669664 -0.33102236
+ [7]  0.77245838 -0.94035753 -0.87807770  0.64682805</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## simulates n = 10 realizations of a Uniform(-1,1) RV</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  [1]  0.898699749 -0.797320836  0.782340605 -1.547394599 -2.137716281
-  [6]  0.605712152 -0.216589437 -0.679130952  0.817370129 -0.635958642
- [11]  0.313700544  1.957365944  0.723729978 -2.259259783  0.184541222
- [16] -0.400011613  0.363732444 -1.544620055 -0.919154236 -0.041025126
- [21]  0.576016406  1.406309178  0.093932876  1.489484929  0.709943308
- [26] -0.153720011  1.466181847  0.571070303 -0.601614454  1.188388084
- [31]  1.001865120 -0.458991355 -1.529590693  0.182018423 -1.846050177
- [36]  0.238491312 -0.288674583 -0.594432672  0.611666405  0.945567123
- [41]  1.543230123  0.729228013 -1.624648524 -0.223825458 -0.342051876
- [46]  0.210964181  0.510348798  0.805373140 -1.095498391  0.785921941
- [51]  1.361737222  0.010984160 -0.934842476 -1.652974720 -0.487982325
- [56]  0.900962544  1.072104769 -0.228707398 -0.590087031 -0.290733097
- [61] -0.340682436 -1.209972595 -0.918877549 -0.529742545 -0.482376676
- [66] -0.935272994  0.832845710  0.073484005  0.528455559 -0.300970839
- [71] -2.108656917 -0.888804781 -0.523731815  1.447790427  1.794613963
- [76] -0.989952319  0.858337132 -0.993307243  1.287222604 -2.221326860
- [81] -1.585820497  0.147185388  0.051414075 -0.365927848 -1.570642091
- [86] -0.048599234 -1.094723966 -1.496502420 -0.520615423 -0.002999752
- [91] -0.670217278 -0.126578491  0.745240527 -1.118176757  0.365772430
- [96]  1.238840552  0.302876938 -0.334245338 -0.444970605 -0.299001070</code></pre>
+<pre><code>  [1]  1.56081629  0.64109184  0.55765205  1.40924347  0.12660580 -0.22144005
+  [7]  1.94643325  1.05813825  0.46621441  0.80012723  0.48985358  1.27653439
+ [13]  1.10331859  0.46209377 -0.10311845  0.02432300  0.13786187 -1.34300020
+ [19]  0.97163821 -0.40285532 -0.90789176 -0.85742688  0.54585785 -0.15190820
+ [25] -0.85097034 -0.75468014 -1.80912370  0.95156845 -0.19791899  0.44636872
+ [31] -0.25923506  0.98864289 -1.02458152  1.23720126 -1.40155027 -0.20880181
+ [37]  0.82921588  0.95070711  1.74137789 -1.10741833 -1.45890405  0.88333489
+ [43]  1.71070371 -0.50019469 -1.50095148 -0.46348427  0.03153116  0.26504761
+ [49]  1.02609577  1.09695239  0.73912316  0.08100992  0.16742370  3.04410681
+ [55] -1.09093174  1.52606056 -0.77448054 -0.77938789 -1.04347603  1.33170783
+ [61]  0.08050244  1.37001345  0.96701315  0.55340761  0.21097001 -0.05147777
+ [67]  1.49287009  2.28217704 -0.41822632 -1.16705667  2.07626302  0.39884516
+ [73] -0.04438863  2.66152657  1.20886264 -0.75759876 -0.66219074 -1.09705791
+ [79] -1.31843475 -0.68614788  0.22117448  0.70784643  0.25089582  0.80290674
+ [85]  0.27058231 -0.18175456  0.74691720  0.47797162  0.18215886 -0.40500879
+ [91]  0.08566957 -1.17476114  0.24599067 -0.37483196  0.38243345 -0.62789990
+ [97] -0.99681800 -0.05623948  0.47017502  0.93064236</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">## simulates n = 100 realizations of a Normal(mean = 0, variance = 1) RV</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="do">## sd stands for standard deviation, and is the sqrt of the variance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -464,14 +467,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">20</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) </span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>X<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  6.494149  8.155716  6.044227  6.123482  6.001961  6.009059 15.096738
- [8]  6.032964  7.088260  7.259709  6.022938  6.318252  6.599161  6.044559
-[15]  6.386919  6.345473  7.817499  7.096669  7.933053  6.657692</code></pre>
+<pre><code> [1] 9.358269 6.000869 6.043432 9.318039 6.002815 6.589875 6.065187 6.004508
+ [9] 6.000119 6.873420 6.188659 6.000488 6.021840 6.512083 8.246823 7.827670
+[17] 6.613818 6.344711 6.446236 6.893004</code></pre>
 </div>
 </div>
 </section>
-<section id="all-about-liklihood" class="level2" data-number="9.5">
-<h2 data-number="9.5" class="anchored" data-anchor-id="all-about-liklihood"><span class="header-section-number">9.5</span> All about liklihood!</h2>
+<section id="all-about-likelihood" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="all-about-likelihood"><span class="header-section-number">9.5</span> All about likelihood!</h2>
 <p>So far we have seen:</p>
 <ol type="1">
 <li><p>Random variables model experiments with uncertain outcomes and come in many flavors. They are the main workhorse of probability and statistics.</p></li>
@@ -479,15 +482,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>The mean, variance, and higher moments are useful summaries of the central tenancy of and variability in a random experiment or process.</p></li>
 </ol>
 <p><strong>Now, we turn our attention to the central problem of statistics:</strong> determining what processes and parameters gave rise to data (estimation), and quantifying uncertainty in those estimates (inference). <em>Estimation and inference based on the likelihood function is the basis/foundation for most statistical procedures used in the sciences (including Analysis of Variance, fitting mixed models).</em></p>
-<section id="the-liklihood-function" class="level3" data-number="9.5.1">
-<h3 data-number="9.5.1" class="anchored" data-anchor-id="the-liklihood-function"><span class="header-section-number">9.5.1</span> The liklihood function</h3>
-<p>The idea is as follows. Given data <span class="math inline">\(X_1,X_2,\dots,X_n \sim f(x|\theta)\)</span>, we want to estimate <span class="math inline">\(\theta\)</span>, i.e., to determine what parameters were mostly likely to have given rise to the data (). We do this by maximizing the likelihood function</p>
+<section id="the-likelihood-function" class="level3" data-number="9.5.1">
+<h3 data-number="9.5.1" class="anchored" data-anchor-id="the-likelihood-function"><span class="header-section-number">9.5.1</span> The likelihood function</h3>
+<p>The idea is as follows. Given data <span class="math inline">\(X_1,X_2,\dots,X_n \sim f(x|\theta)\)</span>, we want to estimate <span class="math inline">\(\theta\)</span>, i.e., to determine what parameters were mostly likely to have given rise to the data (<em>under the assumption <span class="math inline">\(f\)</span> models the data generating process</em>). We do this by maximizing the likelihood function</p>
 <p><span class="math display">\[L(X_1,\dots,X_n|\theta) = f(X_1|\theta) \cdots f(X_n|\theta) = \prod_{i=1}^n f(X_i|\theta),\]</span></p>
-<p>which is formed the assumption <span class="math inline">\(X_1,\dots,X_n\)</span> are independent. (There are methods that accommodate for dependent data, but we will not get into them here.) <strong>The likelihood function is a function of the parameters <span class="math inline">\(\theta\)</span>, but not of the data. It contains all of the information in the data about the parameters. The likelihood is formed by simply from which they jointly arose.</strong> When the data are independent, the joint probability distribution function is the product of the individual distribution functions.</p>
+<p>which is formed the assumption <span class="math inline">\(X_1,\dots,X_n\)</span> are independent. (There are methods that accommodate for dependent data, but we will not get into them here.) <strong>The likelihood function is a function of the parameters <span class="math inline">\(\theta\)</span>, but not of the data. It contains all of the information in the data about the parameters. The likelihood is formed by simply <em>plugging in the data into the probability distribution function</em> from which they jointly arose.</strong> When the data are independent, the joint probability distribution function is the product of the individual distribution functions.</p>
 <p>Viewed as a function of <span class="math inline">\(\theta\)</span>, the likelihood tells us how likely each set of parameter values is to have given rise to the data. The set of parameter values which jointly maximize <span class="math inline">\(L\)</span> (i.e., have the highest likelihood of generating the observed data) is called the maximum likelihood estimator <span class="math inline">\(\hat{\theta}_{\text{MLE}}\)</span>.</p>
 </section>
-<section id="an-example-of-maximum-liklihood-estimation" class="level3" data-number="9.5.2">
-<h3 data-number="9.5.2" class="anchored" data-anchor-id="an-example-of-maximum-liklihood-estimation"><span class="header-section-number">9.5.2</span> An example of maximum liklihood estimation</h3>
+<section id="an-example-of-maximum-likelihood-estimation" class="level3" data-number="9.5.2">
+<h3 data-number="9.5.2" class="anchored" data-anchor-id="an-example-of-maximum-likelihood-estimation"><span class="header-section-number">9.5.2</span> An example of maximum likelihood estimation</h3>
 <p>Suppose <span class="math inline">\(X_1, X_2, \dots, X_n \sim \text{Exponential}(\lambda)\)</span>. The probability distribution for an Exponential random variable is <span class="math inline">\(f(x|\lambda) = \lambda e^{-\lambda x}\)</span>, where <span class="math inline">\(x \geqslant 0\)</span>. The likelihood function for <span class="math inline">\(\lambda\)</span> is</p>
 <p><span class="math display">\[L(X_1,\dots,X_n|\lambda) = \prod_{i=1}^n \lambda e^{-\lambda X_i} = \lambda^n e^{-\lambda (X_1+\dots+X_n)}.\]</span></p>
 <p>This appears difficult to maximize, but it turns out that it is quite easy if we take the log of the likelihood. The point at which the likelihood is greatest is not changed under this transformation (since log is an increasing function). The log-likelihood is a bit easier to deal with, and has some nice statistical properties.</p>
@@ -505,7 +508,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">exponential_MLE</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 5.038198</code></pre>
+<pre><code>[1] 5.198298</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>estimator <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">1000</span> <span class="do">### number of n=100 exponential draws</span></span>
@@ -530,10 +533,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="lec07-intro-to-stats_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Importantly, the distribution of <span class="math inline">\(\hat{\lambda}_{\text{MLE}}\)</span> is approximately normal for large <span class="math inline">\(n\)</span>, and has mean equal to the true value of <span class="math inline">\(\lambda\)</span>. When R returns a confidence interval, it often makes use of the asymptotic distribution of the maximum liklihood estimator (even when the assumption of a large sample size is not satified).</p>
+<p>Importantly, the distribution of <span class="math inline">\(\hat{\lambda}_{\text{MLE}}\)</span> is approximately normal for large <span class="math inline">\(n\)</span>, and has mean equal to the true value of <span class="math inline">\(\lambda\)</span>. When R returns a confidence interval, it often makes use of the asymptotic distribution of the maximum likelihood estimator (even when the assumption of a large sample size is not satified).</p>
 </section>
-<section id="an-aside-numerical-evaluation-of-the-liklihood" class="level3" data-number="9.5.3">
-<h3 data-number="9.5.3" class="anchored" data-anchor-id="an-aside-numerical-evaluation-of-the-liklihood"><span class="header-section-number">9.5.3</span> An aside: numerical evaluation of the liklihood</h3>
+<section id="an-aside-numerical-evaluation-of-the-likelihood" class="level3" data-number="9.5.3">
+<h3 data-number="9.5.3" class="anchored" data-anchor-id="an-aside-numerical-evaluation-of-the-likelihood"><span class="header-section-number">9.5.3</span> An aside: numerical evaluation of the likelihood</h3>
 <p>Often, it is not possible to use calculus to maximize the likelihood function. Sometimes it is not even possible to write down a closed form for the likelihood! In this case, we can use numerical methods to evaluate and maximize the likelihood. The following code chunk illustrates how to do this when the data arise from a mixture of two Normal distributions: <span class="math inline">\(X \sim \text{Normal}(\mu,\sigma^2)\)</span> with probability <span class="math inline">\(p\)</span> and <span class="math inline">\(X \sim \text{Normal}(\nu,\tau^2)\)</span> with probability <span class="math inline">\(1-p\)</span>. The probability distribution function for this data is</p>
 <p><span class="math display">\[f(x|\mu,\sigma^2,\nu,\tau^2) = p \frac{1}{\sqrt{2\pi \sigma^2}} e^{-(x-\mu)^2/2\sigma^2} + (1-p) \frac{1}{\sqrt{2\pi \tau^2}} e^{-(x-\nu)^2/2\tau^2}.\]</span></p>
 <p>In the below code chunk, <span class="math inline">\(p = 0.1\)</span>, <span class="math inline">\(\mu = 0, \nu = 10, \sigma = 1, \tau = 10\)</span>. We assume that we know <span class="math inline">\(p\)</span> and <span class="math inline">\(\sigma^2\)</span>, and use numerical methods to evaluate the likelihood function across different combinations of parameters. The MLEs for <span class="math inline">\(\mu, \nu,\)</span> and <span class="math inline">\(\tau\)</span> is found by determining where the log-likelihood assumes a maximum.</p>
@@ -545,12 +548,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># parameters is a vector with values at which evaluate the likelihood</span></span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># contains value for normal means and standard deviations</span></span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  liklihood_each_observation <span class="ot">&lt;-</span> </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  likelihood_each_observation <span class="ot">&lt;-</span> </span>
 <span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.1</span><span class="sc">*</span><span class="fu">dnorm</span>(data, <span class="at">mean =</span> parameters<span class="sc">$</span>mean1, <span class="at">sd =</span> parameters<span class="sc">$</span>sd1) <span class="sc">+</span></span>
 <span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.9</span><span class="sc">*</span><span class="fu">dnorm</span>(data, <span class="at">mean =</span> parameters<span class="sc">$</span>mean2, <span class="at">sd =</span> parameters<span class="sc">$</span>sd2) </span>
 <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># this is the prob. dist of the data, but will look different depending on the application</span></span>
 <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  LL_at_given_theta <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">log</span>((liklihood_each_observation)))</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  LL_at_given_theta <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">log</span>((likelihood_each_observation)))</span>
 <span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(LL_at_given_theta)</span>
 <span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a></span>
@@ -564,21 +567,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>  LL[i] <span class="ot">&lt;-</span> <span class="fu">return_LL_at_given_set_parameters</span>(parameters)</span>
 <span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>log_liklihood <span class="ot">&lt;-</span> </span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>log_likelihood <span class="ot">&lt;-</span> </span>
 <span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(LL, values_to_test)) <span class="sc">%&gt;%</span> <span class="fu">subset</span>(<span class="fu">is.finite</span>(LL))</span>
 <span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a><span class="do">### returns which parameters gave rise to max likelihood</span></span>
-<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>MLE <span class="ot">&lt;-</span> log_liklihood <span class="sc">%&gt;%</span> <span class="fu">subset</span>(LL <span class="sc">==</span> <span class="fu">max</span>(LL)); MLE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>MLE <span class="ot">&lt;-</span> log_likelihood <span class="sc">%&gt;%</span> <span class="fu">subset</span>(LL <span class="sc">==</span> <span class="fu">max</span>(LL)); MLE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>             LL mean1 mean2 sd1 sd2
-20148 -3672.469     0    10   1 9.9</code></pre>
+<pre><code>            LL mean1 mean2 sd1  sd2
+20964 -3693.45   0.1  10.5   1 10.1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>log_liklihood <span class="sc">%&gt;%</span> <span class="fu">subset</span>(mean1 <span class="sc">==</span> MLE<span class="sc">$</span>mean1 <span class="sc">&amp;</span> </span>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>log_likelihood <span class="sc">%&gt;%</span> <span class="fu">subset</span>(mean1 <span class="sc">==</span> MLE<span class="sc">$</span>mean1 <span class="sc">&amp;</span> </span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>                         mean2 <span class="sc">==</span> MLE<span class="sc">$</span>mean2 <span class="sc">&amp;</span> sd1 <span class="sc">==</span> MLE<span class="sc">$</span>sd1) <span class="sc">%&gt;%</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sd2, <span class="at">y =</span> LL)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> MLE<span class="sc">$</span>sd2, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span> </span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"tau"</span>, </span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"log-liklihood (fixing all other parameters at their MLEs)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"log-likelihood (fixing all other parameters at their MLEs)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="lec07-intro-to-stats_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -589,13 +592,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="hypothesis-testing-theory" class="level2" data-number="9.6">
 <h2 data-number="9.6" class="anchored" data-anchor-id="hypothesis-testing-theory"><span class="header-section-number">9.6</span> Hypothesis testing: theory</h2>
-<p>Often, the objective of a study is not to estimate a parameter but to decide which of two (or more) contradictory claims about the parameter is consistent with the data. This part of statistics is called . Hypothesis testing is intimately connected to the construction and interpretation of confidence intervals which quantify estimation uncertainty.</p>
+<p>Often, the objective of a study is not to estimate a parameter but to decide which of two (or more) contradictory claims about the parameter is consistent with the data. This part of statistics is called <em>hypothesis testing</em>. Hypothesis testing is intimately connected to the construction and interpretation of confidence intervals which quantify estimation uncertainty.</p>
 <section id="null-and-alternative-hypotheses" class="level3" data-number="9.6.1">
 <h3 data-number="9.6.1" class="anchored" data-anchor-id="null-and-alternative-hypotheses"><span class="header-section-number">9.6.1</span> Null and alternative hypotheses</h3>
 <p>A statistical hypothesis is an assertion about the values of one or more parameters, or the form of a probability distribution that is used to model the data.</p>
 <p>Two contradictory hypotheses of the first kind are</p>
 <p><span class="math display">\[H_0: \theta = \theta_0\]</span> <span class="math display">\[H_1: \theta \neq \theta_0\]</span></p>
-<p>The first hypothesis is called the and may correspond to an expectation we have about the parameter (from, e.g., prior data). The second hypothesis is called the . The data are used to make a principle conclusion about if the null hypothesis is consistent with the data; if so, we reject the alternative hypothesis and, if not, we reject the null hypothesis as an explanation for the data generative process. In the following sections, we will describe the process for conducting such a hypothesis test.</p>
+<p>The first hypothesis is called the <em>null hypothesis</em> and may correspond to an expectation we have about the parameter (from, e.g., prior data). The second hypothesis is called the <em>alternative hypothesis</em>. The data are used to make a principle conclusion about if the null hypothesis is consistent with the data; if so, we reject the alternative hypothesis and, if not, we reject the null hypothesis as an explanation for the data generative process. In the following sections, we will describe the process for conducting such a hypothesis test.</p>
 </section>
 <section id="test-statistics" class="level3" data-number="9.6.2">
 <h3 data-number="9.6.2" class="anchored" data-anchor-id="test-statistics"><span class="header-section-number">9.6.2</span> Test statistics</h3>
@@ -606,7 +609,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="how-do-we-do-this" class="level3" data-number="9.6.3">
 <h3 data-number="9.6.3" class="anchored" data-anchor-id="how-do-we-do-this"><span class="header-section-number">9.6.3</span> How do we do this?</h3>
-<p>To decide between the null and alternative hypothesis, given a test statistic and its distribution under <span class="math inline">\(H_0\)</span>, we must specify a <span class="math inline">\(\alpha\)</span>. The significance level measures how likely we are to reject the null hypothesis, given that it is true: <span class="math inline">\(\alpha = P(\text{reject } H_0 | H_0)\)</span>. The significance level is chosen , and is typically set to 0.05 or smaller. By a similar token, the of a statistical test is defined as the probability of rejecting the alternative hypothesis, given it is true: <span class="math inline">\(1-\beta = \Pr(\text{reject } H_0 | H_1).\)</span> Many factors affect the power of a test, but a test based on the likelihood ratio test statistic is the uniformly most powerful among all alternatives to test the above hypothesis. In general, one can preform (and it is best practice to preform!) analyses ahead of data collection to ensure power at a certain level.</p>
+<p>To decide between the null and alternative hypothesis, given a test statistic and its distribution under <span class="math inline">\(H_0\)</span>, we must specify a <em>significance level</em> <span class="math inline">\(\alpha\)</span>. The significance level measures how likely we are to reject the null hypothesis, given that it is true: <span class="math inline">\(\alpha = P(\text{reject } H_0 | H_0)\)</span>. The significance level is chosen <em>before data collection</em>, and is typically set to 0.05 or smaller. By a similar token, the <em>power</em> of a statistical test is defined as the probability of rejecting the alternative hypothesis, given it is true: <span class="math inline">\(1-\beta = \Pr(\text{reject } H_0 | H_1).\)</span> Many factors affect the power of a test, but a test based on the likelihood ratio test statistic is the uniformly most powerful among all alternatives to test the above hypothesis. In general, one can preform (and it is best practice to preform!) analyses ahead of data collection to ensure power at a certain level.</p>
 <p><strong>We conduct a hypothesis test at significance level <span class="math inline">\(\alpha\)</span> as follows:</strong></p>
 <ol start="0" type="1">
 <li>State the null and alternative hypothesis and significance level <span class="math inline">\(\alpha\)</span>.</li>
@@ -616,34 +619,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>To illustrate how this works, we will return to the previous example. A test of <span class="math inline">\(H_0: (\mu,\sigma,\nu,\tau) = (0,1,10,10)\)</span> vs <span class="math inline">\(H_1: (\mu,\sigma,\nu,\tau) \neq (0,1,10,10)\)</span> at significance level <span class="math inline">\(\alpha = 0.05\)</span> can be preformed as follows.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>liklihood_at_null <span class="ot">&lt;-</span> log_liklihood <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>likelihood_at_null <span class="ot">&lt;-</span> log_likelihood <span class="sc">%&gt;%</span> </span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(mean1 <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> mean2 <span class="sc">==</span> <span class="dv">10</span> <span class="sc">&amp;</span> sd1 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> sd2 <span class="sc">==</span> <span class="dv">10</span>)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>test_statistic <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>(liklihood_at_null<span class="sc">$</span>LL <span class="sc">-</span> MLE<span class="sc">$</span>LL) </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>test_statistic <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>(likelihood_at_null<span class="sc">$</span>LL <span class="sc">-</span> MLE<span class="sc">$</span>LL) </span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>test_statistic <span class="do">### realized value of the likelihood ratio test statistic</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.009804945</code></pre>
+<pre><code>[1] 4.36017</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pchisq</span>(test_statistic, <span class="at">df =</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9211225</code></pre>
+<pre><code>[1] 0.03678863</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">### if p &lt; 0.05, then we reject H0; otherwise, we fail to reject H0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Since we have designed <span class="math inline">\(H_0\)</span> so that it is true (i.e., the values for the parameters are those used to generate the data), it should come as no surprise that we fail to reject the null hypothesis in favour of <span class="math inline">\(H_1\)</span>.</p>
 <p>In contrast, consider the test <span class="math inline">\(H_0: (\mu,\sigma,\nu,\tau) = (0,1,10,0)\)</span> vs <span class="math inline">\(H_1: (\mu,\sigma,\nu,\tau) \neq (0,1,10,5)\)</span>. In this case, <span class="math inline">\(p &lt; \alpha\)</span>, so that we have sufficient evidence to reject the null hypothesis.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>liklihood_at_null <span class="ot">&lt;-</span> log_liklihood <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>likelihood_at_null <span class="ot">&lt;-</span> log_likelihood <span class="sc">%&gt;%</span> </span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(mean1 <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> mean2 <span class="sc">==</span> <span class="dv">10</span> <span class="sc">&amp;</span> sd1 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> sd2 <span class="sc">==</span> <span class="dv">5</span>)</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>test_statistic <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>(liklihood_at_null<span class="sc">$</span>LL <span class="sc">-</span> MLE<span class="sc">$</span>LL) </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>test_statistic <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>(likelihood_at_null<span class="sc">$</span>LL <span class="sc">-</span> MLE<span class="sc">$</span>LL) </span>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>test_statistic <span class="do">### realized value of the likelihood ratio test statistic</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1384.845</code></pre>
+<pre><code>[1] 1505.823</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pchisq</span>(test_statistic, <span class="at">df =</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 4.127566e-303</code></pre>
+<pre><code>[1] 0</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="do">### if p &lt; 0.05, then we reject H0; otherwise, we fail to reject H0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -655,7 +658,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>cutoff <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="fl">0.95</span>,<span class="at">df=</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">2</span> </span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># cutoff for admissible values based on 95%-ile for a chi-squared dist df=1</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>log_liklihood <span class="sc">%&gt;%</span> <span class="fu">subset</span>(mean1 <span class="sc">==</span> MLE<span class="sc">$</span>mean1 <span class="sc">&amp;</span> </span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>log_likelihood <span class="sc">%&gt;%</span> <span class="fu">subset</span>(mean1 <span class="sc">==</span> MLE<span class="sc">$</span>mean1 <span class="sc">&amp;</span> </span>
 <span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>                         mean2 <span class="sc">==</span> MLE<span class="sc">$</span>mean2 <span class="sc">&amp;</span> sd1 <span class="sc">==</span> MLE<span class="sc">$</span>sd1) <span class="ot">-&gt;</span> LL_plot</span>
 <span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>LL_plot <span class="sc">%&gt;%</span> <span class="fu">subset</span>(<span class="fu">abs</span>(LL <span class="sc">-</span> MLE<span class="sc">$</span>LL) <span class="sc">&lt;</span> cutoff) <span class="ot">-&gt;</span> values_inconfidence_interval</span>
@@ -663,7 +666,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">min</span>(values_inconfidence_interval<span class="sc">$</span>sd2),</span>
 <span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">max</span>(values_inconfidence_interval<span class="sc">$</span>sd2)) <span class="do">### confidence interval!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  9.6 10.4</code></pre>
+<pre><code>[1]  9.7 10.6</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>LL_plot <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sd2, <span class="at">y =</span> LL)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> MLE<span class="sc">$</span>sd2, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
@@ -671,7 +674,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
 <span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">max</span>(values_inconfidence_interval<span class="sc">$</span>sd2), </span>
 <span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"tau"</span>, <span class="at">y =</span> <span class="st">"log-liklihood (all other parameters at their MLEs)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"tau"</span>, <span class="at">y =</span> <span class="st">"log-likelihood (all other parameters at their MLEs)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="lec07-intro-to-stats_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -699,13 +702,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     One Sample t-test
 
 data:  data
-t = -3.0997, df = 99, p-value = 0.002522
+t = -3.9422, df = 99, p-value = 0.0001507
 alternative hypothesis: true mean is not equal to 0.25
 1 percent confidence interval:
- -0.07496211 -0.07233818
+ -0.09926920 -0.09704981
 sample estimates:
-  mean of x 
--0.07365014 </code></pre>
+ mean of x 
+-0.0981595 </code></pre>
 </div>
 </div>
 <section id="tests-of-the-equality-of-group-means" class="level3" data-number="9.7.1">
@@ -721,13 +724,13 @@ sample estimates:
     Welch Two Sample t-test
 
 data:  obs1 and obs2
-t = -9.4628, df = 122.24, p-value = 2.828e-16
+t = -8.367, df = 120.14, p-value = 1.242e-13
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -1.1626865 -0.7603914
+ -1.0684865 -0.6595725
 sample estimates:
- mean of x  mean of y 
-0.02663763 0.98817658 </code></pre>
+mean of x mean of y 
+0.1020309 0.9660604 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="do">### alternatively, one can use the following syntax:</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -740,13 +743,13 @@ sample estimates:
     Welch Two Sample t-test
 
 data:  obs by ID
-t = -9.4628, df = 122.24, p-value = 2.828e-16
+t = -8.367, df = 120.14, p-value = 1.242e-13
 alternative hypothesis: true difference in means between group 1 and group 2 is not equal to 0
 95 percent confidence interval:
- -1.1626865 -0.7603914
+ -1.0684865 -0.6595725
 sample estimates:
 mean in group 1 mean in group 2 
-     0.02663763      0.98817658 </code></pre>
+      0.1020309       0.9660604 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># anova(lm(obs~ID, data))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1004,8 +1007,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./projects.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Project description</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./lec08-linear-models.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear models</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

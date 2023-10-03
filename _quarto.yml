@@ -19,6 +19,7 @@ book:
       - lec05-data-visualization.qmd
       - lec06-exploratory-data-analysis.qmd
       - lec07-intro-to-stats.qmd
+      - lec08-linear-models.qmd
     - part: "Assignments"
     - part: "Project"
       chapters:
