@@ -1,12 +1,6 @@
----
-title: "Linear models"
-output: pdf_document
-editor_options: 
-  markdown: 
-    wrap: 72
----
+# Linear models {#lec08-linear-models}
 
-# Lesson preamble:
+## Lesson preamble:
 
 > ### Lesson objectives
 >
@@ -32,37 +26,38 @@ editor_options:
 
 ```{r, message=FALSE, warning=FALSE}
 library(tidyverse)
+library(car)
 surveys_subset <- read_csv("survey_subset.csv")
 theme_set(theme_bw())
 ```
 
-# Linear models: why we care
+## Linear models: why we care
 
 Linear models are at the heart of statistical practice in the physical, life, and social sciences! Linear regression actually refers to a *family* of modeling approaches that attempt to learn how the mean and/or variance of a response variable $\boldsymbol{y} = (y_1,\dots,y_n)$ depend on (linear) combinations of variables $\boldsymbol{x}_i = (x_{i1},\dots,x_{in})$ called predictors. In this lecture, we will discuss various forms of the linear model and assumptions placed on the data to make estimation and inference of the relationships between variables tractable. We will see how the likelihood function forms the basis for this estimation/inference, and how extensions of multiple regression (generalized linear models and mixed models!) can be understood in a likelihood framework. Our goal will be to become familiar with how these models work and how they are fit to data in R.
 
-# Theory: likelihood estimation and inference for linear models
+## Theory: likelihood estimation and inference for linear models
 
 A linear model takes the form
 
-$$y_i = \beta_0 + \beta_1 x_{1i} + \cdots + \beta_p x_{pi} + \varepsilon_{I},$$
+$$ y_i = \beta_0 + \beta_1 x_{1i} + \cdots + \beta_p x_{pi} + \varepsilon_{i}, $$
 
 where $i=1,\dots,n$ correspond to observations of a random variable $Y$ which we call the _response_. **The goal of regression is to explain and to predict the behavior of the response variable by adding together effects of $p$ covariates $x_1,\dots,x_p$, which are also called _predictors_.** Importantly, the phrase "linear model" is somewhat deceptive in that **the model can be used to describe many kinds of functional relationships in the data**: for example, we could use $x_2 = x_1^2$ to model higher order effects of $x_1$ on the response. In general, the linear model above specifies how the realizations $y_1,\dots,y_n$ of a random variable $Y$ depend on the additive effects of one or more non-random covariates/predictors. We will discuss random and mixed effects next class, but the machinery used to estimate the effect sizes $\beta_1,\dots,\beta_p$ and error variance are very similar to the model in which the $x$s are assumed to be fixed.
 
 To make estimation and inference tractable, the errors $\varepsilon_i$ are assumed to be Normal with mean zero and variance $\sigma_i^2$. Equivalently, we could assume the *data* $y_1,\dots,y_n$ are 1) independent and 2) Normal with mean(s) $\beta_0 + \beta_1 x_{1i} + \cdots + \beta_p x_{pi}$ and variance(s) $\sigma_1^2,\dots,\sigma_n^2$. Although the normality assumption is not strictly necessary (nor is the assumption of equal variance across observations), they are commonly made and allow us to easily estimate the effect sizes and error variance. Under the assumption of normality and constant error variance $\sigma_1^2 = \dots = \sigma_n^2 = \sigma^2$, the likelihood can be written as
 
-$$L(\beta_0,\beta_1,\dots,\beta_p,\sigma^2) = \prod_{i=1}^n (2 \pi \sigma^2)^{-1/2} e^{-(y_i - \beta_0 - \beta_1 x_{1i} - \dots - \beta_p x_{pi})^2/2\sigma^2}.$$
+$$ L(\beta_0,\beta_1,\dots,\beta_p,\sigma^2) = \prod_{i=1}^n (2 \pi \sigma^2)^{-1/2} e^{-(y_i - \beta_0 - \beta_1 x_{1i} - \dots - \beta_p x_{pi})^2/2\sigma^2}. $$
 
 Estimators of the regression coefficients $\beta_1,\dots,\beta_p$ and $\sigma^2$ are found by maximizing the likelihood. In fact, the **estimators found by maximum likelihood methods are exactly those which minimize the distance from the model $y = \beta_0 + \beta_1 x_{1} + \dots + \beta_p x_{p}$ from the data**. The line (and in higher dimensions, plane) given by this equation is such that the the sum of squared departures of the line from the data is as small is it can be. Other notions of distance turn out to give rise to interesting extensions of the linear model, such as ridge and LASSO regression, which are beyond the scope of the course.
 
-## Simple linear regression: $p=1$
+### Simple linear regression: $p=1$
 
 Simple linear regression is a special case of the general linear model (above), and corresponds to the case there is only one predictor, i.e., $p=1$.
 
-## The matrix vesion of the general linear model
+### The matrix vesion of the general linear model
 
 What is often used in theory and practice is a matrix version of the above model:
   
-$$\boldsymbol{y} = \begin{bmatrix}
+$$ \boldsymbol{y} = \begin{bmatrix}
      y_{1} \\
      y_{2} \\
      \vdots \\
@@ -83,26 +78,26 @@ $$\boldsymbol{y} = \begin{bmatrix}
      \vdots \\
      \varepsilon_{n}
      \end{bmatrix} = \boldsymbol{X} \boldsymbol{\beta} + \boldsymbol{\varepsilon}.
-$$
+  $$
 
 Here, $\boldsymbol{y} = (y_1,\dots,y_n)'$ is a vector of measurements for the response, $\boldsymbol{x_i} = (x_{i1},\dots,x_{in})'$ is a vector of measurements for the $k$th predictor, and $\boldsymbol{\varepsilon} = (\varepsilon_1,\dots,\varepsilon_n)'$ is a vector of measurement errors. The $'$ symbol corresponds to transposition, which involves interchanging the rows and columns of a vector or matrix.^[In R, the function `t()` can be used to transpose a vector or matrix.]
 
 When all the errors are modeled as above (i.e., as Normal with constant variance and mean zero), the ML estimator for the vector of regression coefficients is $\boldsymbol{\hat{\beta}_{\text{MLE}}} = (\boldsymbol{X'X})^{-1} \boldsymbol{X'} \boldsymbol{y}$.
 
-### What do the regression coefficients mean?
+#### What do the regression coefficients mean?
 
-The interpretation of the regression coefficients is as follows: **$\beta_j$ describes how much the response is expected to change, _all else constant_, if we increase $x_j$ by exactly one unit.** Importantly, the _fitted_ regression coefficients measure the effect of increasing $x_1,\dots,x_j$ on the response _under the assumption of normal data_ --- this distinction between the theoretical and fitted coefficients is important to keep mind.
+The interpretation of the regression coefficients is as follows: **$\beta_j$ describes how much the response is expected to change, _all else constant_, if we increase $x_j$ by exactly one unit.** Importantly, the _fitted_ regression coefficients measure the effect (slope) of increasing $x_1,\dots,x_j$ on the response _under the assumption of normal data_ --- this distinction between the theoretical and fitted coefficients is important to keep mind.
 
-### Categorical predictors
+#### Categorical predictors
 
 Before we dive into implementing linear models in R, it is important to mention how the linear model accommodates discrete predictors like sex (or genotype, ID, race). To deal with categorical predictors, we define the model in terms of a _baseline_ and to interpret the regression coefficients _relative_ to this baseline. This involves coding "dummy variables" $x_1,\dots,x_{k-1}$ for all but one the values ($1,2,\dots,k$) the predictor can take one, so that $x_{ji} = 1$ for observations where the categorical variable is $=j$ and $=0$ otherwise.
 
-# Practice: fitting linear models with `lm`
+## Practice: fitting linear models with `lm`
 
 To illustrate how regression models are fitted (via maximum likelihood) in R, we will use the survey dataset from a couple classes ago. We begin by regressing weight on hindfoot length:
 
 ```{r simpleModel}
-model <- lm(weight~hindfoot_length, data=surveys_subset)
+model <- lm(weight ~ hindfoot_length, data=surveys_subset)
 summary(model) # assuming normality, homogeneity of variance
 ```
 
@@ -123,7 +118,7 @@ ggplot(surveys_subset, aes(x = hindfoot_length, y = weight)) +
 ggplot(surveys_subset, aes(x = weight)) + geom_histogram() ## oh no!
 ``` 
 
-## Transformations
+### Transformations
 
 Often, data are non-normal! This is an unfortunate fact of life. It is sometimes possible, however, to use the machinery of regression if there is a suitable *transformation* of the data which makes it normal, e.g., `log()`, `sqrt()`. Right-skewed data (like above) may be normalized using log or root transformations (e.g. square root, third-root, etc.), with greater roots required for increasingly right-skewed data. Left-skewed data could be normalized with power transformations (e.g. squared, 3rd power, etc.).
 
@@ -148,7 +143,7 @@ ggplot(cbind(logweight = predicted_values, new_hindfoot_length_obs),
   labs(color = "sex", y = "log(weight)")
 ```
 
-### Challenge
+#### Challenge
 
 Regress weight on sex. Be sure to specify that sex is a factor in the call to `lm()`. What value of sex is used as a baseline? Is there a significant effect of sex on weight?
 
@@ -157,39 +152,61 @@ model <- lm(weight~as.factor(sex), data=surveys_subset)
 summary(model) 
 ```
 
-## Syntax for multiple regression, interactions
+### Syntax for multiple regression, interactions
 
 One can regress on several explanatory variables simultaneously as follows:
 
 ```{r}
 model <- lm(weight~hindfoot_length+as.factor(sex), data=surveys_subset)
-summary(model) 
+summary(model, type = 3)
 ```
 
-Interactions between covariates are modeled by introducing additional covariates of the form $x_i x_j$. To estimate the coefficients associated to these terms, * is used in the call to `lm`:
+Interactions between covariates are modeled by introducing additional covariates of the form $x_i x_j$. **An interaction occurs when an independent variable has a different effect on the outcome depending on the values of another independent variable. They are super important!** To estimate the coefficients associated to an interaction, * is used in the call to `lm`:
 
 ```{r}
 model <- lm(weight~hindfoot_length*as.factor(sex), data=surveys_subset)
-summary(model) 
 ```
 
-### Challenge
+We interpret the coefficient of the interaction term as we do all other regression coefficients. Per unit change in $x_i x_j$ (here, the interaction between hindfoot length and sex), the associated regression coefficient measures the change in the response (weight).
+
+```{r}
+surveys_subset %>% subset(! is.na(sex)) %>%
+  ggplot(aes(x = hindfoot_length, y = weight, color = as.factor(sex))) + geom_point() +
+  geom_smooth(method = "lm", se = F)
+```
+
+#### Challenge
 
 Is there a significant interaction between hindfoot length and sex on weight?
 
-## The realationship between linear models and ANOVA
+### The relationship between linear models and ANOVA
 
-Analysis of Variance (ANOVA) is a statistical technique that is used to analyze variation in observations within and between categoires, and to test if two or more population means are equal. **Importantly, ANOVA is mathematically equivalent to regression with covariates that are all categorical.** This means the assumotions of linear regression apply when preforming an ANOVA.
+Analysis of Variance (ANOVA) is a statistical technique that is used to analyze variation in observations within and between categories, and to test if two or more population means are equal. **Importantly, ANOVA is mathematically equivalent to regression with covariates that are all categorical.** This means the assumptions of linear regression apply when preforming an ANOVA.
 
 ANOVA can be implemented in R as follows:
 
 ```{r}
 model <- lm(weight~as.factor(sex), data=surveys_subset)
 anova(model) # must wrap the anova() around a lm()/model
-# use Anova() from car package with >1 predictor...gives Type III sum of squares
 ```
 
-Briefly, ANOVA tests differences between means is by **decomposing the total sum of squares (variance in the observations) into the variance due to the level under investigation (e.g., sex) and its factors (M, F)**. The $F$-statistic for each level (excluding the residuals) is the mean square, divided by the residual mean square, and should be $\sim 1$ if the corresponding effects are $=0$. We reject the null hypothesis (there is no differences in group means) for values of $F$ that are inconsistent with its distribution under the null hypothesis; recall from last time that the $p$-value measures the probability of observing data more extreme than the calculated value of $F$ from the data, under the null hypothesis (i.e., the factors at some level have no effect). If $p < \alpha$, we reject the null hypothesis at significance level $\alpha$.
+Briefly, ANOVA tests differences between means by **decomposing the total sum of squares (variance in the observations) into the variance due to the level under investigation (e.g., sex) and its factors (M, F)**. The $F$-statistic for each level (excluding the residuals) is the mean square, divided by the residual mean square, and should be $\sim 1$ if the corresponding effects are $=0$. We reject the null hypothesis (there is no differences in group means) for values of $F$ that are inconsistent with its distribution under the null hypothesis; recall from last time that the $p$-value measures the probability of observing data more extreme than the calculated value of $F$ from the data, under the null hypothesis (i.e., the factors at some level have no effect). If $p < \alpha$, we reject the null hypothesis at significance level $\alpha$.
+
+#### ANOVA with two or more covariates
+
+```{r}
+model <- lm(weight~hindfoot_length*as.factor(sex), data=surveys_subset)
+
+# wrap Anova(), not summary()
+Anova(model, type = 3)
+
+# compare p-values with summary(), which are slightly different
+anova(model)
+```
+
+Instead of wrapping `summary()` around our linear model object, we use the `Anova()` function from the `cars` package to test the significance of our predictors. A Type 1 ANOVA (sequential sum of squares) will test the main effect of variable A, followed by the main effect of variable B after the main effect of A, followed by the interaction effect of AB. Since it tests factor A without controlling for factor B, the order that you specify your independent variables will matter! A Type 2 ANOVA (hierarchical sum of squares) tests for the main effect of variable A and variable B, but it does not assume that there is an interaction. If you have a factorial design, you should not be using a Type 2 ANOVA. Finally, a Type 3 ANOVA (marginal sum of squares) tests for the presence of a main effect while controlling for the other main effect and interaction; that is, it tests the effect of variable A if all other variables are already considered. This approach is therefore valid in the presence of significant interactions.
+
+The type of ANOVA you use will matter when you have more than one independent variable, and especially if you have unbalanced data. By default, R uses type II sums of squares. Above, we are use Type 3 sums of squares as we care about the interaction between hindfoot length and sex, and we don't prioritize the effects of one variable.
 
 ### A fun application!
 
@@ -229,11 +246,11 @@ summary(model2)
 
 Here, the blue (red) regression line is the linear (quadratic) individual selection surface, estimated by regressing fitness on trait value (and its square) simulated under a model of directional selection.
 
-### Other applications...
+#### Other applications...
 
 Regression has also been used in quantitative genetics to estimate the hertiability of traits (i.e., the proportion of variance in the trait that is explained by the additive action of genes), and to preform Genome-Wide Association Studies (GWAS) and uncover the genetic basis of complex traits. One form of GWAS involves regressing phenotype (e.g., disease status) on the existence/non-existence of genetic differences (most often, SNPs) among individuals sampled, and identifying those which have a significant effect on phenotype.
 
-# Generalized linear models: theory and examples
+## Generalized linear models: theory and examples
 
 So far we have seen how regression can be used to fit linear models when the distribution of the data is approximately normal or when the data can be transformed so that this assumption is not violated. What if we were, say, interested in a *binary* response (e.g., disease status) and how it changes with a continuous predictor (e.g., age)? In this case, one can use a special kind of linear model called *logistic regression* to estimate the additive effect of predictor(s) on the binary response. **Generalized linear models (GLMs) are useful when the response has a non-normal distribution, and transformation of the data is undesirable or impossible.** A GLM takes the form
 
@@ -253,7 +270,7 @@ Above are estimates of coefficients of a regression of sex on weight, as well as
 
 Using the cannonical link function, logistic regression can be formulated as follows:
 
-$$\text{logit}(p) = \log\frac{p}{1-p} = \boldsymbol{X} \boldsymbol{\beta} \iff p = e^{\boldsymbol{X} \boldsymbol{\beta}} = e^{\beta_0 + \beta_1 x_1 + \dots + \beta_p x_p}.$$
+$$ \text{logit}(p) = \log\frac{p}{1-p} = \boldsymbol{X} \boldsymbol{\beta} \iff p = e^{\boldsymbol{X} \boldsymbol{\beta}} = e^{\beta_0 + \beta_1 x_1 + \dots + \beta_p x_p}. $$
 
 $\text{logit}(p)$ is called the *log-odds*, which can be thought of as a likelihood the response takes on the value one. Under logistic regression, the log-odds ratio is modeled as a linear combination in the predictors $(= \boldsymbol{X} \boldsymbol{\beta})$. Since the regression coefficients appear only through the logit-transformed proportions, their interpretation is somewhat different under logistic regression and other GLMs. **Importantly, changing $x_j$ by one unit, all else constant, results in change $\beta_j$ to the link-transformed response. This is how the effect sizes are interpreted for GLMs like the one fitted above.**
 
@@ -277,7 +294,7 @@ corresponding distributions:
 
 ### Returning to the disease-age example...
 
-Below we simulate binary disease data (0,1) for patients of several ages, assuming the the log-odds of disease is a linear function of age. We then fit a logistic regression to this data to determine the effect of age on disease risk. Next, we write a function to do a **power analysis**. That is, we determine the sample size that is required so that simulating the age-disease data repeatedly we identify a significant effect of age on disease status (i.e., reject the null hypothesis) at level $\alpha = 0.01$ *at least $99\%$ of the time*?
+Below we simulate binary disease data (0,1) for patients of several ages, assuming the the log-odds of disease is a linear function of age. We then fit a logistic regression to this data to determine the effect of age on disease risk. Next, we write a function to do a **power analysis**. That is, we determine the sample size that is required so that simulating the age-disease data repeatedly we identify a significant effect of age on disease status (i.e., reject the null hypothesis) at level $\alpha = 0.01$ *at least $99\%$ of the time*.
 
 ```{r}
 data_generator <- function(sample_size = 100){

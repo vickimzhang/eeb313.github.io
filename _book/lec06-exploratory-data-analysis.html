@@ -177,25 +177,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lec02-base-r.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Assignments, vectors, functions, and loops</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Base R: assignment, vectors, functions, and loops</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lec03-dataframes-dplyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Dataframes and introduction to data wrangling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data frames, intro to dplyr</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lec04-data-wrangling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data wrangling with dplyr</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data wrangling in dplyr</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lec05-data-visualization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization with ggplot</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization in ggplot</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -255,58 +255,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#lesson-preamble" id="toc-lesson-preamble" class="nav-link active" data-scroll-target="#lesson-preamble"><span class="header-section-number">8</span> Lesson preamble:</a></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">9</span> Introduction</a></li>
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">10</span> Setup</a></li>
-  <li><a href="#what-is-my-data-actually" id="toc-what-is-my-data-actually" class="nav-link" data-scroll-target="#what-is-my-data-actually"><span class="header-section-number">11</span> What is my data, actually?</a>
+  <li><a href="#lesson-preamble" id="toc-lesson-preamble" class="nav-link active" data-scroll-target="#lesson-preamble"><span class="header-section-number">7.1</span> Lesson preamble:</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">7.2</span> Introduction</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">7.3</span> Setup</a></li>
+  <li><a href="#what-is-my-data-actually" id="toc-what-is-my-data-actually" class="nav-link" data-scroll-target="#what-is-my-data-actually"><span class="header-section-number">7.4</span> What is my data, actually?</a>
   <ul class="collapse">
-  <li><a href="#predictions" id="toc-predictions" class="nav-link" data-scroll-target="#predictions"><span class="header-section-number">11.1</span> Predictions</a></li>
-  <li><a href="#first-peek" id="toc-first-peek" class="nav-link" data-scroll-target="#first-peek"><span class="header-section-number">11.2</span> First Peek</a></li>
-  <li><a href="#basic-variable-categories" id="toc-basic-variable-categories" class="nav-link" data-scroll-target="#basic-variable-categories"><span class="header-section-number">11.3</span> Basic Variable Categories</a></li>
+  <li><a href="#predictions" id="toc-predictions" class="nav-link" data-scroll-target="#predictions"><span class="header-section-number">7.4.1</span> Predictions</a></li>
+  <li><a href="#first-peek" id="toc-first-peek" class="nav-link" data-scroll-target="#first-peek"><span class="header-section-number">7.4.2</span> First Peek</a></li>
   </ul></li>
-  <li><a href="#visualizing-your-data" id="toc-visualizing-your-data" class="nav-link" data-scroll-target="#visualizing-your-data"><span class="header-section-number">12</span> Visualizing Your Data</a>
+  <li><a href="#basic-variable-categories" id="toc-basic-variable-categories" class="nav-link" data-scroll-target="#basic-variable-categories"><span class="header-section-number">7.5</span> Basic Variable Categories</a></li>
+  <li><a href="#visualizing-your-data" id="toc-visualizing-your-data" class="nav-link" data-scroll-target="#visualizing-your-data"><span class="header-section-number">7.6</span> Visualizing Your Data</a>
   <ul class="collapse">
-  <li><a href="#describing-patterns-in-histograms" id="toc-describing-patterns-in-histograms" class="nav-link" data-scroll-target="#describing-patterns-in-histograms"><span class="header-section-number">12.1</span> Describing Patterns in Histograms</a></li>
-  <li><a href="#qualitative-data-with-histograms" id="toc-qualitative-data-with-histograms" class="nav-link" data-scroll-target="#qualitative-data-with-histograms"><span class="header-section-number">12.2</span> Qualitative Data with Histograms</a></li>
-  <li><a href="#quantitative-data-with-histograms" id="toc-quantitative-data-with-histograms" class="nav-link" data-scroll-target="#quantitative-data-with-histograms"><span class="header-section-number">12.3</span> Quantitative Data with Histograms</a></li>
-  <li><a href="#binning-quantitative-data" id="toc-binning-quantitative-data" class="nav-link" data-scroll-target="#binning-quantitative-data"><span class="header-section-number">12.4</span> Binning Quantitative Data</a>
-  <ul class="collapse">
-  <li><a href="#histogram-for-one-chromosome" id="toc-histogram-for-one-chromosome" class="nav-link" data-scroll-target="#histogram-for-one-chromosome"><span class="header-section-number">12.4.1</span> Histogram for One Chromosome</a></li>
+  <li><a href="#describing-patterns-in-histograms" id="toc-describing-patterns-in-histograms" class="nav-link" data-scroll-target="#describing-patterns-in-histograms"><span class="header-section-number">7.6.1</span> Describing Patterns in Histograms</a></li>
+  <li><a href="#qualitative-data-with-histograms" id="toc-qualitative-data-with-histograms" class="nav-link" data-scroll-target="#qualitative-data-with-histograms"><span class="header-section-number">7.6.2</span> Qualitative Data with Histograms</a></li>
   </ul></li>
-  <li><a href="#scatterplots-box-plots" id="toc-scatterplots-box-plots" class="nav-link" data-scroll-target="#scatterplots-box-plots"><span class="header-section-number">12.5</span> Scatterplots &amp; Box plots</a>
+  <li><a href="#quantitative-data-with-histograms" id="toc-quantitative-data-with-histograms" class="nav-link" data-scroll-target="#quantitative-data-with-histograms"><span class="header-section-number">7.7</span> Quantitative Data with Histograms</a>
   <ul class="collapse">
-  <li><a href="#more-info-less-bias" id="toc-more-info-less-bias" class="nav-link" data-scroll-target="#more-info-less-bias"><span class="header-section-number">12.5.1</span> More info! Less bias!</a></li>
-  <li><a href="#visualize-raw-data-as-a-scatterplot" id="toc-visualize-raw-data-as-a-scatterplot" class="nav-link" data-scroll-target="#visualize-raw-data-as-a-scatterplot"><span class="header-section-number">12.5.2</span> Visualize raw data as a scatterplot</a></li>
-  <li><a href="#boxplots-for-better-comparisons" id="toc-boxplots-for-better-comparisons" class="nav-link" data-scroll-target="#boxplots-for-better-comparisons"><span class="header-section-number">12.5.3</span> Boxplots for better comparisons</a></li>
-  <li><a href="#what-about-the-other-variables" id="toc-what-about-the-other-variables" class="nav-link" data-scroll-target="#what-about-the-other-variables"><span class="header-section-number">12.5.4</span> What about the other variables?</a></li>
-  <li><a href="#boxplot-augmentations" id="toc-boxplot-augmentations" class="nav-link" data-scroll-target="#boxplot-augmentations"><span class="header-section-number">12.5.5</span> Boxplot augmentations</a></li>
+  <li><a href="#binning-quantitative-data" id="toc-binning-quantitative-data" class="nav-link" data-scroll-target="#binning-quantitative-data"><span class="header-section-number">7.7.1</span> Binning Quantitative Data</a></li>
+  <li><a href="#histogram-for-one-chromosome" id="toc-histogram-for-one-chromosome" class="nav-link" data-scroll-target="#histogram-for-one-chromosome"><span class="header-section-number">7.7.2</span> Histogram for One Chromosome</a></li>
   </ul></li>
-  <li><a href="#challenge" id="toc-challenge" class="nav-link" data-scroll-target="#challenge"><span class="header-section-number">12.6</span> Challenge!</a></li>
+  <li><a href="#scatterplots-box-plots" id="toc-scatterplots-box-plots" class="nav-link" data-scroll-target="#scatterplots-box-plots"><span class="header-section-number">7.8</span> Scatterplots &amp; Box plots</a>
+  <ul class="collapse">
+  <li><a href="#more-info-less-bias" id="toc-more-info-less-bias" class="nav-link" data-scroll-target="#more-info-less-bias"><span class="header-section-number">7.8.1</span> More info! Less bias!</a></li>
+  <li><a href="#visualize-raw-data-as-a-scatterplot" id="toc-visualize-raw-data-as-a-scatterplot" class="nav-link" data-scroll-target="#visualize-raw-data-as-a-scatterplot"><span class="header-section-number">7.8.2</span> Visualize raw data as a scatterplot</a></li>
+  <li><a href="#boxplots-for-better-comparisons" id="toc-boxplots-for-better-comparisons" class="nav-link" data-scroll-target="#boxplots-for-better-comparisons"><span class="header-section-number">7.8.3</span> Boxplots for better comparisons</a></li>
+  <li><a href="#what-about-the-other-variables" id="toc-what-about-the-other-variables" class="nav-link" data-scroll-target="#what-about-the-other-variables"><span class="header-section-number">7.8.4</span> What about the other variables?</a></li>
+  <li><a href="#boxplot-augmentations" id="toc-boxplot-augmentations" class="nav-link" data-scroll-target="#boxplot-augmentations"><span class="header-section-number">7.8.5</span> Boxplot augmentations</a></li>
   </ul></li>
-  <li><a href="#outliers" id="toc-outliers" class="nav-link" data-scroll-target="#outliers"><span class="header-section-number">13</span> Outliers</a>
+  <li><a href="#challenge" id="toc-challenge" class="nav-link" data-scroll-target="#challenge"><span class="header-section-number">7.9</span> Challenge!</a></li>
+  <li><a href="#outliers" id="toc-outliers" class="nav-link" data-scroll-target="#outliers"><span class="header-section-number">7.10</span> Outliers</a>
   <ul class="collapse">
-  <li><a href="#but-why-are-you-like-this" id="toc-but-why-are-you-like-this" class="nav-link" data-scroll-target="#but-why-are-you-like-this"><span class="header-section-number">13.1</span> But why are you like this?</a></li>
-  <li><a href="#lets-take-a-look" id="toc-lets-take-a-look" class="nav-link" data-scroll-target="#lets-take-a-look"><span class="header-section-number">13.2</span> Let’s take a look!</a></li>
-  <li><a href="#wholesome-thoughts-about-your-data" id="toc-wholesome-thoughts-about-your-data" class="nav-link" data-scroll-target="#wholesome-thoughts-about-your-data"><span class="header-section-number">13.3</span> Wholesome thoughts about your data</a></li>
-  <li><a href="#challenge-1" id="toc-challenge-1" class="nav-link" data-scroll-target="#challenge-1"><span class="header-section-number">13.4</span> Challenge!</a></li>
+  <li><a href="#but-why-are-you-like-this" id="toc-but-why-are-you-like-this" class="nav-link" data-scroll-target="#but-why-are-you-like-this"><span class="header-section-number">7.10.1</span> But why are you like this?</a></li>
+  <li><a href="#lets-take-a-look" id="toc-lets-take-a-look" class="nav-link" data-scroll-target="#lets-take-a-look"><span class="header-section-number">7.10.2</span> Let’s take a look!</a></li>
+  <li><a href="#wholesome-thoughts-about-your-data" id="toc-wholesome-thoughts-about-your-data" class="nav-link" data-scroll-target="#wholesome-thoughts-about-your-data"><span class="header-section-number">7.10.3</span> Wholesome thoughts about your data</a></li>
+  <li><a href="#challenge-1" id="toc-challenge-1" class="nav-link" data-scroll-target="#challenge-1"><span class="header-section-number">7.10.4</span> Challenge!</a></li>
   </ul></li>
-  <li><a href="#so-what-does-this-mean-for-our-predictions" id="toc-so-what-does-this-mean-for-our-predictions" class="nav-link" data-scroll-target="#so-what-does-this-mean-for-our-predictions"><span class="header-section-number">14</span> So what does this mean for our predictions?</a>
+  <li><a href="#so-what-does-this-mean-for-our-predictions" id="toc-so-what-does-this-mean-for-our-predictions" class="nav-link" data-scroll-target="#so-what-does-this-mean-for-our-predictions"><span class="header-section-number">8</span> So what does this mean for our predictions?</a>
   <ul class="collapse">
-  <li><a href="#how-do-we-explore-these-questions" id="toc-how-do-we-explore-these-questions" class="nav-link" data-scroll-target="#how-do-we-explore-these-questions"><span class="header-section-number">14.1</span> How do we explore these questions?</a>
+  <li><a href="#how-do-we-explore-these-questions" id="toc-how-do-we-explore-these-questions" class="nav-link" data-scroll-target="#how-do-we-explore-these-questions"><span class="header-section-number">8.1</span> How do we explore these questions?</a>
   <ul class="collapse">
-  <li><a href="#actual-wrangling" id="toc-actual-wrangling" class="nav-link" data-scroll-target="#actual-wrangling"><span class="header-section-number">14.1.1</span> Actual wrangling</a></li>
-  <li><a href="#knowledge-check-challenge" id="toc-knowledge-check-challenge" class="nav-link" data-scroll-target="#knowledge-check-challenge"><span class="header-section-number">14.1.2</span> ? Knowledge Check Challenge</a></li>
+  <li><a href="#actual-wrangling" id="toc-actual-wrangling" class="nav-link" data-scroll-target="#actual-wrangling"><span class="header-section-number">8.1.1</span> Actual wrangling</a></li>
+  <li><a href="#knowledge-check-challenge" id="toc-knowledge-check-challenge" class="nav-link" data-scroll-target="#knowledge-check-challenge"><span class="header-section-number">8.1.2</span> ? Knowledge Check Challenge</a></li>
   </ul></li>
-  <li><a href="#is-gene-density-high-when-ltr-density-is-low-hyp-1" id="toc-is-gene-density-high-when-ltr-density-is-low-hyp-1" class="nav-link" data-scroll-target="#is-gene-density-high-when-ltr-density-is-low-hyp-1"><span class="header-section-number">14.2</span> Is gene density high when LTR density is low? (hyp #1)</a>
+  <li><a href="#is-gene-density-high-when-ltr-density-is-low-hyp-1" id="toc-is-gene-density-high-when-ltr-density-is-low-hyp-1" class="nav-link" data-scroll-target="#is-gene-density-high-when-ltr-density-is-low-hyp-1"><span class="header-section-number">8.2</span> Is gene density high when LTR density is low? (hyp #1)</a>
   <ul class="collapse">
-  <li><a href="#challenge-2" id="toc-challenge-2" class="nav-link" data-scroll-target="#challenge-2"><span class="header-section-number">14.2.1</span> Challenge</a></li>
+  <li><a href="#challenge-2" id="toc-challenge-2" class="nav-link" data-scroll-target="#challenge-2"><span class="header-section-number">8.2.1</span> Challenge</a></li>
   </ul></li>
-  <li><a href="#is-gene-density-high-when-ltr-age-is-high-hyp-2" id="toc-is-gene-density-high-when-ltr-age-is-high-hyp-2" class="nav-link" data-scroll-target="#is-gene-density-high-when-ltr-age-is-high-hyp-2"><span class="header-section-number">14.3</span> Is gene density high when LTR age is high? (hyp #2)</a></li>
-  <li><a href="#discretizing-our-ages" id="toc-discretizing-our-ages" class="nav-link" data-scroll-target="#discretizing-our-ages"><span class="header-section-number">14.4</span> Discretizing our ages</a></li>
-  <li><a href="#missing-values-in-gene-density-comparison" id="toc-missing-values-in-gene-density-comparison" class="nav-link" data-scroll-target="#missing-values-in-gene-density-comparison"><span class="header-section-number">14.5</span> Missing values in gene density comparison</a></li>
-  <li><a href="#does-the-sex-chromosome-lg_x-have-higher-ltr-density-hyp-3" id="toc-does-the-sex-chromosome-lg_x-have-higher-ltr-density-hyp-3" class="nav-link" data-scroll-target="#does-the-sex-chromosome-lg_x-have-higher-ltr-density-hyp-3"><span class="header-section-number">14.6</span> Does the sex chromosome (LG_X) have higher LTR density? (hyp #3)</a>
+  <li><a href="#is-gene-density-high-when-ltr-age-is-high-hyp-2" id="toc-is-gene-density-high-when-ltr-age-is-high-hyp-2" class="nav-link" data-scroll-target="#is-gene-density-high-when-ltr-age-is-high-hyp-2"><span class="header-section-number">8.3</span> Is gene density high when LTR age is high? (hyp #2)</a></li>
+  <li><a href="#discretizing-our-ages" id="toc-discretizing-our-ages" class="nav-link" data-scroll-target="#discretizing-our-ages"><span class="header-section-number">8.4</span> Discretizing our ages</a></li>
+  <li><a href="#missing-values-in-gene-density-comparison" id="toc-missing-values-in-gene-density-comparison" class="nav-link" data-scroll-target="#missing-values-in-gene-density-comparison"><span class="header-section-number">8.5</span> Missing values in gene density comparison</a></li>
+  <li><a href="#does-the-sex-chromosome-lg_x-have-higher-ltr-density-hyp-3" id="toc-does-the-sex-chromosome-lg_x-have-higher-ltr-density-hyp-3" class="nav-link" data-scroll-target="#does-the-sex-chromosome-lg_x-have-higher-ltr-density-hyp-3"><span class="header-section-number">8.6</span> Does the sex chromosome (LG_X) have higher LTR density? (hyp #3)</a>
   <ul class="collapse">
-  <li><a href="#challenge-3" id="toc-challenge-3" class="nav-link" data-scroll-target="#challenge-3"><span class="header-section-number">14.6.1</span> Challenge!</a></li>
+  <li><a href="#challenge-3" id="toc-challenge-3" class="nav-link" data-scroll-target="#challenge-3"><span class="header-section-number">8.6.1</span> Challenge!</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -317,7 +317,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploratory data analysis</span></h1>
+<h1 class="title"><span id="lec06-data-visualization" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploratory data analysis</span></span></h1>
 </div>
 
 
@@ -332,10 +332,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="lesson-preamble" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Lesson preamble:</h1>
+<section id="lesson-preamble" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="lesson-preamble"><span class="header-section-number">7.1</span> Lesson preamble:</h2>
 <blockquote class="blockquote">
-<h3 id="lesson-objectives" data-number="8.0.1" class="anchored" data-anchor-id="lesson-preamble"><span class="header-section-number">8.0.1</span> Lesson objectives:</h3>
+<h3 id="lesson-objectives" data-number="7.1.1" class="anchored"><span class="header-section-number">7.1.1</span> Lesson objectives:</h3>
 <ul>
 <li>Implications of (not) understanding your data
 <ul>
@@ -349,7 +349,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Dealing with missing values (NAs)</li>
 </ul></li>
 </ul>
-<h3 id="lesson-outline" data-number="8.0.2" class="anchored"><span class="header-section-number">8.0.2</span> Lesson outline:</h3>
+<h3 id="lesson-outline" data-number="7.1.2" class="anchored"><span class="header-section-number">7.1.2</span> Lesson outline:</h3>
 <p>Total lesson time: 2 hours</p>
 <ul>
 <li>Data properties, initial predictions (15 min)</li>
@@ -361,8 +361,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <hr>
 </section>
-<section id="introduction" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Introduction</h1>
+<section id="introduction" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="introduction"><span class="header-section-number">7.2</span> Introduction</h2>
 <p>Exploratory data analysis is your exciting first look at your data! It’s a chance to develop a better understanding of the variables in your data set and the relationships between them. You can check your assumptions, find outliers, and possible errors. But THEN you’ll get to ask your questions! Yay!!</p>
 <p>You <em>need</em> to understand your data you before you analyze it.</p>
 <ol type="1">
@@ -373,8 +373,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>The patterns you see can lead you to exciting new questions you may not have anticipated!</p>
 </section>
-<section id="setup" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Setup</h1>
+<section id="setup" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="setup"><span class="header-section-number">7.3</span> Setup</h2>
 <p>We’ll use what you’ve learned in past lectures about summarizing and visualizing data with dplyr and ggplot to get to know some data!</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -431,12 +431,12 @@ dbl (3): start, end, K2P
 </div>
 <p>We’re using “read_tsv” because the columns in this file are separated by tabs instead of commas or white space. The LTR age data (pseudoMol_Kdist.txt) already has column names, but the other two data sets need some more information</p>
 </section>
-<section id="what-is-my-data-actually" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> What is my data, actually?</h1>
+<section id="what-is-my-data-actually" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="what-is-my-data-actually"><span class="header-section-number">7.4</span> What is my data, actually?</h2>
 <p>Before we do anything else, we have to think about where this came from &amp; whether the data is appropriate for the kinds of questions we might have.</p>
 <p>This data describes a two of the genetic units (we’ll call them “elements”) that live in one plant genome: a set of highly conserved genes and one type of transposon (a “selfish” gene that makes copies of itself at the expense of its host genome). The chromosomes have been broken down into 1Mb pieces (“windows”) that overlap each other. In each window, we know the number and size (base pairs occupied) of the conserved genes and transposons.</p>
-<section id="predictions" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="predictions"><span class="header-section-number">11.1</span> Predictions</h2>
+<section id="predictions" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="predictions"><span class="header-section-number">7.4.1</span> Predictions</h3>
 <p>It’s always good to lay out your hypotheses first. It can help you figure out how you need to assemble your data in order to test those predictions effectively.</p>
 <ol type="1">
 <li>In areas where gene density is high, LTR density is low
@@ -489,8 +489,8 @@ dbl (3): start, end, K2P
 </ul></li>
 </ol>
 </section>
-<section id="first-peek" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="first-peek"><span class="header-section-number">11.2</span> First Peek</h2>
+<section id="first-peek" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="first-peek"><span class="header-section-number">7.4.2</span> First Peek</h3>
 <p>First, let’s just take a quick look at the gene density data set and ask ourselves what we’re dealing with. On a very basic level, what kind of variables do we have?</p>
 <p>What is one way to view a data frame?</p>
 <div class="cell">
@@ -514,8 +514,9 @@ $ density     &lt;dbl&gt; 0.002499, 0.002499, 0.010158, 0.011583, 0.011583, 0.01
 <p>Which variables will be relevant for testing our predictions?</p>
 <p><strong>Something to note here: in this data set, there are a number of things that will be clearly</strong></p>
 </section>
-<section id="basic-variable-categories" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="basic-variable-categories"><span class="header-section-number">11.3</span> Basic Variable Categories</h2>
+</section>
+<section id="basic-variable-categories" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="basic-variable-categories"><span class="header-section-number">7.5</span> Basic Variable Categories</h2>
 <p>Common variable types:</p>
 <ul>
 <li>Independent vs dependent</li>
@@ -529,11 +530,10 @@ $ density     &lt;dbl&gt; 0.002499, 0.002499, 0.010158, 0.011583, 0.011583, 0.01
 <li>Quantitative data: histograms, box plots</li>
 </ul>
 </section>
-</section>
-<section id="visualizing-your-data" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Visualizing Your Data</h1>
-<section id="describing-patterns-in-histograms" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="describing-patterns-in-histograms"><span class="header-section-number">12.1</span> Describing Patterns in Histograms</h2>
+<section id="visualizing-your-data" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="visualizing-your-data"><span class="header-section-number">7.6</span> Visualizing Your Data</h2>
+<section id="describing-patterns-in-histograms" class="level3" data-number="7.6.1">
+<h3 data-number="7.6.1" class="anchored" data-anchor-id="describing-patterns-in-histograms"><span class="header-section-number">7.6.1</span> Describing Patterns in Histograms</h3>
 <p>For a given variable, you’re generally looking at the range of values and where the majority of the data lies. This gives you an idea of the <strong>distribution</strong> of your data. As you’re aware, many statistical tests make assumptions about the distribution of your input data - it’s very important to make note of the shapely properties of your data.</p>
 <ul>
 <li>Average (mean, median, mode)</li>
@@ -551,12 +551,13 @@ $ density     &lt;dbl&gt; 0.002499, 0.002499, 0.010158, 0.011583, 0.011583, 0.01
 </ul></li>
 </ul>
 </section>
-<section id="qualitative-data-with-histograms" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="qualitative-data-with-histograms"><span class="header-section-number">12.2</span> Qualitative Data with Histograms</h2>
+<section id="qualitative-data-with-histograms" class="level3" data-number="7.6.2">
+<h3 data-number="7.6.2" class="anchored" data-anchor-id="qualitative-data-with-histograms"><span class="header-section-number">7.6.2</span> Qualitative Data with Histograms</h3>
 <p>Histograms are great for qualitative data because they visualize the number of times a given value appears in your data.</p>
 </section>
-<section id="quantitative-data-with-histograms" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="quantitative-data-with-histograms"><span class="header-section-number">12.3</span> Quantitative Data with Histograms</h2>
+</section>
+<section id="quantitative-data-with-histograms" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="quantitative-data-with-histograms"><span class="header-section-number">7.7</span> Quantitative Data with Histograms</h2>
 <p>Histograms provide an important view into continuous data, providing that you tell ggplot how to group your data into discrete bins. Here, we can look at our data’s values for gene density. This density is a measurement of the number of base pairs in a 1Mb window that are part of a gene divided by the total number of base pairs in the window (1 000 000).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(geneDensity, <span class="fu">aes</span>(density)) <span class="sc">+</span></span>
@@ -569,9 +570,8 @@ $ density     &lt;dbl&gt; 0.002499, 0.002499, 0.010158, 0.011583, 0.011583, 0.01
 </div>
 <p>What are some words you’d use to describe this distribution?</p>
 <p>Does this change</p>
-</section>
-<section id="binning-quantitative-data" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="binning-quantitative-data"><span class="header-section-number">12.4</span> Binning Quantitative Data</h2>
+<section id="binning-quantitative-data" class="level3" data-number="7.7.1">
+<h3 data-number="7.7.1" class="anchored" data-anchor-id="binning-quantitative-data"><span class="header-section-number">7.7.1</span> Binning Quantitative Data</h3>
 <p>When you’re subsetting continuous data into discrete bin widths, it’s important to try out different values because different bin sizes can give <em>vastly</em> different impressions of your data’s distribution.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(geneDensity, <span class="fu">aes</span>(density)) <span class="sc">+</span></span>
@@ -590,8 +590,9 @@ $ density     &lt;dbl&gt; 0.002499, 0.002499, 0.010158, 0.011583, 0.011583, 0.01
 </div>
 </div>
 <p>It’s also interesting to see whether your data’s distribution is different for any of the categories you’re looking at. Is there greater variation in height among women vs humans as a whole? (Do be careful with this, because looking for patterns by poking your data into a bunch of different subsets will basically guarantee you’ll find <em>a</em> pattern, whether or not it’s biologically relevant.)</p>
-<section id="histogram-for-one-chromosome" class="level3" data-number="12.4.1">
-<h3 data-number="12.4.1" class="anchored" data-anchor-id="histogram-for-one-chromosome"><span class="header-section-number">12.4.1</span> Histogram for One Chromosome</h3>
+</section>
+<section id="histogram-for-one-chromosome" class="level3" data-number="7.7.2">
+<h3 data-number="7.7.2" class="anchored" data-anchor-id="histogram-for-one-chromosome"><span class="header-section-number">7.7.2</span> Histogram for One Chromosome</h3>
 <p>Let’s see whether the gene density on one of the autosomes (how about LG_2) fits the general pattern.</p>
 <p>(Based on our initial hypotheses, would you predict that it would?)</p>
 <p>It is important to consider how your predictions may affect the way you filter your data, so be mindful about tweaking parameters (like bin width) to fit the output you expect!</p>
@@ -611,14 +612,14 @@ $ density     &lt;dbl&gt; 0.002499, 0.002499, 0.010158, 0.011583, 0.011583, 0.01
 <p>One of the aspects of your data that you can’t visualize well with a histogram is whether there are any values that exceed the limits you expected for your data.</p>
 </section>
 </section>
-<section id="scatterplots-box-plots" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="scatterplots-box-plots"><span class="header-section-number">12.5</span> Scatterplots &amp; Box plots</h2>
-<section id="more-info-less-bias" class="level3" data-number="12.5.1">
-<h3 data-number="12.5.1" class="anchored" data-anchor-id="more-info-less-bias"><span class="header-section-number">12.5.1</span> More info! Less bias!</h3>
+<section id="scatterplots-box-plots" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="scatterplots-box-plots"><span class="header-section-number">7.8</span> Scatterplots &amp; Box plots</h2>
+<section id="more-info-less-bias" class="level3" data-number="7.8.1">
+<h3 data-number="7.8.1" class="anchored" data-anchor-id="more-info-less-bias"><span class="header-section-number">7.8.1</span> More info! Less bias!</h3>
 <p>With quantitative data, we can get more information by looking at scatterplots and box plots. Not only are they immune to bin size bias, they can help us find outliers and let us make initial visual comparisons of averages across categories.</p>
 </section>
-<section id="visualize-raw-data-as-a-scatterplot" class="level3" data-number="12.5.2">
-<h3 data-number="12.5.2" class="anchored" data-anchor-id="visualize-raw-data-as-a-scatterplot"><span class="header-section-number">12.5.2</span> Visualize raw data as a scatterplot</h3>
+<section id="visualize-raw-data-as-a-scatterplot" class="level3" data-number="7.8.2">
+<h3 data-number="7.8.2" class="anchored" data-anchor-id="visualize-raw-data-as-a-scatterplot"><span class="header-section-number">7.8.2</span> Visualize raw data as a scatterplot</h3>
 <p>We know that “chromosome” is a categorical, independent variable appropriate for our X axis and that “density” is a continuous, dependent variable that will be appropriate for the Y.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(geneDensity, <span class="fu">aes</span>(<span class="at">x =</span> chromosome, <span class="at">y =</span> density)) <span class="sc">+</span></span>
@@ -631,8 +632,8 @@ $ density     &lt;dbl&gt; 0.002499, 0.002499, 0.010158, 0.011583, 0.011583, 0.01
 </div>
 <p>Already, we can see that there different maximum gene density values on each chromosome. Because the points are overlapping, it’s hard to evaluate what the average or skewness might be for any of the categories.</p>
 </section>
-<section id="boxplots-for-better-comparisons" class="level3" data-number="12.5.3">
-<h3 data-number="12.5.3" class="anchored" data-anchor-id="boxplots-for-better-comparisons"><span class="header-section-number">12.5.3</span> Boxplots for better comparisons</h3>
+<section id="boxplots-for-better-comparisons" class="level3" data-number="7.8.3">
+<h3 data-number="7.8.3" class="anchored" data-anchor-id="boxplots-for-better-comparisons"><span class="header-section-number">7.8.3</span> Boxplots for better comparisons</h3>
 <p>Because boxplots display the median and quartile limits, it’s much easier to evaluate the properties of the distribution.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(geneDensity, <span class="fu">aes</span>(<span class="at">x =</span> chromosome, <span class="at">y =</span> density)) <span class="sc">+</span></span>
@@ -661,8 +662,8 @@ $ density     &lt;dbl&gt; 0.002499, 0.002499, 0.010158, 0.011583, 0.011583, 0.01
 <p>Look at that handy warning! It lets us know that one value was thrown out: “removed 1 rows”. This view helps us to get a better general understanding of how this categorical “chromosome” value might relate to gene density. However! It’s important not to throw out data unless you have good reason to believe it doesn’t belong in the data set.</p>
 <p>Bonus note: you can use the coord_cartesian function instead of ylim. It won’t warn you if any of your data points are beyond the limits of the axes, though.</p>
 </section>
-<section id="what-about-the-other-variables" class="level3" data-number="12.5.4">
-<h3 data-number="12.5.4" class="anchored" data-anchor-id="what-about-the-other-variables"><span class="header-section-number">12.5.4</span> What about the other variables?</h3>
+<section id="what-about-the-other-variables" class="level3" data-number="7.8.4">
+<h3 data-number="7.8.4" class="anchored" data-anchor-id="what-about-the-other-variables"><span class="header-section-number">7.8.4</span> What about the other variables?</h3>
 <blockquote class="blockquote">
 <p>This data describes a few of the genetic “bits” (we generally call them “elements”) live in one plant genome. The chromosomes have been broken down into 1Mb pieces (“windows”) that overlap each other and the contents of each window have been averaged. We’ve got information on the density of conserved genes and one type of transposon for each window. Additionally, we have the evolutionary age for those transposons.</p>
 </blockquote>
@@ -742,8 +743,8 @@ $ density     &lt;dbl&gt; 0.002499, 0.002499, 0.010158, 0.011583, 0.011583, 0.01
 </ul></li>
 </ul>
 </section>
-<section id="boxplot-augmentations" class="level3" data-number="12.5.5">
-<h3 data-number="12.5.5" class="anchored" data-anchor-id="boxplot-augmentations"><span class="header-section-number">12.5.5</span> Boxplot augmentations</h3>
+<section id="boxplot-augmentations" class="level3" data-number="7.8.5">
+<h3 data-number="7.8.5" class="anchored" data-anchor-id="boxplot-augmentations"><span class="header-section-number">7.8.5</span> Boxplot augmentations</h3>
 <p>There are a few additional things we can do that might make boxplots even more informative for our data.</p>
 <ul>
 <li><strong>Violin</strong> plots - boxplots but with curves instead of boxes</li>
@@ -767,8 +768,8 @@ $ density     &lt;dbl&gt; 0.002499, 0.002499, 0.010158, 0.011583, 0.011583, 0.01
 <p>Making the points more transparent gives us a better idea of what density values are most common. You can see this at the bottom of the graph, where the points don’t look transparent at all - <em>so</em> many data points!!</p>
 </section>
 </section>
-<section id="challenge" class="level2" data-number="12.6">
-<h2 data-number="12.6" class="anchored" data-anchor-id="challenge"><span class="header-section-number">12.6</span> Challenge!</h2>
+<section id="challenge" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="challenge"><span class="header-section-number">7.9</span> Challenge!</h2>
 <p>How could you visualize the LTR data across chromosomes? Don’t forget to use axis labels.</p>
 <p>What is the range of LTR density for the LG_2 chromosome?</p>
 <div class="cell">
@@ -797,11 +798,10 @@ $ density     &lt;dbl&gt; 0.002499, 0.002499, 0.010158, 0.011583, 0.011583, 0.01
 </div>
 <p>Now it’s time to start thinking about what to do with rebellious outliers!</p>
 </section>
-</section>
-<section id="outliers" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> Outliers</h1>
-<section id="but-why-are-you-like-this" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="but-why-are-you-like-this"><span class="header-section-number">13.1</span> But why are you like this?</h2>
+<section id="outliers" class="level2" data-number="7.10">
+<h2 data-number="7.10" class="anchored" data-anchor-id="outliers"><span class="header-section-number">7.10</span> Outliers</h2>
+<section id="but-why-are-you-like-this" class="level3" data-number="7.10.1">
+<h3 data-number="7.10.1" class="anchored" data-anchor-id="but-why-are-you-like-this"><span class="header-section-number">7.10.1</span> But why are you like this?</h3>
 <p>There could be many reasons why your data has values that exceed the limits you expected it would have. It basically comes down to <strong>error</strong>, whether in your data or in the expectation you had for its limits. Consider error <em>carefully</em>.</p>
 <ul>
 <li>Incorrect prediction of what the limits should be
@@ -832,8 +832,8 @@ $ density     &lt;dbl&gt; 0.002499, 0.002499, 0.010158, 0.011583, 0.011583, 0.01
 <p>IMPORTANT NOTE: if you do end up removing <em>any</em> data, you <strong>MUST disclose the removal</strong> and your justification for the removal. Your reasons could be great, but you need to make sure your audience has access to those reasons.</p>
 <p>This consideration of weird values brings up an interesting point: you’re doing these checks because your values are <em>different</em> than what you expected. It’s important to think about analytical ‘controls’ to look for potential errors even when your data looks the way you <em>expect</em> it to! Steps towards this can be as simple as sharing your code publicly.</p>
 </section>
-<section id="lets-take-a-look" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="lets-take-a-look"><span class="header-section-number">13.2</span> Let’s take a look!</h2>
+<section id="lets-take-a-look" class="level3" data-number="7.10.2">
+<h3 data-number="7.10.2" class="anchored" data-anchor-id="lets-take-a-look"><span class="header-section-number">7.10.2</span> Let’s take a look!</h3>
 <p>We had that weird really high gene density value on the LG_X chromosome. Let’s look at what’s happening there.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(geneDensity, density <span class="sc">&gt;</span> <span class="fl">0.13</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -847,8 +847,8 @@ $ density     &lt;dbl&gt; 0.002499, 0.002499, 0.010158, 0.011583, 0.011583, 0.01
 <p>What do the other variables tell us about this data point?</p>
 <p>This data point has a really high winNum, so it’s likely located near the end of the chromosome. But importantly, our windows are supposed to be 1Mb in size (1 000 000 value in the winSize column). The winSize value for this outlier is tiny in comparison!!</p>
 </section>
-<section id="wholesome-thoughts-about-your-data" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="wholesome-thoughts-about-your-data"><span class="header-section-number">13.3</span> Wholesome thoughts about your data</h2>
+<section id="wholesome-thoughts-about-your-data" class="level3" data-number="7.10.3">
+<h3 data-number="7.10.3" class="anchored" data-anchor-id="wholesome-thoughts-about-your-data"><span class="header-section-number">7.10.3</span> Wholesome thoughts about your data</h3>
 <p>Averages – how was your data collected &amp; what biases might be inherent? The data I’m showing you is a pretty clear example of how important (and difficult) it is to understand what the variables mean in your data sets. What might cause outliers in the kind of data you’re interested in?</p>
 <p>That last look showed us that it’s definitely very important to consider our data as a whole: to think not only about the variables relevant to our hypotheses, but the way in which it was collected (how that was reflected in the other properties of the data).</p>
 <p>So. Let’s try to understand more about the interaction between gene density and window size in the rest of our data. Visualization time!</p>
@@ -863,8 +863,8 @@ $ density     &lt;dbl&gt; 0.002499, 0.002499, 0.010158, 0.011583, 0.011583, 0.01
 </div>
 <p>It looks like <em>all</em> of the chromosomes get this trail-off in window size near their ends. This is not what we expected!! All of the squish at the end is basically just error from a previous analysis.</p>
 </section>
-<section id="challenge-1" class="level2" data-number="13.4">
-<h2 data-number="13.4" class="anchored" data-anchor-id="challenge-1"><span class="header-section-number">13.4</span> Challenge!</h2>
+<section id="challenge-1" class="level3" data-number="7.10.4">
+<h3 data-number="7.10.4" class="anchored" data-anchor-id="challenge-1"><span class="header-section-number">7.10.4</span> Challenge!</h3>
 <p>Create a category based on window size: density as either belonging in a “small window” or a “normal window”. We can create a new “winCategory” variable using mutate() and assign the value of “small” to windows with winSize less than 1Mb and “normal” to all the other windows (which we expect will have a value of 1Mb).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>geneDensity2 <span class="ot">&lt;-</span> geneDensity <span class="sc">%&gt;%</span></span>
@@ -919,8 +919,8 @@ Removed 1 rows containing non-finite values (`stat_boxplot()`).</code></pre>
 <p>Is there a way to weight the gene density by window size?</p>
 </section>
 </section>
-<section id="so-what-does-this-mean-for-our-predictions" class="level1" data-number="14">
-<h1 data-number="14"><span class="header-section-number">14</span> So what does this mean for our predictions?</h1>
+<section id="so-what-does-this-mean-for-our-predictions" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> So what does this mean for our predictions?</h1>
 <p>Right. The reason we collected this data in the first place!</p>
 <ol type="1">
 <li>In areas where gene density is high, LTR density is low</li>
@@ -928,8 +928,8 @@ Removed 1 rows containing non-finite values (`stat_boxplot()`).</code></pre>
 <li>The sex chromosome (LG_X) will have higher LTR density</li>
 </ol>
 <p>Note: <em>preparing</em> data for analysis is generally the most time-consuming part of any project. Establishing what you need to do with your data in order to test your hypotheses &amp; thoroughly exploring your data and its properties are <em>extremely</em> useful steps in this process.</p>
-<section id="how-do-we-explore-these-questions" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="how-do-we-explore-these-questions"><span class="header-section-number">14.1</span> How do we explore these questions?</h2>
+<section id="how-do-we-explore-these-questions" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="how-do-we-explore-these-questions"><span class="header-section-number">8.1</span> How do we explore these questions?</h2>
 <p>We need to relate gene density, LTR density, and LTR age. Do we have this data?</p>
 <p>Is it currently in a form where we can make comparisons?</p>
 <p>Based on the properties of our gene and LTR density data sets, what are the shared “units”? Essentially, what are we trying to compare within and among each chromosome?</p>
@@ -986,8 +986,8 @@ Removed 1 rows containing non-finite values (`stat_boxplot()`).</code></pre>
 </div>
 </div>
 <p>This data was prepared differently, so it doesn’t have the same ‘window’ units. It does contain chromosomal position information, however, which we can use to make some preliminary comparisons.</p>
-<section id="actual-wrangling" class="level3" data-number="14.1.1">
-<h3 data-number="14.1.1" class="anchored" data-anchor-id="actual-wrangling"><span class="header-section-number">14.1.1</span> Actual wrangling</h3>
+<section id="actual-wrangling" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="actual-wrangling"><span class="header-section-number">8.1.1</span> Actual wrangling</h3>
 <p>We’re also going to pull out only the variables we now know we’ll need (what’s shared among the data sets and what will be used to try and test our predictions), just because of how large this data frame will be. It’s <em>not</em> a good idea to do this before looking at all the variables together.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>simpleGeneDensity <span class="ot">&lt;-</span> geneDensity <span class="sc">%&gt;%</span></span>
@@ -1013,8 +1013,8 @@ Removed 1 rows containing non-finite values (`stat_boxplot()`).</code></pre>
 </div>
 <p>At this point, are these data “long” or “wide”? #throwback</p>
 </section>
-<section id="knowledge-check-challenge" class="level3" data-number="14.1.2">
-<h3 data-number="14.1.2" class="anchored" data-anchor-id="knowledge-check-challenge"><span class="header-section-number">14.1.2</span> ? Knowledge Check Challenge</h3>
+<section id="knowledge-check-challenge" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="knowledge-check-challenge"><span class="header-section-number">8.1.2</span> ? Knowledge Check Challenge</h3>
 <p>Join the two data sets (simpleLTRdensity and simpleGeneDensity) into one data frame called “densities”. As a bonus, try mutating the <em>start</em> variable so that it’s measured in 10kb increments instead of 1bp. This will just make our X axis labels are easier to interpret.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>densities <span class="ot">&lt;-</span> <span class="fu">full_join</span>(simpleLTRdensity, simpleGeneDensity,</span>
@@ -1040,8 +1040,8 @@ Removed 1 rows containing non-finite values (`stat_boxplot()`).</code></pre>
 <p>We’ve got two independent categorical variables, an independent numerical variable, and a dependent numerical variable. It’s beautiful.</p>
 </section>
 </section>
-<section id="is-gene-density-high-when-ltr-density-is-low-hyp-1" class="level2" data-number="14.2">
-<h2 data-number="14.2" class="anchored" data-anchor-id="is-gene-density-high-when-ltr-density-is-low-hyp-1"><span class="header-section-number">14.2</span> Is gene density high when LTR density is low? (hyp #1)</h2>
+<section id="is-gene-density-high-when-ltr-density-is-low-hyp-1" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="is-gene-density-high-when-ltr-density-is-low-hyp-1"><span class="header-section-number">8.2</span> Is gene density high when LTR density is low? (hyp #1)</h2>
 <p>What variables do we want to plot?</p>
 <ul>
 <li>Chromosome</li>
@@ -1050,8 +1050,8 @@ Removed 1 rows containing non-finite values (`stat_boxplot()`).</code></pre>
 <li>Element density</li>
 <li></li>
 </ul>
-<section id="challenge-2" class="level3" data-number="14.2.1">
-<h3 data-number="14.2.1" class="anchored" data-anchor-id="challenge-2"><span class="header-section-number">14.2.1</span> Challenge</h3>
+<section id="challenge-2" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="challenge-2"><span class="header-section-number">8.2.1</span> Challenge</h3>
 <p>Of the plot types we’ve used so far, what would you use to try and compare gene densities along the chromosomal positions on each chromosome?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(densities, <span class="fu">aes</span>(<span class="at">x =</span> density, <span class="at">fill =</span> elementType)) <span class="sc">+</span></span>
@@ -1108,8 +1108,8 @@ Removed 1 rows containing non-finite values (`stat_boxplot()`).</code></pre>
 <p>Broadly, we can see that when the LTR density plummets, gene density smudges upward.</p>
 </section>
 </section>
-<section id="is-gene-density-high-when-ltr-age-is-high-hyp-2" class="level2" data-number="14.3">
-<h2 data-number="14.3" class="anchored" data-anchor-id="is-gene-density-high-when-ltr-age-is-high-hyp-2"><span class="header-section-number">14.3</span> Is gene density high when LTR age is high? (hyp #2)</h2>
+<section id="is-gene-density-high-when-ltr-age-is-high-hyp-2" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="is-gene-density-high-when-ltr-age-is-high-hyp-2"><span class="header-section-number">8.3</span> Is gene density high when LTR age is high? (hyp #2)</h2>
 <p>Let’s take a look at the LTR age data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ltrAge)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1153,8 +1153,8 @@ Removed 1 rows containing non-finite values (`stat_boxplot()`).</code></pre>
 </div>
 <p>Well, what can we take away from this visualization? Not much. It seems pretty clear that the average LTR is old (darkness at the bottom of the clouds). The few younger LTRs near the top of the plots might have useful information for us, given that LTR “reproduction” (transposition) is generally rare.</p>
 </section>
-<section id="discretizing-our-ages" class="level2" data-number="14.4">
-<h2 data-number="14.4" class="anchored" data-anchor-id="discretizing-our-ages"><span class="header-section-number">14.4</span> Discretizing our ages</h2>
+<section id="discretizing-our-ages" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="discretizing-our-ages"><span class="header-section-number">8.4</span> Discretizing our ages</h2>
 <p>We can try binning LTRs based on their age, to see if the youngest LTRs are able to be “born” in gene-dense regions. Note: don’t categorize numerical data like this without considering what information you’re losing!</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ltrAge, <span class="fu">aes</span>( <span class="at">x =</span> start <span class="sc">/</span> <span class="dv">10000</span>,</span>
@@ -1176,8 +1176,8 @@ Removed 1 rows containing non-finite values (`stat_boxplot()`).</code></pre>
 <p>There are few young LTRs, but their positions match with the pattern of our overall TE density plot. The positions of the young LTRs aren’t close to gene-dense regions on the autosomes, though interestingly there are a few on the right-hand side of LG_X, which was the most gene-dense region of our sex chormosome!</p>
 <p>That was cool. Definitely <strong>not</strong> a statistical test of correlations between LTR age and gene density, but the fact that sub-sections of this data behave quite differently is really interesting to see!</p>
 </section>
-<section id="missing-values-in-gene-density-comparison" class="level2" data-number="14.5">
-<h2 data-number="14.5" class="anchored" data-anchor-id="missing-values-in-gene-density-comparison"><span class="header-section-number">14.5</span> Missing values in gene density comparison</h2>
+<section id="missing-values-in-gene-density-comparison" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="missing-values-in-gene-density-comparison"><span class="header-section-number">8.5</span> Missing values in gene density comparison</h2>
 <p>You might remember that in last lecture, when you encountered missing values in your data, you could replace them with 0. If we want to put our LTR age data into the same kind of windows that the gene density data is in, we’re going to have <em>some windows without any age data</em>. Do you think that setting LTR age to 0 would be a good way to handle the windows with missing age data?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>windowedAges <span class="ot">&lt;-</span> ltrAge <span class="sc">%&gt;%</span></span>
@@ -1311,11 +1311,11 @@ Removed 1 rows containing non-finite values (`stat_boxplot()`).</code></pre>
 </div>
 <p>Not too bad! Not mechanistically motivated, but it does show that replacing missing data with the value we would expect (basically the definition of the mean) can have fewer consequences than replacing it with 0 in some contexts.</p>
 </section>
-<section id="does-the-sex-chromosome-lg_x-have-higher-ltr-density-hyp-3" class="level2" data-number="14.6">
-<h2 data-number="14.6" class="anchored" data-anchor-id="does-the-sex-chromosome-lg_x-have-higher-ltr-density-hyp-3"><span class="header-section-number">14.6</span> Does the sex chromosome (LG_X) have higher LTR density? (hyp #3)</h2>
+<section id="does-the-sex-chromosome-lg_x-have-higher-ltr-density-hyp-3" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="does-the-sex-chromosome-lg_x-have-higher-ltr-density-hyp-3"><span class="header-section-number">8.6</span> Does the sex chromosome (LG_X) have higher LTR density? (hyp #3)</h2>
 <p>We want to compare LTR densities across chromosomes. How would you do this?</p>
-<section id="challenge-3" class="level3" data-number="14.6.1">
-<h3 data-number="14.6.1" class="anchored" data-anchor-id="challenge-3"><span class="header-section-number">14.6.1</span> Challenge!</h3>
+<section id="challenge-3" class="level3" data-number="8.6.1">
+<h3 data-number="8.6.1" class="anchored" data-anchor-id="challenge-3"><span class="header-section-number">8.6.1</span> Challenge!</h3>
 <p>Box plot is a good base line. Ask for types of improvements that could be made to a basic box plot.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ltrDensity, <span class="fu">aes</span>(<span class="at">x =</span> chromosome, <span class="at">y =</span> density)) <span class="sc">+</span></span>
@@ -1588,7 +1588,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./lec05-data-visualization.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization with ggplot</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization in ggplot</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

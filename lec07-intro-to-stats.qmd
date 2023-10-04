@@ -1,19 +1,13 @@
----
-title: "Introduction to inference"
-output:
-  pdf_document: default
-  word_document: default
-urlcolor: blue
----
+# Introduction to inference {#lec07-intro-to-stats}
 
-# Lesson preamble
+## Lesson preamble
 
 > ### Lesson objectives
 > 
 > - Develop understanding of random variables, probability distributions, and likelihood.
 > - Understand how to simulate realizations of of a random variable.
-> - Develop familarity with maximum likelihood estimation and inference.
-> - Become familar with hypothesis testing: null and alternate hypotheses, test statistics, power, significance, p-values, and the duality of hypothesis tests and confidence intervals.
+> - Develop familiarity with maximum likelihood estimation and inference.
+> - Become familiar with hypothesis testing: null and alternate hypotheses, test statistics, power, significance, p-values, and the duality of hypothesis tests and confidence intervals.
 >
 > ### Lesson outline
 > 
@@ -21,7 +15,7 @@ urlcolor: blue
 >     - Interpretations of probability, sources of uncertainty
 >     - Discrete vs continuous RVs
 >     - Simulating random variables in R
->     - Means, variences, and other moments
+>     - Means, variances, and other moments
 > - likelihood estimation and inference 
 >     - Understanding the likelihood function
 >     - Mathematical and numerical optimization
@@ -51,7 +45,7 @@ Consider an experiment which gives rise to a set $\Omega$ of outcomes. This set 
 
 \vspace{-12pt}
 
-$$\Pr (A_1 \text{ and } A_2 \text{ and } A_3 \text{ and } \cdots) = \sum_{i=1}^\infty \Pr (A_i)$$
+$$\Pr (A_1 \text{ or } A_2 \text{ or } A_3 \text{ or } \cdots) = \sum_{i=1}^\infty \Pr (A_i)$$
 
 \vspace{3pt}
 
@@ -339,7 +333,7 @@ pchisq(test_statistic, df = 1, lower.tail = FALSE)
 
 Since we have designed $H_0$ so that it is true (i.e., the values for the parameters are those used to generate the data), it should come as no surprise that we fail to reject the null hypothesis in favour of $H_1$.
 
-In contrast, consider the test $H_0: (\mu,\sigma,\nu,\tau) = (0,1,10,0)$ vs $H_1: (\mu,\sigma,\nu,\tau) \neq (0,1,10,5)$. In this case, $p < \alpha$, so that we have sufficient evidence to reject the null hypothesis.
+In contrast, consider the test $H_0: (\mu,\sigma,\nu,\tau) = (0,1,10,5)$ vs $H_1: (\mu,\sigma,\nu,\tau) \neq (0,1,10,5)$. In this case, $p < \alpha$, so that we have sufficient evidence to reject the null hypothesis.
 
 ```{r}
 likelihood_at_null <- log_likelihood %>% 

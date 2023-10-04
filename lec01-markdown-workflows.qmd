@@ -1,11 +1,4 @@
----
-title: "Markdown, project workflows"
-output: md_document
-urlcolor: blue
-editor_options: 
-  markdown: 
-    wrap: 72
----
+# Markdown, project workflows {#lec01-markdown-workflows}
 
 ## Lesson preamble
 

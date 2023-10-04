@@ -1,11 +1,4 @@
----
-title: "Assignments, vectors, functions, and loops"
-output: md_document
-urlcolor: blue
-editor_options: 
-  markdown: 
-    wrap: 72
----
+# Base R: assignment, vectors, functions, and loops {#lec02-base-r}
 
 ## Lesson Preamble
 

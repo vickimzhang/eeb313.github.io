@@ -1,11 +1,4 @@
----
-title: "Data visualization with ggplot"
-output: md_document
-urlcolor: blue
-editor_options: 
-  markdown: 
-    wrap: 72
----
+# Data visualization in ggplot {#lec05-data-visualization}
 
 ## Lesson preamble
 

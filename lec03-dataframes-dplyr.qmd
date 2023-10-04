@@ -1,11 +1,4 @@
----
-title: "Dataframes and introduction to data wrangling"
-output: md_document
-urlcolor: blue
-editor_options: 
-  markdown: 
-    wrap: 72
----
+# Data frames, intro to dplyr {#lec03-dataframes-dplyr}
 
 ## Lesson Preamble
 
