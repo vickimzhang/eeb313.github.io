@@ -682,18 +682,18 @@ lm(formula = fitness ~ scale(trait), data = data)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.40581 -0.10331  0.01434  0.13923  0.31198 
+-0.46109 -0.07817  0.01994  0.09612  0.26859 
 
 Coefficients:
              Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   1.00000    0.01621   61.71   &lt;2e-16 ***
-scale(trait)  0.40401    0.01629   24.81   &lt;2e-16 ***
+(Intercept)   1.00000    0.01511   66.20   &lt;2e-16 ***
+scale(trait)  0.33314    0.01518   21.94   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.1621 on 98 degrees of freedom
-Multiple R-squared:  0.8626,    Adjusted R-squared:  0.8612 
-F-statistic: 615.3 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 0.1511 on 98 degrees of freedom
+Multiple R-squared:  0.8309,    Adjusted R-squared:  0.8292 
+F-statistic: 481.5 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="do">### fitness changed by ~50% per sd change in trait value!</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -715,19 +715,19 @@ lm(formula = fitness ~ scale(trait) + scale(trait^2), data = data)
 
 Residuals:
       Min        1Q    Median        3Q       Max 
--0.165498 -0.063773 -0.005416  0.054972  0.203885 
+-0.166024 -0.055541 -0.003314  0.060323  0.184896 
 
 Coefficients:
                 Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)     1.000000   0.008797  113.67   &lt;2e-16 ***
-scale(trait)    0.915590   0.034486   26.55   &lt;2e-16 ***
-scale(trait^2) -0.529271   0.034486  -15.35   &lt;2e-16 ***
+(Intercept)     1.000000   0.008273  120.88   &lt;2e-16 ***
+scale(trait)    0.777563   0.030474   25.52   &lt;2e-16 ***
+scale(trait^2) -0.461952   0.030474  -15.16   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.08797 on 97 degrees of freedom
-Multiple R-squared:  0.9599,    Adjusted R-squared:  0.9591 
-F-statistic:  1162 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 0.08273 on 97 degrees of freedom
+Multiple R-squared:  0.9498,    Adjusted R-squared:  0.9488 
+F-statistic: 917.6 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>Here, the blue (red) regression line is the linear (quadratic) individual selection surface, estimated by regressing fitness on trait value (and its square) simulated under a model of directional selection.</p>
@@ -846,21 +846,21 @@ glm(formula = disease_status ~ scale(age), family = binomial,
     data = data)
 
 Deviance Residuals: 
-    Min       1Q   Median       3Q      Max  
--1.7035  -1.0259  -0.5384   1.0158   1.9240  
+     Min        1Q    Median        3Q       Max  
+-1.86005  -0.97083  -0.03031   1.04883   1.74735  
 
 Coefficients:
             Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)  -0.2000     0.2209  -0.906 0.365181    
-scale(age)    0.9469     0.2487   3.807 0.000141 ***
+(Intercept) 0.009611   0.217621   0.044 0.964775    
+scale(age)  0.880024   0.237002   3.713 0.000205 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 137.99  on 99  degrees of freedom
-Residual deviance: 120.16  on 98  degrees of freedom
-AIC: 124.16
+    Null deviance: 138.63  on 99  degrees of freedom
+Residual deviance: 122.38  on 98  degrees of freedom
+AIC: 126.38
 
 Number of Fisher Scoring iterations: 4</code></pre>
 </div>
@@ -897,35 +897,35 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <tbody>
 <tr class="odd">
 <td style="text-align: right;">100</td>
-<td style="text-align: right;">0.877</td>
+<td style="text-align: right;">0.887</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">110</td>
-<td style="text-align: right;">0.907</td>
+<td style="text-align: right;">0.917</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">120</td>
-<td style="text-align: right;">0.937</td>
+<td style="text-align: right;">0.934</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">130</td>
-<td style="text-align: right;">0.964</td>
+<td style="text-align: right;">0.953</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">140</td>
-<td style="text-align: right;">0.975</td>
+<td style="text-align: right;">0.968</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">150</td>
-<td style="text-align: right;">0.985</td>
+<td style="text-align: right;">0.978</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">160</td>
-<td style="text-align: right;">0.982</td>
+<td style="text-align: right;">0.985</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">170</td>
-<td style="text-align: right;">0.994</td>
+<td style="text-align: right;">0.985</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">180</td>
@@ -933,11 +933,11 @@ Number of Fisher Scoring iterations: 4</code></pre>
 </tr>
 <tr class="even">
 <td style="text-align: right;">190</td>
-<td style="text-align: right;">0.995</td>
+<td style="text-align: right;">0.998</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">200</td>
-<td style="text-align: right;">0.996</td>
+<td style="text-align: right;">0.997</td>
 </tr>
 </tbody>
 </table>
