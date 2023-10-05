@@ -84,7 +84,7 @@ If you require accommodations for a disability, or have any accessibility concer
 
 ### Lecture schedule
 
-| Week | Date   | Topic                                               | Instructor     |
+ Week | Date   | Topic                                               | Instructor     |
 |------|--------|-----------------------------------------------------|----------------|
 | 1    | Sep 7  | Intro to course, programming, RStudio               | Vicki          | 
 | 2    | Sep 12 | R Markdown, project workflows                       | Vicki          |
@@ -95,14 +95,14 @@ If you require accommodations for a disability, or have any accessibility concer
 | 4    | Sep 28 | Exploratory data analysis                           | Zoe            |
 | 5    | Oct 03 | Introduction to statistical inference               | Mete           |
 | 5    | Oct 05 | Simple linear models and generalized linear models  | Mete           |
-| 6    | Oct 10 | Mixed models                                        | Mete/Vicki     |
-| 6    | Oct 12 | Model selection                                     | Mete/Vicki     |
+| 6    | Oct 10 | Mixed models                                        | Mete           |
+| 6    | Oct 12 | Mixed models & model selection                      | Vicki/Mete     |
 | 7    | Oct 17 | Multivariate statistics                             | Jessie         |
 | 7    | Oct 19 | Intro to command line and GitHub                    | Mete/Vicki     |
-| 8    | Oct 24 | Computer-intensive methods                          | Mete           |
+| 8    | Oct 24 | Model averaging & linear model review               | Mete           |
 | 8    | Oct 26 | Mathematical models in ecology and evolution I      | Mete           |
 | 9    | Oct 31 | Mathematical models in ecology and evolution II     | Mete           |
-| 9    | Nov 02 | Wrap-up, review                                     | Mete           |
+| 9    | Nov 02 | Wrap-up, review                                     | Zoe/Jessie     |
 | 10   | Nov 07 | Reading break                                       | -              |
 | 10   | Nov 09 | Reading break                                       | -              |
 | 11   | Nov 14 | Project work                                        |                |
