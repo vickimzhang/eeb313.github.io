@@ -321,13 +321,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>If the probability of observing a test statistic more extreme than</p>
 <p><span class="math display">\[s = \frac{(y-np_0)^2}{np_0} + \frac{((n-y)-n(1-p_0))^2}{n(1-p_0)},\]</span></p>
 <p>is <span class="math inline">\(&lt; \alpha\)</span>, then we reject the null hypothesis. (The reason being that we are unlikely to live in a world where the null hypothesis is true if the test statistic does not line up with what is expected under the null hypothesis.) Tables of <span class="math inline">\(\chi^2\)</span> cutoff values are sometimes used to determine the <span class="math inline">\(p\)</span>-value (i.e., the probability of observing something more extreme than the test statistic that was calculated), but is more convenient to do the calculation in R.</p>
-<p>In the following code chunk, we test <span class="math inline">\(H_0 \colon p = 0.4\)</span> vs <span class="math inline">\(H_1 \colon p \neq 0.4\)</span> by calculating the test statistic and <span class="math inline">\(p\)</span> value. Data is simulated.</p>
+<p>In the following code chunk, we test <span class="math inline">\(H_0 \colon p = 0.4\)</span> vs <span class="math inline">\(H_1 \colon p \neq 0.4\)</span> by calculating the test statistic and associated <span class="math inline">\(p\)</span> value. Binomial data is simulated to illustrate how to preform a <span class="math inline">\(\chi^2\)</span> test.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># this is the population (and sample) size</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size =</span> n, <span class="at">prob =</span> <span class="fl">0.45</span>) <span class="co"># prob is the true value of p in this case!</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Y <span class="co"># this is the number individuals in the pop with the allele</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 38</code></pre>
+<pre><code>[1] 43</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>expected_carrying_allele <span class="ot">&lt;-</span> <span class="dv">100</span><span class="sc">*</span><span class="fl">0.4</span> </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># number individuals expected to carry the allele under H0: p = 0.4</span></span>
@@ -340,7 +340,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">pchisq</span>(S, <span class="at">df =</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> F) <span class="co"># since p &gt; 0.05, we fail to reject the null hypothesis</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.6830914</code></pre>
+<pre><code>[1] 0.5402914</code></pre>
 </div>
 </div>
 <p>Play around with this code to see when, depending on <span class="math inline">\(p_0\)</span>, the true value of <span class="math inline">\(p\)</span> used to simulate the data, and the sample size, the <span class="math inline">\(p\)</span>-value is <span class="math inline">\(&lt; \alpha = 0.05\)</span>.</p>
@@ -363,13 +363,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>df_body_widths <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df_males, df_females) <span class="co"># combine data!</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_body_widths)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      width  sex
-1 15.001092 male
-2 17.391963 male
-3 14.416707 male
-4 13.489403 male
-5  9.651699 male
-6 22.241379 male</code></pre>
+<pre><code>     width  sex
+1 15.46597 male
+2 15.03860 male
+3 20.50875 male
+4 21.44268 male
+5 19.30968 male
+6 20.17925 male</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_body_widths <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.numeric</span>(width), </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">fill =</span> <span class="fu">as.factor</span>(sex))) <span class="sc">+</span> <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
@@ -385,19 +385,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>diff_means_obs <span class="ot">&lt;-</span> mean_males <span class="sc">-</span> mean_females <span class="co"># test statistic w/out permutation</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>diff_means_obs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2716363</code></pre>
+<pre><code>[1] 1.263331</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>reshuffled <span class="ot">&lt;-</span> df_body_widths</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>reshuffled<span class="sc">$</span>width <span class="ot">&lt;-</span> <span class="fu">sample</span>(reshuffled<span class="sc">$</span>width, <span class="at">size =</span> <span class="fu">nrow</span>(reshuffled), <span class="at">replace =</span> F)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(reshuffled)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     width  sex
-1 16.13585 male
-2 19.76123 male
-3 15.95194 male
-4 13.55993 male
-5 15.00659 male
-6 16.35269 male</code></pre>
+1 16.03923 male
+2 15.03860 male
+3 14.27340 male
+4 18.49921 male
+5 17.43306 male
+6 11.07472 male</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>permute_and_calculate_mean_diff <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  reshuffled <span class="ot">&lt;-</span> df_body_widths</span>
@@ -414,7 +414,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="fu">permute_and_calculate_mean_diff</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.5679082</code></pre>
+<pre><code>[1] 1.099531</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>n_sims <span class="ot">&lt;-</span> <span class="dv">1000</span> <span class="co"># number of times to permute data to generated null distribution</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>test_stats <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
@@ -437,7 +437,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(test_stats[(diff_means_obs <span class="sc">&lt;</span> test_stats)])<span class="sc">/</span><span class="fu">length</span>(test_stats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.385</code></pre>
+<pre><code>[1] 0.034</code></pre>
 </div>
 </div>
 
