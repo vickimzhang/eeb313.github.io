@@ -25,6 +25,9 @@ book:
       chapters:
       - projects.qmd
       - databases.qmd
+    - part: "Miscellaneous notes"
+      chapters:
+      - tests-assignment-3.qmd
   repo-url: https://github.com/EEB313/eeb313.github.io
   sidebar:
     search: true
