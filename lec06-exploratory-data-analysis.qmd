@@ -1,15 +1,6 @@
----
-title: "Exploratory data analysis"
-output:
-  pdf_document: default
-  html_document:
-    df_print: paged
-editor_options:
-  markdown:
-    wrap: 72
----
+# Exploratory data analysis {#lec06-data-visualization}
 
-# Lesson preamble:
+## Lesson preamble:
 
 > ### Lesson objectives:
 >
@@ -34,7 +25,7 @@ editor_options:
 
 ------------------------------------------------------------------------
 
-# Introduction
+## Introduction
 
 Exploratory data analysis is your exciting first look at your data! It's
 a chance to develop a better understanding of the variables in your data
@@ -56,7 +47,7 @@ You *need* to understand your data you before you analyze it.
 The patterns you see can lead you to exciting new questions you may not
 have anticipated!
 
-# Setup
+## Setup
 
 We'll use what you've learned in past lectures about summarizing and
 visualizing data with dplyr and ggplot to get to know some data!
@@ -99,7 +90,7 @@ tabs instead of commas or white space. The LTR age data
 (pseudoMol_Kdist.txt) already has column names, but the other two data
 sets need some more information
 
-# What is my data, actually?
+## What is my data, actually?
 
 Before we do anything else, we have to think about where this came from
 & whether the data is appropriate for the kinds of questions we might
@@ -113,7 +104,7 @@ broken down into 1Mb pieces ("windows") that overlap each other. In each
 window, we know the number and size (base pairs occupied) of the
 conserved genes and transposons.
 
-## Predictions
+### Predictions
 
 It's always good to lay out your hypotheses first. It can help you
 figure out how you need to assemble your data in order to test those
@@ -165,7 +156,7 @@ predictions effectively.
         -   Recombination can occur between the two X chromosomes in
             females
 
-## First Peek
+### First Peek
 
 First, let's just take a quick look at the gene density data set and ask
 ourselves what we're dealing with. On a very basic level, what kind of
@@ -201,9 +192,9 @@ visualize it:
 -   Qualitative data: pie charts or bar charts
 -   Quantitative data: histograms, box plots
 
-# Visualizing Your Data
+## Visualizing Your Data
 
-## Describing Patterns in Histograms
+### Describing Patterns in Histograms
 
 For a given variable, you're generally looking at the range of values
 and where the majority of the data lies. This gives you an idea of the
@@ -223,7 +214,7 @@ important to make note of the shapely properties of your data.
     -   If your distribution has a huge spike, its kurtosis will be
         positive
 
-## Qualitative Data with Histograms
+### Qualitative Data with Histograms
 
 Histograms are great for qualitative data because they visualize the
 number of times a given value appears in your data.
@@ -248,7 +239,7 @@ What are some words you'd use to describe this distribution?
 
 Does this change
 
-## Binning Quantitative Data
+### Binning Quantitative Data
 
 When you're subsetting continuous data into discrete bin widths, it's
 important to try out different values because different bin sizes can
@@ -512,9 +503,9 @@ ltrDensity %>%
 Now it's time to start thinking about what to do with rebellious
 outliers!
 
-# Outliers
+## Outliers
 
-## But why are you like this?
+### But why are you like this?
 
 There could be many reasons why your data has values that exceed the
 limits you expected it would have. It basically comes down to **error**,
@@ -557,7 +548,7 @@ look for potential errors even when your data looks the way you *expect*
 it to! Steps towards this can be as simple as sharing your code
 publicly.
 
-## Let's take a look!
+### Let's take a look!
 
 We had that weird really high gene density value on the LG_X chromosome.
 Let's look at what's happening there.
@@ -573,7 +564,7 @@ the end of the chromosome. But importantly, our windows are supposed to
 be 1Mb in size (1 000 000 value in the winSize column). The winSize
 value for this outlier is tiny in comparison!!
 
-## Wholesome thoughts about your data
+### Wholesome thoughts about your data
 
 Averages -- how was your data collected & what biases might be inherent?
 The data I'm showing you is a pretty clear example of how important (and
@@ -600,7 +591,7 @@ It looks like *all* of the chromosomes get this trail-off in window size
 near their ends. This is not what we expected!! All of the squish at the
 end is basically just error from a previous analysis.
 
-## Challenge!
+### Challenge!
 
 Create a category based on window size: density as either belonging in a
 "small window" or a "normal window". We can create a new "winCategory"

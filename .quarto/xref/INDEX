@@ -34,5 +34,14 @@
   },
   "lec06-exploratory-data-analysis.qmd": {
     "lec06-exploratory-data-analysis.html": "95bce7ea"
+  },
+  "lec07-intro-to-stats.qmd": {
+    "lec07-intro-to-stats.html": "33a864fb"
+  },
+  "lec08-linear-models.qmd": {
+    "lec08-linear-models.html": "5db31a51"
+  },
+  "tests-assignment-3.qmd": {
+    "tests-assignment-3.html": "e93e9457"
   }
 }

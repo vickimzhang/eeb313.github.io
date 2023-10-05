@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EEB313: Quantitative Methods in R for Biology - 8&nbsp; Project description</title>
+<title>EEB313: Quantitative Methods in R for Biology - 10&nbsp; Project description</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./databases.html" rel="next">
-<link href="./lec06-exploratory-data-analysis.html" rel="prev">
+<link href="./lec08-linear-models.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -73,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./projects.html">Project</a></li><li class="breadcrumb-item"><a href="./projects.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Project description</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./projects.html">Project</a></li><li class="breadcrumb-item"><a href="./projects.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Project description</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -143,31 +143,43 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lec02-base-r.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Assignments, vectors, functions, and loops</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Base R: assignment, vectors, functions, and loops</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lec03-dataframes-dplyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Dataframes and introduction to data wrangling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data frames, intro to dplyr</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lec04-data-wrangling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data wrangling with dplyr</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data wrangling in dplyr</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lec05-data-visualization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization with ggplot</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization in ggplot</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lec06-exploratory-data-analysis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploratory data analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lec07-intro-to-stats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction to inference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lec08-linear-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear models</span></span></a>
   </div>
 </li>
       </ul>
@@ -188,13 +200,30 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./projects.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Project description</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Project description</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./databases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Some open-access databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Some open-access databases</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Miscellaneous notes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tests-assignment-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">More on hypothesis testing</span></span></a>
   </div>
 </li>
       </ul>
@@ -209,28 +238,28 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#option-1-hypothesis-driven-project" id="toc-option-1-hypothesis-driven-project" class="nav-link active" data-scroll-target="#option-1-hypothesis-driven-project"><span class="header-section-number">8.1</span> Option 1: Hypothesis-driven project</a>
+  <li><a href="#option-1-hypothesis-driven-project" id="toc-option-1-hypothesis-driven-project" class="nav-link active" data-scroll-target="#option-1-hypothesis-driven-project"><span class="header-section-number">10.1</span> Option 1: Hypothesis-driven project</a>
   <ul class="collapse">
-  <li><a href="#what-is-a-hypotheses-what-is-a-prediction" id="toc-what-is-a-hypotheses-what-is-a-prediction" class="nav-link" data-scroll-target="#what-is-a-hypotheses-what-is-a-prediction"><span class="header-section-number">8.1.1</span> What is a hypotheses? What is a prediction?</a></li>
+  <li><a href="#what-is-a-hypotheses-what-is-a-prediction" id="toc-what-is-a-hypotheses-what-is-a-prediction" class="nav-link" data-scroll-target="#what-is-a-hypotheses-what-is-a-prediction"><span class="header-section-number">10.1.1</span> What is a hypotheses? What is a prediction?</a></li>
   </ul></li>
-  <li><a href="#option-2-modeling" id="toc-option-2-modeling" class="nav-link" data-scroll-target="#option-2-modeling"><span class="header-section-number">8.2</span> Option 2: Modeling</a></li>
-  <li><a href="#option-3-simulation-study" id="toc-option-3-simulation-study" class="nav-link" data-scroll-target="#option-3-simulation-study"><span class="header-section-number">8.3</span> Option 3: Simulation study</a></li>
-  <li><a href="#finding-a-topic" id="toc-finding-a-topic" class="nav-link" data-scroll-target="#finding-a-topic"><span class="header-section-number">8.4</span> Finding a topic</a></li>
-  <li><a href="#project-timeline-and-deliverables" id="toc-project-timeline-and-deliverables" class="nav-link" data-scroll-target="#project-timeline-and-deliverables"><span class="header-section-number">8.5</span> Project timeline and deliverables</a>
+  <li><a href="#option-2-modeling" id="toc-option-2-modeling" class="nav-link" data-scroll-target="#option-2-modeling"><span class="header-section-number">10.2</span> Option 2: Modeling</a></li>
+  <li><a href="#option-3-simulation-study" id="toc-option-3-simulation-study" class="nav-link" data-scroll-target="#option-3-simulation-study"><span class="header-section-number">10.3</span> Option 3: Simulation study</a></li>
+  <li><a href="#finding-a-topic" id="toc-finding-a-topic" class="nav-link" data-scroll-target="#finding-a-topic"><span class="header-section-number">10.4</span> Finding a topic</a></li>
+  <li><a href="#project-timeline-and-deliverables" id="toc-project-timeline-and-deliverables" class="nav-link" data-scroll-target="#project-timeline-and-deliverables"><span class="header-section-number">10.5</span> Project timeline and deliverables</a>
   <ul class="collapse">
-  <li><a href="#project-proposal" id="toc-project-proposal" class="nav-link" data-scroll-target="#project-proposal"><span class="header-section-number">8.5.1</span> Project proposal</a></li>
-  <li><a href="#mid-project-update" id="toc-mid-project-update" class="nav-link" data-scroll-target="#mid-project-update"><span class="header-section-number">8.5.2</span> Mid-project update</a></li>
-  <li><a href="#presentation" id="toc-presentation" class="nav-link" data-scroll-target="#presentation"><span class="header-section-number">8.5.3</span> Presentation</a></li>
-  <li><a href="#report" id="toc-report" class="nav-link" data-scroll-target="#report"><span class="header-section-number">8.5.4</span> Report</a></li>
+  <li><a href="#project-proposal" id="toc-project-proposal" class="nav-link" data-scroll-target="#project-proposal"><span class="header-section-number">10.5.1</span> Project proposal</a></li>
+  <li><a href="#mid-project-update" id="toc-mid-project-update" class="nav-link" data-scroll-target="#mid-project-update"><span class="header-section-number">10.5.2</span> Mid-project update</a></li>
+  <li><a href="#presentation" id="toc-presentation" class="nav-link" data-scroll-target="#presentation"><span class="header-section-number">10.5.3</span> Presentation</a></li>
+  <li><a href="#report" id="toc-report" class="nav-link" data-scroll-target="#report"><span class="header-section-number">10.5.4</span> Report</a></li>
   </ul></li>
-  <li><a href="#project-grading-rubric" id="toc-project-grading-rubric" class="nav-link" data-scroll-target="#project-grading-rubric"><span class="header-section-number">8.6</span> Project grading rubric</a>
+  <li><a href="#project-grading-rubric" id="toc-project-grading-rubric" class="nav-link" data-scroll-target="#project-grading-rubric"><span class="header-section-number">10.6</span> Project grading rubric</a>
   <ul class="collapse">
-  <li><a href="#project-proposal-1" id="toc-project-proposal-1" class="nav-link" data-scroll-target="#project-proposal-1"><span class="header-section-number">8.6.1</span> Project proposal</a></li>
-  <li><a href="#mid-project-update-1" id="toc-mid-project-update-1" class="nav-link" data-scroll-target="#mid-project-update-1"><span class="header-section-number">8.6.2</span> Mid-project update</a></li>
-  <li><a href="#the-presentation" id="toc-the-presentation" class="nav-link" data-scroll-target="#the-presentation"><span class="header-section-number">8.6.3</span> The presentation</a></li>
-  <li><a href="#the-report" id="toc-the-report" class="nav-link" data-scroll-target="#the-report"><span class="header-section-number">8.6.4</span> The report</a></li>
+  <li><a href="#project-proposal-1" id="toc-project-proposal-1" class="nav-link" data-scroll-target="#project-proposal-1"><span class="header-section-number">10.6.1</span> Project proposal</a></li>
+  <li><a href="#mid-project-update-1" id="toc-mid-project-update-1" class="nav-link" data-scroll-target="#mid-project-update-1"><span class="header-section-number">10.6.2</span> Mid-project update</a></li>
+  <li><a href="#the-presentation" id="toc-the-presentation" class="nav-link" data-scroll-target="#the-presentation"><span class="header-section-number">10.6.3</span> The presentation</a></li>
+  <li><a href="#the-report" id="toc-the-report" class="nav-link" data-scroll-target="#the-report"><span class="header-section-number">10.6.4</span> The report</a></li>
   </ul></li>
-  <li><a href="#tips-on-writingpresenting-a-research-project" id="toc-tips-on-writingpresenting-a-research-project" class="nav-link" data-scroll-target="#tips-on-writingpresenting-a-research-project"><span class="header-section-number">8.7</span> Tips on writing/presenting a research project</a></li>
+  <li><a href="#tips-on-writingpresenting-a-research-project" id="toc-tips-on-writingpresenting-a-research-project" class="nav-link" data-scroll-target="#tips-on-writingpresenting-a-research-project"><span class="header-section-number">10.7</span> Tips on writing/presenting a research project</a></li>
   </ul>
 </nav>
     </div>
@@ -239,7 +268,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Project description</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Project description</span></h1>
 </div>
 
 
@@ -261,31 +290,31 @@ ul.task-list li input[type="checkbox"] {
 <li>Simulate data and analyze it using appropriate tools.</li>
 </ol>
 <p>In order to utilize conventional data science collaboration tools, students are required to use <a href="https://github.com">GitHub</a> for code-sharing, project management, and individual contributions. All sections of the project will be submitted via Github, not Quercus. Please make a GitHub account prior to the first project deadline. We will cover the basics of GitHub and Command Line in advance so that you are prepared to use it. We strongly encourage all students to use only GitHub for their projects (avoid Google Drive and DropBox!), in order to reduce confusion if there are different versions of code and texts.</p>
-<section id="option-1-hypothesis-driven-project" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="option-1-hypothesis-driven-project"><span class="header-section-number">8.1</span> Option 1: Hypothesis-driven project</h2>
+<section id="option-1-hypothesis-driven-project" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="option-1-hypothesis-driven-project"><span class="header-section-number">10.1</span> Option 1: Hypothesis-driven project</h2>
 <p>Groups will formulate their own hypotheses based on their interests within ecology and evolution. Groups will test predictions borne out of their hypotheses with reproducible and quantitative analysis techniques (e.g., ANOVA). If your group has an idea for statistical analyses that are beyond the scope of the course, please let us know. We are happy to support any groups who want to learn new tools, but expect that these groups are ready to learn how these tools work on their own; we hope to equip you with enough understanding to learn new things independently. Finally, the work must be original – while we may be repurposing data, we will not be simply redoing analyses. Keep in mind also that any work you do as part of this course may not be submitted for credit in another course (such as a fourth-year research project) and vice versa. While you may not submit your work for this course for credit in another course, you are welcome to publish or present your work in an academic setting.</p>
 <p>A note about community/citizen science websites: since the data is community-controlled, it may not always be research quality. There may be incorrect species IDs, inaccurate geolocations or time of observations, or discrepancies in protocols. When working with community science data, make sure that the data is cleaned and wrangled so that it is reliable. Quality control is a good first step when working with data, as simple errors can exist in any dataset.</p>
-<section id="what-is-a-hypotheses-what-is-a-prediction" class="level3" data-number="8.1.1">
-<h3 data-number="8.1.1" class="anchored" data-anchor-id="what-is-a-hypotheses-what-is-a-prediction"><span class="header-section-number">8.1.1</span> What is a hypotheses? What is a prediction?</h3>
+<section id="what-is-a-hypotheses-what-is-a-prediction" class="level3" data-number="10.1.1">
+<h3 data-number="10.1.1" class="anchored" data-anchor-id="what-is-a-hypotheses-what-is-a-prediction"><span class="header-section-number">10.1.1</span> What is a hypotheses? What is a prediction?</h3>
 <p>A <strong>hypothesis</strong> is a testable and falsifiable statement that offers a possible explanation of a phenomenon based on background knowledge, preliminary observations, or logic.</p>
 <p><em>E.g., Primary productivity is an important driver of mammal species richness.</em></p>
 <p>A <strong>prediction</strong> is based on a hypothesis. It is meant to describe what will happen in a specific situation, such as during an experiment, if the hypothesis is correct.</p>
 <p><em>E.g., If primary productivity is an important driver of mammal species richness, then more mammalian species would be found in sites with more plant biomass (proxy for primary productivity) compared with sites with less plant growth.</em></p>
 </section>
 </section>
-<section id="option-2-modeling" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="option-2-modeling"><span class="header-section-number">8.2</span> Option 2: Modeling</h2>
+<section id="option-2-modeling" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="option-2-modeling"><span class="header-section-number">10.2</span> Option 2: Modeling</h2>
 <p>Groups will develop a mathematical model to answer a question in ecology and/or evolution they find interesting. There are many reasons to develop models: they help clarify assumptions, generate predictions, nullify hypotheses, provide mechanistic explanations for observed data, and help us know <em>what kinds of data</em> to look for. New models almost always build on existing and well-studied ones (e.g., the Lotka-Volterra model). The fact models are simplifying representations of the real world is by design! The goal of building a model is to identify the key features that make a process interesting, represent the process mathematically (and, in doing so, clarify what assumptions are being made!), characterize the behavior of the model, and from this characterization draw conclusions about how the process being modeled works. Characterization of a model can involve mathematical analysis, simulation, and confrontation with data.</p>
 <p>The key steps in this project are to 1) identify an interesting question in ecology or evolution, 2) develop (and likely revise) a model to address that question, 3) characterize the behavior of the model, and 4) draw biological conclusions from the model and its characterization.</p>
 <p>If you are interested in modeling, let Vicki and Mete know as soon possible!</p>
 </section>
-<section id="option-3-simulation-study" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="option-3-simulation-study"><span class="header-section-number">8.3</span> Option 3: Simulation study</h2>
+<section id="option-3-simulation-study" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="option-3-simulation-study"><span class="header-section-number">10.3</span> Option 3: Simulation study</h2>
 <p>Similar to Option 1, groups that do a simulation study will formulate hypotheses and use reproducible and quantitative analysis techniques to test predictions borne out of those hypotheses. The difference is that students will <em>simulate</em> their own data, instead of using an existing dataset. One reason to do a simulation study is to see what kind of data would be needed to test a hypothesis in the field, e.g., how much data would be needed to find a significant association between response and predictor variables.</p>
 <p>If you are interested in doing a simulation study, let Vicki and Mete know as soon possible!</p>
 </section>
-<section id="finding-a-topic" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="finding-a-topic"><span class="header-section-number">8.4</span> Finding a topic</h2>
+<section id="finding-a-topic" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="finding-a-topic"><span class="header-section-number">10.4</span> Finding a topic</h2>
 <p>Here are some discussion questions to help you and your group work towards a research topic and set of hypotheses and predictions:</p>
 <ul>
 <li>What is a paper you read recently that you found really interesting?</li>
@@ -295,11 +324,11 @@ ul.task-list li input[type="checkbox"] {
 <li>Check out <a href="https://besjournals.onlinelibrary.wiley.com/doi/10.1111/1365-2745.12025">this paper</a>. Any of those questions spark your interest?</li>
 </ul>
 </section>
-<section id="project-timeline-and-deliverables" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="project-timeline-and-deliverables"><span class="header-section-number">8.5</span> Project timeline and deliverables</h2>
+<section id="project-timeline-and-deliverables" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="project-timeline-and-deliverables"><span class="header-section-number">10.5</span> Project timeline and deliverables</h2>
 <p>As instructors, we are here to help your group work towards a project idea that you are excited about! We have included multiple check points and small assignments throughout the semester for you to get feedback on your project ideas and ask us questions.</p>
-<section id="project-proposal" class="level3" data-number="8.5.1">
-<h3 data-number="8.5.1" class="anchored" data-anchor-id="project-proposal"><span class="header-section-number">8.5.1</span> Project proposal</h3>
+<section id="project-proposal" class="level3" data-number="10.5.1">
+<h3 data-number="10.5.1" class="anchored" data-anchor-id="project-proposal"><span class="header-section-number">10.5.1</span> Project proposal</h3>
 <p><em>Due Oct 3rd</em>, worth 4% of final grade</p>
 <p>Good research takes time! The purpose of the proposal is to get your group started on this process early on so that you will have sufficient time to do your project justice. This will also serve as official documentation of your project development process. Your projects will likely evolve over time, and there can be many reasons for this. For instance, as you explore your data, you might be inspired to ask different questions, or you may need to refine your hypotheses due to limitations in the data. All of these are fine, in fact, it happens all the time in real research settings.</p>
 <p>Include the following information in your proposal:</p>
@@ -309,8 +338,8 @@ ul.task-list li input[type="checkbox"] {
 <li>Option 3: same as 1, except with a description of how to simulate the data.</li>
 </ul>
 </section>
-<section id="mid-project-update" class="level3" data-number="8.5.2">
-<h3 data-number="8.5.2" class="anchored" data-anchor-id="mid-project-update"><span class="header-section-number">8.5.2</span> Mid-project update</h3>
+<section id="mid-project-update" class="level3" data-number="10.5.2">
+<h3 data-number="10.5.2" class="anchored" data-anchor-id="mid-project-update"><span class="header-section-number">10.5.2</span> Mid-project update</h3>
 <p><em>Due Nov 2nd, worth 6% of final grade</em></p>
 <p>The purpose of the mid-project update is to ensure you are on track with your projects. By now, you should have completed your exploratory data analyses, modeling, or simulation. You should have also solidified your hypotheses, predictions, and analyses plan. Essentially, you should be ready to write the Methods section of your report!</p>
 <p>Included the following information in your mid-project review:</p>
@@ -331,13 +360,13 @@ ul.task-list li input[type="checkbox"] {
 <li>Your analysis plan (a paragraph): describe additional analysis that you will do and any assumptions you would like to relax.</li>
 </ul>
 </section>
-<section id="presentation" class="level3" data-number="8.5.3">
-<h3 data-number="8.5.3" class="anchored" data-anchor-id="presentation"><span class="header-section-number">8.5.3</span> Presentation</h3>
+<section id="presentation" class="level3" data-number="10.5.3">
+<h3 data-number="10.5.3" class="anchored" data-anchor-id="presentation"><span class="header-section-number">10.5.3</span> Presentation</h3>
 <p><em>Due Dec 5th, worth 10% of final grade</em></p>
 <p>The presentations will be held on the last day of class during regular class hours (<em>Dec 5th</em>, 2-4 pm). Each presentation will be 10 minutes long, followed by 2 minutes of questions from the audience. If you cannot make it to class for your presentation, please get in touch with us to make alternative arrangements no later than Dec 1st.</p>
 </section>
-<section id="report" class="level3" data-number="8.5.4">
-<h3 data-number="8.5.4" class="anchored" data-anchor-id="report"><span class="header-section-number">8.5.4</span> Report</h3>
+<section id="report" class="level3" data-number="10.5.4">
+<h3 data-number="10.5.4" class="anchored" data-anchor-id="report"><span class="header-section-number">10.5.4</span> Report</h3>
 <p><em>Due Dec 8th, worth 20% of final grade</em></p>
 <p>This report will be styled as a journal article, with these sections:</p>
 <ul>
@@ -366,18 +395,18 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5210691/">Hermann et al.&nbsp;2016</a> is a great example of what we expect your code to look like. Refer to their supplementary materials for examples of <a href="https://figshare.com/articles/LTER_Lampyrid_data/2068098">how to describe your data set</a> and <a href="https://github.com/cbahlai/lampyrid/blob/master/lampyrid_analysis.R">how to annotate your code</a>.</p>
 </section>
 </section>
-<section id="project-grading-rubric" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="project-grading-rubric"><span class="header-section-number">8.6</span> Project grading rubric</h2>
-<section id="project-proposal-1" class="level3" data-number="8.6.1">
-<h3 data-number="8.6.1" class="anchored" data-anchor-id="project-proposal-1"><span class="header-section-number">8.6.1</span> Project proposal</h3>
+<section id="project-grading-rubric" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="project-grading-rubric"><span class="header-section-number">10.6</span> Project grading rubric</h2>
+<section id="project-proposal-1" class="level3" data-number="10.6.1">
+<h3 data-number="10.6.1" class="anchored" data-anchor-id="project-proposal-1"><span class="header-section-number">10.6.1</span> Project proposal</h3>
 <p><em>4 marks total</em></p>
 <p>Option 1: Two marks each for 1) your hypotheses and associated predictions and 2) a description of your data source(s). Students are expected to demonstrate effort in formulating hypotheses and predictions, and identifying a suitable dataset.</p>
 <p>Option 2: Two marks each for 1) a clear description of the question or problem in ecology or evolution you would like to address using a model, and 2) a description of the kind of model you envision using, including what variables to track.</p>
 <p>Option 3: One mark for simulating realistic data using appropriate tools, and one mark for your hypotheses and associated predictions, and two marks for describing the appropriate analyses.</p>
 <p>These components will be graded mostly on completion. The purpose of this assignment is to ensure you start early and are heading towards the right track.</p>
 </section>
-<section id="mid-project-update-1" class="level3" data-number="8.6.2">
-<h3 data-number="8.6.2" class="anchored" data-anchor-id="mid-project-update-1"><span class="header-section-number">8.6.2</span> Mid-project update</h3>
+<section id="mid-project-update-1" class="level3" data-number="10.6.2">
+<h3 data-number="10.6.2" class="anchored" data-anchor-id="mid-project-update-1"><span class="header-section-number">10.6.2</span> Mid-project update</h3>
 <p><em>6 marks total</em></p>
 <p>Options 1 and 3: Two marks are given to clearly stating hypotheses and predictions. In the case that these are different from the original submission in the proposal, the rationale for refinement needs to be clearly explained.</p>
 <p>Each of the following criteria are scored out of 2: 2 == excellent, 1.5 == good, 1 == acceptable, but needs improvement.</p>
@@ -412,8 +441,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ol>
 </section>
-<section id="the-presentation" class="level3" data-number="8.6.3">
-<h3 data-number="8.6.3" class="anchored" data-anchor-id="the-presentation"><span class="header-section-number">8.6.3</span> The presentation</h3>
+<section id="the-presentation" class="level3" data-number="10.6.3">
+<h3 data-number="10.6.3" class="anchored" data-anchor-id="the-presentation"><span class="header-section-number">10.6.3</span> The presentation</h3>
 <p><em>10 marks total</em></p>
 <p>Each of the following criteria are scored out of 3: 3 == excellent, 2 == adequate, 1 == needs improvement.</p>
 <ol type="1">
@@ -439,8 +468,8 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <p>The final 1 mark will be assigned to the question period, and students will be assessed on whether they are able to answer questions thoughtfully.</p>
 </section>
-<section id="the-report" class="level3" data-number="8.6.4">
-<h3 data-number="8.6.4" class="anchored" data-anchor-id="the-report"><span class="header-section-number">8.6.4</span> The report</h3>
+<section id="the-report" class="level3" data-number="10.6.4">
+<h3 data-number="10.6.4" class="anchored" data-anchor-id="the-report"><span class="header-section-number">10.6.4</span> The report</h3>
 <p><em>20 marks total</em></p>
 <p>Each of the following criteria are scored out of 4: 4 == excellent, 3 == good, 2 == acceptable, 1 == needs improvement.</p>
 <ol type="1">
@@ -483,8 +512,8 @@ ul.task-list li input[type="checkbox"] {
 <p>Please note that we are only going to be marking the two pages of your report. Please do not go over the page limit (with the exception of tables, figures, references, and appendices).</p>
 </section>
 </section>
-<section id="tips-on-writingpresenting-a-research-project" class="level2" data-number="8.7">
-<h2 data-number="8.7" class="anchored" data-anchor-id="tips-on-writingpresenting-a-research-project"><span class="header-section-number">8.7</span> Tips on writing/presenting a research project</h2>
+<section id="tips-on-writingpresenting-a-research-project" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="tips-on-writingpresenting-a-research-project"><span class="header-section-number">10.7</span> Tips on writing/presenting a research project</h2>
 <p>We know that students have very unique research interests and ideas, and we hope that your project encapsulates that! As instructors, we do not know everything, but we are excited to learn from you and your projects. Below are some tips that we have gathered that you may find helpful when preparing for the project presentation and writing your report.</p>
 <ol type="1">
 <li>Use a title that summarizes your project/results clearly.</li>
@@ -748,13 +777,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./lec06-exploratory-data-analysis.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploratory data analysis</span></span>
+      <a href="./lec08-linear-models.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear models</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./databases.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Some open-access databases</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Some open-access databases</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

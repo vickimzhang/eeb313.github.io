@@ -1,8 +1,4 @@
----
-title: "Data wrangling with dplyr"
-urlcolor: blue
-output: md_document
----
+# Data wrangling in dplyr {#lec04-data-wrangling}
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(eval = T)

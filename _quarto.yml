@@ -18,11 +18,16 @@ book:
       - lec04-data-wrangling.qmd
       - lec05-data-visualization.qmd
       - lec06-exploratory-data-analysis.qmd
+      - lec07-intro-to-stats.qmd
+      - lec08-linear-models.qmd
     - part: "Assignments"
     - part: "Project"
       chapters:
       - projects.qmd
       - databases.qmd
+    - part: "Miscellaneous notes"
+      chapters:
+      - tests-assignment-3.qmd
   repo-url: https://github.com/EEB313/eeb313.github.io
   sidebar:
     search: true
