@@ -4,22 +4,17 @@ author: "Vicki M. Zhang and Mete K. Yuksel"
 url: https://eeb313.github.io/
 suppress-bibliography: true
 ---
-`r if (knitr::is_latex_output()) '<!--'` 
-```{r include=FALSE}
-knitr::opts_chunk$set(cache = TRUE)
-```
 
+# Syllabus
 
-# Syllabus {-}
-
-## Land Acknowledgement {-}
+## Land Acknowledgement
 
 Although our students come from many locations around the world, we wish to recognize the land on which the University of Toronto was built. This land has historically been and still is the the home of the Huron-Wendat, the Seneca, and the Mississaugas of the Credit River.  
 
 There is a [First Nations House](https://studentlife.utoronto.ca/department/first-nations-house/) for Indigenous Student Services on campus. Please refer to their web page for more resources and information about honouring our land and their services for students.  
 
 
-## Course Overview {-}
+## Course Overview
 
 This course covers statistical and data analysis, reproducible quantitative methods, and scientific computing in R to answer questions in ecology and evolutionary biology. Statistical and data analysis, modeling, and computing are essential skills for all biologists. This course is designed to meet a growing demand for reproducible, openly accessible, analytically thorough, and well-documented science. Students will learn to analyze and visualize data, develop mathematical models, and document their research using the R programming language. No prerequisite programming experience is required.
 
@@ -44,7 +39,7 @@ RW109 (Ramsay Wright first floor computer lab), St. George Campus.
 
 Please address all course-related and project issues to **both** Vicki and Mete, with the exception that questions regarding assignments should be addressed to Zoe and Jessie. Prefix the subject matter with "EEB313". If you do not receive a reply within 48 hours (excluding weekends), please send us a reminder.
 
-## Diversity and inclusion statement {-}
+## Diversity and inclusion statement
 
 As students, you all have something unique and special to offer to science. It is our intent that students from all backgrounds and perspectives be well served by this course, that students’ learning needs be addressed both in and out of class, and that the diversity that students bring to this class be recognized as a resource, strength, and benefit. 
 
@@ -68,11 +63,11 @@ We on the teaching team value your health and wellness. In order to succeed in t
 
 If you are feeling unwell, please do not come to class. Instead, take the time to recover fully. Please let us know if you are feeling sick - you will not be penalized for missing a lecture, and we will do our best to ensure that you are up-to-date with class materials when you return.
 
-## Accessibility needs {-}
+## Accessibility needs
 
 If you require accommodations for a disability, or have any accessibility concerns about the course or course materials, please notify your course instructors (Mete and Vicki), or contact [Accessibility Services](www.accessibility.utoronto.ca), as soon as possible regarding accommodations.
 
-## Course learning outcomes {-}
+## Course learning outcomes
 
 1. Develop proficiency in the programming language R.
 2. Use R to apply statistical tools to analyze and interpret data.
@@ -140,11 +135,11 @@ The Challenge Assignment is equivalent to a take home exam. The format will be t
 
 _As per our stance on supporting student's mental health, we are happy to accommodate a 72-hour extension for one of the assignments, no questions asked. Otherwise, except under extenuating circumstances, there will be a penalty of 5% per day (including weekends) for all late submissions. If you foresee needing an extension, please email both Vicki and Mete as soon as possible. This policy does not apply to the Challenge Assignment, Presentation and Final Report._
 
-## Improving your writing skills {-}
+## Improving your writing skills
 
 Effective communication is crucial in science. The University of Toronto provides [services](http://writing.utoronto.ca/) to help you improve your writing, from general advices on effective writing to writing centers and writing courses. The Faculty of Arts & Science also offers an English Language Learning (ELL) program, which provides free individualized instruction in English skills. Take advantage of these!
 
-## Academic integrity {-}
+## Academic integrity
 
 You should be aware of the [University of Toronto Code of Behaviour on Academic Matters](https://governingcouncil.utoronto.ca/secretariat/policies/code-behaviour-academic-matters-july-1-2019). Also see [How Not to Plagiarize](http://advice.writing.utoronto.ca/using-sources/how-not-to-plagiarize/). Notably, it is NOT appropriate to use large sections from internet sources, and inserting a few words here and there does not make it an original piece of writing. Be careful in using internet sources -- most online material are not reviewed and there are many errors out there. Make sure you read material from many sources (published, peer-reviewed, trusted internet sources) and that you write an original text using this information. Always cite your sources. In case of doubt about plagiarism, talk to your instructors and TAs. Please make sure that what you submit for the final project does not overlap with what you submit for other classes, such as the 4^th^-year research project. 
 
@@ -152,17 +147,6 @@ You should be aware of the [University of Toronto Code of Behaviour on Academic 
 
 The knowing use of generative artificial intelligence tools, including ChatGPT and other AI writing and coding assistants, for the completion of, or to support the completion of, the assignments, the challenge assignment, or the final project is prohibited and may be considered an academic offense.
 
-## FAS student engagement programs {-}
+## FAS student engagement programs
 
 There are a few programs on campus aimed at increasing student engagement with their coursework and keeping them socially connected. [Recognized Study Groups](https://sidneysmithcommons.artsci.utoronto.ca/recognized-study-groups/) are voluntary, peer-led study groups of up to 8 students enrolled in the same course. [Meet to Complete](https://sidneysmithcommons.artsci.utoronto.ca/meet-to-complete/) are online drop-in study sessions for A&S undergrads. These are worth checking out if you are interested in participating in a study group.
-
-<!-- ## License {-} -->
-
-<!-- <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a> -->
-
-<!-- This work, as a whole, is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>. -->
-
-<!-- The code contained in this book is simultaneously available under the [MIT license](https://opensource.org/licenses/MIT); this means that you are free to use it in your own packages, as long as you cite the source. -->
-
-
-`r if (knitr::is_latex_output()) '-->'`
