@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EEB313: Quantitative Methods in R for Biology - 9&nbsp; Linear models</title>
+<title>EEB313: Quantitative Methods in R for Biology - 10&nbsp; Linear models</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lec00-rstudio.html">Lectures</a></li><li class="breadcrumb-item"><a href="./lec08-linear-models.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear models</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lec00-rstudio.html">Lectures</a></li><li class="breadcrumb-item"><a href="./lec08-linear-models.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Linear models</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -140,7 +140,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Syllabus</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Syllabus</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -167,55 +167,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lec00-rstudio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with RStudio and R Notebook</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting started with RStudio and R Notebook</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lec01-markdown-workflows.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Markdown, project workflows</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Markdown, project workflows</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lec02-base-r.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Base R: assignment, vectors, functions, and loops</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Base R: assignment, vectors, functions, and loops</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lec03-dataframes-dplyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data frames, intro to dplyr</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data frames, intro to dplyr</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lec04-data-wrangling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data wrangling in dplyr</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data wrangling in dplyr</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lec05-data-visualization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization in ggplot</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data visualization in ggplot</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lec06-exploratory-data-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploratory data analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exploratory data analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lec07-intro-to-stats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction to inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction to inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lec08-linear-models.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Linear models</span></span></a>
   </div>
 </li>
       </ul>
@@ -236,13 +236,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Project description</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Project description</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./databases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Some open-access databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Some open-access databases</span></span></a>
   </div>
 </li>
       </ul>
@@ -259,7 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tests-assignment-3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">More on hypothesis testing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">More on hypothesis testing</span></span></a>
   </div>
 </li>
       </ul>
@@ -274,23 +274,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#lesson-preamble" id="toc-lesson-preamble" class="nav-link active" data-scroll-target="#lesson-preamble"><span class="header-section-number">9.1</span> Lesson preamble:</a></li>
-  <li><a href="#linear-models-why-we-care" id="toc-linear-models-why-we-care" class="nav-link" data-scroll-target="#linear-models-why-we-care"><span class="header-section-number">9.2</span> Linear models: why we care</a></li>
-  <li><a href="#theory-likelihood-estimation-and-inference-for-linear-models" id="toc-theory-likelihood-estimation-and-inference-for-linear-models" class="nav-link" data-scroll-target="#theory-likelihood-estimation-and-inference-for-linear-models"><span class="header-section-number">9.3</span> Theory: likelihood estimation and inference for linear models</a>
+  <li><a href="#lesson-preamble" id="toc-lesson-preamble" class="nav-link active" data-scroll-target="#lesson-preamble"><span class="header-section-number">10.1</span> Lesson preamble:</a></li>
+  <li><a href="#linear-models-why-we-care" id="toc-linear-models-why-we-care" class="nav-link" data-scroll-target="#linear-models-why-we-care"><span class="header-section-number">10.2</span> Linear models: why we care</a></li>
+  <li><a href="#theory-likelihood-estimation-and-inference-for-linear-models" id="toc-theory-likelihood-estimation-and-inference-for-linear-models" class="nav-link" data-scroll-target="#theory-likelihood-estimation-and-inference-for-linear-models"><span class="header-section-number">10.3</span> Theory: likelihood estimation and inference for linear models</a>
   <ul class="collapse">
-  <li><a href="#simple-linear-regression-p1" id="toc-simple-linear-regression-p1" class="nav-link" data-scroll-target="#simple-linear-regression-p1"><span class="header-section-number">9.3.1</span> Simple linear regression: <span class="math inline">\(p=1\)</span></a></li>
-  <li><a href="#the-matrix-vesion-of-the-general-linear-model" id="toc-the-matrix-vesion-of-the-general-linear-model" class="nav-link" data-scroll-target="#the-matrix-vesion-of-the-general-linear-model"><span class="header-section-number">9.3.2</span> The matrix vesion of the general linear model</a></li>
+  <li><a href="#simple-linear-regression-p1" id="toc-simple-linear-regression-p1" class="nav-link" data-scroll-target="#simple-linear-regression-p1"><span class="header-section-number">10.3.1</span> Simple linear regression: <span class="math inline">\(p=1\)</span></a></li>
+  <li><a href="#the-matrix-vesion-of-the-general-linear-model" id="toc-the-matrix-vesion-of-the-general-linear-model" class="nav-link" data-scroll-target="#the-matrix-vesion-of-the-general-linear-model"><span class="header-section-number">10.3.2</span> The matrix vesion of the general linear model</a></li>
   </ul></li>
-  <li><a href="#practice-fitting-linear-models-with-lm" id="toc-practice-fitting-linear-models-with-lm" class="nav-link" data-scroll-target="#practice-fitting-linear-models-with-lm"><span class="header-section-number">9.4</span> Practice: fitting linear models with <code>lm</code></a>
+  <li><a href="#practice-fitting-linear-models-with-lm" id="toc-practice-fitting-linear-models-with-lm" class="nav-link" data-scroll-target="#practice-fitting-linear-models-with-lm"><span class="header-section-number">10.4</span> Practice: fitting linear models with <code>lm</code></a>
   <ul class="collapse">
-  <li><a href="#transformations" id="toc-transformations" class="nav-link" data-scroll-target="#transformations"><span class="header-section-number">9.4.1</span> Transformations</a></li>
-  <li><a href="#syntax-for-multiple-regression-interactions" id="toc-syntax-for-multiple-regression-interactions" class="nav-link" data-scroll-target="#syntax-for-multiple-regression-interactions"><span class="header-section-number">9.4.2</span> Syntax for multiple regression, interactions</a></li>
-  <li><a href="#the-relationship-between-linear-models-and-anova" id="toc-the-relationship-between-linear-models-and-anova" class="nav-link" data-scroll-target="#the-relationship-between-linear-models-and-anova"><span class="header-section-number">9.4.3</span> The relationship between linear models and ANOVA</a></li>
-  <li><a href="#a-fun-application" id="toc-a-fun-application" class="nav-link" data-scroll-target="#a-fun-application"><span class="header-section-number">9.4.4</span> A fun application!</a></li>
+  <li><a href="#transformations" id="toc-transformations" class="nav-link" data-scroll-target="#transformations"><span class="header-section-number">10.4.1</span> Transformations</a></li>
+  <li><a href="#syntax-for-multiple-regression-interactions" id="toc-syntax-for-multiple-regression-interactions" class="nav-link" data-scroll-target="#syntax-for-multiple-regression-interactions"><span class="header-section-number">10.4.2</span> Syntax for multiple regression, interactions</a></li>
+  <li><a href="#the-relationship-between-linear-models-and-anova" id="toc-the-relationship-between-linear-models-and-anova" class="nav-link" data-scroll-target="#the-relationship-between-linear-models-and-anova"><span class="header-section-number">10.4.3</span> The relationship between linear models and ANOVA</a></li>
+  <li><a href="#a-fun-application" id="toc-a-fun-application" class="nav-link" data-scroll-target="#a-fun-application"><span class="header-section-number">10.4.4</span> A fun application!</a></li>
   </ul></li>
-  <li><a href="#generalized-linear-models-theory-and-examples" id="toc-generalized-linear-models-theory-and-examples" class="nav-link" data-scroll-target="#generalized-linear-models-theory-and-examples"><span class="header-section-number">9.5</span> Generalized linear models: theory and examples</a>
+  <li><a href="#generalized-linear-models-theory-and-examples" id="toc-generalized-linear-models-theory-and-examples" class="nav-link" data-scroll-target="#generalized-linear-models-theory-and-examples"><span class="header-section-number">10.5</span> Generalized linear models: theory and examples</a>
   <ul class="collapse">
-  <li><a href="#returning-to-the-disease-age-example" id="toc-returning-to-the-disease-age-example" class="nav-link" data-scroll-target="#returning-to-the-disease-age-example"><span class="header-section-number">9.5.1</span> Returning to the disease-age example…</a></li>
+  <li><a href="#returning-to-the-disease-age-example" id="toc-returning-to-the-disease-age-example" class="nav-link" data-scroll-target="#returning-to-the-disease-age-example"><span class="header-section-number">10.5.1</span> Returning to the disease-age example…</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -300,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="lec08-linear-models" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear models</span></span></h1>
+<h1 class="title"><span id="lec08-linear-models" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Linear models</span></span></h1>
 </div>
 
 
@@ -315,10 +315,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="lesson-preamble" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="lesson-preamble"><span class="header-section-number">9.1</span> Lesson preamble:</h2>
+<section id="lesson-preamble" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="lesson-preamble"><span class="header-section-number">10.1</span> Lesson preamble:</h2>
 <blockquote class="blockquote">
-<h3 id="lesson-objectives" data-number="9.1.1" class="anchored"><span class="header-section-number">9.1.1</span> Lesson objectives</h3>
+<h3 id="lesson-objectives" data-number="10.1.1" class="anchored"><span class="header-section-number">10.1.1</span> Lesson objectives</h3>
 <ul>
 <li>Understand the logic of simple and multiple linear regression, including the assumptions that are placed on the data, parameters, and errors.</li>
 <li>Understand the meaning of regression coefficients and how they are estimated.</li>
@@ -326,7 +326,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Understand how to implement linear models (including ANOVA) in R.</li>
 <li>Develop familiarity with generalized linear models and some important examples (logistic, Poisson, negative binomial regression).</li>
 </ul>
-<h3 id="lesson-outline" data-number="9.1.2" class="anchored"><span class="header-section-number">9.1.2</span> Lesson outline</h3>
+<h3 id="lesson-outline" data-number="10.1.2" class="anchored"><span class="header-section-number">10.1.2</span> Lesson outline</h3>
 <ul>
 <li>Linear models: theory and examples
 <ul>
@@ -352,24 +352,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="linear-models-why-we-care" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="linear-models-why-we-care"><span class="header-section-number">9.2</span> Linear models: why we care</h2>
+<section id="linear-models-why-we-care" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="linear-models-why-we-care"><span class="header-section-number">10.2</span> Linear models: why we care</h2>
 <p>Linear models are at the heart of statistical practice in the physical, life, and social sciences! Linear regression actually refers to a <em>family</em> of modeling approaches that attempt to learn how the mean and/or variance of a response variable <span class="math inline">\(\boldsymbol{y} = (y_1,\dots,y_n)\)</span> depend on (linear) combinations of variables <span class="math inline">\(\boldsymbol{x}_i = (x_{i1},\dots,x_{in})\)</span> called predictors. In this lecture, we will discuss various forms of the linear model and assumptions placed on the data to make estimation and inference of the relationships between variables tractable. We will see how the likelihood function forms the basis for this estimation/inference, and how extensions of multiple regression (generalized linear models and mixed models!) can be understood in a likelihood framework. Our goal will be to become familiar with how these models work and how they are fit to data in R.</p>
 </section>
-<section id="theory-likelihood-estimation-and-inference-for-linear-models" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="theory-likelihood-estimation-and-inference-for-linear-models"><span class="header-section-number">9.3</span> Theory: likelihood estimation and inference for linear models</h2>
+<section id="theory-likelihood-estimation-and-inference-for-linear-models" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="theory-likelihood-estimation-and-inference-for-linear-models"><span class="header-section-number">10.3</span> Theory: likelihood estimation and inference for linear models</h2>
 <p>A linear model takes the form</p>
 <p><span class="math display">\[ y_i = \beta_0 + \beta_1 x_{1i} + \cdots + \beta_p x_{pi} + \varepsilon_{i}, \]</span></p>
 <p>where <span class="math inline">\(i=1,\dots,n\)</span> correspond to observations of a random variable <span class="math inline">\(Y\)</span> which we call the <em>response</em>. <strong>The goal of regression is to explain and to predict the behavior of the response variable by adding together effects of <span class="math inline">\(p\)</span> covariates <span class="math inline">\(x_1,\dots,x_p\)</span>, which are also called <em>predictors</em>.</strong> Importantly, the phrase “linear model” is somewhat deceptive in that <strong>the model can be used to describe many kinds of functional relationships in the data</strong>: for example, we could use <span class="math inline">\(x_2 = x_1^2\)</span> to model higher order effects of <span class="math inline">\(x_1\)</span> on the response. In general, the linear model above specifies how the realizations <span class="math inline">\(y_1,\dots,y_n\)</span> of a random variable <span class="math inline">\(Y\)</span> depend on the additive effects of one or more non-random covariates/predictors. We will discuss random and mixed effects next class, but the machinery used to estimate the effect sizes <span class="math inline">\(\beta_1,\dots,\beta_p\)</span> and error variance are very similar to the model in which the <span class="math inline">\(x\)</span>s are assumed to be fixed.</p>
 <p>To make estimation and inference tractable, the errors <span class="math inline">\(\varepsilon_i\)</span> are assumed to be Normal with mean zero and variance <span class="math inline">\(\sigma_i^2\)</span>. Equivalently, we could assume the <em>data</em> <span class="math inline">\(y_1,\dots,y_n\)</span> are 1) independent and 2) Normal with mean(s) <span class="math inline">\(\beta_0 + \beta_1 x_{1i} + \cdots + \beta_p x_{pi}\)</span> and variance(s) <span class="math inline">\(\sigma_1^2,\dots,\sigma_n^2\)</span>. Although the normality assumption is not strictly necessary (nor is the assumption of equal variance across observations), they are commonly made and allow us to easily estimate the effect sizes and error variance. Under the assumption of normality and constant error variance <span class="math inline">\(\sigma_1^2 = \dots = \sigma_n^2 = \sigma^2\)</span>, the likelihood can be written as</p>
 <p><span class="math display">\[ L(\beta_0,\beta_1,\dots,\beta_p,\sigma^2) = \prod_{i=1}^n (2 \pi \sigma^2)^{-1/2} e^{-(y_i - \beta_0 - \beta_1 x_{1i} - \dots - \beta_p x_{pi})^2/2\sigma^2}. \]</span></p>
 <p>Estimators of the regression coefficients <span class="math inline">\(\beta_1,\dots,\beta_p\)</span> and <span class="math inline">\(\sigma^2\)</span> are found by maximizing the likelihood. In fact, the <strong>estimators found by maximum likelihood methods are exactly those which minimize the distance from the model <span class="math inline">\(y = \beta_0 + \beta_1 x_{1} + \dots + \beta_p x_{p}\)</span> from the data</strong>. The line (and in higher dimensions, plane) given by this equation is such that the the sum of squared departures of the line from the data is as small is it can be. Other notions of distance turn out to give rise to interesting extensions of the linear model, such as ridge and LASSO regression, which are beyond the scope of the course.</p>
-<section id="simple-linear-regression-p1" class="level3" data-number="9.3.1">
-<h3 data-number="9.3.1" class="anchored" data-anchor-id="simple-linear-regression-p1"><span class="header-section-number">9.3.1</span> Simple linear regression: <span class="math inline">\(p=1\)</span></h3>
+<section id="simple-linear-regression-p1" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="simple-linear-regression-p1"><span class="header-section-number">10.3.1</span> Simple linear regression: <span class="math inline">\(p=1\)</span></h3>
 <p>Simple linear regression is a special case of the general linear model (above), and corresponds to the case there is only one predictor, i.e., <span class="math inline">\(p=1\)</span>.</p>
 </section>
-<section id="the-matrix-vesion-of-the-general-linear-model" class="level3" data-number="9.3.2">
-<h3 data-number="9.3.2" class="anchored" data-anchor-id="the-matrix-vesion-of-the-general-linear-model"><span class="header-section-number">9.3.2</span> The matrix vesion of the general linear model</h3>
+<section id="the-matrix-vesion-of-the-general-linear-model" class="level3" data-number="10.3.2">
+<h3 data-number="10.3.2" class="anchored" data-anchor-id="the-matrix-vesion-of-the-general-linear-model"><span class="header-section-number">10.3.2</span> The matrix vesion of the general linear model</h3>
 <p>What is often used in theory and practice is a matrix version of the above model:</p>
 <p><span class="math display">\[ \boldsymbol{y} = \begin{bmatrix}
      y_{1} \\
@@ -395,18 +395,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   \]</span></p>
 <p>Here, <span class="math inline">\(\boldsymbol{y} = (y_1,\dots,y_n)'\)</span> is a vector of measurements for the response, <span class="math inline">\(\boldsymbol{x_i} = (x_{i1},\dots,x_{in})'\)</span> is a vector of measurements for the <span class="math inline">\(k\)</span>th predictor, and <span class="math inline">\(\boldsymbol{\varepsilon} = (\varepsilon_1,\dots,\varepsilon_n)'\)</span> is a vector of measurement errors. The <span class="math inline">\('\)</span> symbol corresponds to transposition, which involves interchanging the rows and columns of a vector or matrix.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p>When all the errors are modeled as above (i.e., as Normal with constant variance and mean zero), the ML estimator for the vector of regression coefficients is <span class="math inline">\(\boldsymbol{\hat{\beta}_{\text{MLE}}} = (\boldsymbol{X'X})^{-1} \boldsymbol{X'} \boldsymbol{y}\)</span>.</p>
-<section id="what-do-the-regression-coefficients-mean" class="level4" data-number="9.3.2.1">
-<h4 data-number="9.3.2.1" class="anchored" data-anchor-id="what-do-the-regression-coefficients-mean"><span class="header-section-number">9.3.2.1</span> What do the regression coefficients mean?</h4>
+<section id="what-do-the-regression-coefficients-mean" class="level4" data-number="10.3.2.1">
+<h4 data-number="10.3.2.1" class="anchored" data-anchor-id="what-do-the-regression-coefficients-mean"><span class="header-section-number">10.3.2.1</span> What do the regression coefficients mean?</h4>
 <p>The interpretation of the regression coefficients is as follows: <strong><span class="math inline">\(\beta_j\)</span> describes how much the response is expected to change, <em>all else constant</em>, if we increase <span class="math inline">\(x_j\)</span> by exactly one unit.</strong> Importantly, the <em>fitted</em> regression coefficients measure the effect (slope) of increasing <span class="math inline">\(x_1,\dots,x_j\)</span> on the response <em>under the assumption of normal data</em> — this distinction between the theoretical and fitted coefficients is important to keep mind.</p>
 </section>
-<section id="categorical-predictors" class="level4" data-number="9.3.2.2">
-<h4 data-number="9.3.2.2" class="anchored" data-anchor-id="categorical-predictors"><span class="header-section-number">9.3.2.2</span> Categorical predictors</h4>
+<section id="categorical-predictors" class="level4" data-number="10.3.2.2">
+<h4 data-number="10.3.2.2" class="anchored" data-anchor-id="categorical-predictors"><span class="header-section-number">10.3.2.2</span> Categorical predictors</h4>
 <p>Before we dive into implementing linear models in R, it is important to mention how the linear model accommodates discrete predictors like sex (or genotype, ID, race). To deal with categorical predictors, we define the model in terms of a <em>baseline</em> and to interpret the regression coefficients <em>relative</em> to this baseline. This involves coding “dummy variables” <span class="math inline">\(x_1,\dots,x_{k-1}\)</span> for all but one the values (<span class="math inline">\(1,2,\dots,k\)</span>) the predictor can take one, so that <span class="math inline">\(x_{ji} = 1\)</span> for observations where the categorical variable is <span class="math inline">\(=j\)</span> and <span class="math inline">\(=0\)</span> otherwise.</p>
 </section>
 </section>
 </section>
-<section id="practice-fitting-linear-models-with-lm" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="practice-fitting-linear-models-with-lm"><span class="header-section-number">9.4</span> Practice: fitting linear models with <code>lm</code></h2>
+<section id="practice-fitting-linear-models-with-lm" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="practice-fitting-linear-models-with-lm"><span class="header-section-number">10.4</span> Practice: fitting linear models with <code>lm</code></h2>
 <p>To illustrate how regression models are fitted (via maximum likelihood) in R, we will use the survey dataset from a couple classes ago. We begin by regressing weight on hindfoot length:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> hindfoot_length, <span class="at">data=</span>surveys_subset)</span>
@@ -469,8 +469,8 @@ F-statistic:  3383 on 1 and 3842 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><img src="lec08-linear-models_files/figure-html/checkIfDataAreNormal-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<section id="transformations" class="level3" data-number="9.4.1">
-<h3 data-number="9.4.1" class="anchored" data-anchor-id="transformations"><span class="header-section-number">9.4.1</span> Transformations</h3>
+<section id="transformations" class="level3" data-number="10.4.1">
+<h3 data-number="10.4.1" class="anchored" data-anchor-id="transformations"><span class="header-section-number">10.4.1</span> Transformations</h3>
 <p>Often, data are non-normal! This is an unfortunate fact of life. It is sometimes possible, however, to use the machinery of regression if there is a suitable <em>transformation</em> of the data which makes it normal, e.g., <code>log()</code>, <code>sqrt()</code>. Right-skewed data (like above) may be normalized using log or root transformations (e.g.&nbsp;square root, third-root, etc.), with greater roots required for increasingly right-skewed data. Left-skewed data could be normalized with power transformations (e.g.&nbsp;squared, 3rd power, etc.).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(surveys_subset, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(weight))) <span class="sc">+</span> <span class="fu">geom_histogram</span>() <span class="do">## better!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -529,8 +529,8 @@ F-statistic:  9615 on 1 and 3842 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><img src="lec08-linear-models_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<section id="challenge" class="level4" data-number="9.4.1.1">
-<h4 data-number="9.4.1.1" class="anchored" data-anchor-id="challenge"><span class="header-section-number">9.4.1.1</span> Challenge</h4>
+<section id="challenge" class="level4" data-number="10.4.1.1">
+<h4 data-number="10.4.1.1" class="anchored" data-anchor-id="challenge"><span class="header-section-number">10.4.1.1</span> Challenge</h4>
 <p>Regress weight on sex. Be sure to specify that sex is a factor in the call to <code>lm()</code>. What value of sex is used as a baseline? Is there a significant effect of sex on weight?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight<span class="sc">~</span><span class="fu">as.factor</span>(sex), <span class="at">data=</span>surveys_subset)</span>
@@ -559,8 +559,8 @@ F-statistic: 0.5368 on 1 and 4014 DF,  p-value: 0.4638</code></pre>
 </div>
 </section>
 </section>
-<section id="syntax-for-multiple-regression-interactions" class="level3" data-number="9.4.2">
-<h3 data-number="9.4.2" class="anchored" data-anchor-id="syntax-for-multiple-regression-interactions"><span class="header-section-number">9.4.2</span> Syntax for multiple regression, interactions</h3>
+<section id="syntax-for-multiple-regression-interactions" class="level3" data-number="10.4.2">
+<h3 data-number="10.4.2" class="anchored" data-anchor-id="syntax-for-multiple-regression-interactions"><span class="header-section-number">10.4.2</span> Syntax for multiple regression, interactions</h3>
 <p>One can regress on several explanatory variables simultaneously as follows:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight<span class="sc">~</span>hindfoot_length<span class="sc">+</span><span class="fu">as.factor</span>(sex), <span class="at">data=</span>surveys_subset)</span>
@@ -610,13 +610,13 @@ F-statistic:  1700 on 2 and 3832 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><img src="lec08-linear-models_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<section id="challenge-1" class="level4" data-number="9.4.2.1">
-<h4 data-number="9.4.2.1" class="anchored" data-anchor-id="challenge-1"><span class="header-section-number">9.4.2.1</span> Challenge</h4>
+<section id="challenge-1" class="level4" data-number="10.4.2.1">
+<h4 data-number="10.4.2.1" class="anchored" data-anchor-id="challenge-1"><span class="header-section-number">10.4.2.1</span> Challenge</h4>
 <p>Is there a significant interaction between hindfoot length and sex on weight?</p>
 </section>
 </section>
-<section id="the-relationship-between-linear-models-and-anova" class="level3" data-number="9.4.3">
-<h3 data-number="9.4.3" class="anchored" data-anchor-id="the-relationship-between-linear-models-and-anova"><span class="header-section-number">9.4.3</span> The relationship between linear models and ANOVA</h3>
+<section id="the-relationship-between-linear-models-and-anova" class="level3" data-number="10.4.3">
+<h3 data-number="10.4.3" class="anchored" data-anchor-id="the-relationship-between-linear-models-and-anova"><span class="header-section-number">10.4.3</span> The relationship between linear models and ANOVA</h3>
 <p>Analysis of Variance (ANOVA) is a statistical technique that is used to analyze variation in observations within and between categories, and to test if two or more population means are equal. <strong>Importantly, ANOVA is mathematically equivalent to regression with covariates that are all categorical.</strong> This means the assumptions of linear regression apply when preforming an ANOVA.</p>
 <p>ANOVA can be implemented in R as follows:</p>
 <div class="cell">
@@ -632,8 +632,8 @@ Residuals      4014 5461759 1360.68               </code></pre>
 </div>
 </div>
 <p>Briefly, ANOVA tests differences between means by <strong>decomposing the total sum of squares (variance in the observations) into the variance due to the level under investigation (e.g., sex) and its factors (M, F)</strong>. The <span class="math inline">\(F\)</span>-statistic for each level (excluding the residuals) is the mean square, divided by the residual mean square, and should be <span class="math inline">\(\sim 1\)</span> if the corresponding effects are <span class="math inline">\(=0\)</span>. We reject the null hypothesis (there is no differences in group means) for values of <span class="math inline">\(F\)</span> that are inconsistent with its distribution under the null hypothesis; recall from last time that the <span class="math inline">\(p\)</span>-value measures the probability of observing data more extreme than the calculated value of <span class="math inline">\(F\)</span> from the data, under the null hypothesis (i.e., the factors at some level have no effect). If <span class="math inline">\(p &lt; \alpha\)</span>, we reject the null hypothesis at significance level <span class="math inline">\(\alpha\)</span>.</p>
-<section id="anova-with-two-or-more-covariates" class="level4" data-number="9.4.3.1">
-<h4 data-number="9.4.3.1" class="anchored" data-anchor-id="anova-with-two-or-more-covariates"><span class="header-section-number">9.4.3.1</span> ANOVA with two or more covariates</h4>
+<section id="anova-with-two-or-more-covariates" class="level4" data-number="10.4.3.1">
+<h4 data-number="10.4.3.1" class="anchored" data-anchor-id="anova-with-two-or-more-covariates"><span class="header-section-number">10.4.3.1</span> ANOVA with two or more covariates</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight<span class="sc">~</span>hindfoot_length<span class="sc">*</span><span class="fu">as.factor</span>(sex), <span class="at">data=</span>surveys_subset)</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -671,8 +671,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>The type of ANOVA you use will matter when you have more than one independent variable, and especially if you have unbalanced data. By default, R uses type II sums of squares. Above, we are use Type 3 sums of squares as we care about the interaction between hindfoot length and sex, and we don’t prioritize the effects of one variable.</p>
 </section>
 </section>
-<section id="a-fun-application" class="level3" data-number="9.4.4">
-<h3 data-number="9.4.4" class="anchored" data-anchor-id="a-fun-application"><span class="header-section-number">9.4.4</span> A fun application!</h3>
+<section id="a-fun-application" class="level3" data-number="10.4.4">
+<h3 data-number="10.4.4" class="anchored" data-anchor-id="a-fun-application"><span class="header-section-number">10.4.4</span> A fun application!</h3>
 <p>In quantitative genetics, regression is used to estimate the strength of directional, stabilizing, or disruptive selection on continuous traits (e.g., beak length) controlled by a large number of genes of small additive effect. Without getting into the weeds, the regression of relative fitness (or some proxy for fitness) on trait value provides an estimate of the selection <em>differential</em> <span class="math inline">\(S\)</span>, defined as the co-variance between fitness and the trait. The observation linear models could be used to estimate selection on on or more quantitative traits (possibly correlated) was operationalized in 1983 by <a href="https://onlinelibrary.wiley.com/doi/10.1111/j.1558-5646.1983.tb00236.x">Lande &amp; Arnold</a>. When trait measurements are normalized, the slope of the regression equals the strength of directional selection on the trait. Regression has been applied in a wide range of plant and animal taxa to estimate selection and, when there are multiple traits under investigation, the relative importance of direct vs indirect selection on evolution.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>generate_data_directionalselection <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">100</span>, values){</span>
@@ -700,18 +700,18 @@ lm(formula = fitness ~ scale(trait), data = data)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.36874 -0.11840  0.03626  0.13023  0.30442 
+-0.49185 -0.10115  0.01588  0.11796  0.27635 
 
 Coefficients:
              Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   1.00000    0.01590   62.90   &lt;2e-16 ***
-scale(trait)  0.37040    0.01598   23.18   &lt;2e-16 ***
+(Intercept)   1.00000    0.01627   61.48   &lt;2e-16 ***
+scale(trait)  0.35393    0.01635   21.65   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.159 on 98 degrees of freedom
-Multiple R-squared:  0.8457,    Adjusted R-squared:  0.8442 
-F-statistic: 537.3 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 0.1627 on 98 degrees of freedom
+Multiple R-squared:  0.8271,    Adjusted R-squared:  0.8253 
+F-statistic: 468.7 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="do">### fitness changed by ~50% per sd change in trait value!</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -733,30 +733,30 @@ lm(formula = fitness ~ scale(trait) + scale(trait^2), data = data)
 
 Residuals:
       Min        1Q    Median        3Q       Max 
--0.157196 -0.059319  0.000927  0.042577  0.199743 
+-0.204671 -0.050754  0.003266  0.059132  0.284343 
 
 Coefficients:
                 Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)     1.000000   0.007575  132.02   &lt;2e-16 ***
-scale(trait)    0.885050   0.029141   30.37   &lt;2e-16 ***
-scale(trait^2) -0.533167   0.029141  -18.30   &lt;2e-16 ***
+(Intercept)     1.000000   0.009362  106.82   &lt;2e-16 ***
+scale(trait)    0.843174   0.035948   23.45   &lt;2e-16 ***
+scale(trait^2) -0.506917   0.035948  -14.10   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.07575 on 97 degrees of freedom
-Multiple R-squared:  0.9653,    Adjusted R-squared:  0.9646 
-F-statistic:  1351 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 0.09362 on 97 degrees of freedom
+Multiple R-squared:  0.9433,    Adjusted R-squared:  0.9421 
+F-statistic: 806.9 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>Here, the blue (red) regression line is the linear (quadratic) individual selection surface, estimated by regressing fitness on trait value (and its square) simulated under a model of directional selection.</p>
-<section id="other-applications" class="level4" data-number="9.4.4.1">
-<h4 data-number="9.4.4.1" class="anchored" data-anchor-id="other-applications"><span class="header-section-number">9.4.4.1</span> Other applications…</h4>
+<section id="other-applications" class="level4" data-number="10.4.4.1">
+<h4 data-number="10.4.4.1" class="anchored" data-anchor-id="other-applications"><span class="header-section-number">10.4.4.1</span> Other applications…</h4>
 <p>Regression has also been used in quantitative genetics to estimate the hertiability of traits (i.e., the proportion of variance in the trait that is explained by the additive action of genes), and to preform Genome-Wide Association Studies (GWAS) and uncover the genetic basis of complex traits. One form of GWAS involves regressing phenotype (e.g., disease status) on the existence/non-existence of genetic differences (most often, SNPs) among individuals sampled, and identifying those which have a significant effect on phenotype.</p>
 </section>
 </section>
 </section>
-<section id="generalized-linear-models-theory-and-examples" class="level2" data-number="9.5">
-<h2 data-number="9.5" class="anchored" data-anchor-id="generalized-linear-models-theory-and-examples"><span class="header-section-number">9.5</span> Generalized linear models: theory and examples</h2>
+<section id="generalized-linear-models-theory-and-examples" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="generalized-linear-models-theory-and-examples"><span class="header-section-number">10.5</span> Generalized linear models: theory and examples</h2>
 <p>So far we have seen how regression can be used to fit linear models when the distribution of the data is approximately normal or when the data can be transformed so that this assumption is not violated. What if we were, say, interested in a <em>binary</em> response (e.g., disease status) and how it changes with a continuous predictor (e.g., age)? In this case, one can use a special kind of linear model called <em>logistic regression</em> to estimate the additive effect of predictor(s) on the binary response. <strong>Generalized linear models (GLMs) are useful when the response has a non-normal distribution, and transformation of the data is undesirable or impossible.</strong> A GLM takes the form</p>
 <p><span class="math display">\[E(\boldsymbol{y}|\boldsymbol{X}) = g^{-1}(\boldsymbol{X} \boldsymbol{\beta}),\]</span></p>
 <p>where <span class="math inline">\(g(\cdot)\)</span> is a smooth and invertible <em>link</em> function taking the conditional expectation on the LHS to the linear predictor on the RHS. The link function for distributions in the overdispersed exponential family (including the Normal, Gamma, Exponential, Poisson, and Multinomial) are known. GLMs with these data distributions can be implemented in R by calling <code>glm()</code> with the appropriate family specified:</p>
@@ -823,8 +823,8 @@ Number of Fisher Scoring iterations: 3</code></pre>
 <li><strong>Over-dispersed count</strong> data (when the count data is more spread out than “expected”): <strong>negative binomial</strong> distribution</li>
 <li><strong>Binary</strong> data (two discrete categories): <strong>binomial</strong> distribution</li>
 </ul>
-<section id="returning-to-the-disease-age-example" class="level3" data-number="9.5.1">
-<h3 data-number="9.5.1" class="anchored" data-anchor-id="returning-to-the-disease-age-example"><span class="header-section-number">9.5.1</span> Returning to the disease-age example…</h3>
+<section id="returning-to-the-disease-age-example" class="level3" data-number="10.5.1">
+<h3 data-number="10.5.1" class="anchored" data-anchor-id="returning-to-the-disease-age-example"><span class="header-section-number">10.5.1</span> Returning to the disease-age example…</h3>
 <p>Below we simulate binary disease data (0,1) for patients of several ages, assuming the the log-odds of disease is a linear function of age. We then fit a logistic regression to this data to determine the effect of age on disease risk. Next, we write a function to do a <strong>power analysis</strong>. That is, we determine the sample size that is required so that simulating the age-disease data repeatedly we identify a significant effect of age on disease status (i.e., reject the null hypothesis) at level <span class="math inline">\(\alpha = 0.01\)</span> <em>at least <span class="math inline">\(99\%\)</span> of the time</em>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>data_generator <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">sample_size =</span> <span class="dv">100</span>){</span>
@@ -864,21 +864,21 @@ glm(formula = disease_status ~ scale(age), family = binomial,
     data = data)
 
 Deviance Residuals: 
-    Min       1Q   Median       3Q      Max  
--1.6236  -1.0219  -0.7782   1.0535   1.6736  
+   Min      1Q  Median      3Q     Max  
+-1.393  -1.018  -0.782   1.169   1.655  
 
 Coefficients:
-            Estimate Std. Error z value Pr(&gt;|z|)   
-(Intercept) -0.08469    0.21035  -0.403  0.68722   
-scale(age)   0.65288    0.21870   2.985  0.00283 **
+            Estimate Std. Error z value Pr(&gt;|z|)  
+(Intercept)  -0.2563     0.2077  -1.234   0.2173  
+scale(age)    0.4960     0.2139   2.319   0.0204 *
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 138.47  on 99  degrees of freedom
-Residual deviance: 128.78  on 98  degrees of freedom
-AIC: 132.78
+    Null deviance: 137.19  on 99  degrees of freedom
+Residual deviance: 131.51  on 98  degrees of freedom
+AIC: 135.51
 
 Number of Fisher Scoring iterations: 4</code></pre>
 </div>
@@ -915,47 +915,47 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <tbody>
 <tr class="odd">
 <td style="text-align: right;">100</td>
-<td style="text-align: right;">0.895</td>
+<td style="text-align: right;">0.869</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">110</td>
-<td style="text-align: right;">0.933</td>
+<td style="text-align: right;">0.924</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">120</td>
-<td style="text-align: right;">0.938</td>
+<td style="text-align: right;">0.942</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">130</td>
-<td style="text-align: right;">0.956</td>
+<td style="text-align: right;">0.960</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">140</td>
-<td style="text-align: right;">0.971</td>
+<td style="text-align: right;">0.969</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">150</td>
-<td style="text-align: right;">0.989</td>
+<td style="text-align: right;">0.984</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">160</td>
-<td style="text-align: right;">0.986</td>
+<td style="text-align: right;">0.991</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">170</td>
-<td style="text-align: right;">0.991</td>
+<td style="text-align: right;">0.992</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">180</td>
-<td style="text-align: right;">0.997</td>
+<td style="text-align: right;">0.994</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">190</td>
-<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.997</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">200</td>
-<td style="text-align: right;">0.997</td>
+<td style="text-align: right;">0.999</td>
 </tr>
 </tbody>
 </table>
@@ -1209,12 +1209,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./lec07-intro-to-stats.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction to inference</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction to inference</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./projects.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Project description</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Project description</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
